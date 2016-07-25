@@ -4,6 +4,15 @@
 	<meta charset="utf-8">
 	<title>Welcome to CodeIgniter</title>
 
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+        <link href="../../bootstrap/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
+        
+        <script src="../../bootstrap/js/jquery.js" type="text/javascript"></script>
+        <script src="../../bootstrap/js/jquery.dataTables.min.js" type="text/javascript"></script>
+        
 	<style type="text/css">
 
 	::selection{ background-color: #E13300; color: white; }
@@ -71,15 +80,20 @@
 
 	<div id="body">
         
-            <table>
-                
-                <tr>
-                    <th>ID</th>
-                    <th>Nome da Música</th>
+            <table cellspacing="0"  cellpadding="0" border="0" class="display" id="############">
+            <table cellspacing="0"  cellpadding="0" border="0" class="display" id="tabela1">
+                <thead>
+                    <tr>
+                    <th>Código do CD</th>
+                    <th>Nome do CD</th>
                     <th>Gravadora</th>
-                    <th>Ações</th>
-                </tr>
+                    <th>Opções</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
                 <?php foreach ($consulta -> result() as $linha): ?> 
+                    
                 <tr>
                     <td style="text-align: center;"><?php echo $linha->idcd ?></td>
                     <td style="text-align: center;"><?php echo $linha->nomecd ?></td>
@@ -87,6 +101,7 @@
                     <td style="text-align: center;"><?php ?></td>
                 </tr>
                 <?php endforeach;?>
+                </tbody>
             </table>
             
 	</div>
