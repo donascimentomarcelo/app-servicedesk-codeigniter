@@ -3,7 +3,9 @@
 <head>
 	<meta charset="utf-8">
 	<title>Welcome to CodeIgniter</title>
-
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 	<style type="text/css">
 
 	::selection{ background-color: #E13300; color: white; }
@@ -70,11 +72,22 @@
 	<h1>Welcome to CodeIgniter!</h1>
 
 	<div id="body">
-            
-		<code><?php echo anchor(base_url(), 'Home'); ?></code>
-		<code><?php echo anchor('cd/cd_controller/formulario', 'Cadastro CD'); ?></code>
-		<code><?php echo anchor('cd/cd_controller/listar_cd', 'Listar CD'); ?></code>
-
+          
+                  
+        <nav class="navbar navbar-inverse">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <a class="navbar-brand" href="#">WebSiteName</a>
+            </div>
+            <ul class="nav navbar-nav">
+              <li class="active"><?php echo anchor(base_url(), 'Home'); ?></li>
+              <li><?php echo anchor('cd/cd_controller/formulario', 'Cadastro CD'); ?></li>
+              <li><?php echo anchor('cd/cd_controller/listar_cd', 'Listar CD'); ?></li>
+              <li><a href="#">Page 3</a></li>
+            </ul>
+          </div>
+        </nav>
+           
 	</div>
 
 	<p class="footer">Page rendered in <strong>{elapsed_time}</strong> seconds</p>
