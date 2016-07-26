@@ -8,10 +8,22 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
-        <link href="../../bootstrap/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../../../bootstrap/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
         
-        <script src="../../bootstrap/js/jquery.js" type="text/javascript"></script>
-        <script src="../../bootstrap/js/jquery.dataTables.min.js" type="text/javascript"></script>
+        <script src="../../../bootstrap/js/jquery.js" type="text/javascript"></script>
+        <script src="../../../bootstrap/js/jquery.dataTables.min.js" type="text/javascript"></script>
+        
+        <script type="text/javascript">
+        
+        $(document).ready(function(){
+				$('#tabela1').dataTable();
+                                
+                                $(document).ready(function(){
+                                     $('.dropdown-toggle').dropdown();
+                        });
+		});
+        
+        </script>
         
 	<style type="text/css">
 
