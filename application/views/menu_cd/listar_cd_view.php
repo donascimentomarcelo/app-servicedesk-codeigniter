@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>Welcome to CodeIgniter</title>
+	<title>Manter CD</title>
 
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -88,11 +88,43 @@
 <body>
 
 <div id="container">
-	<h1>Welcome to CodeIgniter!</h1>
+	<h1>Manter CD</h1>
 
 	<div id="body">
-        
-            <table cellspacing="0"  cellpadding="0" border="0" class="display" id="############">
+            <!--
+            <button type="button" class="btn btn-default btn-sm">
+              <span class="glyphicon glyphicon-plus"><?php echo anchor('cd/cd_controller/formulario', 'Novo'); ?></span>
+            </button>
+            -->
+            <div class="container">
+                
+                <!-- Trigger the modal with a button -->
+                <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal"> <span class="glyphicon glyphicon-plus"></span></button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="myModal" role="dialog">
+                  <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Modal Header</h4>
+                      </div>
+                      <div class="modal-body">
+                        <p>Some text in the modal.</p>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Salvar</button>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+
+              </div>
+            
             <table cellspacing="0"  cellpadding="0" border="0" class="display" id="tabela1">
                 <thead>
                     <tr>
