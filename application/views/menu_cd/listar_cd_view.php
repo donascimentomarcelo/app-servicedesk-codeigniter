@@ -86,7 +86,7 @@
 
 <div id="container">
 	<h1>Manter CD</h1>
-        
+        <div id="body">
         <div class="btn-group btn-group-justified" style="margin-left: 22%;">
             <button type="button" class="glyphicon glyphicon-plus"  onclick="janelaNovoCd()"></button>
             <button type="button" class="glyphicon glyphicon-home"></button>
