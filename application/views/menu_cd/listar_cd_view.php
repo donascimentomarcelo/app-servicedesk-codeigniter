@@ -5,6 +5,7 @@
 	<title>Manter CD</title>
 
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
@@ -37,12 +38,16 @@
     	$(function(){
     		$('#formulario_cd').ajaxForm({
     			success: function(data) {
-    				if (data == 1) {
+    				if (data == 1 || data == 11) {
     					
+    					//Algo esta acontecendo no controller que está trazendo 11 no lugar de 1.
+    					//Faço esse if com || pq preciso que atualize a pagina.
     					//se for sucesso, simplesmente recarrego a página. Aqui você pode usar sua imaginação.
     					document.location.href = document.location.href;
 				    	
-    				}
+    				}else{
+                                    alert(data);
+                                }
     			}
     		});
     	});
@@ -81,8 +86,28 @@
 
 <div id="container">
 	<h1>Manter CD</h1>
-
-	<div id="body">
+        
+        <div class="btn-group btn-group-justified" style="margin-left: 22%;">
+            <button type="button" class="glyphicon glyphicon-plus"  onclick="janelaNovoCd()"></button>
+            <button type="button" class="glyphicon glyphicon-home"></button>
+            <button type="button" class="glyphicon glyphicon-off"></button>
+        
+       
+        
+      
+        <button type="button" class="btn btn-default btn-sm" onclick="janelaNovoCd()">
+          <span class="glyphicon glyphicon-plus"></span> 
+        </button>
+     
+        <button type="button" class="btn btn-default btn-sm">
+          <span class="glyphicon glyphicon-home"></span>
+        </button>
+     
+        <button type="button" class="btn btn-default btn-sm">
+          <span class="glyphicon glyphicon-off"></span> 
+        </button>
+    
+      </div>
             <!--
             <button type="button" class="btn btn-default btn-sm">
               <span class="glyphicon glyphicon-plus"><?php echo anchor('cd/cd_controller/formulario', 'Novo'); ?></span>
@@ -107,7 +132,7 @@
                     <td style="text-align: center;"><?php echo $linha->idcd ?></td>
                     <td style="text-align: center;"><?php echo $linha->nomecd ?></td>
                     <td style="text-align: center;"><?php echo $linha->gravadora ?></td>
-                    <td style="text-align: center;"><a href="javascript:;" onclick="janelaNovoCd(<?php echo $linha->idcd ?>)">Editar</a></td>
+                    <td style="text-align: center;"><a href="javascript:;" onclick="janelaNovoCd(<?php //echo $linha->idcd ?>)">Editar</a></td>
                 </tr>
                 <?php endforeach;?>
                 </tbody>

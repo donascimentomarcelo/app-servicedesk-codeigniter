@@ -13,15 +13,15 @@ class Cd_controller extends CI_Controller {
             
             $this->load->model('cd/cd_model');
             
-            $result = $this->cd_model->m_salvar_cd();
+           // $result = $this->cd_model->m_salvar_cd();
             
-            if($result){
+            if($this->cd_model->m_salvar_cd()){
                 
-                 $this->load->view("mensagem/sucesso");
+                echo 1;
                 
             }else{
                 
-                 $this->load->view("mensagem/erro");
+                 echo 0;
                 
             }
             
