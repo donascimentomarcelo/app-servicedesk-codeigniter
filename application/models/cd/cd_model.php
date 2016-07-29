@@ -54,4 +54,20 @@ class cd_model extends CI_Model{
         
         
     }
+    
+    public function excluir($idcd) {
+        
+        $this->db->where('idcd',$idcd);
+        
+        if($this->db->delete("cd")){
+            
+            return TRUE;
+            
+        }else{
+            
+            return FALSE;
+            
+        }
+        
+    }
 }
