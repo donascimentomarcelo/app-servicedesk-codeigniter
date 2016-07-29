@@ -37,26 +37,7 @@ class Cd_controller extends CI_Controller {
             
             $this->load->view("menu_cd/listar_cd_view",$variaveis);
         }
-        
-        public function excluir_cd($idcd) {
-            
-            $this->load->model('cd/cd_model');
-            
-            if($this->cd_model->excluir($idcd)){
-                
-                header("Location: http://localhost/cd/index.php/cd/cd_controller/listar_cd");
-                
-            }else{
-                
-                 echo 0;
-                
-            }
-            
-        }
 }
-
-
-        
 
 /* End of file welcome.php */
 /* Location: ./application/controllers/welcome.php */

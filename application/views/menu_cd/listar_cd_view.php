@@ -17,7 +17,6 @@
         
         <script src="../../../bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
         <script src="../../../bootstrap/js/jquery.forms.js" type="text/javascript"></script>
-        <script src="../../../bootstrap/js/bootbox.min.js" type="text/javascript"></script>
         
         <script type="text/javascript">
         
@@ -79,13 +78,6 @@
 	    	$('#modalEditarCliente').modal('show');
     	}
         
-        function confirma(){
-        if (!confirm("Confirma a exclusão?"))
-          return false;
-        return true;
-        }
-        
-        
         </script>
         
 	
@@ -116,7 +108,14 @@
         </button>
     
       </div>
-           <table cellspacing="0"  cellpadding="0" border="0" class="display" id="tabela1">
+            <!--
+            <button type="button" class="btn btn-default btn-sm">
+              <span class="glyphicon glyphicon-plus"><?php echo anchor('cd/cd_controller/formulario', 'Novo'); ?></span>
+            </button>
+            -->
+           
+            
+            <table cellspacing="0"  cellpadding="0" border="0" class="display" id="tabela1">
                 <thead>
                     <tr>
                     <th>Código do CD</th>
@@ -133,7 +132,7 @@
                     <td style="text-align: center;"><?php echo $linha->idcd ?></td>
                     <td style="text-align: center;"><?php echo $linha->nomecd ?></td>
                     <td style="text-align: center;"><?php echo $linha->gravadora ?></td>
-                    <td style="text-align: center;"><a href="javascript:;" onclick="janelaNovoCd(<?= $linha->idcd ?>)">Editar | <?php echo anchor("cd/cd_controller/excluir_cd/$linha->idcd", "Excluir", array("onclick" => "return confirma()")) ?></td>
+                    <td style="text-align: center;"><a href="javascript:;" onclick="janelaNovoCd(<?php //echo $linha->idcd ?>)">Editar</a></td>
                 </tr>
                 <?php endforeach;?>
                 </tbody>
