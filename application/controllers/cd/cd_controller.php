@@ -53,6 +53,28 @@ class Cd_controller extends CI_Controller {
             }
             
         }
+        
+        public function dados_cd() {
+            
+            $idcd = $this->input->post("idcd");
+            
+            $this->load->model("cd/cd_model");
+            
+            $consulta = $this->cd_model->m_list_cd($idcd);
+            
+            if($consulta->num_rows() == 0){
+                die("Cliente não encontrado");
+            }
+            
+            $array_clientes = array(
+                
+                "idcd" => $consulta->row()->idcd,
+                "nomecd" => $consulta->row()->nomecd,
+                "gravadora" => $consulta->row()->gravadora
+            );
+            
+            echo json_encode($array_clientes);
+        }
 }
 
 

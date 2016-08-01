@@ -70,4 +70,14 @@ class cd_model extends CI_Model{
         }
         
     }
+    
+    public function m_list_cd($idcd = NULL) {
+        
+        if($idcd != NULL){
+            $this->db->where("idcd", $idcd);
+        }
+        
+        return $this->db->get("cd");
+        
+    }
 }

@@ -62,7 +62,7 @@
 	     * usando jSon.  
 	     */
     	function carregaDadosCdJSon(idcd){
-    		$.post(base_url+'/index.php/cd/cd_controller/listar_cd', {
+    		$.post(base_url+'/index.php/cd/cd_controller/dados_cd', {
     			idcd: idcd
     		}, function (data){
     			$('#nomecd').val(data.nomecd);
@@ -78,6 +78,20 @@
                 //alert(idcd);
     		
 	    	$('#modalEditarCliente').modal('show');
+    	}
+        
+        function limparCampo(){
+            $("#idcd").val(''); 
+            $("#nomecd").val(''); 
+            $("#gravadora").val(''); 
+        }
+        
+    	function janelaCadastroCd(){
+            // na função limparCampo() eu apago os valores que estão no modal
+            // devido ter aberto o modal anteriormente, fica salvo os valores.
+                limparCampo();
+            
+    		$('#modalEditarCliente').modal('show');
     	}
         
         function confirma(){
@@ -96,27 +110,13 @@
 <div id="container">
 	<h1>Manter CD</h1>
         <div id="body">
-        <div class="btn-group btn-group-justified" style="margin-left: 22%;">
-            <button type="button" class="glyphicon glyphicon-plus"  onclick="janelaNovoCd()"></button>
-            <button type="button" class="glyphicon glyphicon-home"></button>
-            <button type="button" class="glyphicon glyphicon-off"></button>
-        
-       
-        
-      
-        <button type="button" class="btn btn-default btn-sm" onclick="janelaNovoCd()">
-          <span class="glyphicon glyphicon-plus"></span> 
-        </button>
-     
-        <button type="button" class="btn btn-default btn-sm">
-          <span class="glyphicon glyphicon-home"></span>
-        </button>
-     
-        <button type="button" class="btn btn-default btn-sm">
-          <span class="glyphicon glyphicon-off"></span> 
-        </button>
-    
-      </div>
+        <div id="bts_manter_cd">
+            <div class="btn-group btn-group-justified" style="margin-left: 22%;">
+                <button type="button" class="glyphicon glyphicon-plus"  onclick="janelaCadastroCd()"></button>
+                <button type="button" class="glyphicon glyphicon-home"></button>
+                <button type="button" class="glyphicon glyphicon-off"></button>
+            </div>
+        </div>
            <table cellspacing="0"  cellpadding="0" border="0" class="display" id="tabela1">
                 <thead>
                     <tr>
@@ -166,8 +166,8 @@
 			    
 	      </div>
 	      <div class="modal-footer">
-	        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-	       <!--  <button type="submit" class="btn btn-primary">Salvar Alterações</button>-->
+	        <button type="button" class="btn btn-default" data-dismiss="modal" >Fechar</button>
+	       
                <button type="button" class="btn btn-primary" onclick="$('#formulario_cd').submit()">Salvar</button>
 	      </div>
 	    </div><!-- /.modal-content -->
