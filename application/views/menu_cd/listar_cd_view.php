@@ -19,8 +19,11 @@
         <script src="../../../bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
         <script src="../../../bootstrap/js/jquery.forms.js" type="text/javascript"></script>
         <script src="../../../bootstrap/js/bootbox.min.js" type="text/javascript"></script>
+        <script src="../../../bootstrap/js/jquery.validate.js" type="text/javascript"></script>
         
         <script type="text/javascript">
+        
+     
         
         $(document).ready(function(){
 				$('#tabela1').dataTable();
@@ -28,6 +31,29 @@
                                 $(document).ready(function(){
                                      $('.dropdown-toggle').dropdown();
                         });
+                        
+                        $("#formulario_cd").validate({
+                            rules : {
+                                  nomecd:{
+                                         required:true,
+                                         minlength:3
+                                  },
+                                  gravadora:{
+                                         required:true,
+                                         minlength:3
+                                  }                               
+                            },
+                            messages:{
+                                  nomecd:{
+                                         required:"Informe o nome do CD!",
+                                         minlength:"O nome deve ter pelo menos 3 caracteres"
+                                  },
+                                  gravadora:{
+                                         required:"Informe a gravadora!",
+                                         minlength:"O nome deve ter pelo menos 3 caracteres"
+                                  }    
+                            }
+                     });
 		});
         
         
@@ -99,8 +125,9 @@
           return false;
         return true;
         }
+
         
-        
+     
         </script>
         
 	
@@ -111,7 +138,7 @@
 	<h1>Manter CD</h1>
         <div id="body">
         <div id="bts_manter_cd">
-            <div class="btn-group btn-group-justified" style="margin-left: 22%;">
+            <div class="btn-group btn-group-justified">
                 <button type="button" class="glyphicon glyphicon-plus"  onclick="janelaCadastroCd()"></button>
                 <button type="button" class="glyphicon glyphicon-home"></button>
                 <button type="button" class="glyphicon glyphicon-off"></button>
@@ -134,7 +161,7 @@
                     <td style="text-align: center;"><?php echo $linha->idcd ?></td>
                     <td style="text-align: center;"><?php echo $linha->nomecd ?></td>
                     <td style="text-align: center;"><?php echo $linha->gravadora ?></td>
-                    <td style="text-align: center;"><a href="javascript:;" onclick="janelaNovoCd(<?= $linha->idcd ?>)">Editar | <?php echo anchor("cd/cd_controller/excluir_cd/$linha->idcd", "Excluir", array("onclick" => "return confirma()")) ?></td>
+                    <td style="text-align: center;"><a href="javascript:;"  onclick="janelaNovoCd(<?= $linha->idcd ?>)"><button type="button" class="glyphicon glyphicon-cog"></button></a><a href="http://localhost/cd/index.php/cd/cd_controller/excluir_cd/<?=$linha->idcd?>"  onclick="return confirma()"><button type="button" class="glyphicon glyphicon-trash"></button></a></td>
                 </tr>
                 <?php endforeach;?>
                 </tbody>
@@ -159,7 +186,7 @@
 			  </div>
 			  <div class="form-group">
 			    <label for="email">Gravadora</label>
-			    <input type="email" class="form-control" id="gravadora" name='gravadora'>
+			    <input type="text" class="form-control" id="gravadora" name='gravadora'>
 			  </div>
 			  <input type="hidden" name="idcd" id="idcd" value="" />
 			</form>	    

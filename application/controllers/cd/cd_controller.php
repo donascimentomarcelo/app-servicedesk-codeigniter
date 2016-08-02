@@ -15,6 +15,10 @@ class Cd_controller extends CI_Controller {
             
            // $result = $this->cd_model->m_salvar_cd();
             
+            if($this->input->post('nomecd') == '' && $this->input->post('gravadora') == ''){
+                ?> Preencha os campos do formulario! <?php
+            }else{
+            
             if($this->cd_model->m_salvar_cd()){
                 
                 echo 1;
@@ -24,7 +28,7 @@ class Cd_controller extends CI_Controller {
                  echo 0;
                 
             }
-            
+            }
         }
         
         public function listar_cd(){
