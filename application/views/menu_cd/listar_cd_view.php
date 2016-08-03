@@ -16,11 +16,17 @@
         <script src="../../../bootstrap/js/jquery.js" type="text/javascript"></script>
         <script src="../../../bootstrap/js/jquery.dataTables.min.js" type="text/javascript"></script>
         <script src="../../../bootstrap/js/jquery.form.js" type="text/javascript"></script>
-        
+        <script src="../../../bootstrap/js/bootbox.js" type="text/javascript"></script>
         <script src="../../../bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
         <script src="../../../bootstrap/js/jquery.forms.js" type="text/javascript"></script>
         <script src="../../../bootstrap/js/bootbox.min.js" type="text/javascript"></script>
+        
         <script src="../../../bootstrap/js/jquery.validate.js" type="text/javascript"></script>
+        
+        <script src="../../../sweet/sweetalert-dev.js" type="text/javascript"></script>
+        <script src="../../../sweet/sweetalert.min.js" type="text/javascript"></script>
+        
+        <link href="../../../sweet/sweetalert.css" rel="stylesheet" type="text/css"/>
         
         <script type="text/javascript">
         
@@ -56,8 +62,14 @@
                             }
                      });
 		});
-        
-        
+        function minhaCallCack(){
+         swal({   title: "Auto close alert!",
+             text: "Registro salvo com sucesso!",
+             timer: 5000, 
+             showConfirmButton: false 
+         });
+        }
+        //http://t4t5.github.io/sweetalert/
         /*
     	 * Função que carrega após o DOM estiver carregado.
     	 * Como estou usando o ajaxForm no formulário, é aqui que eu o configuro.
@@ -72,7 +84,9 @@
     					//Algo esta acontecendo no controller que está trazendo 11 no lugar de 1.
     					//Faço esse if com || pq preciso que atualize a pagina.
     					//se for sucesso, simplesmente recarrego a página. Aqui você pode usar sua imaginação.
+                                        
     					document.location.href = document.location.href;
+                                        success: minhaCallCack();
 				    	
     				}else{
                                     alert(data);
