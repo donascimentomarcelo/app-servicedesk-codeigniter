@@ -28,6 +28,9 @@
         
         <link href="../../../sweet/sweetalert.css" rel="stylesheet" type="text/css"/>
         
+        <link href="../../../craftpip-jquery/css/jquery-confirm.css" rel="stylesheet" type="text/css"/>
+        <script src="../../../craftpip-jquery/js/jquery-confirm.js" type="text/javascript"></script>
+        
         <script type="text/javascript">
         
      
@@ -63,9 +66,9 @@
                      });
 		});
         function minhaCallCack(){
-         swal({   title: "Auto close alert!",
-             text: "Registro salvo com sucesso!",
-             timer: 5000, 
+         swal({   title: "Registro salvo com sucesso!",
+             text: "Exito ao realizar operação.",
+             timer: 1000, 
              showConfirmButton: false 
          });
         }
@@ -85,8 +88,9 @@
     					//Faço esse if com || pq preciso que atualize a pagina.
     					//se for sucesso, simplesmente recarrego a página. Aqui você pode usar sua imaginação.
                                         
-    					document.location.href = document.location.href;
+    					//document.location.href = document.location.href;
                                         success: minhaCallCack();
+                                        limparCampo();
 				    	
     				}else{
                                     alert(data);
@@ -134,15 +138,63 @@
             
     		$('#modalEditarCliente').modal('show');
     	}
-        
+        /*
         function confirma(){
+        swal({   title: "Are you sure?",   
+            text: "You will not be able to recover this imaginary file!",   
+            type: "warning",   
+            showCancelButton: true,   
+            confirmButtonColor: "#DD6B55",   
+            confirmButtonText: "Yes, delete it!",   
+            cancelButtonText: "No, cancel plx!",   
+            closeOnConfirm: false,   
+            closeOnCancel: false }, 
+        function(isConfirm){   
+            if (isConfirm) {     
+                swal("Deleted!", "Your imaginary file has been deleted.", "success");   
+                
+            } else {     
+                swal("Cancelled", "Your imaginary file is safe :)", "error");  
+            } 
+        });
+        }*/
+        
+        function confirma(idcd){
+        resposta = confirm("Deseja realmente excluir esse aluno?");
+        if (resposta){
+            $.ajax({
+                type: "POST",
+                data: {
+                    idcd: idcd
+                },
+                
+                url: "http://localhost/cd/index.php/cd/cd_controller/excluir_cd/"+idcd,
+                success: function(data) {
+                    if(data == 1){
+                        swal("Excluído!", "Dado excluída com sucesso!", "success"); 
+                    }else{
+                        swal("Erro ao excluir", "Houve algum erro ao excluir!", "error"); 
+                        alert("Houve algum erro ao excluir!");
+                    }
+                },
+                error: function(){
+                    alert("Houve algum erro ao excluir!");
+                }
+            });
+        }
+    }
+        
+        
+      /*function confirma(){
         if (!confirm("Confirma a exclusão?"))
           return false;
         return true;
-        }
+        }*/
 
+        function refresh(){
+            document.location.href = document.location.href;
+        }
         
-     
         </script>
         
 	
@@ -155,6 +207,7 @@
         <div id="bts_manter_cd">
             <div class="btn-group btn-group-justified">
                 <button type="button" class="glyphicon glyphicon-plus"  onclick="janelaCadastroCd()"></button>
+                <button type="button" class="glyphicon glyphicon-apple"  onclick="confirma()"></button>
                 <button type="button" class="glyphicon glyphicon-home"></button>
                 <button type="button" class="glyphicon glyphicon-off"></button>
             </div>
@@ -176,7 +229,7 @@
                     <td style="text-align: center;"><?php echo $linha->idcd ?></td>
                     <td style="text-align: center;"><?php echo $linha->nomecd ?></td>
                     <td style="text-align: center;"><?php echo $linha->gravadora ?></td>
-                    <td style="text-align: center;"><a href="javascript:;"  onclick="janelaNovoCd(<?= $linha->idcd ?>)"><button type="button" class="glyphicon glyphicon-cog"></button></a><a href="http://localhost/cd/index.php/cd/cd_controller/excluir_cd/<?=$linha->idcd?>"  onclick="return confirma()"><button type="button" class="glyphicon glyphicon-trash"></button></a></td>
+                    <td style="text-align: center;"><a href="javascript:;"  onclick="janelaNovoCd(<?= $linha->idcd ?>)"><button type="button" class="glyphicon glyphicon-cog"></button></a><a href="javascript:;"  onclick="confirma(<?= $linha->idcd ?>)"><button type="button" class="glyphicon glyphicon-trash"></button></a></td>
                 </tr>
                 <?php endforeach;?>
                 </tbody>
@@ -184,13 +237,12 @@
             
 	</div>
         
-
-        <div class="modal fade bs-example-modal-lg" id="modalEditarCliente" >
+         <!--START MODAL-->
+        <div class="modal fade bs-example-modal-lg" id="modalEditarCliente" data-backdrop="static" >
 	  <div class="modal-dialog">
 	    <div class="modal-content">
 	      <div class="modal-header">
-	        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Fechar</span></button>
-	        <h4 class="modal-title">Novo CD</h4>
+	        <h4 class="modal-title">Manter CD</h4>
 	      </div>
 	      <div class="modal-body">
 	      	
@@ -208,7 +260,7 @@
 			    
 	      </div>
 	      <div class="modal-footer">
-	        <button type="button" class="btn btn-default" data-dismiss="modal" >Fechar</button>
+	        <button type="button" class="btn btn-default" data-dismiss="modal" onclick="refresh()" >Fechar</button>
 	       
                <button type="button" class="btn btn-primary" onclick="$('#formulario_cd').submit()">Salvar</button>
 	      </div>

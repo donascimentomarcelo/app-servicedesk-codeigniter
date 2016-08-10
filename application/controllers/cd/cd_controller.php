@@ -48,7 +48,8 @@ class Cd_controller extends CI_Controller {
             
             if($this->cd_model->excluir($idcd)){
                 
-                header("Location: http://localhost/cd/index.php/cd/cd_controller/listar_cd");
+               // header("Location: http://localhost/cd/index.php/cd/cd_controller/listar_cd");
+                echo 1;
                 
             }else{
                 
