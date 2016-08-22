@@ -69,7 +69,7 @@
 <body>
 
 <div id="container">
-	<h1>Welcome to CodeIgniter!</h1>
+	<h1>Hello <?php echo $this->session->userdata('email');?>, Welcome to CodeIgniter!  </h1>
 
 	<div id="body">
           
@@ -80,9 +80,10 @@
               <a class="navbar-brand" href="#">WebSiteName</a>
             </div>
             <ul class="nav navbar-nav">
-              <li class="active"><?php echo anchor(base_url(), 'Home'); ?></li>
-              <li><?php echo anchor('cd/cd_controller/formulario', 'Cadastro CD'); ?></li>
-              <li><?php echo anchor('cd/cd_controller/listar_cd', 'Listar CD'); ?></li>
+              <li class="active"><?php echo anchor('cd/cd_controller/welcome_message', 'Home'); ?></li>
+              <li><?php echo anchor('usuario/usuario_controller/listar_usuario', 'Manter Usuário'); ?></li>
+              <li><?php echo anchor('cd/cd_controller/listar_cd', 'Manter CD'); ?></li>
+              <li><?php echo anchor('login/login_controller/sair', 'Sair'); ?></li>
               <li><a href="#">Page 3</a></li>
             </ul>
           </div>

@@ -22,26 +22,29 @@ class Login_controller extends CI_Controller {
                     'logado' => true
                 );
                 $this->session->set_userdata($data);
-                redirect('login/area_restrita');
+                redirect('login/menu');
             }else{
-                redirect($this->index());
+                 $mensagem = array('class' => 'danger',
+                    'mensagem' => 'Erro de autenticação!'
+                );
+                $dados = array('alerta' => $mensagem);
+
+                $this->load->view('login/login_view', $dados);
+
             }
         }
-       /* 
-        $email = $this->input->post('email');
-        $senha = $this->input->post('senha');
-        //$usuario = $this->login_model->buscaPorEmailSenha($email, $senha);
+    }
+    public function sair(){
         
-        if($usuario){
-            $this->session->set_userdata("usuario_logado",$usuario);
-            //$dados = array("mensagem" =>"logado com sucesso");
-            $this->load->view("welcome_message");
-        }else{
-            //$dados = array("mensagem" =>"Erro ao logar");
-            echo $usuario;
-            $this->load->view("mensagem/erro");
-        }
-     */   
+                $this->session->sess_destroy();
+        
+                 $mensagem = array('class' => 'success',
+                    'mensagem' => 'Usuário deslogado!'
+                );
+                $dados = array('alerta' => $mensagem);
+
+                $this->load->view('login/login_view', $dados);
+
     }
 }
 

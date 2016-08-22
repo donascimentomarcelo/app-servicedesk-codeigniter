@@ -2,13 +2,18 @@
 
 class Cd_controller extends CI_Controller {
 
-	public function formulario()
+	public function manter_usuario()
 	{
 		$this->load->helper('form');
                 
-		$this->load->view('menu_cd/formulario');
+		$this->load->view('usuario/manter_usuario_view');
 	}
         
+        public function welcome_message() {
+            $this->load->helper('form');
+                
+            $this->load->view('welcome_message');
+        }
         public function salvar_cd(){
             
             $this->load->model('cd/cd_model');

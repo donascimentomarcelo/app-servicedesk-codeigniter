@@ -33,7 +33,7 @@ class login_model extends CI_Model{
         $logado = $this->session->userdata('logado');
         
         if(!isset($logado)||$logado != true){
-            echo 'voce não tem permissao';
+            redirect(base_url());
             die();
         }
         

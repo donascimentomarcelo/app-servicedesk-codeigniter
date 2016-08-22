@@ -237,8 +237,76 @@ footer a, footer a:link {
 
     </style>
 
+    <script>
+    //function of block back button
+    (function(window) { 
+  'use strict'; 
+ 
+var noback = { 
+	 
+	//globals 
+	version: '0.0.1', 
+	history_api : typeof history.pushState !== 'undefined', 
+	 
+	init:function(){ 
+		window.location.hash = '#no-back'; 
+		noback.configure(); 
+	}, 
+	 
+	hasChanged:function(){ 
+		if (window.location.hash == '#no-back' ){ 
+			window.location.hash = '#';
+			//mostra mensagem que não pode usar o btn volta do browser
+			if($( "#msgAviso" ).css('display') =='none'){
+				$( "#msgAviso" ).slideToggle("slow");
+			}
+		} 
+	}, 
+	 
+	checkCompat: function(){ 
+		if(window.addEventListener) { 
+			window.addEventListener("hashchange", noback.hasChanged, false); 
+		}else if (window.attachEvent) { 
+			window.attachEvent("onhashchange", noback.hasChanged); 
+		}else{ 
+			window.onhashchange = noback.hasChanged; 
+		} 
+	}, 
+	 
+	configure: function(){ 
+		if ( window.location.hash == '#no-back' ) { 
+			if ( this.history_api ){ 
+				history.pushState(null, '', '#'); 
+			}else{  
+				window.location.hash = '#';
+				//mostra mensagem que não pode usar o btn volta do browser
+				if($( "#msgAviso" ).css('display') =='none'){
+					$( "#msgAviso" ).slideToggle("slow");
+				}
+			} 
+		} 
+		noback.checkCompat(); 
+		noback.hasChanged(); 
+	} 
+	 
+	}; 
+	 
+	// AMD support 
+	if (typeof define === 'function' && define.amd) { 
+		define( function() { return noback; } ); 
+	}  
+	// For CommonJS and CommonJS-like 
+	else if (typeof module === 'object' && module.exports) { 
+		module.exports = noback; 
+	}  
+	else { 
+		window.noback = noback; 
+	} 
+	noback.init();
+}(window)); 
+    </script>
     
-        <script src="js/prefixfree.min.js"></script>
+    <script src="js/prefixfree.min.js"></script>
 </head>
 <body>
 
@@ -248,7 +316,7 @@ footer a, footer a:link {
 	<div id="body">
     
     <div class="wrapper">
-        <form class="login" action="<?= base_url()?>index.php/login/login_controller/autenticar" method="post">
+        <form class="login" action="<?= base_url('index.php/login/login_controller/autenticar')?>" method="post">
         <p class="title">Log in</p>
         <label>Email</label>
         <input type="text" placeholder="Username" name="email" autofocus/>
@@ -257,9 +325,28 @@ footer a, footer a:link {
         <input type="password" placeholder="Password" name="senha" />
         <i class="fa fa-key"></i>
         <button type="submit">
-        <i class="spinner"></i>
+        <!--<i class="spinner"></i>-->
         <span class="state">Log in</span>
         </button>
+        <?php
+        if(isset($alerta)){
+            if($alerta != null){?>
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <div class="col-md-4"></div>
+                        <center>
+                        <div class="">
+                        <div class="alert alert-<?php echo $alerta['class'];?>">
+                        <?php echo $alerta['mensagem'];?>
+                        </div>
+                        </div>
+                        </center>
+                    </div>
+
+                </div>
+        <?php 
+            }
+            }?>
   </form>
   </p>
 </div>
