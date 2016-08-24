@@ -42,7 +42,7 @@
                                      $('.dropdown-toggle').dropdown();
                         });
                         
-                        $("#formulario_cd").validate({
+                        $("#formulario_usuario").validate({
                             rules : {
                                   nomecd:{
                                          required:true,
@@ -75,7 +75,7 @@
         //http://t4t5.github.io/sweetalert/
       
     	$(function(){
-    		$('#formulario_cd').ajaxForm({
+    		$('#formulario_usuario').ajaxForm({
     			success: function(data) {
     				if (data == 1 || data == 11) {
                                     
@@ -92,38 +92,39 @@
         
     	var base_url = "<?= base_url() ?>";
     	
-	function carregaDadosCdJSon(idcd){
+	function carregaDadosUsuarioJSon(id){
     		$.post(base_url+'/index.php/cd/cd_controller/dados_cd', {
-    			idcd: idcd
+    			idcd: id
     		}, function (data){
-    			$('#nomecd').val(data.nomecd);
-    			$('#gravadora').val(data.gravadora);
-    			$('#idcd').val(data.idcd);
+    			$('#nome').val(data.nome);
+    			$('#senha').val(data.senha);
+    			$('#email').val(data.email);
+    			$('#perfil').val(data.perfil);
+    			$('#setor').val(data.setor);
     		}, 'json');
     	}
     
-    	function janelaNovoCd(idcd){
+    	function janelaNovoUsuario(id){
     		
-    		carregaDadosCdJSon(idcd);
+    		carregaDadosUsuarioJSon(id);
                 //alert(idcd);
     		
-	    	$('#modalEditarCliente').modal('show');
+	    	$('#modalUsuario').modal('show');
     	}
         
         function limparCampo(){
             $("#id").val(''); 
             $("#nome").val(''); 
-            $("#usuario").val(''); 
             $("#senha").val(''); 
             $("#email").val(''); 
             $("#perfil").val(''); 
-            $("#setor").val(''); 
+            $("#setor").val(null); 
         }
         
-    	function janelaCadastroCd(){
+    	function janelaCadastroUsuario(){
                 limparCampo();
             
-    		$('#modalEditarCliente').modal('show');
+    		$('#modalUsuario').modal('show');
     	}
         function confirma(id){
         resposta = confirm("Deseja realmente excluir esse aluno?");
@@ -190,7 +191,7 @@
         <div id="body">
         <div id="bts_manter_cd">
             <div class="btn-group btn-group-justified">
-                <button type="button" class="glyphicon glyphicon-plus"  onclick="janelaCadastroCd()"></button>
+                <button type="button" class="glyphicon glyphicon-plus"  onclick="janelaCadastroUsuario()"></button>
                 <button type="button" class="glyphicon glyphicon-apple"  onclick="confirma()"></button>
                 <button type="button" class="glyphicon glyphicon-home"></button>
                 <button type="button" class="glyphicon glyphicon-off"></button>
@@ -202,6 +203,8 @@
                     <th>Código do Usuário</th>
                     <th>Usuário</th>
                     <th>E-Mail</th>
+                    <th>Perfil</th>
+                    <th>Setor</th>
                     <th>Opções</th>
                     </tr>
                 </thead>
@@ -213,7 +216,9 @@
                     <td style="text-align: center;"><?php echo $linha->id ?></td>
                     <td style="text-align: center;"><?php echo $linha->nome ?></td>
                     <td style="text-align: center;"><?php echo $linha->email ?></td>
-                    <td style="text-align: center;"><a href="javascript:;"  onclick="janelaNovoCd(<?= $linha->id ?>)"><button type="button" class="glyphicon glyphicon-cog"></button></a><a href="javascript:;"  onclick="confirma(<?= $linha->id ?>)"><button type="button" class="glyphicon glyphicon-trash"></button></a></td>
+                    <td style="text-align: center;"><?php echo $linha->perfil ?></td>
+                    <td style="text-align: center;"><?php echo $linha->setor ?></td>
+                    <td style="text-align: center;"><a href="javascript:;"  onclick="janelaNovoUsuario(<?= $linha->id ?>)"><button type="button" class="glyphicon glyphicon-cog"></button></a><a href="javascript:;"  onclick="confirma(<?= $linha->id ?>)"><button type="button" class="glyphicon glyphicon-trash"></button></a></td>
                 </tr>
                 <?php endforeach;?>
                 </tbody>
@@ -222,7 +227,7 @@
 	</div>
         
          <!--START MODAL-->
-        <div class="modal fade bs-example-modal-lg" id="modalEditarCliente" data-backdrop="static" >
+        <div class="modal fade bs-example-modal-lg" id="modalUsuario" data-backdrop="static" >
 	  <div class="modal-dialog">
 	    <div class="modal-content">
 	      <div class="modal-header">
@@ -230,37 +235,37 @@
 	      </div>
 	      <div class="modal-body">
 	      	
-			<form role="form" method="post" action="<?= base_url('index.php/usuario/usuario_controller/salvar_usuario')?>" id="formulario_cd">
+			<form role="form" method="post" action="<?= base_url('index.php/usuario/usuario_controller/salvar_usuario')?>" id="formulario_usuario">
 			  <div class="form-group">
 			    <label for="nome">Nome</label>
-                            <input type="text" value="teste2" class="form-control" id="nome"  name='nome'>
+                            <input type="text"  class="form-control" id="nome"  name='nome'>
 			  </div>
 			 
 			  <div class="form-group">
 			    <label for="email">Senha</label>
-                            <input type="password" value="teste2" class="form-control" id="senha" name='senha'>
+                            <input type="password"  class="form-control" id="senha" name='senha'>
 			  </div>
 			  <div class="form-group">
 			    <label for="nome">E-mail</label>
-			    <input type="text" value="teste2" class="form-control" id="email"  name='email'>
+			    <input type="text"  class="form-control" id="email"  name='email'>
 			  </div>
 			  <div class="form-group">
 			    <label for="email">Perfil:</label>
 			    <label class="radio-inline">
-                                <input type="radio" name="perfil" id="perfil" value="administrador"> Usuário
+                                <input type="radio" name="perfil" value="administrador" checked="checked"> Usuário
                               </label>
                               <label class="radio-inline">
-                                <input type="radio" name="perfil" id="perfil" value="usuario"> Administrador
+                                <input type="radio" name="perfil" value="usuario"> Administrador
                               </label>
                             </div>
 			  <div class="form-group">
 			    <label for="setor">Setor</label>
-			    <select class="form-control">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
+                            <select class="form-control" name="setor" id="setor">
+                                <option value="ti">TI</option>
+                                <option value="engenharia">Engenharia</option>
+                                <option value="medico">Médico</option>
+                                <option value="suporte">Suporte</option>
+                                <option value="arquitetura">Arquitetura</option>
                             </select>
 			  </div>
 			  
@@ -271,7 +276,7 @@
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-default" data-dismiss="modal" onclick="refresh()" >Fechar</button>
 	       
-               <button type="button" class="btn btn-primary" onclick="$('#formulario_cd').submit()">Salvar</button>
+               <button type="button" class="btn btn-primary" onclick="$('#formulario_usuario').submit()">Salvar</button>
 	      </div>
 	    </div><!-- /.modal-content -->
 	  </div><!-- /.modal-dialog -->
