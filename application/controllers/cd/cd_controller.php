@@ -73,7 +73,7 @@ class Cd_controller extends CI_Controller {
             $consulta = $this->cd_model->m_list_cd($idcd);
             
             if($consulta->num_rows() == 0){
-                die("Cliente não encontrado");
+                die("CD não encontrado");
             }
             
             $array_clientes = array(

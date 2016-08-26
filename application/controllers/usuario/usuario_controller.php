@@ -31,4 +31,47 @@ class Usuario_controller extends CI_Controller {
         }
     }
     
+    public function dados_usuario() {
+        
+        $id = $this->input->post('id');
+        
+        $this->load->model('usuario/usuario_model');
+        
+        $consulta = $this->usuario_model->m_list_usuario($id);
+        
+        if($consulta->num_rows() == 0){
+            die('Usuário não encontrado');
+        }
+        
+        $array_usuario = array(
+                
+                'id'=> $consulta->row()->id,
+                'nome'=> $consulta->row()->nome,
+                'email'=> $consulta->row()->email,
+                'senha'=> $consulta->row()->senha,
+                'perfil'=> $consulta->row()->perfil,
+                'setor'=> $consulta->row()->setor
+                
+                );
+        
+        echo json_encode($array_usuario);
+    }
+    
+    public function excluir_usuario($id){
+        
+        $this->load->model('usuario/usuario_model');
+        
+        if($this->usuario_model->del_usuario($id)){
+            
+            echo 1;
+            
+        }else{
+            
+            echo 0;
+            
+        }
+        
+        
+    }
+    
 }

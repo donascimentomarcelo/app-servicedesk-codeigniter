@@ -49,4 +49,29 @@ class usuario_model extends CI_Model{
            
        }
     }
+    
+    public function m_list_usuario($id = NULL){
+        
+        if($id != NULL){
+            $this->db->where('id',$id);
+        }
+        
+        return $this->db->get('usuarios');
+        
+    }
+    
+    public function del_usuario($id) {
+        
+        $this->db->where('id', $id);
+        
+        if($this->db->delete('usuarios')){
+            
+            return TRUE;
+            
+        }else{
+            
+            return FALSE;
+        }
+        
+    }
 }

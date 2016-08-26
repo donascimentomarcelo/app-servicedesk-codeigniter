@@ -20,6 +20,7 @@
         <script src="../../../bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
         <script src="../../../bootstrap/js/jquery.forms.js" type="text/javascript"></script>
         <script src="../../../bootstrap/js/bootbox.min.js" type="text/javascript"></script>
+        <script src="../../../bootstrap/js/jquery.confirm.js" type="text/javascript"></script>
         
         <script src="../../../bootstrap/js/jquery.validate.js" type="text/javascript"></script>
         
@@ -93,14 +94,17 @@
     	var base_url = "<?= base_url() ?>";
     	
 	function carregaDadosUsuarioJSon(id){
-    		$.post(base_url+'/index.php/cd/cd_controller/dados_cd', {
-    			idcd: id
+    		$.post(base_url+'/index.php/usuario/usuario_controller/dados_usuario', {
+    			id: id
     		}, function (data){
+    			$('#id').val(data.id);
     			$('#nome').val(data.nome);
     			$('#senha').val(data.senha);
     			$('#email').val(data.email);
-    			$('#perfil').val(data.perfil);
     			$('#setor').val(data.setor);
+                        $('#'+data.perfil).prop('checked', true);
+    			
+                       
     		}, 'json');
     	}
     
@@ -126,8 +130,9 @@
             
     		$('#modalUsuario').modal('show');
     	}
+        
         function confirma(id){
-        resposta = confirm("Deseja realmente excluir esse aluno?");
+        resposta = confirm("Deseja realmente excluir esse usuário?");
         if (resposta){
             $.ajax({
                 type: "POST",
@@ -135,7 +140,7 @@
                     id: id
                 },
                 
-                url: "http://localhost/cd/index.php/cd/cd_controller/excluir_cd/"+id,
+                url: "http://localhost/cd/index.php/usuario/usuario_controller/excluir_usuario/"+id,
                 success: function(data) {
                     if(data == 1){
                         swal("Excluído!", "Dado excluída com sucesso!", "success"); 
@@ -252,10 +257,10 @@
 			  <div class="form-group">
 			    <label for="email">Perfil:</label>
 			    <label class="radio-inline">
-                                <input type="radio" name="perfil" value="administrador" checked="checked"> Usuário
+                                <input type="radio" name="perfil" id="usuario" value="usuario" checked="checked"> Usuário
                               </label>
                               <label class="radio-inline">
-                                <input type="radio" name="perfil" value="usuario"> Administrador
+                                <input type="radio" name="perfil" id="administrador" value="administrador"> Administrador
                               </label>
                             </div>
 			  <div class="form-group">
