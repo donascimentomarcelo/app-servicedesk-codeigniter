@@ -234,7 +234,7 @@ footer a, footer a:link {
   color: #fff;
   text-decoration: none;
 }
-
+.error { background: none repeat scroll 0 0 #FBE6F2; border: 1px solid #D893A1; padding: 5px; }
     </style>
 
     <script>
@@ -319,11 +319,12 @@ var noback = {
         <form class="login" action="<?= base_url('index.php/login/login_controller/autenticar')?>" method="post">
         <p class="title">Log in</p>
         <label>Email</label>
-        <input type="text" placeholder="Username" name="email" autofocus/>
+        <input type="text" placeholder="Username" name="email" required="required" autofocus/>
         <i class="fa fa-user"></i>
         <label>Senha</label>
-        <input type="password" placeholder="Password" name="senha" />
+        <input type="password" placeholder="Password" required="required" name="senha" />
         <i class="fa fa-key"></i>
+        <?php echo validation_errors(); ?>
         <button type="submit">
         <!--<i class="spinner"></i>-->
         <span class="state">Log in</span>
