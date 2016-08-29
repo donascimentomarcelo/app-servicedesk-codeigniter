@@ -10,11 +10,11 @@ class login_model extends CI_Model{
     
      function buscaPorEmailSenha(){
          
-        
         $this -> db -> select('*');
         $this -> db -> from('usuarios');
         $this->db->where('email', $this->input->post('email'));
         $this->db->where('senha', $this->input->post('senha'));
+        $this->db->where('status', 'ativo');
         $this->db->limit(1);
         
         $usuario = $this->db->get();
@@ -24,7 +24,7 @@ class login_model extends CI_Model{
         }else{
             return FALSE;
         }
-        //return $usuario;
+        
         
     }
     
@@ -37,6 +37,18 @@ class login_model extends CI_Model{
             die();
         }
         
+    }
+    
+    function perfil(){
+        
+        $this -> db -> select('*');
+        $this -> db -> from('usuarios');
+        $this->db->where('email', $this->input->post('email'));
+        $this->db->where('senha', $this->input->post('senha'));
+        
+        $dados = $this->db->get();
+        
+        return $dados;
     }
   
 }

@@ -103,16 +103,15 @@
     			$('#email').val(data.email);
     			$('#setor').val(data.setor);
                         $('#'+data.perfil).prop('checked', true);
-    			
-                       
+                        $('#'+data.status).prop('checked', true);
+    			  
     		}, 'json');
     	}
     
     	function janelaNovoUsuario(id){
     		
     		carregaDadosUsuarioJSon(id);
-                //alert(idcd);
-    		
+                
 	    	$('#modalUsuario').modal('show');
     	}
         
@@ -122,7 +121,7 @@
             $("#senha").val(''); 
             $("#email").val(''); 
             $("#perfil").val(''); 
-            $("#setor").val(null); 
+            $("#setor").val(''); 
         }
         
     	function janelaCadastroUsuario(){
@@ -132,8 +131,12 @@
     	}
         
         function confirma(id){
-        resposta = confirm("Deseja realmente excluir esse usuário?");
-        if (resposta){
+            
+            $.confirm({
+            title: 'Confirm!',
+            content: 'Deseja excluir esse usuário?',
+            confirm: function(){
+               
             $.ajax({
                 type: "POST",
                 data: {
@@ -143,31 +146,62 @@
                 url: "http://localhost/cd/index.php/usuario/usuario_controller/excluir_usuario/"+id,
                 success: function(data) {
                     if(data == 1){
-                        swal("Excluído!", "Dado excluída com sucesso!", "success"); 
+                        //swal("Excluído!", "Dado excluída com sucesso!", "success");
+                        $.alert('Usuário excluido com sucesso!');
+                        document.location.href = document.location.href;
                     }else{
                         swal("Erro ao excluir", "Houve algum erro ao excluir!", "error"); 
-                        alert("Houve algum erro ao excluir!");
+                       // alert("Houve algum erro ao excluir!");
                     }
                 },
                 error: function(){
                     alert("Houve algum erro ao excluir!");
                 }
             });
+                        }, cancel: function(){
+                    $.alert('Canceled!');
+                }
+            });
         }
-    }
+   
+    
         function refresh(){
             document.location.href = document.location.href;
         }
+        
+        $.confirm({
+            title: 'Confirm!',
+            content: 'Simple confirm!',
+            confirm: function(){
+                $.alert('Confirmed!');
+            },
+            cancel: function(){
+                $.alert('Canceled!')
+            }
+        });
         
         </script>
         
       
 </head>
 <body>
-
+<?php if(empty(($this->session->userdata('email')))){
+    
+    redirect('login/login_controller/proteger');
+    
+}
+?>
 <div id="container">
-	<h1>Hello <?php echo $this->session->userdata('email');?>, Welcome to CodeIgniter!  </h1>
-
+	<h1>Hello <?php echo $this->session->userdata('nome');?>, Welcome to CodeIgniter!  </h1>
+        <?php 
+        
+        if($this->session->userdata('perfil') != 'administrador'){
+            
+            redirect('perfil/p_usuario');
+            
+        }
+            
+        ?>
 	<div id="body">
           
                 
@@ -177,9 +211,9 @@
               <a class="navbar-brand" href="#">WebSiteName</a>
             </div>
             <ul class="nav navbar-nav">
-              <li class="active"><?php echo anchor('cd/cd_controller/welcome_message', 'Home'); ?></li>
+              <li class="active"><?php echo anchor('perfil/p_administrador', 'Home'); ?></li>
               <li><?php echo anchor('usuario/usuario_controller/listar_usuario', 'Manter Usuário'); ?></li>
-              <li><?php echo anchor('cd/cd_controller/listar_cd', 'Listar CD'); ?></li>
+              <li><?php echo anchor('cd/cd_controller/listar_cd', 'Manter CD'); ?></li>
               <li><?php echo anchor('login/login_controller/sair', 'Sair'); ?></li>
               <li><a href="#">Page 3</a></li>
             </ul>
@@ -210,6 +244,7 @@
                     <th>E-Mail</th>
                     <th>Perfil</th>
                     <th>Setor</th>
+                    <th>Status</th>
                     <th>Opções</th>
                     </tr>
                 </thead>
@@ -223,6 +258,7 @@
                     <td style="text-align: center;"><?php echo $linha->email ?></td>
                     <td style="text-align: center;"><?php echo $linha->perfil ?></td>
                     <td style="text-align: center;"><?php echo $linha->setor ?></td>
+                    <td style="text-align: center;"><?php echo $linha->status ?></td>
                     <td style="text-align: center;"><a href="javascript:;"  onclick="janelaNovoUsuario(<?= $linha->id ?>)"><button type="button" class="glyphicon glyphicon-cog"></button></a><a href="javascript:;"  onclick="confirma(<?= $linha->id ?>)"><button type="button" class="glyphicon glyphicon-trash"></button></a></td>
                 </tr>
                 <?php endforeach;?>
@@ -255,12 +291,21 @@
 			    <input type="text"  class="form-control" id="email"  name='email'>
 			  </div>
 			  <div class="form-group">
-			    <label for="email">Perfil:</label>
+                              <label for="email">Perfil:</label><br>
 			    <label class="radio-inline">
                                 <input type="radio" name="perfil" id="usuario" value="usuario" checked="checked"> Usuário
                               </label>
                               <label class="radio-inline">
                                 <input type="radio" name="perfil" id="administrador" value="administrador"> Administrador
+                              </label>
+                            </div>
+			  <div class="form-group">
+                              <label for="email">Status:</label><br>
+			    <label class="radio-inline">
+                                <input type="radio" name="status" id="ativo" value="ativo" checked="checked"> Ativo
+                              </label>
+                              <label class="radio-inline">
+                                <input type="radio" name="status" id="inativo" value="inativo"> Inativo
                               </label>
                             </div>
 			  <div class="form-group">

@@ -258,9 +258,14 @@
 	</style>
 </head>
 <body>
-
+<?php if(empty(($this->session->userdata('email')))){
+    
+    redirect('login/login_controller/proteger');
+    
+}
+?>
 <div id="container">
-	<h1>Hello <?php echo $this->session->userdata('email');?>, Welcome to CodeIgniter!  </h1>
+	<h1>Hello <?php echo $this->session->userdata('nome');?>, Welcome to CodeIgniter!  </h1>
 
 	<div id="body">
           
@@ -271,11 +276,19 @@
               <a class="navbar-brand" href="#">WebSiteName</a>
             </div>
             <ul class="nav navbar-nav">
-              <li class="active"><?php echo anchor('cd/cd_controller/welcome_message', 'Home'); ?></li>
-              <li><?php echo anchor('usuario/usuario_controller/listar_usuario', 'Manter Usuário'); ?></li>
-              <li><?php echo anchor('cd/cd_controller/listar_cd', 'Listar CD'); ?></li>
-              <li><?php echo anchor('login/login_controller/sair', 'Sair'); ?></li>
-              <li><a href="#">Page 3</a></li>
+              <?php if($this->session->userdata('perfil') == 'administrador'){
+              echo'<li class="active"><a href="http://localhost/cd/index.php/perfil/p_administrador">Home</a></li>';
+              echo'<li><a href="http://localhost/cd/index.php/usuario/usuario_controller/listar_usuario">Manter Usuário</a></li>';
+              echo'<li><a href="http://localhost/cd/index.php/cd/cd_controller/listar_cd">Manter CD</a></li>';
+              echo'<li><a href="http://localhost/cd/index.php/login/login_controller/sair">Sair</a></li>';
+              echo'<li><a href="#">Page 3</a></li>';
+              }else{
+              echo'<li class="active"><a href="http://localhost/cd/index.php/perfil/p_usuario">Home</a></li>';
+              echo'<li><a href="http://localhost/cd/index.php/cd/cd_controller/listar_cd">Manter CD</a></li>';
+              echo'<li><a href="http://localhost/cd/index.php/login/login_controller/sair">Sair</a></li>';
+              echo'<li><a href="#">Page 3</a></li>';
+              }
+              ?>
             </ul>
           </div>
         </nav>
