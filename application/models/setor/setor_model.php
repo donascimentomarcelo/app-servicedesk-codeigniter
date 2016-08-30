@@ -54,7 +54,7 @@ class setor_model extends CI_Model{
     
     function m_excluir_setor($idsetor = 0){
         
-        $this->db->where('setor', $idsetor);
+        $this->db->where('idsetor', $idsetor);
         
         $excluir = $this->db->delete('setor');
         

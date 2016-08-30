@@ -58,13 +58,15 @@ class Setor_controller extends CI_Controller {
         
         $consulta = $this->setor_model->m_dados_setor($idsetor);
         
-        if($consulta->num_row() == 0){
+        if($consulta->num_rows() == 0){
             die('Setor não encontrado.');
         }
         
         $array_setor = array(
             
-            'idsetor'=>$consulta->row()->idsetor
+            'idsetor'=>$consulta->row()->idsetor,
+            'nomesetor'=>$consulta->row()->nomesetor,
+            'status'=>$consulta->row()->status
         
                 );
         

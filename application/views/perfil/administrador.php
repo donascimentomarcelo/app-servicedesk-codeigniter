@@ -92,7 +92,7 @@
                 <a class="dropdown-toggle " data-toggle="dropdown" href="#"> Configurações
                 <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                    <li><a href="#" class="glyphicon glyphicon-cog"> Setor A</a></li>
+                    <li><a href="http://localhost/cd/index.php/setor/setor_controller/listar_setor" class="glyphicon glyphicon-cog"> Setor A</a></li>
                     <li><a href="#" class="glyphicon glyphicon-cog"> Setor B</a></li>
                     <li><a href="#" class="glyphicon glyphicon-cog"> Setor C</a></li>
                 </ul>
