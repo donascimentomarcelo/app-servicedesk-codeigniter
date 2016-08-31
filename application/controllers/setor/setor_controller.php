@@ -66,7 +66,7 @@ class Setor_controller extends CI_Controller {
             
             'idsetor'=>$consulta->row()->idsetor,
             'nomesetor'=>$consulta->row()->nomesetor,
-            'status'=>$consulta->row()->status
+            'statussetor'=>$consulta->row()->statussetor
         
                 );
         

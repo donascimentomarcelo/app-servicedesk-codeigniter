@@ -6,18 +6,28 @@ class usuario_model extends CI_Model{
         parent::__construct();
         
     }   
+    
+    function setor_ativo(){
+        
+            $this->db->select('*');    
+            $this->db->from('setor');
+            $this->db->where('statussetor', 'ativo');
+       
+            $retorno = $this->db->get();
 
-    public function exibe_usuario($id = 0) {
+            return $retorno;
         
-        if($id != 0){
-            
-            $this->db->where('id',$id);
-            
-        }
+    }
+
+    public function exibe_usuario() {
         
-        $retorno = $this->db->get('usuarios');
-        
-        return $retorno;
+            $this->db->select('*');    
+            $this->db->from('usuarios');
+            $this->db->join('setor', 'usuarios.setor_fk = setor.idsetor');
+       
+            $retorno = $this->db->get();
+
+            return $retorno;
         
     }
     
@@ -53,10 +63,14 @@ class usuario_model extends CI_Model{
     public function m_list_usuario($id = NULL){
         
         if($id != NULL){
+            
+            $this->db->select('*');    
+            $this->db->from('usuarios');
+            $this->db->join('setor', 'usuarios.setor_fk = setor.idsetor');
             $this->db->where('id',$id);
         }
         
-        return $this->db->get('usuarios');
+        return $this->db->get();
         
     }
     

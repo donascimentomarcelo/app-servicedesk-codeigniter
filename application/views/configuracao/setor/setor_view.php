@@ -73,8 +73,7 @@
              showConfirmButton: false 
          });
         }
-        //http://t4t5.github.io/sweetalert/
-      
+    
     	$(function(){
     		$('#formulario_setor').ajaxForm({
     			success: function(data) {
@@ -99,7 +98,7 @@
     		}, function (data){
     			$('#idsetor').val(data.idsetor);
     			$('#nomesetor').val(data.nomesetor);
-                        $('#'+data.status).prop('checked', true);
+                        $('#'+data.statussetor).prop('checked', true);
     			  
     		}, 'json');
     	}
@@ -138,8 +137,8 @@
                 
                 url: "http://localhost/cd/index.php/setor/setor_controller/excluir_setor/"+idsetor,
                 success: function(data) {
-                    if(data == 1){
-                        //swal("Excluído!", "Dado excluída com sucesso!", "success");
+                    if(data == 1 || data == 11){
+                       
                         $.alert('Setor excluido com sucesso!');
                         document.location.href = document.location.href;
                     }else{
@@ -244,7 +243,7 @@
                 <tr>
                     <td style="text-align: center;"><?php echo $linha->idsetor ?></td>
                     <td style="text-align: center;"><?php echo $linha->nomesetor ?></td>
-                    <td style="text-align: center;"><?php echo $linha->status ?></td>
+                    <td style="text-align: center;"><?php echo $linha->statussetor ?></td>
                     <td style="text-align: center;"><a href="javascript:;"  onclick="janelaNovoSetor(<?= $linha->idsetor ?>)"><button type="button" class="glyphicon glyphicon-cog"></button></a><a href="javascript:;"  onclick="confirma(<?= $linha->idsetor ?>)"><button type="button" class="glyphicon glyphicon-trash"></button></a></td>
                 </tr>
                 
@@ -272,10 +271,10 @@
 			  <div class="form-group">
                               <label for="email">Status:</label><br>
 			    <label class="radio-inline">
-                                <input type="radio" name="status" id="ativo" value="ativo" checked="checked"> Ativo
+                                <input type="radio" name="statussetor" id="ativo" value="ativo" checked="checked"> Ativo
                               </label>
                               <label class="radio-inline">
-                                <input type="radio" name="status" id="inativo" value="inativo"> Inativo
+                                <input type="radio" name="statussetor" id="inativo" value="inativo"> Inativo
                               </label>
                             </div>
 			   <input type="hidden" name="idsetor" id="idsetor" value="" />
@@ -287,9 +286,9 @@
 	       
                <button type="button" class="btn btn-primary" onclick="$('#formulario_setor').submit()">Salvar</button>
 	      </div>
-	    </div><!-- /.modal-content -->
-	  </div><!-- /.modal-dialog -->
-	</div><!-- /.modal -->  
+	    </div>
+	  </div>
+	</div>
         
         
 	<p class="footer"><a href="javascript: history.back()">Voltar</a> <strong>{elapsed_time}</strong> seconds</p>

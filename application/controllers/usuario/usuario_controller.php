@@ -8,12 +8,25 @@ class Usuario_controller extends CI_Controller {
         
         $consulta = $this->usuario_model->exibe_usuario();
         
+        $variaveis['setor_ativo'] = $this->setor_ativo();
+        
         $variaveis['consulta'] = $consulta;
         
         $this->load->view('usuario/manter_usuario_view',$variaveis);
         
     }
     
+    function setor_ativo(){
+        
+        $this->load->model('usuario/usuario_model');
+        
+        $setor_ativo = $this->usuario_model->setor_ativo();
+        
+        return $setor_ativo;
+        //regra de nogócios onde permite que somente setores ativos sejam selecionados na view.
+    }
+
+
     public function salvar_usuario() {
         
         $this->load->model('usuario/usuario_model');
@@ -50,7 +63,7 @@ class Usuario_controller extends CI_Controller {
                 'email'=> $consulta->row()->email,
                 'senha'=> $consulta->row()->senha,
                 'perfil'=> $consulta->row()->perfil,
-                'setor'=> $consulta->row()->setor,
+                'nomesetor'=> $consulta->row()->nomesetor,
                 'status'=> $consulta->row()->status
                 
                 );

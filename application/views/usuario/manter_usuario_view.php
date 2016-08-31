@@ -73,8 +73,7 @@
              showConfirmButton: false 
          });
         }
-        //http://t4t5.github.io/sweetalert/
-      
+
     	$(function(){
     		$('#formulario_usuario').ajaxForm({
     			success: function(data) {
@@ -101,7 +100,7 @@
     			$('#nome').val(data.nome);
     			$('#senha').val(data.senha);
     			$('#email').val(data.email);
-    			$('#setor').val(data.setor);
+    			$('#nomesetor').load(data.nomesetor);
                         $('#'+data.perfil).prop('checked', true);
                         $('#'+data.status).prop('checked', true);
     			  
@@ -145,13 +144,13 @@
                 
                 url: "http://localhost/cd/index.php/usuario/usuario_controller/excluir_usuario/"+id,
                 success: function(data) {
-                    if(data == 1){
+                    if(data == 1 || data == 11){
                         //swal("Excluído!", "Dado excluída com sucesso!", "success");
                         $.alert('Usuário excluido com sucesso!');
                         document.location.href = document.location.href;
                     }else{
                         swal("Erro ao excluir", "Houve algum erro ao excluir!", "error"); 
-                       // alert("Houve algum erro ao excluir!");
+                       
                     }
                 },
                 error: function(){
@@ -176,7 +175,7 @@
                 $.alert('Confirmed!');
             },
             cancel: function(){
-                $.alert('Canceled!')
+                $.alert('Canceled!');
             }
         });
         
@@ -266,7 +265,7 @@
                     <td style="text-align: center;"><?php echo $linha->nome ?></td>
                     <td style="text-align: center;"><?php echo $linha->email ?></td>
                     <td style="text-align: center;"><?php echo $linha->perfil ?></td>
-                    <td style="text-align: center;"><?php echo $linha->setor ?></td>
+                    <td style="text-align: center;"><?php echo $linha->nomesetor ?></td>
                     <td style="text-align: center;"><?php echo $linha->status ?></td>
                     <td style="text-align: center;"><a href="javascript:;"  onclick="janelaNovoUsuario(<?= $linha->id ?>)"><button type="button" class="glyphicon glyphicon-cog"></button></a><a href="javascript:;"  onclick="confirma(<?= $linha->id ?>)"><button type="button" class="glyphicon glyphicon-trash"></button></a></td>
                 </tr>
@@ -319,12 +318,16 @@
                             </div>
 			  <div class="form-group">
 			    <label for="setor">Setor</label>
-                            <select class="form-control" name="setor" id="setor">
-                                <option value="ti">TI</option>
-                                <option value="engenharia">Engenharia</option>
-                                <option value="medico">Médico</option>
-                                <option value="suporte">Suporte</option>
-                                <option value="arquitetura">Arquitetura</option>
+                            <select class="form-control" name="nomesetor" id="nomesetor" required="required">
+                                
+                                <option value="">Selecione um Setor</option>
+                                
+                                 <?php foreach ($setor_ativo -> result() as $linha): ?> 
+                                
+                                <option value="<?php echo $linha->idsetor?>"><?php echo $linha->nomesetor?></option>
+                                
+                                <?php endforeach;?>
+                                
                             </select>
 			  </div>
 			  
@@ -337,9 +340,9 @@
 	       
                <button type="button" class="btn btn-primary" onclick="$('#formulario_usuario').submit()">Salvar</button>
 	      </div>
-	    </div><!-- /.modal-content -->
-	  </div><!-- /.modal-dialog -->
-	</div><!-- /.modal -->  
+	    </div>
+	  </div>
+	</div>
         
         
 	<p class="footer"><a href="javascript: history.back()">Voltar</a> <strong>{elapsed_time}</strong> seconds</p>

@@ -138,26 +138,6 @@
             
     		$('#modalEditarCliente').modal('show');
     	}
-        /*
-        function confirma(){
-        swal({   title: "Are you sure?",   
-            text: "You will not be able to recover this imaginary file!",   
-            type: "warning",   
-            showCancelButton: true,   
-            confirmButtonColor: "#DD6B55",   
-            confirmButtonText: "Yes, delete it!",   
-            cancelButtonText: "No, cancel plx!",   
-            closeOnConfirm: false,   
-            closeOnCancel: false }, 
-        function(isConfirm){   
-            if (isConfirm) {     
-                swal("Deleted!", "Your imaginary file has been deleted.", "success");   
-                
-            } else {     
-                swal("Cancelled", "Your imaginary file is safe :)", "error");  
-            } 
-        });
-        }*/
         
         function confirma(idcd){
         resposta = confirm("Deseja realmente excluir esse aluno?");
@@ -170,7 +150,7 @@
                 
                 url: "http://localhost/cd/index.php/cd/cd_controller/excluir_cd/"+idcd,
                 success: function(data) {
-                    if(data == 1){
+                    if(data == 1 || data == 11){
                         swal("Excluído!", "Dado excluída com sucesso!", "success"); 
                     }else{
                         swal("Erro ao excluir", "Houve algum erro ao excluir!", "error"); 
@@ -183,13 +163,6 @@
             });
         }
     }
-        
-        
-      /*function confirma(){
-        if (!confirm("Confirma a exclusão?"))
-          return false;
-        return true;
-        }*/
 
         function refresh(){
             document.location.href = document.location.href;
@@ -370,9 +343,9 @@
 	       
                <button type="button" class="btn btn-primary" onclick="$('#formulario_cd').submit()">Salvar</button>
 	      </div>
-	    </div><!-- /.modal-content -->
-	  </div><!-- /.modal-dialog -->
-	</div><!-- /.modal -->  
+	    </div>
+	  </div>
+	</div>
         
         
 	<p class="footer"><a href="javascript: history.back()">Voltar</a> <strong>{elapsed_time}</strong> seconds</p>
