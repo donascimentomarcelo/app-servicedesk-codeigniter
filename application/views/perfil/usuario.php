@@ -82,13 +82,12 @@
         <nav class="navbar navbar-inverse">
           <div class="container-fluid">
             <div class="navbar-header">
-              <a class="navbar-brand" href="#">WebSiteName</a>
+              <a class="navbar-brand" href="http://localhost/cd/index.php/perfil/p_usuario">Início</a>
             </div>
             <ul class="nav navbar-nav">
-              <li class="active"><?php echo anchor('perfil/p_usuario', 'Home'); ?></li>
-              <li><?php echo anchor('cd/cd_controller/listar_cd', 'Manter CD'); ?></li>
-              <li><?php echo anchor('login/login_controller/sair', 'Sair'); ?></li>
-              <li><a href="#">Page 3</a></li>
+             <li><?php echo anchor('cd/cd_controller/listar_cd', 'Manter CD'); ?></li>
+             <li><a href="http://localhost/cd/index.php/login/login_controller/sair"><span class="glyphicon glyphicon-off"></span> Sair</a></li>
+             <li><a href="#">Page 3</a></li>
             </ul>
           </div>
         </nav>

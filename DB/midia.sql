@@ -93,13 +93,14 @@ INSERT INTO `setor` (`idsetor`, `nomesetor`, `statussetor`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `usuarios` (
-`id` int(11) NOT NULL,
+`id` int primary key auto_increment,
   `nome` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `senha` varchar(255) NOT NULL,
   `perfil` enum('administrador','usuario') NOT NULL,
   `status` enum('ativo','inativo') NOT NULL,
-  `setor_fk` int(11) NOT NULL
+  `setor_fk` int NOT NULL,
+   foreign key(setor_fk) references setor(idsetor)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --

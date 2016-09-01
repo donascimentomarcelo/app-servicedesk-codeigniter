@@ -245,12 +245,13 @@
                 
         <nav class="navbar navbar-inverse">
           <div class="container-fluid">
-            <div class="navbar-header">
-              <a class="navbar-brand" href="#">WebSiteName</a>
-            </div>
-            <ul class="nav navbar-nav">
+            
               <?php if($this->session->userdata('perfil') == 'administrador'){
-              echo'<li class="active"><a href="http://localhost/cd/index.php/perfil/p_administrador">Home</a></li>';
+              echo'<div class="navbar-header">
+                   <a class="navbar-brand" href="http://localhost/cd/index.php/perfil/p_administrador">Início</a>
+                   </div>
+                   <ul class="nav navbar-nav">';   
+              echo'<li><a onclick="janelaCadastroCd()"><span class="glyphicon glyphicon-plus"  ></span> Novo</a></li>';
               echo'<li><a href="http://localhost/cd/index.php/usuario/usuario_controller/listar_usuario">Manter Usuário</a></li>';
               echo'<li><a href="http://localhost/cd/index.php/cd/cd_controller/listar_cd">Manter CD</a></li>';
               echo' <li class="dropdown">
@@ -264,11 +265,17 @@
               </li>';
               echo'<li><a href="http://localhost/cd/index.php/login/login_controller/sair"><span class="glyphicon glyphicon-off"></span> Sair</a></li>';
               echo'<li><a href="#">Page 3</a></li>';
+             
               }else{
-              echo'<li class="active"><a href="http://localhost/cd/index.php/perfil/p_usuario">Home</a></li>';
+             echo'<div class="navbar-header">
+                   <a class="navbar-brand" href="http://localhost/cd/index.php/perfil/p_usuario">Início</a>
+                   </div>
+                   <ul class="nav navbar-nav">';
+              echo'<li><a onclick="janelaCadastroCd()"><span class="glyphicon glyphicon-plus"  ></span> Novo</a></li>';
               echo'<li><a href="http://localhost/cd/index.php/cd/cd_controller/listar_cd">Manter CD</a></li>';
               echo'<li><a href="http://localhost/cd/index.php/login/login_controller/sair"><span class="glyphicon glyphicon-off"></span> Sair</a></li>';
               echo'<li><a href="#">Page 3</a></li>';
+              
               }
               ?>
             </ul>
@@ -283,14 +290,7 @@
 <div id="container">
 	<h1>Manter CD</h1>
         <div id="body">
-        <div id="bts_manter_cd">
-            <div class="btn-group btn-group-justified">
-                <button type="button" class="glyphicon glyphicon-plus"  onclick="janelaCadastroCd()"></button>
-                <button type="button" class="glyphicon glyphicon-apple"  onclick="confirma()"></button>
-                <button type="button" class="glyphicon glyphicon-home"></button>
-                <button type="button" class="glyphicon glyphicon-off"></button>
-            </div>
-        </div>
+      
            <table cellspacing="0"  cellpadding="0" border="0" class="display" id="tabela1">
                 <thead>
                     <tr>

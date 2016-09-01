@@ -38,13 +38,13 @@ class Setor_controller extends CI_Controller {
         
         $resultado = $this->setor_model->m_excluir_setor($idsetor);
         
-        if($resultado){
+        if($resultado == 0){
             
             echo 1;
             
         }else{
             
-            echo 0;
+            echo $resultado;
             
         }
         

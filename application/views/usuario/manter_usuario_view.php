@@ -79,7 +79,6 @@
     			success: function(data) {
     				if (data == 1 || data == 11) {
                                     
-                                    
                                     success: minhaCallCack();
                                     limparCampo();
 				    	
@@ -100,8 +99,8 @@
     			$('#nome').val(data.nome);
     			$('#senha').val(data.senha);
     			$('#email').val(data.email);
-    			$('#nomesetor').load(data.nomesetor);
-                        $('#'+data.perfil).prop('checked', true);
+                        $('select[name=setor_fk]').val(data.setor_fk);
+    			$('#'+data.perfil).prop('checked', true);
                         $('#'+data.status).prop('checked', true);
     			  
     		}, 'json');
@@ -120,7 +119,7 @@
             $("#senha").val(''); 
             $("#email").val(''); 
             $("#perfil").val(''); 
-            $("#setor").val(''); 
+            $('select[name=setor_fk]').val(''); 
         }
         
     	function janelaCadastroUsuario(){
@@ -207,10 +206,10 @@
         <nav class="navbar navbar-inverse">
           <div class="container-fluid">
             <div class="navbar-header">
-              <a class="navbar-brand" href="#">WebSiteName</a>
+              <a class="navbar-brand" href="http://localhost/cd/index.php/perfil/p_administrador">Início</a>
             </div>
             <ul class="nav navbar-nav">
-              <li class="active"><?php echo anchor('perfil/p_administrador', 'Home'); ?></li>
+              <li><a onclick="janelaCadastroUsuario()"><span class="glyphicon glyphicon-plus"  ></span> Novo</a></li>
               <li><?php echo anchor('usuario/usuario_controller/listar_usuario', 'Manter Usuário'); ?></li>
               <li><?php echo anchor('cd/cd_controller/listar_cd', 'Manter CD'); ?></li>
                <li class="dropdown">
@@ -236,14 +235,7 @@
 <div id="container">
 	<h1>Manter Usuário</h1>
         <div id="body">
-        <div id="bts_manter_cd">
-            <div class="btn-group btn-group-justified">
-                <button type="button" class="glyphicon glyphicon-plus"  onclick="janelaCadastroUsuario()"></button>
-                <button type="button" class="glyphicon glyphicon-apple"  onclick="confirma()"></button>
-                <button type="button" class="glyphicon glyphicon-home"></button>
-                <button type="button" class="glyphicon glyphicon-off"></button>
-            </div>
-        </div>
+
            <table cellspacing="0"  cellpadding="0" border="0" class="display" id="tabela1">
                 <thead>
                     <tr>
@@ -318,7 +310,7 @@
                             </div>
 			  <div class="form-group">
 			    <label for="setor">Setor</label>
-                            <select class="form-control" name="nomesetor" id="nomesetor" required="required">
+                            <select class="form-control" name="setor_fk" id="setor_fk" required="required">
                                 
                                 <option value="">Selecione um Setor</option>
                                 

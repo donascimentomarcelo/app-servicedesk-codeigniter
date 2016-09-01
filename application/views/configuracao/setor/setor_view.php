@@ -141,10 +141,12 @@
                        
                         $.alert('Setor excluido com sucesso!');
                         document.location.href = document.location.href;
-                    }else{
+                    }else if(data == 1451){
                         
-                        swal("Erro ao excluir", "Houve algum erro ao excluir!", "error"); 
+                        swal("Erro ao excluir", "Este setor está vinculado a um usuário. Favor, antes de excluir, desvincule.", "error"); 
                        
+                    }else{
+                        alert(data)
                     }
                 },
                 error: function(){
@@ -187,21 +189,21 @@
 	<div id="body">
           
                 
-        <nav class="navbar navbar-inverse">
+       <nav class="navbar navbar-inverse">
           <div class="container-fluid">
             <div class="navbar-header">
-              <a class="navbar-brand" href="#">WebSiteName</a>
+              <a class="navbar-brand" href="http://localhost/cd/index.php/perfil/p_administrador">Início</a>
             </div>
             <ul class="nav navbar-nav">
-              <li class="active"><?php echo anchor('perfil/p_administrador', 'Home'); ?></li>
+              <li><a onclick="janelaCadastroUsuario()"><span class="glyphicon glyphicon-plus"  ></span> Novo</a></li>
               <li><?php echo anchor('usuario/usuario_controller/listar_usuario', 'Manter Usuário'); ?></li>
               <li><?php echo anchor('cd/cd_controller/listar_cd', 'Manter CD'); ?></li>
-              <li class="dropdown">
+               <li class="dropdown">
                 <a class="dropdown-toggle " data-toggle="dropdown" href="#"> Configurações
                 <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                    <li><a href="http://localhost/cd/index.php/setor/setor_controller/listar_setor" class="glyphicon glyphicon-cog"> Setor A</a></li>
-                    <li><a href="#" class="glyphicon glyphicon-cog"> Setor B</a></li>
+                    <li><a href="http://localhost/cd/index.php/setor/setor_controller/listar_setor" class="glyphicon glyphicon-cog"> Configuração de Setor</a></li>
+                    <li><a href="#" class="glyphicon glyphicon-cog"> Configuração de Perfil</a></li>
                     <li><a href="#" class="glyphicon glyphicon-cog"> Setor C</a></li>
                 </ul>
               </li>
@@ -219,14 +221,7 @@
 <div id="container">
 	<h1>Manter Usuário</h1>
         <div id="body">
-        <div id="bts_manter_cd">
-            <div class="btn-group btn-group-justified">
-                <button type="button" class="glyphicon glyphicon-plus"  onclick="janelaCadastroUsuario()"></button>
-                <button type="button" class="glyphicon glyphicon-apple"  onclick="confirma()"></button>
-                <button type="button" class="glyphicon glyphicon-home"></button>
-                <button type="button" class="glyphicon glyphicon-off"></button>
-            </div>
-        </div>
+
            <table cellspacing="0"  cellpadding="0" border="0" class="display" id="tabela1">
                 <thead>
                     <tr>
