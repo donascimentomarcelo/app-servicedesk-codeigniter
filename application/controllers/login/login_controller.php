@@ -46,6 +46,7 @@ class Login_controller extends CI_Controller {
             
             $perfil = $valida_perfil->perfil;
             $nome = $valida_perfil->nome;
+            $id = $valida_perfil->id;
         
         endforeach;
         
@@ -53,6 +54,7 @@ class Login_controller extends CI_Controller {
         $session = array(
                     'perfil' =>  $perfil,
                     'nome' =>  $nome,
+                    'id' =>  $id,
                     'logado' => true
               );
         
