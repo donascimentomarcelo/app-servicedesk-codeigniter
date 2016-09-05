@@ -4,14 +4,13 @@ class Perfil_pessoal_controller extends CI_Controller {
     
     function alterar_perfil(){
         
-        $this->load->model('usuario/usuario_model');
-
+       $this->load->helper('setor_ativo/setor_ativo_helper');
+        
         $variaveis['consulta'] = $this->preenche_dados();
         
-        $variaveis['setor_ativo'] = $this->usuario_model->setor_ativo();
+        $variaveis['setor_ativo'] = getSetorAtivo();
         
-       // echo print_r($variaveis);
-       $this->load->view('perfil_pessoal/perfil_pessoal_view', $variaveis);
+        $this->load->view('perfil_pessoal/perfil_pessoal_view', $variaveis);
         
     }
     

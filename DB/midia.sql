@@ -71,7 +71,7 @@ INSERT INTO `cd` (`idcd`, `nomecd`, `gravadora`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `setor` (
-`idsetor` int(11) NOT NULL,
+`idsetor` int primary key auto_increment,
   `nomesetor` varchar(255) NOT NULL,
   `statussetor` enum('ativo','inativo') NOT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;

@@ -40,30 +40,30 @@
                         
                         $("#formulario_usuario").validate({
                             rules : {
-                                  nomecd:{
+                                  nome:{
                                          required:true,
                                          minlength:3
                                   },
-                                  gravadora:{
+                                  email:{
                                          required:true,
                                          minlength:3
                                   }                               
                             },
                             messages:{
-                                  nomecd:{
-                                         required:"Informe o nome do CD!",
-                                         minlength:"O nome deve ter pelo menos 3 caracteres"
+                                  nome:{
+                                         required:"Informe o Campo Nome!",
+                                         minlength:"O Nome deve ter pelo menos 3 caracteres"
                                   },
-                                  gravadora:{
-                                         required:"Informe a gravadora!",
-                                         minlength:"O nome deve ter pelo menos 3 caracteres"
+                                  email:{
+                                         required:"Informe o E-mail!",
+                                         minlength:"O E-mail deve ter pelo menos 3 caracteres"
                                   }    
                             }
                      });
 		});
                 
         function minhaCallCack(){
-         swal({   title: "Registro salvo com sucesso!",
+         swal({   title: "Perfil Alterado com sucesso!",
              text: "Exito ao realizar operação.",
              timer: 1000, 
              showConfirmButton: false 
@@ -76,7 +76,7 @@
     				if (data == 1 || data == 11) {
                                     
                                     success: minhaCallCack();
-                                    limparCampo();
+                                    
 				    	
     				}else{
                                     alert(data);
@@ -91,21 +91,6 @@
             document.location.href = document.location.href;
         }
         
-        $(document).ready(function() {
-            $("#enviar").click(function() {
-                var nome = $("#nome");
-                var nomePost = nome.val(); 
-                var email = $("#email");
-                var emailPost = email.val(); 
-                var telefone = $("#telefone");
-                var telefonePost = telefone.val();     
-                $.post("enviar.php", {nome: nomePost, email: emailPost, telefone: telefonePost},
-                function(data){
-                 $("#resposta").html(data);
-                 }
-                 , "html");
-            });
-        });
         
         </script>
         
@@ -120,15 +105,7 @@
 ?>
 <div id="container">
 	<h1>Hello <?php echo $this->session->userdata('nome');?>, Welcome to CodeIgniter!  </h1>
-        <?php 
         
-        if($this->session->userdata('perfil') != 'administrador'){
-            
-            redirect('perfil/p_usuario');
-            
-        }
-            
-        ?>
 	<div id="body">
           
                 
@@ -138,7 +115,6 @@
               <a class="navbar-brand" href="http://localhost/cd/index.php/perfil/p_administrador">Início</a>
             </div>
             <ul class="nav navbar-nav">
-              <li><a onclick="janelaCadastroUsuario()"><span class="glyphicon glyphicon-plus"  ></span> Novo</a></li>
               <li><?php echo anchor('usuario/usuario_controller/listar_usuario', 'Manter Usuário'); ?></li>
               <li><?php echo anchor('cd/cd_controller/listar_cd', 'Manter CD'); ?></li>
                <li class="dropdown">
@@ -164,8 +140,7 @@
         <div id="container">
 
              <div class="" id="modalUsuario" data-backdrop="static" >
-	  <div class="modal-dialog">
-	    <div class="modal-content">
+	  
 	      <div class="modal-header">
 	        <h4 class="modal-title">Alterar Dados Pessoais</h4>
 	      </div>
@@ -206,9 +181,8 @@
 		<?php endforeach; ?>	    
 	      </div>
 	      <div class="modal-footer">
-	        <button type="button" class="btn btn-default" data-dismiss="modal" onclick="refresh()" >Fechar</button>
-	       
-               <button type="button" class="btn btn-primary" onclick="$('#formulario_usuario').submit()">Salvar</button>
+	      
+               <button type="button" class="btn btn-primary" onclick="$('#formulario_usuario').submit()">Atualizar</button>
 	      </div>
 	    </div>
 	  </div>
