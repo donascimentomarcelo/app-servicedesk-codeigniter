@@ -259,7 +259,7 @@
                 <span class="caret"></span></a>
                 <ul class="dropdown-menu">
                     <li><a href="http://localhost/cd/index.php/setor/setor_controller/listar_setor" class="glyphicon glyphicon-cog"> Setor A</a></li>
-                    <li><a href="#" class="glyphicon glyphicon-cog"> Setor B</a></li>
+                    <li><a href="http://localhost/cd/index.php/perfil_pessoal/perfil_pessoal_controller/alterar_perfil" class="glyphicon glyphicon-cog"> Configuração de Perfil</a></li>
                     <li><a href="#" class="glyphicon glyphicon-cog"> Setor C</a></li>
                 </ul>
               </li>';
@@ -273,6 +273,14 @@
                    <ul class="nav navbar-nav">';
               echo'<li><a onclick="janelaCadastroCd()"><span class="glyphicon glyphicon-plus"  ></span> Novo</a></li>';
               echo'<li><a href="http://localhost/cd/index.php/cd/cd_controller/listar_cd">Manter CD</a></li>';
+              echo' <li class="dropdown">
+                <a class="dropdown-toggle " data-toggle="dropdown" href="#"> Configurações
+                <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="http://localhost/cd/index.php/perfil_pessoal/perfil_pessoal_controller/alterar_perfil" class="glyphicon glyphicon-cog"> Configuração de Perfil</a></li>
+                    <li><a href="#" class="glyphicon glyphicon-cog"> Setor C</a></li>
+                </ul>
+              </li>';
               echo'<li><a href="http://localhost/cd/index.php/login/login_controller/sair"><span class="glyphicon glyphicon-off"></span> Sair</a></li>';
               echo'<li><a href="#">Page 3</a></li>';
               

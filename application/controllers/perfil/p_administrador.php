@@ -9,7 +9,11 @@ class P_administrador extends CI_Controller {
     }
     
     public function index() {
-        $this->load->view('perfil/administrador');
+        $this->load->helper('valida_login/valida_administrador_helper');
+      
+        $variaveis['validacao'] = getValidaAdministrador();
+        
+        $this->load->view('perfil/administrador', $variaveis);
     }
 }
 

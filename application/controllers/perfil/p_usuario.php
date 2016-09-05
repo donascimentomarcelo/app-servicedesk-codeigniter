@@ -9,7 +9,12 @@ class P_usuario extends CI_Controller {
     }
     
     public function index() {
-        $this->load->view('perfil/usuario');
+        
+        $this->load->helper('valida_login/valida_usuario_helper');
+      
+        $variaveis['validacao'] = getValidaUsuario();
+        
+        $this->load->view('perfil/usuario', $variaveis);
     }
 }
 

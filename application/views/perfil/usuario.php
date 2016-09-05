@@ -67,18 +67,12 @@
 	</style>
 </head>
 <body>
-<?php if(empty(($this->session->userdata('email')))){
-    
-    redirect('login/login_controller/proteger');
-    
-}
-?>
+
 <div id="container">
 	<h1>Hello <?php echo $this->session->userdata('nome');?>, Welcome to CodeIgniter!  </h1>
-        <h5><?php echo $this->session->userdata('perfil');?></h5>
+
 	<div id="body">
-          
-                
+               
         <nav class="navbar navbar-inverse">
           <div class="container-fluid">
             <div class="navbar-header">

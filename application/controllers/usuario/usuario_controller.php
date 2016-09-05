@@ -4,13 +4,20 @@ class Usuario_controller extends CI_Controller {
 
     public function listar_usuario() {
         
-        $this->load->model('usuario/usuario_model');
+        $this->load->helper('valida_login/valida_administrador_helper');
         
-        $this->load->helper('setor_ativo/setor_ativo_helper');
+        $variaveis['validacao'] = getValidaAdministrador();
+        
+        
+        $this->load->model('usuario/usuario_model');
         
         $variaveis['consulta'] = $this->usuario_model->exibe_usuario();
         
+        
+        $this->load->helper('setor_ativo/setor_ativo_helper');
+        
         $variaveis['setor_ativo'] = getSetorAtivo();
+        
         
         $this->load->view('usuario/manter_usuario_view',$variaveis);
         

@@ -1,8 +1,21 @@
-<?php
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
+if (!function_exists('getValidaUsuario')) {
+    
+    function getValidaUsuario()
+    {
+    $CI = get_instance();
+    $CI2 = get_instance();
+    
+   if(empty($CI->session->userdata('email'))){
+    
+    redirect('login/login_controller/proteger');
+    
+    }else if($CI2->session->userdata('perfil') != 'usuario'){
+    
+     redirect('perfil/p_administrador');
+    
+    }
+        return true;
+    }   
+}

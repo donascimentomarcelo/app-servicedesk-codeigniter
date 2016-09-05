@@ -191,16 +191,8 @@
 ?>
 <div id="container">
 	<h1>Hello <?php echo $this->session->userdata('nome');?>, Welcome to CodeIgniter!  </h1>
-        <?php 
-        
-        if($this->session->userdata('perfil') != 'administrador'){
-            
-            redirect('perfil/p_usuario');
-            
-        }
-            
-        ?>
-	<div id="body">
+    
+        <div id="body">
           
                 
         <nav class="navbar navbar-inverse">
@@ -217,7 +209,7 @@
                 <span class="caret"></span></a>
                 <ul class="dropdown-menu">
                     <li><a href="http://localhost/cd/index.php/setor/setor_controller/listar_setor" class="glyphicon glyphicon-cog"> Setor A</a></li>
-                    <li><a href="#" class="glyphicon glyphicon-cog"> Setor B</a></li>
+                     <li><a href="http://localhost/cd/index.php/perfil_pessoal/perfil_pessoal_controller/alterar_perfil" class="glyphicon glyphicon-cog"> Configuração de Perfil</a></li>
                     <li><a href="#" class="glyphicon glyphicon-cog"> Setor C</a></li>
                 </ul>
               </li>

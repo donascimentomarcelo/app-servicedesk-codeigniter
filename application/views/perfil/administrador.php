@@ -67,21 +67,10 @@
 	</style>
 </head>
 <body>
-<?php if(empty(($this->session->userdata('email')))){
-    
-    redirect('login/login_controller/proteger');
-    
-    }else if($this->session->userdata('perfil') != 'administrador'){
-    
-     redirect('perfil/p_usuario');
-    
-    }
-    
- //   $valida = $this->load->helper('valida_login/valida_administrador_helper');
- //   $valida->getValidaAdministrador();
-?>
+
 <div id="container">
-	<h1>Hello <?php echo $this->session->userdata('nome');?>, Welcome to CodeIgniter!  </h1><h5><?php echo $this->session->userdata('perfil');?></h5>
+	<h1>Hello <?php echo $this->session->userdata('nome');?>, Welcome to CodeIgniter!  </h1>
+       
         
 	<div id="body">
           

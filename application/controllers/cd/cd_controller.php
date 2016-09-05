@@ -39,10 +39,13 @@ class Cd_controller extends CI_Controller {
         public function listar_cd(){
             
             $this->load->model('cd/cd_model');
+
+            $variaveis['consulta'] = $this->cd_model->exibe_cd();
             
-            $consulta = $this->cd_model->exibe_cd();
+            $this->load->helper('valida_login/valida_helper');
+        
+            $variaveis['validacao'] = getValida();
             
-            $variaveis['consulta'] = $consulta;
             
             $this->load->view("menu_cd/listar_cd_view",$variaveis);
         }
@@ -53,8 +56,7 @@ class Cd_controller extends CI_Controller {
             
             if($this->cd_model->excluir($idcd)){
                 
-               // header("Location: http://localhost/cd/index.php/cd/cd_controller/listar_cd");
-                echo 1;
+               echo 1;
                 
             }else{
                 
