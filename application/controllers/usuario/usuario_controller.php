@@ -29,21 +29,31 @@ class Usuario_controller extends CI_Controller {
    
         $insert = $this->usuario_model->m_salvar_usuario();
         
-        if($insert){
-            
-            echo 1;
-            
+        $this->load->helper('upload_perfil/foto_helper');
+        
+        $upload = getFoto();
+        
+        if($upload){
+        
+            if($insert){
+
+                echo 1;
+
+            }else{
+
+                echo 0;
+
+            }
         }else{
             
-            echo 0;
-            
+            echo 'erro no upload';
         }
 
     }
     
     public function do_upload(){
         
-                $config['upload_path']          = '../imagem/';
+                $config['upload_path']          = 'C:\xampp\htdocs\cd\application\imagem';
                 $config['allowed_types']        = 'gif|jpg|png';
                 $config['max_size']             = 100;
                 $config['max_width']            = 1024;

@@ -69,11 +69,11 @@
              showConfirmButton: false 
          });
         }
-/*
+
     	$(function(){
     		$('#formulario_usuario').ajaxForm({
     			success: function(data) {
-    				if (data == 1 || data == 11) {
+    				if (data == 1 || data == 11 || data == 10) {
                                     
                                     success: minhaCallCack();
                                     
@@ -84,7 +84,7 @@
     			}
     		});
     	});
-*/        
+    
     	var base_url = "<?= base_url() ?>";
     
         function refresh(){
@@ -146,11 +146,13 @@
 	      </div>
 	      <div class="modal-body">
 	      	<?php foreach($consulta -> result() as $dados):?>
-			<!--<form role="form" method="post" action="<?= base_url('index.php/usuario/usuario_controller/salvar_usuario')?>" id="formulario_usuario">-->
-			<form role="form" method="post" action="<?= base_url('index.php/usuario/usuario_controller/do_upload')?>" id="formulario_usuario">
+			<form role="form" method="post" action="<?= base_url('index.php/usuario/usuario_controller/salvar_usuario')?>" id="formulario_usuario" enctype="multipart/form-data">
+			  <div class="form-group">
+                              <img src="../../imagem/<?php echo $dados->imagem?>" class="">
+			  </div>
 			  <div class="form-group">
 			    <label for="nome">Foto de Perfil</label>
-                            <input type="file" name="imagem"  id="imagem" value="<?php echo $dados->imagem?>">
+                            <input type="file" name="imagem"  id="imagem">
 			  </div>
 			  <div class="form-group">
 			    <label for="nome">Nome</label>
