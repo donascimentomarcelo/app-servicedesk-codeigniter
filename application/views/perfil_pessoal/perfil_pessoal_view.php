@@ -69,7 +69,7 @@
              showConfirmButton: false 
          });
         }
-
+/*
     	$(function(){
     		$('#formulario_usuario').ajaxForm({
     			success: function(data) {
@@ -84,7 +84,7 @@
     			}
     		});
     	});
-        
+*/        
     	var base_url = "<?= base_url() ?>";
     
         function refresh(){
@@ -147,7 +147,11 @@
 	      <div class="modal-body">
 	      	<?php foreach($consulta -> result() as $dados):?>
 			<!--<form role="form" method="post" action="<?= base_url('index.php/usuario/usuario_controller/salvar_usuario')?>" id="formulario_usuario">-->
-			<form role="form" method="post" action="<?= base_url('index.php/usuario/usuario_controller/salvar_usuario')?>" id="formulario_usuario">
+			<form role="form" method="post" action="<?= base_url('index.php/usuario/usuario_controller/do_upload')?>" id="formulario_usuario">
+			  <div class="form-group">
+			    <label for="nome">Foto de Perfil</label>
+                            <input type="file" name="imagem"  id="imagem" value="<?php echo $dados->imagem?>">
+			  </div>
 			  <div class="form-group">
 			    <label for="nome">Nome</label>
                             <input type="text"  class="form-control" id="nome"  name='nome' value="<?php echo $dados->nome?>">

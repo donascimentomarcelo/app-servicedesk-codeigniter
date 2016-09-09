@@ -26,7 +26,7 @@ class Usuario_controller extends CI_Controller {
     public function salvar_usuario() {
         
         $this->load->model('usuario/usuario_model');
-        
+   
         $insert = $this->usuario_model->m_salvar_usuario();
         
         if($insert){
@@ -38,7 +38,39 @@ class Usuario_controller extends CI_Controller {
             echo 0;
             
         }
+
     }
+    
+    public function do_upload(){
+        
+                $config['upload_path']          = '../imagem/';
+                $config['allowed_types']        = 'gif|jpg|png';
+                $config['max_size']             = 100;
+                $config['max_width']            = 1024;
+                $config['max_height']           = 768;
+
+                $this->load->library('upload', $config);
+
+                if ( ! $this->upload->do_upload('imagem')){
+                        $error = array('error' => $this->upload->display_errors());
+
+                        echo var_dump($error);
+                        
+                }else{
+                    
+                        $salvar = $this->salvar_usuario();
+                        
+                        if($salvar){
+
+                            echo 1;
+                        
+                        }else{
+                            
+                            echo 0;
+                        }
+                }
+        }
+
     
     public function dados_usuario() {
         
