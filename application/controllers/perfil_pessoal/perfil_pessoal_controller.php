@@ -4,6 +4,7 @@ class Perfil_pessoal_controller extends CI_Controller {
     
     function alterar_perfil(){
         
+       $this->load->model('perfil_pessoal/perfil_pessoal_model');
        $this->load->model('usuario/usuario_model');
        
         
@@ -25,14 +26,19 @@ class Perfil_pessoal_controller extends CI_Controller {
     
     function preenche_dados(){
         
-        $this->load->model('usuario/usuario_model');
+        $this->load->model('perfil_pessoal/perfil_pessoal_model');
         
         $id = $this->session->userdata('id');
         
-        $dados = $this->usuario_model->m_list_usuario($id);
+        $dados = $this->perfil_pessoal_model->m_list_usuario($id);
         
         return $dados;
         
+    }
+    
+    function  atualiza_perfil(){
+        
+        //Criar caso precise de uma função unica para atualizar perfil.
     }
     
 }
