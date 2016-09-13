@@ -13,9 +13,9 @@ class Perfil_pessoal_controller extends CI_Controller {
        $variaveis['setor_ativo'] = getSetorAtivo();
        
        
-       $this->load->helper('valida_login/valida_administrador_helper');
+       $this->load->helper('valida_login/valida_helper');
         
-       $variaveis['validacao'] = getValidaAdministrador();
+       $variaveis['validacao'] = getValida();
        
        
        $variaveis['consulta'] = $this->preenche_dados();
@@ -38,7 +38,47 @@ class Perfil_pessoal_controller extends CI_Controller {
     
     function  atualiza_perfil(){
         
-        //Criar caso precise de uma função unica para atualizar perfil.
+        $this->load->model('perfil_pessoal/perfil_pessoal_model');
+   
+        /*
+        $insert = $this->usuario_model->m_salvar_usuario();
+        $this->load->helper('upload_perfil/foto_helper');
+        
+        $upload = getFoto();
+        */
+        
+        $imagem = $this->do_upload();
+        
+        $insert = $this->perfil_pessoal_model->atualizar_perfil($imagem);
+
+            if($insert){
+
+                echo 1;
+
+            }else{
+
+                echo 0;
+            }
     }
+    
+    public function do_upload(){
+
+            if(isset($_FILES["imagem"])){
+        
+              $type = explode('.', $_FILES["imagem"]["name"]);
+              $type = $type[count($type)-1];
+              $url = "./imagem/".uniqid(rand()).'.'.$type;
+                if(in_array($type, array("jpg","jpeg","gif","png")))
+                    if(is_uploaded_file($_FILES["imagem"]["tmp_name"]))
+                        if(move_uploaded_file($_FILES["imagem"]["tmp_name"], $url))
+                return $url;
+               //return "";
+            }else {
+        
+                return FALSE;
+                
+        }
+    }
+
     
 }

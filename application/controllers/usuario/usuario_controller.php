@@ -27,14 +27,17 @@ class Usuario_controller extends CI_Controller {
         
         $this->load->model('usuario/usuario_model');
    
+        /*
         $insert = $this->usuario_model->m_salvar_usuario();
-        
         $this->load->helper('upload_perfil/foto_helper');
         
         $upload = getFoto();
+        */
         
-        if($upload){
+        $imagem = $this->do_upload();
         
+        $insert = $this->usuario_model->m_salvar_usuario($imagem);
+
             if($insert){
 
                 echo 1;
@@ -42,44 +45,28 @@ class Usuario_controller extends CI_Controller {
             }else{
 
                 echo 0;
-
             }
-        }else{
-            
-            echo 'erro no upload';
-        }
 
     }
     
     public function do_upload(){
+
+            if(isset($_FILES["imagem"])){
         
-                $config['upload_path']          = 'C:\xampp\htdocs\cd\application\imagem';
-                $config['allowed_types']        = 'gif|jpg|png';
-                $config['max_size']             = 100;
-                $config['max_width']            = 1024;
-                $config['max_height']           = 768;
-
-                $this->load->library('upload', $config);
-
-                if ( ! $this->upload->do_upload('imagem')){
-                        $error = array('error' => $this->upload->display_errors());
-
-                        echo var_dump($error);
-                        
-                }else{
-                    
-                        $salvar = $this->salvar_usuario();
-                        
-                        if($salvar){
-
-                            echo 1;
-                        
-                        }else{
-                            
-                            echo 0;
-                        }
-                }
+              $type = explode('.', $_FILES["imagem"]["name"]);
+              $type = $type[count($type)-1];
+              $url = "./imagem/".uniqid(rand()).'.'.$type;
+                if(in_array($type, array("jpg","jpeg","gif","png")))
+                    if(is_uploaded_file($_FILES["imagem"]["tmp_name"]))
+                        if(move_uploaded_file($_FILES["imagem"]["tmp_name"], $url))
+                return $url;
+               //return "";
+            }else {
+        
+                return FALSE;
+                
         }
+    }
 
     
     public function dados_usuario() {

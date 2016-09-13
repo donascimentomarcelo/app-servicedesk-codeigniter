@@ -109,7 +109,7 @@
 	<div id="body">
           
                 
-        <nav class="navbar navbar-inverse">
+       <nav class="navbar navbar-inverse">
           <div class="container-fluid">
             <div class="navbar-header">
               <a class="navbar-brand" href="http://localhost/cd/index.php/perfil/p_administrador">Início</a>
@@ -146,13 +146,14 @@
 	      </div>
 	      <div class="modal-body">
 	      	<?php foreach($consulta -> result() as $dados):?>
-			<form role="form" method="post" action="<?= base_url('index.php/usuario/usuario_controller/salvar_usuario')?>" id="formulario_usuario" enctype="multipart/form-data">
-			  <div class="form-group">
-                              <img src="../../imagem/<?php echo $dados->imagem?>" class="">
+			<form role="form" method="post" action="<?= base_url('index.php/perfil_pessoal/perfil_pessoal_controller/atualiza_perfil')?>" id="formulario_usuario" enctype="multipart/form-data">
+			  <div class="form-group" >
+                              <img src="../../.<?php echo $dados->imagem;?>" class="img-circle" width="100px" height="100px">
+                              
 			  </div>
 			  <div class="form-group">
 			    <label for="nome">Foto de Perfil</label>
-                            <input type="file" name="imagem"  id="imagem">
+                            <input type="file" name="imagem"  id="imagem" value="../../.<?php echo $dados->imagem;?>">
 			  </div>
 			  <div class="form-group">
 			    <label for="nome">Nome</label>

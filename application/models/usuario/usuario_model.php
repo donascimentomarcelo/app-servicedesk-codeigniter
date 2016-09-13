@@ -31,11 +31,22 @@ class usuario_model extends CI_Model{
         
     }
     
-    public function m_salvar_usuario() {
+    public function m_salvar_usuario($imagem) {
         
-       $dados = $this->input->post();
-       
-       $id = $this->input->post('id');
+        $id = $this->input->post('id');
+        
+        if(empty($imagem)){
+             
+             $dados = array (
+            
+            'nome' => $this->input->post('nome'),
+            'email' => $this->input->post('email'),
+            'senha' => $this->input->post('senha'),         
+            'perfil' => $this->input->post('perfil'),         
+            'status' => $this->input->post('status'),         
+            'setor_fk' => $this->input->post('setor_fk')        
+          
+        );
        
        if($id != 0){
            
@@ -47,6 +58,35 @@ class usuario_model extends CI_Model{
            
            $query = $this->db->insert('usuarios',$dados);
            
+       }
+            
+        }else{
+        
+        $dados = array (
+            
+            'nome' => $this->input->post('nome'),
+            'email' => $this->input->post('email'),
+            'senha' => $this->input->post('senha'),
+            'perfil' => $this->input->post('perfil'),         
+            'status' => $this->input->post('status'),
+            'setor_fk' => $this->input->post('setor_fk'),         
+            'imagem' => $imagem        
+          
+        );
+       
+       if($id != 0){
+           
+           $this->db->where('id',$id);
+           
+           $query = $this->db->update('usuarios',$dados);
+           
+       }else{
+           
+           $query = $this->db->insert('usuarios',$dados);
+           
+       }
+       
+       
        }
        
        if($query){

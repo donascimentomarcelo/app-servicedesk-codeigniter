@@ -19,18 +19,22 @@ class perfil_pessoal_model extends CI_Model{
         
     }
     
-    public function m_salvar_usuario() {
+       public function atualizar_perfil($imagem) {
         
-       $dados = $this->input->post();
-       
-       $id = $this->input->post('id');
+        if(empty($imagem)){
+            
+             $id = $this->input->post('id');
+             
+             $dados = array (
+            
+            'nome' => $this->input->post('nome'),
+            'email' => $this->input->post('email'),
+            'senha' => $this->input->post('senha'),         
+            'setor_fk' => $this->input->post('setor_fk')        
+          
+        );
        
        if($id != 0){
-           
-           $this->db->set('nome', $this->input->post('nome'));
-           $this->db->set('email', $this->input->post('email'));
-           $this->db->set('senha', $this->input->post('senha'));
-           $this->db->set('setor_fk', $this->input->post('setor_fk'));
            
            $this->db->where('id',$id);
            
@@ -38,8 +42,37 @@ class perfil_pessoal_model extends CI_Model{
            
        }else{
            
-           redirect('perfil/p_administrador');
+           $query = $this->db->insert('usuarios',$dados);
            
+       }
+            
+        }else{
+        
+        $dados = array (
+            
+            'nome' => $this->input->post('nome'),
+            'email' => $this->input->post('email'),
+            'senha' => $this->input->post('senha'),         
+            'setor_fk' => $this->input->post('setor_fk'),         
+            'imagem' => $imagem        
+          
+        );
+       
+       $id = $this->input->post('id');
+       
+       if($id != 0){
+           
+           $this->db->where('id',$id);
+           
+           $query = $this->db->update('usuarios',$dados);
+           
+       }else{
+           
+           $query = $this->db->insert('usuarios',$dados);
+           
+       }
+       
+       
        }
        
        if($query){
