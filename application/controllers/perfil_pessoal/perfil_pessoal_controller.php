@@ -18,6 +18,11 @@ class Perfil_pessoal_controller extends CI_Controller {
        $variaveis['validacao'] = getValida();
        
        
+       $this->load->helper('preenche_dados/preenche_dados_helper');
+        
+       $variaveis['preenche_dados'] = getPreencheDados();
+       
+       
        $variaveis['consulta'] = $this->preenche_dados();
         
         $this->load->view('perfil_pessoal/perfil_pessoal_view', $variaveis);

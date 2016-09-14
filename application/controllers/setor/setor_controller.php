@@ -6,9 +6,13 @@ class Setor_controller extends CI_Controller {
         
         $this->load->model('setor/setor_model');
         
-        $resultado = $this->setor_model->m_listar_setor();
+        $variaveis['resultado'] = $this->setor_model->m_listar_setor();
         
-        $variaveis['resultado'] = $resultado;
+        
+        $this->load->helper('preenche_dados/preenche_dados_helper');
+        
+        $variaveis['preenche_dados'] = getPreencheDados();
+        
         
         $this->load->view('configuracao/setor/setor_view', $variaveis);
         

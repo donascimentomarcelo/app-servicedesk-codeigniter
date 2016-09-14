@@ -19,6 +19,11 @@ class Usuario_controller extends CI_Controller {
         $variaveis['setor_ativo'] = getSetorAtivo();
         
         
+        $this->load->helper('preenche_dados/preenche_dados_helper');
+        
+        $variaveis['preenche_dados'] = getPreencheDados();
+     
+        
         $this->load->view('usuario/manter_usuario_view',$variaveis);
         
     }

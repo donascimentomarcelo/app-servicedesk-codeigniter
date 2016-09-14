@@ -14,6 +14,10 @@ class P_usuario extends CI_Controller {
       
         $variaveis['validacao'] = getValidaUsuario();
         
+        $this->load->helper('preenche_dados/preenche_dados_helper');
+        
+        $variaveis['consulta'] = getPreencheDados();
+        
         $this->load->view('perfil/usuario', $variaveis);
     }
 }

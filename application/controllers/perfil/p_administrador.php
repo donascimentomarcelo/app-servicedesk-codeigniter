@@ -13,6 +13,10 @@ class P_administrador extends CI_Controller {
       
         $variaveis['validacao'] = getValidaAdministrador();
         
+        $this->load->helper('preenche_dados/preenche_dados_helper');
+        
+        $variaveis['consulta'] = getPreencheDados();
+        
         $this->load->view('perfil/administrador', $variaveis);
     }
 }

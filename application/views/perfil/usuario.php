@@ -69,33 +69,10 @@
 <body>
 
 <div id="container">
-	<h1>Hello <?php echo $this->session->userdata('nome');?>, Welcome to CodeIgniter!  </h1>
-
-	<div id="body">
-               
-        <nav class="navbar navbar-inverse">
-          <div class="container-fluid">
-            <div class="navbar-header">
-              <a class="navbar-brand" href="http://localhost/cd/index.php/perfil/p_usuario">Início</a>
-            </div>
-            <ul class="nav navbar-nav">
-             <li><?php echo anchor('cd/cd_controller/listar_cd', 'Manter CD'); ?></li>
-              <li class="dropdown">
-                <a class="dropdown-toggle " data-toggle="dropdown" href="#"> Configurações
-                <span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                    <li><a href="http://localhost/cd/index.php/perfil_pessoal/perfil_pessoal_controller/alterar_perfil" class="glyphicon glyphicon-cog"> Configuração de Perfil</a></li>
-                    <li><a href="#" class="glyphicon glyphicon-cog"> Setor C</a></li>
-                </ul>
-              </li>
-             <li><a href="http://localhost/cd/index.php/login/login_controller/sair"><span class="glyphicon glyphicon-off"></span> Sair</a></li>
-             <li><a href="#">Page 3</a></li>
-            </ul>
-          </div>
-        </nav>
-           
-	</div>
-
+    <h1><?php foreach($consulta -> result() as $dados):?> <img src="../.<?php echo $dados->imagem;?>" class="img-circle" width="50px" height="50px"> <?php endforeach;?>Hello <?php echo $this->session->userdata('nome');?>, Welcome to CodeIgniter!  </h1>
+        
+        <?php include 'C:\xampp\htdocs\cd\application\views\menu_head\usuario\menu_inicial.php';?>
+	
 	<p class="footer">Page rendered in <strong>{elapsed_time}</strong> seconds</p>
 </div>
 

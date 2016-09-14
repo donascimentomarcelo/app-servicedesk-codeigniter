@@ -42,10 +42,16 @@ class Cd_controller extends CI_Controller {
 
             $variaveis['consulta'] = $this->cd_model->exibe_cd();
             
+            
             $this->load->helper('valida_login/valida_helper');
         
             $variaveis['validacao'] = getValida();
             
+            
+            $this->load->helper('preenche_dados/preenche_dados_helper');
+        
+            $variaveis['preenche_dados'] = getPreencheDados();
+        
             
             $this->load->view("menu_cd/listar_cd_view",$variaveis);
         }

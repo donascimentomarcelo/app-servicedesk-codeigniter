@@ -27,3 +27,6 @@ if (!function_exists('getFoto')) {
 
     }   
 }
+/*
+Realiza o uplod da imagem. Por enquanto, não está sendo utilizado.
+*/
