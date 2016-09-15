@@ -1,6 +1,5 @@
 <div id="body">
-               
-        <nav class="navbar navbar-inverse">
+    <nav class="navbar navbar-inverse">
           <div class="container-fluid">
             <div class="navbar-header">
               <a class="navbar-brand" href="http://localhost/cd/index.php/perfil/p_usuario">Início</a>
@@ -19,5 +18,4 @@
             </ul>
           </div>
         </nav>
-           
-</div>
+ </div>

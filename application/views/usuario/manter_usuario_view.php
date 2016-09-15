@@ -183,23 +183,13 @@
       
 </head>
 <body>
-<?php if(empty(($this->session->userdata('email')))){
-    
-    redirect('login/login_controller/proteger');
-    
-}
-?>
+
 <div id="container">
 	<h1><?php foreach($preenche_dados -> result() as $dados):?> <img src="../../.<?php echo $dados->imagem;?>" class="img-circle" width="50px" height="50px"> <?php endforeach;?>Hello <?php echo $this->session->userdata('nome');?>, Welcome to CodeIgniter!  </h1>
     
-      <?php 
-
+        <?php 
             include 'C:\xampp\htdocs\cd\application\views\menu_head\administrador\menu.php';
         ?>
-
-	
-</head>
-<body>
 
 <div id="container">
 	<h1>Manter Usuário</h1>

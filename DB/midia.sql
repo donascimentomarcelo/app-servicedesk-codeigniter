@@ -99,6 +99,7 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `senha` varchar(255) NOT NULL,
   `perfil` enum('administrador','usuario') NOT NULL,
   `status` enum('ativo','inativo') NOT NULL,
+  `imagem` varchar(255) NOT NULL,
   `setor_fk` int NOT NULL,
    foreign key(setor_fk) references setor(idsetor)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
@@ -107,9 +108,9 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
 -- Extraindo dados da tabela `usuarios`
 --
 
-INSERT INTO `usuarios` (`id`, `nome`, `email`, `senha`, `perfil`, `status`, `setor_fk`) VALUES
-(1, 'Marcelo', 'marcelojunin2010@hotmail.com', '123', 'administrador', 'ativo', 4),
-(2, 'Marcelo do Nascimento Sant'' Anna Junior', 'teste', '123', 'usuario', 'ativo', 1);
+INSERT INTO `usuarios` (`id`, `nome`, `email`, `senha`, `perfil`, `status`, `imagem`, `setor_fk`) VALUES
+(3, 'Marcelo do Nascimento Sant'' Anna Junior', 'marcelojunin2010@hotmail.com', '123', 'administrador', 'ativo', './imagem/3174757d822c05e605.png', 1),
+(4, 'Joana', 'teste@teste', '123', 'usuario', 'ativo', './imagem/3166057d82e72dc56d.jpg', 3);
 
 --
 -- Indexes for dumped tables
