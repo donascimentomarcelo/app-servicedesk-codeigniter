@@ -261,13 +261,13 @@
                 </thead>
                 <tbody>
                     
-                <?php foreach ($consulta -> result() as $linha): ?> 
+                <?php foreach ($consulta  as $linha): ?> 
                     
                 <tr>
-                    <td style="text-align: center;"><?php echo $linha->idcd ?></td>
-                    <td style="text-align: center;"><?php echo $linha->nomecd ?></td>
-                    <td style="text-align: center;"><?php echo $linha->gravadora ?></td>
-                    <td style="text-align: center;"><a href="javascript:;"  onclick="janelaNovoCd(<?= $linha->idcd ?>)"><button type="button" class="glyphicon glyphicon-cog"></button></a><a href="javascript:;"  onclick="confirma(<?= $linha->idcd ?>)"><button type="button" class="glyphicon glyphicon-trash"></button></a></td>
+                    <td style="text-align: center;"><?php echo $linha['idcd'] ?></td>
+                    <td style="text-align: center;"><?php echo $linha['nomecd'] ?></td>
+                    <td style="text-align: center;"><?php echo $linha['gravadora'] ?></td>
+                    <td style="text-align: center;"><a href="javascript:;"  onclick="janelaNovoCd(<?= $linha['idcd']?>)"><button type="button" class="glyphicon glyphicon-cog"></button></a><a href="javascript:;"  onclick="confirma(<?= $linha['idcd'] ?>)"><button type="button" class="glyphicon glyphicon-trash"></button></a></td>
                 </tr>
                 <?php endforeach;?>
                 </tbody>

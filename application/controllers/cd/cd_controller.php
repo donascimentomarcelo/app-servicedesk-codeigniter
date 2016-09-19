@@ -2,18 +2,6 @@
 
 class Cd_controller extends CI_Controller {
 
-	public function manter_usuario()
-	{
-		$this->load->helper('form');
-                
-		$this->load->view('usuario/manter_usuario_view');
-	}
-        
-        public function welcome_message() {
-            $this->load->helper('form');
-                
-            $this->load->view('welcome_message');
-        }
         public function salvar_cd(){
             
             $this->load->model('cd/cd_model');
@@ -40,9 +28,61 @@ class Cd_controller extends CI_Controller {
             
             $this->load->model('cd/cd_model');
 
-            $variaveis['consulta'] = $this->cd_model->exibe_cd();
+            $row = $this->cd_model->exibe_cd();
             
+            foreach ($row  as $linha):
+                $datafinal = $linha['datafinal'];
+                $horafinal = $linha['horafinal'];
+                $nomecd = $linha['nomecd'];
+                $gravadora = $linha['gravadora'];
+                $class = $linha['class'];
+                $porcentagem = $linha['porcentagem'];
+                $idcd = $linha['idcd'];
+                $sla = $linha['sla'];
+            endforeach;
             
+            $dataAtual = date('d/m/Y');
+            $horaAtual = date('H');
+            $minutoAtual = date('i');
+
+            $sla = $sla * 60;//converte o periodo da SLA para minutos.
+
+            if($horafinal >= $horaAtual && $datafinal >= $dataAtual){
+                
+                    $porcentagem = ($minutoAtual * 100)/$sla;
+                    
+                    $porcentagem = (int)$porcentagem;
+
+                    if($porcentagem <= 25){
+
+                    $class = 'success';
+
+                    }else if($porcentagem >=26 && $porcentagem <=80){
+
+                    $class = 'warning';
+
+                    }else{
+
+                    $class = 'danger';
+
+                    }
+            }else{
+                    $class = 'danger';
+                    $porcentagem = 100;
+                    
+            }
+            foreach ($row  as $linha):
+            $array = array(
+                'idcd'=>$idcd,
+                'nomecd'=>$nomecd,
+                'gravadora'=>$gravadora,
+                'class'=>$class,
+                'porcentagem'=>$porcentagem
+            );
+        endforeach;
+            //echo var_dump($array);
+            $variaveis['consulta'] = $array;
+            /*
             $this->load->helper('valida_login/valida_helper');
         
             $variaveis['validacao'] = getValida();
@@ -53,7 +93,7 @@ class Cd_controller extends CI_Controller {
             $variaveis['preenche_dados'] = getPreencheDados();
         
             
-            $this->load->view("menu_cd/listar_cd_view",$variaveis);
+            $this->load->view("menu_cd/listar_cd_view",$variaveis);*/
         }
         
         public function excluir_cd($idcd) {

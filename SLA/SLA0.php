@@ -11,6 +11,10 @@
 <body>
 <?php
 $dataInicial = '16/09/2016';
+$dataFinal = '16/09/2016';
+
+$horaFinal = '24';
+$dataAtual = date('d/m/Y');
 $sla = 1;
 
 
@@ -21,24 +25,34 @@ $final =  date( 'H', strtotime( $sla ." hours" ) );
 
 $sla = $sla * 60;//converte o periodo da SLA para minutos.
 
-$porcentagem = ($minutoAtual * 100)/$sla;
+if($horaFinal >= $horaAtual && $dataFinal >= $dataAtual){
+        $porcentagem = ($minutoAtual * 100)/$sla;
 
-echo $horaAtual,':';
-echo $minutoAtual,'</br>';
-echo $porcentagem = (int)$porcentagem;
+        echo $horaAtual,':';
+        echo $minutoAtual,'</br>';
+        echo $horaFinal,'</br>';
+        echo $porcentagem = (int)$porcentagem;
 
-if($porcentagem <= 25){
-    
-$class = 'success';
+        if($porcentagem <= 25){
 
-}else if($porcentagem >=26 && $porcentagem <=80){
-    
-$class = 'warning';
-        
+        $class = 'success';
+
+        }else if($porcentagem >=26 && $porcentagem <=80){
+
+        $class = 'warning';
+
+        }else{
+
+        $class = 'danger';
+
+        }
 }else{
-    
-$class = 'warning';
-    
+        echo $horaAtual,':';
+        echo $minutoAtual,'</br>';
+        echo $horaFinal,'</br>';
+        
+        $class = 'danger';
+        $porcentagem = 100;
     
 }
 /*

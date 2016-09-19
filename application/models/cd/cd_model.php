@@ -48,7 +48,7 @@ class cd_model extends CI_Model{
         
         }    
             
-            $retorno = $this->db->get("cd");
+            $retorno = $this->db->get("cd")->result_array();
             
             return $retorno;
         
