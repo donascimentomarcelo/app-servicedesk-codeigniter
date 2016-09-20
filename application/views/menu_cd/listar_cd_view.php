@@ -256,6 +256,9 @@
                     <th>Código do CD</th>
                     <th>Nome do CD</th>
                     <th>Gravadora</th>
+                    <th>Data/Hora</th>
+                    <th>Tempo SLA</th>
+                    <th>SLA</th>
                     <th>Opções</th>
                     </tr>
                 </thead>
@@ -264,10 +267,20 @@
                 <?php foreach ($consulta  as $linha): ?> 
                     
                 <tr>
-                    <td style="text-align: center;"><?php echo $linha['idcd'] ?></td>
+                    <td style="text-align: center;"><?php echo $linha['idcd']?></td>
                     <td style="text-align: center;"><?php echo $linha['nomecd'] ?></td>
-                    <td style="text-align: center;"><?php echo $linha['gravadora'] ?></td>
-                    <td style="text-align: center;"><a href="javascript:;"  onclick="janelaNovoCd(<?= $linha['idcd']?>)"><button type="button" class="glyphicon glyphicon-cog"></button></a><a href="javascript:;"  onclick="confirma(<?= $linha['idcd'] ?>)"><button type="button" class="glyphicon glyphicon-trash"></button></a></td>
+                    <td style="text-align: center;"><?php echo $linha['gravadora']?></td>
+                    <td style="text-align: center;"><span>Data Final:<?php echo $linha['datafinal'] ?></span><span><br>Hora Final: <?php echo $linha['hora'] ?></span></td>
+                    <td style="text-align: center;"><?php echo $linha['sla']?></td>
+                    <td style="text-align: center;">
+                    <div class="progress">
+                        <div class="progress-bar-<?php echo $linha['class']?>" role="progressbar" aria-valuenow="70"
+                        aria-valuemin="0" aria-valuemax="100" style="width:<?php echo $linha['porcentagem']?>%">
+                          <?php echo  $linha['porcentagem'],'%';?>
+                        </div>
+                      </div>
+                    </td>
+                    <td style="text-align: center;"><a href="javascript:;"  onclick="janelaNovoCd(<?= $linha['idcd']?>)"><button type="button" class="glyphicon glyphicon-cog"></button></a><a href="javascript:;"  onclick="confirma(<?= $linha['idcd']?>)"><button type="button" class="glyphicon glyphicon-trash"></button></a></td>
                 </tr>
                 <?php endforeach;?>
                 </tbody>

@@ -28,59 +28,7 @@ class Cd_controller extends CI_Controller {
             
             $this->load->model('cd/cd_model');
 
-            $variaveis = $this->cd_model->exibe_cd();
-            
-            for($i = 0; $i < count($variaveis); $i++){
-
-                $sla = $variaveis[$i]['sla'];
-                $datafinal = $variaveis[$i]['datafinal'];
-                $datainicial = $variaveis[$i]['data'];
-                $horafinal = $variaveis[$i]['hora'];
-                //2016-09-21 16:36:00.000000
-                
-                /*
-                $dataLimite = date_create($datainicial);
-                date_add($dataLimite, date_interval_create_from_date_string(''.$sla.' hours'));
-
-                $dataServ = date_create(date("Y-m-d H:i:s"));
-
-                if($dataServ < $dataLimite)
-                 */
-                
-
-                $sla = (int)$sla;
-                $sla = $sla * 60;
-                $dataAtual = date('Y-m-d');
-                $horaAtual = date('H:i:s.u');
-                $minutoAtual = date('i');
-                
-                if($datafinal >= $dataAtual && $horafinal >= $horaAtual){
-                        $porcentagem = ($minutoAtual * 100)/$sla;
-                        $porcentagem = (int)$porcentagem;
-
-                        if($porcentagem <= 25){
-
-                        $class = 'success';
-
-                        }else if($porcentagem >=26 && $porcentagem <=80){
-
-                        $class = 'warning';
-
-                        }else{
-
-                        $class = 'danger';
-
-                        }
-                        }else{
-                        $class = 'danger';
-                        $porcentagem = 100;
-
-                        }
-                
-                $variaveis[$i] += ['porcentagem' => $porcentagem, 'class' => $class];
-            }
-
-            $variaveis['consulta'] = $variaveis;
+            $variaveis['consulta'] = $this->cd_model->exibe_cd();
             
             
             $this->load->helper('valida_login/valida_helper');
@@ -94,7 +42,6 @@ class Cd_controller extends CI_Controller {
         
             
             $this->load->view("menu_cd/listar_cd_view",$variaveis);
-            
         }
         
         public function excluir_cd($idcd) {
