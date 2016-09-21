@@ -34,7 +34,7 @@ class Cd_controller extends CI_Controller {
 
                 $sla = $variaveis[$i]['sla'];
                 $datafinal = $variaveis[$i]['datafinal'];
-                $datainicial = $variaveis[$i]['data'];
+                $data = $variaveis[$i]['data'];
                 $horafinal = $variaveis[$i]['hora'];
                 //2016-09-21 16:36:00.000000
                 
@@ -47,14 +47,14 @@ class Cd_controller extends CI_Controller {
                 if($dataServ < $dataLimite)
                  */
                 
+               // $dataAtual = date('Y-m-d');
+               // $horaAtual = date('H:i:s.u');
 
                 $sla = (int)$sla;
                 $sla = $sla * 60;
-                $dataAtual = date('Y-m-d');
-                $horaAtual = date('H:i:s.u');
                 $minutoAtual = date('i');
                 
-                if($datafinal >= $dataAtual && $horafinal >= $horaAtual){
+                if($data >= date('Y-m-d H:i:s')){
                         $porcentagem = ($minutoAtual * 100)/$sla;
                         $porcentagem = (int)$porcentagem;
 
@@ -71,7 +71,7 @@ class Cd_controller extends CI_Controller {
                         $class = 'danger';
 
                         }
-                        }else{
+                        }elseif($data < date('Y-m-d H:i:s')){
                         $class = 'danger';
                         $porcentagem = 100;
 

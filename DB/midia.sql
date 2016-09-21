@@ -29,40 +29,29 @@ SET time_zone = "+00:00";
 CREATE TABLE IF NOT EXISTS `cd` (
 `idcd` int(11) NOT NULL,
   `nomecd` varchar(32) NOT NULL,
-  `gravadora` varchar(32) NOT NULL
+  `gravadora` varchar(32) NOT NULL,
+  `datafinal` date NOT NULL,
+  `horafinal` varchar(255) NOT NULL,
+  `minutofinal` varchar(101) NOT NULL,
+  `data` datetime NOT NULL,
+  `datainicial` date NOT NULL,
+  `hora` time(6) NOT NULL,
+  `sla` int(101) NOT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=56 ;
 
 --
 -- Extraindo dados da tabela `cd`
 --
 
-INSERT INTO `cd` (`idcd`, `nomecd`, `gravadora`) VALUES
-(3, 'Sergio Lopes', 'MK'),
-(4, 'Sergio Lopes', 'MK'),
-(5, 'Teste', 'abc'),
-(7, 'Hisoka', 'Hunter x Hunter'),
-(8, 'Kano', 'Mortal Kombat'),
-(9, 'Ali', 'ali'),
-(16, 'teste 3', 'teste 345'),
-(34, 'teste 25', 'teste 25'),
-(35, 'tttty', 'tytyyyyy'),
-(38, 'hyhy', 'yhyhy'),
-(39, 'eeed', 'ededed'),
-(40, 'tgtgtg', 'tgtgtg'),
-(42, 'teste ', 'teste'),
-(43, 'rfrfrfr', 'frfrfrf'),
-(44, 'eeeeeeeeeee', 'eeeeeeeeeeeeee'),
-(45, 'dddddddddddddd', 'ddddddddddddddd'),
-(46, 'dddddddddds', 'ssssssssss'),
-(47, 'deeee', 'dee'),
-(48, '333333', '3333333'),
-(49, 'ffffff', 'ffffffffffff'),
-(50, 'rrffrr', 'ffrfrfr'),
-(51, 'ssssss', 'sssssssssssss'),
-(52, 'eeeee', 'eeeeeeeeeeeee'),
-(53, 'wwwwww', 'wwwwwww'),
-(54, 'ssssssss', 'sssssssssssssss'),
-(55, 'ssssssss', 'sssssssssssssss');
+INSERT INTO `cd` (`idcd`, `nomecd`, `gravadora`, `datafinal`, `horafinal`, `minutofinal`, `data`, `datainicial`, `hora`, `sla`) VALUES
+(3, 'Sergio Lopes', 'MK', '2016-09-20', '15', '28', '2016-09-19 15:28:00', '2016-09-19', '15:32:00.000000', 8),
+(4, 'Sergio Lopes', 'MK', '2016-09-21', '21', '40', '2016-09-21 21:40:00', '2016-09-20', '07:07:00.000000', 18),
+(5, 'Teste', 'abc', '2016-09-20', '13', '37', '2016-09-20 13:37:00', '2016-09-20', '12:37:00.000000', 1),
+(7, 'Hisoka', 'Hunter x Hunter', '2016-09-22', '12', '20', '2016-09-21 12:20:00', '2016-09-20', '18:17:00.000000', 48),
+(8, 'Kano', 'Mortal Kombat', '2016-09-22', '14', '10', '2016-09-23 14:10:00', '2016-09-20', '14:07:00.000000', 20),
+(9, 'Ali', 'ali', '2016-09-20', '11', '17', '2016-09-21 11:17:00', '2016-09-20', '15:11:00.000000', 5),
+(55, 'ssssssss', 'sssssssssssssss', '2016-09-20', '16', '16', '2016-09-21 16:16:00', '2016-09-19', '16:14:00.000000', 2);
+
 
 -- --------------------------------------------------------
 

@@ -270,7 +270,7 @@
                     <td style="text-align: center;"><?php echo $linha['idcd']?></td>
                     <td style="text-align: center;"><?php echo $linha['nomecd'] ?></td>
                     <td style="text-align: center;"><?php echo $linha['gravadora']?></td>
-                    <td style="text-align: center;"><span>Data Final:<?php echo $linha['datafinal'] ?></span><span><br>Hora Final: <?php echo $linha['hora'] ?></span></td>
+                    <td style="text-align: center;">Data Final:<?php echo $linha['data'] ?></td>
                     <td style="text-align: center;"><?php echo $linha['sla']?></td>
                     <td style="text-align: center;">
                     <div class="progress">
