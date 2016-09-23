@@ -51,13 +51,23 @@ class Cd_controller extends CI_Controller {
                // $horaAtual = date('H:i:s.u');
 
                 $sla = (int)$sla;
-                $sla = $sla * 60;
                 $minutoAtual = date('i');
+                $horaAtual = date('H');
                 
                 if($data >= date('Y-m-d H:i:s')){
+                    
+                    if($sla == 1){
+                    
+                        $sla = $sla * 60;
                         $porcentagem = ($minutoAtual * 100)/$sla;
                         $porcentagem = (int)$porcentagem;
-
+                        
+                    }else if($sla == 2 ){
+                        
+                        $porcentagem = ($horaAtual * 100)/$sla;
+                        $porcentagem = (int)$porcentagem;
+                        
+                    }
                         if($porcentagem <= 25){
 
                         $class = 'success';

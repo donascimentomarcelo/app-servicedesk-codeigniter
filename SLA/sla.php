@@ -23,4 +23,18 @@ echo "A diferença entre as datas ".$data_inicial." e ".$data_final." é de <str
    $data = date('Y-m-d H:i:s');
    $da = date('Y-m-d H:i:s');
    $data =  date( 'Y-m-d H:i:s', strtotime( $sla ." hours" ) );
-*/
+*/  if($data >= date('Y-m-d H:i:s')){
+                    
+                    if($sla == 1){
+                    
+                        $sla = $sla * 60;
+                        $porcentagem = ($minutoAtual * 100)/$sla;
+                        $porcentagem = (int)$porcentagem;
+                        
+                    }else if($sla == 2 ){
+                        
+                        $porcentagem = ($horaAtual * 100)/$sla;
+                        $porcentagem = (int)$porcentagem;
+                        
+                    }
+}
