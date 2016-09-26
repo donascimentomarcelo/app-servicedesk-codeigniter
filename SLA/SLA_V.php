@@ -10,52 +10,35 @@
 </head>
 <body>
 <?php
-                    $dataInicial = '22/09/2016';
-                    $sla = 1;
-                    $horaAtual = date('H');
-                    $minutoAtual = date('i');
-                //$final =  date( 'H', strtotime( $sla ." hours" ) ); 
-                //$sla = $sla * 60;//converte o periodo da SLA para minutos.
-                //$porcentagem = ($minutoAtual * 100)/$sla;
-                //echo $horaAtual,':';
-                //echo $minutoAtual,'</br>';
-                //echo $porcentagem = (int)$porcentagem;
-                echo 'timestamp:'.$time = time().'<br>';
-                     if($sla == 1){
-                    
-                        $sla = $sla * 60;
-                        $porcentagem = ($minutoAtual * 100)/$sla;
-                        
-                        
-                            while($minutoAtual > 59){
-                            $minuto = 59;
-                            $minutoAtual = $minuto + $minutoAtual;
-                            $sla = $sla * 60;
-                            $porcentagem = ($minutoAtual * 100)/$sla;
-                            
-                        }
-                        echo $minutoAtual,'</br>';
-                        $porcentagem = (int)$porcentagem;
-                        
-                    }/*else if($sla <= 2 ){
-                        
-                        $sla = $sla * 60;
-                        $porcentagem = (($horaAtual * 100)/$sla);
-                        $porcentagem = (int)$porcentagem;
-                        
-                    }*/
+                date_default_timezone_set('America/Sao_Paulo');
 
-                if($porcentagem <= 25){
+                $inicio = new DateTime('2016-09-22 17:30:00');
+                $fim = new DateTime('2016-09-27 14:30:00');
+                $agora = new DateTime();
+
+                $diffInicioFim = $fim->getTimestamp() - $inicio->getTimestamp();
+                $diffInicioAgora = $agora->getTimestamp() - $inicio->getTimestamp();
+
+                $pct = $diffInicioAgora / $diffInicioFim * 100;
+
+                echo number_format($pct, 2), PHP_EOL;
+
+                if($pct <= 25){
 
                 $class = 'success';
-                }else if($porcentagem >=26 && $porcentagem <=80){
+                
+                }else if($pct >=26 && $pct <=80){
 
                 $class = 'warning';
 
-                }else{
+                }else if($pct >= 81 && $pct <= 99) {
+                    
+                $class = 'danger';
 
-                $class = 'warning';
-
+                }else if($pct >= 100) {
+                    
+                $pct = 100;
+                $class = 'danger';
 
                 }
 /*
@@ -67,8 +50,8 @@
 
 <div class="progress">
   <div class="progress-bar-<?php echo $class;?>" role="progressbar" aria-valuenow="70"
-  aria-valuemin="0" aria-valuemax="100" style="width:<?php echo $porcentagem;?>%">
-    <?php echo $porcentagem,'%';?>
+  aria-valuemin="0" aria-valuemax="100" style="width:<?php echo number_format($pct, 2);?>%">
+    <?php echo number_format($pct, 2),'%';?>
   </div>
 </div>
 
