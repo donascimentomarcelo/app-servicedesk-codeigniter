@@ -32,60 +32,39 @@ class Cd_controller extends CI_Controller {
             
             for($i = 0; $i < count($variaveis); $i++){
 
-                $sla = $variaveis[$i]['sla'];
-                $datafinal = $variaveis[$i]['datafinal'];
-                $data = $variaveis[$i]['data'];
-                $horafinal = $variaveis[$i]['hora'];
-                //2016-09-21 16:36:00.000000
-                
-                /*
-                $dataLimite = date_create($datainicial);
-                date_add($dataLimite, date_interval_create_from_date_string(''.$sla.' hours'));
+                $inicio = $variaveis[$i]['datainicial'];
+                $fim = $variaveis[$i]['datafinal'];
+  
+                date_default_timezone_set('America/Sao_Paulo');
 
-                $dataServ = date_create(date("Y-m-d H:i:s"));
+                $inicio = new DateTime($inicio);
+                $fim = new DateTime($fim);
+                $agora = new DateTime();
 
-                if($dataServ < $dataLimite)
-                 */
-                
-               // $dataAtual = date('Y-m-d');
-               // $horaAtual = date('H:i:s.u');
+                $diffInicioFim = $fim->getTimestamp() - $inicio->getTimestamp();
+                $diffInicioAgora = $agora->getTimestamp() - $inicio->getTimestamp();
 
-                $sla = (int)$sla;
-                $minutoAtual = date('i');
-                $horaAtual = date('H');
+                $porcentagem = $diffInicioAgora / $diffInicioFim * 100;
+
+              
+                if($porcentagem <= 25){
+
+                $class = 'success';
                 
-                if($data >= date('Y-m-d H:i:s')){
+                }else if($porcentagem >=26 && $porcentagem <=81){
+
+                $class = 'warning';
+
+                }else if($porcentagem >= 81 && $porcentagem <= 100) {
                     
-                    if($sla == 1){
+                $class = 'danger';
+
+                }else if($porcentagem >= 100) {
                     
-                        $sla = $sla * 60;
-                        $porcentagem = ($minutoAtual * 100)/$sla;
-                        $porcentagem = (int)$porcentagem;
-                        
-                    }else if($sla == 2 ){
-                        
-                        $porcentagem = ($horaAtual * 100)/$sla;
-                        $porcentagem = (int)$porcentagem;
-                        
-                    }
-                        if($porcentagem <= 25){
+                $porcentagem = 100;
+                $class = 'danger';
 
-                        $class = 'success';
-
-                        }else if($porcentagem >=26 && $porcentagem <=80){
-
-                        $class = 'warning';
-
-                        }else{
-
-                        $class = 'danger';
-
-                        }
-                        }elseif($data < date('Y-m-d H:i:s')){
-                        $class = 'danger';
-                        $porcentagem = 100;
-
-                        }
+                }
                 
                 $variaveis[$i] += ['porcentagem' => $porcentagem, 'class' => $class];
             }
