@@ -1,18 +1,18 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Cd_controller extends CI_Controller {
+class Chamado_controller extends CI_Controller {
 
-        public function salvar_cd(){
+        public function salvar_chamado(){
             
-            $this->load->model('cd/cd_model');
+            $this->load->model('chamado/chamado_model');
             
-           // $result = $this->cd_model->m_salvar_cd();
+           // $result = $this->chamado_model->m_salvar_chamado();
             
-            if($this->input->post('nomecd') == '' && $this->input->post('gravadora') == ''){
+            if($this->input->post('nomechamado') == '' && $this->input->post('gravadora') == ''){
                 ?> Preencha os campos do formulario! <?php
             }else{
             
-            if($this->cd_model->m_salvar_cd()){
+            if($this->chamado_model->m_salvar_chamado()){
                 
                 echo 1;
                 
@@ -24,11 +24,11 @@ class Cd_controller extends CI_Controller {
             }
         }
         
-        public function listar_cd(){
+        public function listar_chamado(){
             
-            $this->load->model('cd/cd_model');
+            $this->load->model('chamado/chamado_model');
 
-            $variaveis = $this->cd_model->exibe_cd();
+            $variaveis = $this->chamado_model->exibe_chamado();
             
             for($i = 0; $i < count($variaveis); $i++){
 
@@ -82,15 +82,15 @@ class Cd_controller extends CI_Controller {
             $variaveis['preenche_dados'] = getPreencheDados();
         
             
-            $this->load->view("menu_cd/listar_cd_view",$variaveis);
+            $this->load->view("menu_chamado/listar_chamado_view",$variaveis);
             
         }
         
-        public function excluir_cd($idcd) {
+        public function excluir_chamado($idchamado) {
             
-            $this->load->model('cd/cd_model');
+            $this->load->model('chamado/chamado_model');
             
-            if($this->cd_model->excluir($idcd)){
+            if($this->chamado_model->excluir($idchamado)){
                 
                echo 1;
                 
@@ -102,13 +102,13 @@ class Cd_controller extends CI_Controller {
             
         }
         
-        public function dados_cd() {
+        public function dados_chamado() {
             
-            $idcd = $this->input->post("idcd");
+            $idchamado = $this->input->post("idchamado");
             
-            $this->load->model("cd/cd_model");
+            $this->load->model("chamado/chamado_model");
             
-            $consulta = $this->cd_model->m_list_cd($idcd);
+            $consulta = $this->chamado_model->m_list_chamado($idchamado);
             
             if($consulta->num_rows() == 0){
                 die("CD não encontrado");
@@ -116,8 +116,8 @@ class Cd_controller extends CI_Controller {
             
             $array_clientes = array(
                 
-                "idcd" => $consulta->row()->idcd,
-                "nomecd" => $consulta->row()->nomecd,
+                "idchamado" => $consulta->row()->idchamado,
+                "nomechamado" => $consulta->row()->nomechamado,
                 "gravadora" => $consulta->row()->gravadora
             );
             

@@ -5,7 +5,7 @@
               <a class="navbar-brand" href="http://localhost/cd/index.php/perfil/p_usuario">Início</a>
             </div>
             <ul class="nav navbar-nav">
-             <li><?php echo anchor('cd/cd_controller/listar_cd', 'Manter CD'); ?></li>
+             <li><?php echo anchor('chamado/chamado_controller/listar_chamado', 'Abrir Chamado'); ?></li>
               <li class="dropdown">
                 <a class="dropdown-toggle " data-toggle="dropdown" href="#"> Configurações
                 <span class="caret"></span></a>

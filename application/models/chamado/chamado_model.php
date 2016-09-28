@@ -1,6 +1,6 @@
 <?php
 
-class cd_model extends CI_Model{
+class chamado_model extends CI_Model{
     
     function __construct() {
         
@@ -8,21 +8,21 @@ class cd_model extends CI_Model{
         
     }    
     
-    public function m_salvar_cd() {
+    public function m_salvar_chamado() {
         
         $dados = $this->input->post();
         
-        $idcd = $this->input->post("idcd");
+        $idchamado = $this->input->post("idchamado");
         
-        if($idcd != 0){
+        if($idchamado != 0){
             
-            $this->db->where("idcd", $idcd);
+            $this->db->where("idchamado", $idchamado);
             
-            $query = $this->db->update("cd", $dados);
+            $query = $this->db->update("chamado", $dados);
             
         }else{
             
-            $query = $this->db->insert("cd", $dados);
+            $query = $this->db->insert("chamado", $dados);
             
             echo $query;
             
@@ -40,26 +40,26 @@ class cd_model extends CI_Model{
         
     }
     
-    public function exibe_cd($idcd = 0){
+    public function exibe_chamado($idchamado = 0){
         
-        if($idcd != 0){
+        if($idchamado != 0){
             
-            $this->db->where("idcd", $idcd);
+            $this->db->where("idchamado", $idchamado);
         
         }    
             
-            $retorno = $this->db->get("cd")->result_array();
+            $retorno = $this->db->get("chamado")->result_array();
             
             return $retorno;
         
         
     }
     
-    public function excluir($idcd) {
+    public function excluir($idchamado) {
         
-        $this->db->where('idcd',$idcd);
+        $this->db->where('idchamado',$idchamado);
         
-        if($this->db->delete("cd")){
+        if($this->db->delete("chamado")){
             
             return TRUE;
             
@@ -71,13 +71,13 @@ class cd_model extends CI_Model{
         
     }
     
-    public function m_list_cd($idcd = NULL) {
+    public function m_list_chamado($idchamado = NULL) {
         
-        if($idcd != NULL){
-            $this->db->where("idcd", $idcd);
+        if($idchamado != NULL){
+            $this->db->where("idchamado", $idchamado);
         }
         
-        return $this->db->get("cd");
+        return $this->db->get("chamado");
         
     }
 }

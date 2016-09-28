@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<title>Manter CD</title>
 
-        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+       <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
         <link href="../../../bootstrap/css/cd.css" rel="stylesheet" type="text/css"/>
         
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -12,6 +12,8 @@
         <link href="../../../bootstrap/css/cd.css" rel="stylesheet" type="text/css"/>
         
         <link href="../../../bootstrap/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
+        <link href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <link href="https://cdn.datatables.net/responsive/2.1.0/css/responsive.bootstrap.min.css" rel="stylesheet" type="text/css"/>
         
         <script src="../../../bootstrap/js/jquery.js" type="text/javascript"></script>
         <script src="../../../bootstrap/js/jquery.dataTables.min.js" type="text/javascript"></script>
@@ -42,9 +44,9 @@
                                      $('.dropdown-toggle').dropdown();
                         });
                         
-                        $("#formulario_cd").validate({
+                        $("#formulario_chamado").validate({
                             rules : {
-                                  nomecd:{
+                                  nomechamado:{
                                          required:true,
                                          minlength:3
                                   },
@@ -54,7 +56,7 @@
                                   }                               
                             },
                             messages:{
-                                  nomecd:{
+                                  nomechamado:{
                                          required:"Informe o nome do CD!",
                                          minlength:"O nome deve ter pelo menos 3 caracteres"
                                   },
@@ -80,7 +82,7 @@
     	 * Se o retorno for igual a 1, então somente recarrego a janela.
     	 */
     	$(function(){
-    		$('#formulario_cd').ajaxForm({
+    		$('#formulario_chamado').ajaxForm({
     			success: function(data) {
     				if (data == 1 || data == 11) {
     					
@@ -106,28 +108,28 @@
 	     *	Esta função serve para preencher os campos do cliente na janela flutuante
 	     * usando jSon.  
 	     */
-    	function carregaDadosCdJSon(idcd){
-    		$.post(base_url+'/index.php/cd/cd_controller/dados_cd', {
-    			idcd: idcd
+    	function carregaDadosCdJSon(idchamado){
+    		$.post(base_url+'/index.php/chamado/chamado_controller/dados_chamado', {
+    			idchamado: idchamado
     		}, function (data){
-    			$('#nomecd').val(data.nomecd);
+    			$('#nomechamado').val(data.nomechamado);
     			$('#gravadora').val(data.gravadora);
-    			$('#idcd').val(data.idcd);//aqui eu seto a o input hidden com o id do cliente, para que a edição funcione. Em cada tela aberta, eu seto o id do cliente. 
+    			$('#idchamado').val(data.idchamado);//aqui eu seto a o input hidden com o id do cliente, para que a edição funcione. Em cada tela aberta, eu seto o id do cliente. 
     		}, 'json');
     	}
     
-    	function janelaNovoCd(idcd){
+    	function janelaNovoCd(idchamado){
     		
     		//antes de abrir a janela, preciso carregar os dados do cliente e preencher os campos dentro do modal
-    		carregaDadosCdJSon(idcd);
-                //alert(idcd);
+    		carregaDadosCdJSon(idchamado);
+                //alert(idchamado);
     		
 	    	$('#modalEditarCliente').modal('show');
     	}
         
         function limparCampo(){
-            $("#idcd").val(''); 
-            $("#nomecd").val(''); 
+            $("#idchamado").val(''); 
+            $("#nomechamado").val(''); 
             $("#gravadora").val(''); 
         }
         
@@ -139,16 +141,16 @@
     		$('#modalEditarCliente').modal('show');
     	}
         
-        function confirma(idcd){
+        function confirma(idchamado){
         resposta = confirm("Deseja realmente excluir esse aluno?");
         if (resposta){
             $.ajax({
                 type: "POST",
                 data: {
-                    idcd: idcd
+                    idchamado: idchamado
                 },
                 
-                url: "http://localhost/cd/index.php/cd/cd_controller/excluir_cd/"+idcd,
+                url: "http://localhost/cd/index.php/chamado/chamado_controller/excluir_chamado/"+idchamado,
                 success: function(data) {
                     if(data == 1 || data == 11){
                         swal("Excluído!", "Dado excluída com sucesso!", "success"); 
@@ -165,7 +167,8 @@
     }
 
         function refresh(){
-            document.location.href = document.location.href;
+            //document.location.href = document.location.href;
+            location.reload();
         }
         
         </script>
@@ -250,11 +253,11 @@
 	<h1>Manter CD</h1>
         <div id="body">
       
-           <table cellspacing="0"  cellpadding="0" border="0" class="display" id="tabela1">
+           <table class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%" id="tabela1">
                 <thead>
                     <tr>
-                    <th>Código do CD</th>
-                    <th>Nome do CD</th>
+                    <th>Código do Chamado</th>
+                    <th>Título do Chamado</th>
                     <th>Gravadora</th>
                     <th>Data e Hora Inicial</th>
                     <th>Data e Hora Final</th>
@@ -267,12 +270,12 @@
                 <?php foreach ($consulta  as $linha): ?> 
                     
                 <tr>
-                    <td style="text-align: center;"><?php echo $linha['idcd']?></td>
-                    <td style="text-align: center;"><?php echo $linha['nomecd'] ?></td>
-                    <td style="text-align: center;"><?php echo $linha['gravadora']?></td>
-                    <td style="text-align: center;"><?php echo $linha['datainicial'] ?></td>
-                    <td style="text-align: center;"><?php echo $linha['datafinal'] ?></td>
-                    <td style="text-align: center;">
+                    <td><?php echo $linha['idchamado']?></td>
+                    <td><?php echo $linha['nomechamado'] ?></td>
+                    <td><?php echo $linha['gravadora']?></td>
+                    <td><?php echo $linha['datainicial'] ?></td>
+                    <td><?php echo $linha['datafinal'] ?></td>
+                    <td>
                     <div class="progress">
                         <div class="progress-bar-<?php echo $linha['class']?>" role="progressbar" aria-valuenow="70"
                         aria-valuemin="0" aria-valuemax="100" style="width:<?php echo $linha['porcentagem']?>%">
@@ -280,7 +283,7 @@
                         </div>
                       </div>
                     </td>
-                    <td style="text-align: center;"><a href="javascript:;"  onclick="janelaNovoCd(<?= $linha['idcd']?>)"><button type="button" class="glyphicon glyphicon-cog"></button></a><a href="javascript:;"  onclick="confirma(<?= $linha['idcd']?>)"><button type="button" class="glyphicon glyphicon-trash"></button></a></td>
+                    <td><a href="javascript:;"  onclick="janelaNovoCd(<?= $linha['idchamado']?>)"><button type="button" class="glyphicon glyphicon-cog"></button></a><a href="javascript:;"  onclick="confirma(<?= $linha['idchamado']?>)"><button type="button" class="glyphicon glyphicon-trash"></button></a></td>
                 </tr>
                 <?php endforeach;?>
                 </tbody>
@@ -293,27 +296,88 @@
 	  <div class="modal-dialog">
 	    <div class="modal-content">
 	      <div class="modal-header">
-	        <h4 class="modal-title">Manter CD</h4>
+	        <h4 class="modal-title">Abrir Chamado</h4>
 	      </div>
+                <ul class="nav nav-tabs">
+                        <li class="active"><a href="#first-tab" data-toggle="tab">Dados do chamado</a></li>
+                        <li><a href="#second-tab" data-toggle="tab">Dados do Usuário</a></li>
+                </ul>
 	      <div class="modal-body">
 	      	
-			<form role="form" method="post" action="<?= base_url('index.php/cd/cd_controller/salvar_cd')?>" id="formulario_cd">
+			<form role="form" method="post" action="<?= base_url('index.php/chamado/chamado_controller/salvar_chamado')?>" id="formulario_chamado">
+                        <div class="tab-content">
+                            <div class="tab-pane active in" id="first-tab">
 			  <div class="form-group">
-			    <label for="nome">Nome do CD</label>
-			    <input type="text" class="form-control" id="nomecd"  name='nomecd'>
+			    <label for="nome">Título do Chamado</label>
+			    <input type="text" class="form-control" id="nomechamado"  name='nomechamado'>
 			  </div>
+                            
 			  <div class="form-group">
 			    <label for="email">Gravadora</label>
 			    <input type="text" class="form-control" id="gravadora" name='gravadora'>
 			  </div>
-			  <input type="hidden" name="idcd" id="idcd" value="" />
+                            
+                            <div class="form-group">
+                            <label for="exampleSelect1">Categoria</label>
+                            <select class="form-control" id="exampleSelect1">
+                              <option>1</option>
+                              <option>2</option>
+                              <option>3</option>
+                              <option>4</option>
+                              <option>5</option>
+                            </select>
+                          </div>
+                            
+                            <div class="form-group">
+                            <label for="exampleSelect1">Subcategoria</label>
+                            <select class="form-control" id="exampleSelect1">
+                              <option>1</option>
+                              <option>2</option>
+                              <option>3</option>
+                              <option>4</option>
+                              <option>5</option>
+                            </select>
+                          </div>
+                          <div class="form-group">
+                            <label for="exampleTextarea">Descrição</label>
+                            <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
+                          </div>
+                            
+			  <input type="hidden" name="idchamado" id="idchamado" value="" />
+                          
+                          </div>
+                          <div class="tab-pane" id="second-tab">
+                                <div class="form-group">
+                                    <label for="nome">Nome do Solicitante</label>
+                                    <input type="text" class="form-control" id="nomechamado"  name=''>
+                                </div>
+                                <div class="form-group">
+                                    <label for="nome">Ramal</label>
+                                    <input type="text" class="form-control" id="nomechamado"  name=''>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleSelect1">Setor</label>
+                                    <select class="form-control" id="exampleSelect1">
+                                      <option>1</option>
+                                      <option>2</option>
+                                      <option>3</option>
+                                      <option>4</option>
+                                      <option>5</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="nome">Email</label>
+                                    <input type="text" class="form-control" id="nomechamado"  name=''>
+                                </div>
+                         </div>  
+                        </div>  
 			</form>	    
 			    
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-default" data-dismiss="modal" onclick="refresh()" >Fechar</button>
 	       
-               <button type="button" class="btn btn-primary" onclick="$('#formulario_cd').submit()">Salvar</button>
+               <button type="button" class="btn btn-primary" onclick="$('#formulario_chamado').submit()">Salvar</button>
 	      </div>
 	    </div>
 	  </div>

@@ -7,7 +7,7 @@
             </div>
             <ul class="nav navbar-nav">
               <li><a onclick="novo()"><span class="glyphicon glyphicon-plus"  ></span> Novo</a></li>
-             <li><a href="http://localhost/cd/index.php/cd/cd_controller/listar_cd">Manter CD</a></li>
+             <li><?php echo anchor('chamado/chamado_controller/listar_chamado', 'Abrir Chamado'); ?></li>
               <li class="dropdown">
                 <a class="dropdown-toggle " data-toggle="dropdown" href="#"> Configurações
                 <span class="caret"></span></a>
