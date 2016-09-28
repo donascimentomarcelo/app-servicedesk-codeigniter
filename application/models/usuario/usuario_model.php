@@ -36,25 +36,38 @@ class usuario_model extends CI_Model{
         $id = $this->input->post('id');
         
         if(empty($imagem)){
-             
-             $dados = array (
+          
+       if($id != 0){
+           
+           $dados = array (
             
             'nome' => $this->input->post('nome'),
             'email' => $this->input->post('email'),
             'senha' => $this->input->post('senha'),         
             'perfil' => $this->input->post('perfil'),         
             'status' => $this->input->post('status'),         
-            'setor_fk' => $this->input->post('setor_fk')        
+            'setor_fk' => $this->input->post('setor_fk')
+                
           
         );
-       
-       if($id != 0){
            
            $this->db->where('id',$id);
            
            $query = $this->db->update('usuarios',$dados);
            
        }else{
+           
+           $dados = array (
+            
+            'nome' => $this->input->post('nome'),
+            'email' => $this->input->post('email'),
+            'senha' => $this->input->post('senha'),         
+            'perfil' => $this->input->post('perfil'),         
+            'status' => $this->input->post('status'),         
+            'setor_fk' => $this->input->post('setor_fk'),
+            'imagem' => '../../../imagem/imagem_vazia.jpg'
+          
+        );
            
            $query = $this->db->insert('usuarios',$dados);
            

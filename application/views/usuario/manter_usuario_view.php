@@ -235,8 +235,12 @@
 	      </div>
 	      <div class="modal-body">
 	      	
-			<form role="form" method="post" action="<?= base_url('index.php/usuario/usuario_controller/salvar_usuario')?>" id="formulario_usuario">
+			<form role="form" method="post" action="<?= base_url('index.php/usuario/usuario_controller/salvar_usuario')?>" id="formulario_usuario" enctype="multipart/form-data">
 			  <div class="form-group">
+			    <label for="nome">Foto de Perfil</label>
+                            <input type="file" name="imagem"  id="imagem">
+			  </div>
+                          <div class="form-group">
 			    <label for="nome">Nome</label>
                             <input type="text"  class="form-control" id="nome"  name='nome'>
 			  </div>

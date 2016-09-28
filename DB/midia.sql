@@ -26,9 +26,9 @@ SET time_zone = "+00:00";
 -- Estrutura da tabela `cd`
 --
 
-CREATE TABLE IF NOT EXISTS `cd` (
-`idcd` int(11) NOT NULL,
-  `nomecd` varchar(32) NOT NULL,
+CREATE TABLE IF NOT EXISTS `chamado` (
+`idchamado` int primary key auto_increment,
+  `nomechamado` varchar(32) NOT NULL,
   `gravadora` varchar(32) NOT NULL,
    `datainicial` datetime NOT NULL,
   `datafinal` datetime NOT NULL
