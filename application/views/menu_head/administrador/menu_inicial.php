@@ -15,8 +15,8 @@
                 <ul class="dropdown-menu">
                     <li><a href="http://localhost/cd/index.php/perfil_pessoal/perfil_pessoal_controller/alterar_perfil" class="glyphicon glyphicon-cog"> Config. de Perfil</a></li>
                     <li><a href="http://localhost/cd/index.php/setor/setor_controller/listar_setor" class="glyphicon glyphicon-cog"> Config. de Setor</a></li>
-                    <li><a href="#" class="glyphicon glyphicon-cog"> Config. de Gravadora</a></li>
-                    <li><a href="#" class="glyphicon glyphicon-cog"> Config. de Empresa</a></li>
+                    <li><a href="http://localhost/cd/index.php/categoria/categoria_controller/exibir_categoria" class="glyphicon glyphicon-cog"> Config. de Categoria</a></li>
+                    <li><a href="http://localhost/cd/index.php/subcategoria/subcategoria_controller/exibir_subcategoria" class="glyphicon glyphicon-cog"> Config. de Subcategoria</a></li>
                 </ul>
               </li>
               <li><a href="http://localhost/cd/index.php/login/login_controller/sair"><span class="glyphicon glyphicon-off"></span> Sair</a></li>

@@ -270,7 +270,7 @@
 	}
 
 	a {
-		color: #003399;
+		color: #333;
 		background-color: transparent;
 		font-weight: normal;
 	}

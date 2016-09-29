@@ -88,6 +88,18 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
    foreign key(setor_fk) references setor(idsetor)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
+create table categoria (
+    idcategoria int primary key auto_increment,
+    nomecategoria varchar (20)
+);
+
+create table subcategoria (
+    idsubcategoria int primary key auto_increment,
+    nomesubCategoria varchar (20),
+    categoria_fk int,
+    foreign key (categoria_fk) references categoria(idcategoria)
+);
+
 --
 -- Extraindo dados da tabela `usuarios`
 --

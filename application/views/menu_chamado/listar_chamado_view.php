@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>Manter CD</title>
+	<title>Abrir Chamado</title>
 
-       <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
         <link href="../../../bootstrap/css/cd.css" rel="stylesheet" type="text/css"/>
         
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -120,7 +120,7 @@
     
     	function janelaNovoCd(idchamado){
     		
-    		//antes de abrir a janela, preciso carregar os dados do cliente e preencher os campos dentro do modal
+    		//antes de abrir a janela, preciso carregar os dados do chamado e preencher os campos dentro do modal
     		carregaDadosCdJSon(idchamado);
                 //alert(idchamado);
     		
@@ -187,7 +187,7 @@
 	}
 
 	a {
-		color: #003399;
+		color: #333;
 		background-color: transparent;
 		font-weight: normal;
 	}
@@ -256,13 +256,13 @@
            <table class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%" id="tabela1">
                 <thead>
                     <tr>
-                    <th>Código do Chamado</th>
-                    <th>Título do Chamado</th>
-                    <th>Gravadora</th>
-                    <th>Data e Hora Inicial</th>
-                    <th>Data e Hora Final</th>
-                    <th>SLA</th>
-                    <th>Opções</th>
+                    <th style="text-align: center;">Código do Chamado</th>
+                    <th style="text-align: center;">Título do Chamado</th>
+                    <th style="text-align: center;">Gravadora</th>
+                    <th style="text-align: center;">Data e Hora Inicial</th>
+                    <th style="text-align: center;">Data e Hora Final</th>
+                    <th style="text-align: center;">SLA</th>
+                    <th style="text-align: center;">Opções</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -270,11 +270,11 @@
                 <?php foreach ($consulta  as $linha): ?> 
                     
                 <tr>
-                    <td><?php echo $linha['idchamado']?></td>
-                    <td><?php echo $linha['nomechamado'] ?></td>
-                    <td><?php echo $linha['gravadora']?></td>
-                    <td><?php echo $linha['datainicial'] ?></td>
-                    <td><?php echo $linha['datafinal'] ?></td>
+                    <td style="text-align: center;"><?php echo $linha['idchamado']?></td>
+                    <td style="text-align: center;"><?php echo $linha['nomechamado'] ?></td>
+                    <td style="text-align: center;"><?php echo $linha['gravadora']?></td>
+                    <td style="text-align: center;"><?php echo $linha['datainicial'] ?></td>
+                    <td style="text-align: center;"><?php echo $linha['datafinal'] ?></td>
                     <td>
                     <div class="progress">
                         <div class="progress-bar-<?php echo $linha['class']?>" role="progressbar" aria-valuenow="70"
@@ -283,7 +283,7 @@
                         </div>
                       </div>
                     </td>
-                    <td><a href="javascript:;"  onclick="janelaNovoCd(<?= $linha['idchamado']?>)"><button type="button" class="glyphicon glyphicon-cog"></button></a><a href="javascript:;"  onclick="confirma(<?= $linha['idchamado']?>)"><button type="button" class="glyphicon glyphicon-trash"></button></a></td>
+                    <td style="text-align: center;"><a style="text-align: center;" href="javascript:;"  onclick="janelaNovoCd(<?= $linha['idchamado']?>)"><button type="button" class="glyphicon glyphicon-cog"></button></a><a style="text-align: center;" href="javascript:;"  onclick="confirma(<?= $linha['idchamado']?>)"><button type="button" class="glyphicon glyphicon-trash"></button></a></td>
                 </tr>
                 <?php endforeach;?>
                 </tbody>
@@ -313,7 +313,7 @@
 			  </div>
                             
 			  <div class="form-group">
-			    <label for="email">Gravadora</label>
+			    <label for="email">Setor Solicitante</label>
 			    <input type="text" class="form-control" id="gravadora" name='gravadora'>
 			  </div>
                             
