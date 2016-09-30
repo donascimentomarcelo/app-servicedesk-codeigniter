@@ -74,5 +74,16 @@ class subcategoria_model extends CI_Model{
         
     }
     
+        function m_ajax_dados_subcategoria(){
+        
+        $idcategoria = $this->input->post('idcategoria');
+        
+        $this->db->where('categoria_fk', $idcategoria);
+        
+        $dados = $this->db->get('subcategoria');
+        
+        return $dados;
+    }
+    
     
 }

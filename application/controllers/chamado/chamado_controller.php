@@ -80,6 +80,18 @@ class Chamado_controller extends CI_Controller {
             $this->load->helper('preenche_dados/preenche_dados_helper');
         
             $variaveis['preenche_dados'] = getPreencheDados();
+            
+            
+            $this->load->model('categoria/categoria_model');
+        
+            $variaveis['categoria'] = $this->categoria_model->m_exibir_categoria();
+            
+            
+            $this->load->model('usuario/usuario_model');
+            
+            $this->load->helper('setor_ativo/setor_ativo_helper');
+        
+            $variaveis['setor_ativo'] = getSetorAtivo();
         
             
             $this->load->view("menu_chamado/listar_chamado_view",$variaveis);
@@ -111,18 +123,22 @@ class Chamado_controller extends CI_Controller {
             $consulta = $this->chamado_model->m_list_chamado($idchamado);
             
             if($consulta->num_rows() == 0){
-                die("CD não encontrado");
+                die("Chamado não encontrado");
             }
             
             $array_clientes = array(
                 
                 "idchamado" => $consulta->row()->idchamado,
                 "nomechamado" => $consulta->row()->nomechamado,
-                "gravadora" => $consulta->row()->gravadora
+                "gravadora" => $consulta->row()->gravadora,
+                "nome" => $consulta->row()->nome,
+                "email" => $consulta->row()->email,
+                "setor_fk" => $consulta->row()->setor_fk
             );
             
             echo json_encode($array_clientes);
         }
+        
 }
 
 

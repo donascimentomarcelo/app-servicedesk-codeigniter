@@ -115,6 +115,9 @@
     			$('#nomechamado').val(data.nomechamado);
     			$('#gravadora').val(data.gravadora);
     			$('#idchamado').val(data.idchamado);//aqui eu seto a o input hidden com o id do cliente, para que a edição funcione. Em cada tela aberta, eu seto o id do cliente. 
+    			$('#nome').val(data.nome); 
+    			$('#email').val(data.email); 
+    			$('#setor_fk').val(data.setor_fk); 
     		}, 'json');
     	}
     
@@ -170,6 +173,17 @@
             //document.location.href = document.location.href;
             location.reload();
         }
+        
+        
+        
+        function buscar_subcategoria(idcategoria){
+          $.post(base_url+"/index.php/subcategoria/subcategoria_controller/ajax_dados_subcategoria", {
+            idcategoria : idcategoria
+            }, function(data){
+            $('#subcategoria').html(data);
+            });
+        }
+        
         
         </script>
         
@@ -250,7 +264,7 @@
               ?>
 
 <div id="container">
-	<h1>Manter CD</h1>
+	<h1>Lista de Chamados</h1>
         <div id="body">
       
            <table class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%" id="tabela1">
@@ -262,7 +276,7 @@
                     <th style="text-align: center;">Data e Hora Inicial</th>
                     <th style="text-align: center;">Data e Hora Final</th>
                     <th style="text-align: center;">SLA</th>
-                    <th style="text-align: center;">Opções</th>
+                    <th style="text-align: center;">Visualizar</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -283,7 +297,7 @@
                         </div>
                       </div>
                     </td>
-                    <td style="text-align: center;"><a style="text-align: center;" href="javascript:;"  onclick="janelaNovoCd(<?= $linha['idchamado']?>)"><button type="button" class="glyphicon glyphicon-cog"></button></a><a style="text-align: center;" href="javascript:;"  onclick="confirma(<?= $linha['idchamado']?>)"><button type="button" class="glyphicon glyphicon-trash"></button></a></td>
+                    <td style="text-align: center;"><a style="text-align: center;" href="javascript:;"  onclick="janelaNovoCd(<?= $linha['idchamado']?>)"><button type="button" class="glyphicon glyphicon-eye-open"></button></a></td>
                 </tr>
                 <?php endforeach;?>
                 </tbody>
@@ -312,32 +326,45 @@
 			    <input type="text" class="form-control" id="nomechamado"  name='nomechamado'>
 			  </div>
                             
-			  <div class="form-group">
-			    <label for="email">Setor Solicitante</label>
-			    <input type="text" class="form-control" id="gravadora" name='gravadora'>
+			   <div class="form-group">
+			    <label for="setor">Setor</label>
+                            <select class="form-control" name="setor_fk" id="setor_fk" required="required">
+                                
+                                <option value="">Selecione um Setor</option>
+                                
+                                 <?php foreach ($setor_ativo -> result() as $linha): ?> 
+                                
+                                <option value="<?php echo $linha->idsetor?>"><?php echo $linha->nomesetor?></option>
+                                
+                                <?php endforeach;?>
+                                
+                            </select>
 			  </div>
                             
                             <div class="form-group">
-                            <label for="exampleSelect1">Categoria</label>
-                            <select class="form-control" id="exampleSelect1">
-                              <option>1</option>
-                              <option>2</option>
-                              <option>3</option>
-                              <option>4</option>
-                              <option>5</option>
+			    <label for="categoria">Categoria</label>
+                            <select class="form-control" name="categoria_fk" id="categoria_fk" required="required" onchange='buscar_subcategoria($(this).val())'>
+                                
+                                <option value="">Selecione uma categoria</option>
+                                
+                                 <?php foreach ($categoria -> result() as $linha): ?> 
+                                
+                                <option value="<?php echo $linha->idcategoria?>"><?php echo $linha->nomecategoria?></option>
+                                
+                                <?php endforeach;?>
+                                
                             </select>
-                          </div>
+			  </div>
                             
+                             
                             <div class="form-group">
                             <label for="exampleSelect1">Subcategoria</label>
-                            <select class="form-control" id="exampleSelect1">
-                              <option>1</option>
-                              <option>2</option>
-                              <option>3</option>
-                              <option>4</option>
-                              <option>5</option>
+                            <select class="form-control" name="subcategoria" id="subcategoria">
+                            
                             </select>
                           </div>
+                                
+                                
                           <div class="form-group">
                             <label for="exampleTextarea">Descrição</label>
                             <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
@@ -349,25 +376,17 @@
                           <div class="tab-pane" id="second-tab">
                                 <div class="form-group">
                                     <label for="nome">Nome do Solicitante</label>
-                                    <input type="text" class="form-control" id="nomechamado"  name=''>
+                                    <input type="text" class="form-control" id="nome"  name='nome'>
                                 </div>
                                 <div class="form-group">
                                     <label for="nome">Ramal</label>
                                     <input type="text" class="form-control" id="nomechamado"  name=''>
                                 </div>
-                                <div class="form-group">
-                                    <label for="exampleSelect1">Setor</label>
-                                    <select class="form-control" id="exampleSelect1">
-                                      <option>1</option>
-                                      <option>2</option>
-                                      <option>3</option>
-                                      <option>4</option>
-                                      <option>5</option>
-                                    </select>
-                                </div>
+                             
+                                
                                 <div class="form-group">
                                     <label for="nome">Email</label>
-                                    <input type="text" class="form-control" id="nomechamado"  name=''>
+                                    <input type="text" class="form-control" id="email"  name='email'>
                                 </div>
                          </div>  
                         </div>  

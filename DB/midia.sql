@@ -31,14 +31,21 @@ CREATE TABLE IF NOT EXISTS `chamado` (
   `nomechamado` varchar(32) NOT NULL,
   `gravadora` varchar(32) NOT NULL,
    `datainicial` datetime NOT NULL,
-  `datafinal` datetime NOT NULL
+  `datafinal` datetime NOT NULL,
+  `nomesolicitante` varchar(32) NOT NULL,
+  `ramal` varchar(32) NOT NULL,
+  `email` varchar(32) NOT NULL,
+  `setor_fk` int NOT NULL,
+  `usuarios_fk` int NOT NULL,
+  foreign key(setor_fk) references setor(idsetor),
+  foreign key(usuarios_fk) references usuarios(id)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=56 ;
 
 --
 -- Extraindo dados da tabela `cd`
 --
 
-INSERT INTO `cd` (`idcd`, `nomecd`, `gravadora`, `datainicial`, `datafinal`) VALUES
+INSERT INTO `chamado` (`idchamado`, `nomechamado`, `gravadora`, `datainicial`, `datafinal`) VALUES
 (3, 'Sergio Lopes', 'MK', '2016-09-27 07:43:00', '2016-09-27 15:28:00'),
 (4, 'Sergio Lopes', 'MK', '2016-09-26 15:14:32', '2016-09-27 13:40:00'),
 (5, 'Teste', 'abc', '2016-09-26 16:27:29', '2016-09-27 16:27:00'),

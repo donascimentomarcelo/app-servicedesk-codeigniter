@@ -74,10 +74,15 @@ class chamado_model extends CI_Model{
     public function m_list_chamado($idchamado = NULL) {
         
         if($idchamado != NULL){
+            $this->db->select('*');    
+            $this->db->from('chamado');
+            $this->db->join('usuarios', 'chamado.usuarios_fk = usuarios.id');
+            $this->db->join('setor', 'chamado.setor_fk = setor.idsetor');
             $this->db->where("idchamado", $idchamado);
         }
         
-        return $this->db->get("chamado");
+        return $this->db->get();
         
     }
 }
+            

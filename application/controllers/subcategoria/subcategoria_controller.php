@@ -88,5 +88,20 @@ class Subcategoria_controller extends CI_Controller {
             }
             
         }
+        
+        function ajax_dados_subcategoria($idcategoria){
+            
+            $this->load->model('subcategoria/subcategoria_model');
+            
+            $dados = $this->subcategoria_model->m_ajax_dados_subcategoria($idcategoria);
+            
+            $option = "<option value=''></option>";
+            foreach($dados -> result() as $linha) {
+            $option .= "<option value='$linha->idsubcategoria'>$linha->nomesubcategoria</option>"; 
+            }
+
+            echo $option;
+            
+        }
     
 }
