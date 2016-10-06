@@ -151,6 +151,10 @@
 			    <input type="text"  class="form-control" id="email"  name='email' value="<?php echo $dados->email?>">
 			  </div>
 			  <div class="form-group">
+			    <label for="nome">Ramal</label>
+			    <input type="text"  class="form-control" id="ramal"  name='ramal' value="<?php echo $dados->ramal?>">
+			  </div>
+			  <div class="form-group">
 			    <label for="setor">Setor</label>
                             <select class="form-control" name="setor_fk" id="setor_fk" required="required">
                                 

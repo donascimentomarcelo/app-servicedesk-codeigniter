@@ -98,6 +98,7 @@
     		}, function (data){
     			$('#idsubcategoria').val(data.idsubcategoria);
     			$('#nomesubcategoria').val(data.nomesubcategoria);
+    			$('#sla').val(data.sla);
     			$('#categoria_fk').val(data.categoria_fk);
                    
     			  
@@ -114,6 +115,7 @@
         function limparCampo(){
             $("#idsubcategoria").val(''); 
             $("#nomesubcategoria").val(''); 
+            $("#sla").val(''); 
             $("#categoria_fk").val(''); 
     
         }
@@ -198,6 +200,7 @@
                     <th style="text-align: center;">Código da Subcategoria</th>
                     <th style="text-align: center;">Nome da Subcategoria</th>
                     <th style="text-align: center;">Nome da Categoria</th>
+                    <th style="text-align: center;">SLA</th>
                     <th style="text-align: center;">Opções</th>
                     </tr>
                 </thead>
@@ -209,6 +212,7 @@
                     <td style="text-align: center;"><?php echo $linha->idsubcategoria ?></td>
                     <td style="text-align: center;"><?php echo $linha->nomesubcategoria ?></td>
                     <td style="text-align: center;"><?php echo $linha->nomecategoria ?></td>
+                    <td style="text-align: center;"><?php echo $linha->sla.' Horas' ?></td>
                     <td style="text-align: center;"><a style="text-align: center;" href="javascript:;"  onclick="janelaNovoCategoria(<?= $linha->idsubcategoria ?>)"><button type="button" class="glyphicon glyphicon-cog"></button></a><a style="text-align: center;" href="javascript:;"  onclick="confirma(<?= $linha->idsubcategoria ?>)"><button type="button" class="glyphicon glyphicon-trash"></button></a></td>
                 </tr>
                 
@@ -249,6 +253,23 @@
 			    <label for="nome">Nome do Subcategoria</label>
                             <input type="text"  class="form-control" id="nomesubcategoria"  name='nomesubcategoria'>
 			  </div>
+                            
+                         <div class="form-group">
+                            <label for="nome">SLA</label>
+                            <select class="form-control" name="sla" id="sla" required="required">
+                                   <option value="">Defina a SLA</option>
+                                   <option value="1">1 Hora</option>
+                                   <option value="2">2 Horas</option>
+                                   <option value="4">4 Horas</option>
+                                   <option value="8">8 Horas</option>
+                                   <option value="16">16 Horas</option>
+                                   <option value="24">1 Dia</option>
+                                   <option value="48">2 Dias</option>
+                                   <option value="72">3 Dias</option>
+                                   <option value="168">1 Semana</option>
+                                   <option value="336">2 Semanas</option>
+                             </select>
+                         </div>
 			  <input type="hidden" name="idsubcategoria" id="idsubcategoria" value="" />
 			</form>	    
 			    

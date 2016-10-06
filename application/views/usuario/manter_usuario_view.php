@@ -99,6 +99,7 @@
     			$('#nome').val(data.nome);
     			$('#senha').val(data.senha);
     			$('#email').val(data.email);
+    			$('#ramal').val(data.ramal);
                         $('select[name=setor_fk]').val(data.setor_fk);
     			$('#'+data.perfil).prop('checked', true);
                         $('#'+data.status).prop('checked', true);
@@ -119,6 +120,7 @@
             $("#senha").val(''); 
             $("#email").val(''); 
             $("#perfil").val(''); 
+            $("#ramal").val(''); 
             $('select[name=setor_fk]').val(''); 
         }
         
@@ -202,6 +204,7 @@
                     <th>Usuário</th>
                     <th>E-Mail</th>
                     <th>Perfil</th>
+                    <th>Ramal</th>
                     <th>Setor</th>
                     <th>Status</th>
                     <th>Opções</th>
@@ -216,6 +219,7 @@
                     <td style="text-align: center;"><?php echo $linha->nome ?></td>
                     <td style="text-align: center;"><?php echo $linha->email ?></td>
                     <td style="text-align: center;"><?php echo $linha->perfil ?></td>
+                    <td style="text-align: center;"><?php echo $linha->ramal ?></td>
                     <td style="text-align: center;"><?php echo $linha->nomesetor ?></td>
                     <td style="text-align: center;"><?php echo $linha->status ?></td>
                     <td style="text-align: center;"><a href="javascript:;"  onclick="janelaNovoUsuario(<?= $linha->id ?>)"><button type="button" class="glyphicon glyphicon-cog"></button></a><a href="javascript:;"  onclick="confirma(<?= $linha->id ?>)"><button type="button" class="glyphicon glyphicon-trash"></button></a></td>
@@ -252,6 +256,10 @@
 			  <div class="form-group">
 			    <label for="nome">E-mail</label>
 			    <input type="text"  class="form-control" id="email"  name='email'>
+			  </div>
+			  <div class="form-group">
+			    <label for="nome">Ramal</label>
+			    <input type="text"  class="form-control" id="ramal"  name='ramal'>
 			  </div>
 			  <div class="form-group">
                               <label for="email">Perfil:</label><br>

@@ -64,7 +64,8 @@ class Subcategoria_controller extends CI_Controller {
             $array = array(
                 'idsubcategoria'=>$consulta->row()->idsubcategoria,
                 'nomesubcategoria'=>$consulta->row()->nomesubcategoria,
-                'categoria_fk'=>$consulta->row()->categoria_fk,
+                'sla'=>$consulta->row()->sla,
+                'categoria_fk'=>$consulta->row()->categoria_fk
             );
             
             echo json_encode($array);
@@ -96,8 +97,36 @@ class Subcategoria_controller extends CI_Controller {
             $dados = $this->subcategoria_model->m_ajax_dados_subcategoria($idcategoria);
             
             $option = "<option value=''></option>";
+            
             foreach($dados -> result() as $linha) {
+                
             $option .= "<option value='$linha->idsubcategoria'>$linha->nomesubcategoria</option>"; 
+            
+            }
+
+            echo $option;
+            
+        }
+        function ajax_dados_sla(){
+            
+            $this->load->model('subcategoria/subcategoria_model');
+            
+            $dados = $this->subcategoria_model->m_ajax_dados_sla();
+            
+            $idsubcategoria = $this->input->post('idsubcategoria');
+            
+            if($idsubcategoria != ""){
+            
+            foreach($dados -> result() as $linha) {
+                
+            $option = "<label for='nome'>SLA</label><input type='text' class='form-control' id='sla' value='$linha->idsubcategoria'  name='sla'readonly='true'>"; 
+            
+            }
+            
+            }else{
+                
+            $option = "<label for='nome'>SLA</label><input type='text' class='form-control' id='sla' name='sla'readonly='true'>";     
+            
             }
 
             echo $option;

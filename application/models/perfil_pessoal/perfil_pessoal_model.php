@@ -29,7 +29,8 @@ class perfil_pessoal_model extends CI_Model{
             
             'nome' => $this->input->post('nome'),
             'email' => $this->input->post('email'),
-            'senha' => $this->input->post('senha'),         
+            'email' => $this->input->post('email'),
+            'ramal' => $this->input->post('ramal'),         
             'setor_fk' => $this->input->post('setor_fk')        
           
         );
@@ -53,6 +54,7 @@ class perfil_pessoal_model extends CI_Model{
             'nome' => $this->input->post('nome'),
             'email' => $this->input->post('email'),
             'senha' => $this->input->post('senha'),         
+            'ramal' => $this->input->post('ramal'),         
             'setor_fk' => $this->input->post('setor_fk'),         
             'imagem' => $imagem        
           

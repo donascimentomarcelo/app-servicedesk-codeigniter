@@ -117,7 +117,11 @@
     			$('#idchamado').val(data.idchamado);//aqui eu seto a o input hidden com o id do cliente, para que a edição funcione. Em cada tela aberta, eu seto o id do cliente. 
     			$('#nome').val(data.nome); 
     			$('#email').val(data.email); 
+    			$('#ramal').val(data.ramal); 
+    			$('#descricao').val(data.descricao); 
     			$('#setor_fk').val(data.setor_fk); 
+    			$('#subcategoria').val(data.subcategoria_fk); 
+    			$('#categoria_fk').val(data.categoria_fk); 
     		}, 'json');
     	}
     
@@ -136,10 +140,21 @@
             $("#gravadora").val(''); 
         }
         
-    	function novo(){
+        function carregaDadosNovoJSon(id){
+    		$.post(base_url+'/index.php/usuario/usuario_controller/dados_usuario', {
+    			id: id
+    		}, function (data){
+    			$('#nome').val(data.nome); 
+    			$('#email').val(data.email); 
+    			$('#ramal').val(data.ramal); 
+    			$('#setor_fk').val(data.setor_fk); 
+    		}, 'json');
+    	}
+        
+    	function novo(id){
             // na função limparCampo() eu apago os valores que estão no modal
             // devido ter aberto o modal anteriormente, fica salvo os valores.
-                limparCampo();
+                carregaDadosNovoJSon(id);
             
     		$('#modalEditarCliente').modal('show');
     	}
@@ -181,6 +196,14 @@
             idcategoria : idcategoria
             }, function(data){
             $('#subcategoria').html(data);
+            });
+        }
+        
+        function buscar_sla(idsubcategoria){
+          $.post(base_url+"/index.php/subcategoria/subcategoria_controller/ajax_dados_sla", {
+            idsubcategoria : idsubcategoria
+            }, function(data){
+            $('#sla').html(data);
             });
         }
         
@@ -326,7 +349,59 @@
 			    <input type="text" class="form-control" id="nomechamado"  name='nomechamado'>
 			  </div>
                             
-			   <div class="form-group">
+			 
+                            <div class="form-group">
+			    <label for="categoria">Categoria</label>
+                            <select class="form-control" name="categoria_fk" id="categoria_fk" required="required" onchange='buscar_subcategoria($(this).val())'>
+                                
+                                <option value="">Selecione uma categoria</option>
+                                <!--AQUI!-->
+                                 <?php foreach ($categoria -> result() as $linha): ?> 
+                                
+                                <option value="<?php echo $linha->idcategoria?>"><?php echo $linha->nomecategoria?></option>
+                                
+                                <?php endforeach;?>
+                                
+                            </select>
+			  </div>
+                            
+                             
+                            <div class="form-group">
+                            <label for="exampleSelect1">Subcategoria</label>
+                            
+                            <select class="form-control" name="subcategoria_fk" id="subcategoria" required="required" onchange='buscar_sla($(this).val())'>
+                             <option value="">Selecione uma categoria</option>
+                                <!--AQUI!-->
+                                 <?php foreach ($subcategoria -> result() as $linha): ?> 
+                                
+                                <option value="<?php echo $linha->idsubcategoria?>"><?php echo $linha->nomesubcategoria?></option>
+                                
+                                <?php endforeach;?>
+                            </select>
+                          </div>
+                                <div id="sla" class="form-group">
+                               
+                                </div>     
+                                
+                          <div class="form-group">
+                            <label for="exampleTextarea">Descrição</label>
+                            <textarea class="form-control" id="descricao" name="descricao" rows="3"></textarea>
+                          </div>
+                            
+			  <input type="hidden" name="idchamado" id="idchamado" value="" />
+                          
+                          </div>
+                          <div class="tab-pane" id="second-tab">
+                                <div class="form-group">
+                                    <label for="nome">Nome do Solicitante</label>
+                                    <input type="text" class="form-control" id="nome"  name='nome'readonly="true">
+                                </div>
+                                <div class="form-group">
+                                    <label for="nome">Ramal</label>
+                                    <input type="text" class="form-control" id="ramal"  name='ramal' readonly="true">
+                                </div>
+                              
+                           <div class="form-group">
 			    <label for="setor">Setor</label>
                             <select class="form-control" name="setor_fk" id="setor_fk" required="required">
                                 
@@ -341,52 +416,10 @@
                             </select>
 			  </div>
                             
-                            <div class="form-group">
-			    <label for="categoria">Categoria</label>
-                            <select class="form-control" name="categoria_fk" id="categoria_fk" required="required" onchange='buscar_subcategoria($(this).val())'>
-                                
-                                <option value="">Selecione uma categoria</option>
-                                
-                                 <?php foreach ($categoria -> result() as $linha): ?> 
-                                
-                                <option value="<?php echo $linha->idcategoria?>"><?php echo $linha->nomecategoria?></option>
-                                
-                                <?php endforeach;?>
-                                
-                            </select>
-			  </div>
-                            
-                             
-                            <div class="form-group">
-                            <label for="exampleSelect1">Subcategoria</label>
-                            <select class="form-control" name="subcategoria" id="subcategoria">
-                            
-                            </select>
-                          </div>
-                                
-                                
-                          <div class="form-group">
-                            <label for="exampleTextarea">Descrição</label>
-                            <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
-                          </div>
-                            
-			  <input type="hidden" name="idchamado" id="idchamado" value="" />
-                          
-                          </div>
-                          <div class="tab-pane" id="second-tab">
-                                <div class="form-group">
-                                    <label for="nome">Nome do Solicitante</label>
-                                    <input type="text" class="form-control" id="nome"  name='nome'>
-                                </div>
-                                <div class="form-group">
-                                    <label for="nome">Ramal</label>
-                                    <input type="text" class="form-control" id="nomechamado"  name=''>
-                                </div>
-                             
                                 
                                 <div class="form-group">
                                     <label for="nome">Email</label>
-                                    <input type="text" class="form-control" id="email"  name='email'>
+                                    <input type="text" class="form-control" id="email"  name='email' readonly="true">
                                 </div>
                          </div>  
                         </div>  

@@ -41,10 +41,10 @@
                 $class = 'danger';
 
                 }
-/*
- * 3 x 100 = 300 
- * 300 : 60 = 5% 
- */
+                
+                $inicio = date('Y-m-d H:i:s'); 
+                $fim = date('Y-m-d H:i:s', strtotime("+2 hours",strtotime($inicio))); 
+
 ?>
 
 

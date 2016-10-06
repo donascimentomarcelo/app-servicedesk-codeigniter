@@ -46,6 +46,7 @@ class usuario_model extends CI_Model{
             'senha' => $this->input->post('senha'),         
             'perfil' => $this->input->post('perfil'),         
             'status' => $this->input->post('status'),         
+            'ramal' => $this->input->post('ramal'),         
             'setor_fk' => $this->input->post('setor_fk')
                 
           
@@ -64,6 +65,7 @@ class usuario_model extends CI_Model{
             'senha' => $this->input->post('senha'),         
             'perfil' => $this->input->post('perfil'),         
             'status' => $this->input->post('status'),         
+            'ramal' => $this->input->post('ramal'),         
             'setor_fk' => $this->input->post('setor_fk'),
             'imagem' => '../../../imagem/imagem_vazia.jpg'
           
@@ -82,6 +84,7 @@ class usuario_model extends CI_Model{
             'senha' => $this->input->post('senha'),
             'perfil' => $this->input->post('perfil'),         
             'status' => $this->input->post('status'),
+            'ramal' => $this->input->post('ramal'),
             'setor_fk' => $this->input->post('setor_fk'),         
             'imagem' => $imagem        
           

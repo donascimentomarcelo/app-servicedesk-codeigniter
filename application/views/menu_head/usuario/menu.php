@@ -1,4 +1,4 @@
-
+<?php $id = $this->session->userdata('id')?>
  <div id="body">
     <nav class="navbar navbar-inverse">
           <div class="container-fluid">
@@ -6,7 +6,7 @@
               <a class="navbar-brand" href="http://localhost/cd/index.php/perfil/p_usuario">Início</a>
             </div>
             <ul class="nav navbar-nav">
-              <li><a onclick="novo()"><span class="glyphicon glyphicon-plus"  ></span> Novo</a></li>
+              <li><a onclick="novo(<?= $id?>)"><span class="glyphicon glyphicon-plus"  ></span> Novo</a></li>
              <li><?php echo anchor('chamado/chamado_controller/listar_chamado', 'Abrir Chamado'); ?></li>
               <li class="dropdown">
                 <a class="dropdown-toggle " data-toggle="dropdown" href="#"> Configurações

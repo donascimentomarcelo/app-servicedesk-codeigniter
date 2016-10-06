@@ -8,10 +8,6 @@ class Chamado_controller extends CI_Controller {
             
            // $result = $this->chamado_model->m_salvar_chamado();
             
-            if($this->input->post('nomechamado') == '' && $this->input->post('gravadora') == ''){
-                ?> Preencha os campos do formulario! <?php
-            }else{
-            
             if($this->chamado_model->m_salvar_chamado()){
                 
                 echo 1;
@@ -21,7 +17,7 @@ class Chamado_controller extends CI_Controller {
                  echo 0;
                 
             }
-            }
+            
         }
         
         public function listar_chamado(){
@@ -47,11 +43,11 @@ class Chamado_controller extends CI_Controller {
                 $porcentagem = $diffInicioAgora / $diffInicioFim * 100;
 
               
-                if($porcentagem <= 25){
+                if($porcentagem < 25){
 
                 $class = 'success';
                 
-                }else if($porcentagem >=26 && $porcentagem <=81){
+                }else if($porcentagem >25 && $porcentagem <=81){
 
                 $class = 'warning';
 
@@ -85,6 +81,11 @@ class Chamado_controller extends CI_Controller {
             $this->load->model('categoria/categoria_model');
         
             $variaveis['categoria'] = $this->categoria_model->m_exibir_categoria();
+            
+            
+            $this->load->model('subcategoria/subcategoria_model');
+        
+            $variaveis['subcategoria'] = $this->subcategoria_model->m_exibir_subcategoria();
             
             
             $this->load->model('usuario/usuario_model');
@@ -133,6 +134,10 @@ class Chamado_controller extends CI_Controller {
                 "gravadora" => $consulta->row()->gravadora,
                 "nome" => $consulta->row()->nome,
                 "email" => $consulta->row()->email,
+                "ramal" => $consulta->row()->ramal,
+                "descricao" => $consulta->row()->descricao,
+                "subcategoria_fk" => $consulta->row()->subcategoria_fk,
+                "categoria_fk" => $consulta->row()->categoria_fk,
                 "setor_fk" => $consulta->row()->setor_fk
             );
             

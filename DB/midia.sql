@@ -32,27 +32,31 @@ CREATE TABLE IF NOT EXISTS `chamado` (
   `gravadora` varchar(32) NOT NULL,
    `datainicial` datetime NOT NULL,
   `datafinal` datetime NOT NULL,
-  `nomesolicitante` varchar(32) NOT NULL,
+  `nome` varchar(32) NOT NULL,
   `ramal` varchar(32) NOT NULL,
   `email` varchar(32) NOT NULL,
+  `descricao` varchar(255) NOT NULL,
   `setor_fk` int NOT NULL,
   `usuarios_fk` int NOT NULL,
+  `categoria_fk` int NOT NULL,
+  `subcategoria_fk` int NOT NULL,
   foreign key(setor_fk) references setor(idsetor),
-  foreign key(usuarios_fk) references usuarios(id)
+  foreign key(usuarios_fk) references usuarios(id),
+  foreign key(categoria_fk) references categoria(idcategoria),
+  foreign key(subcategoria_fk) references subcategoria(idsubcategoria)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=56 ;
 
 --
 -- Extraindo dados da tabela `cd`
 --
 
-INSERT INTO `chamado` (`idchamado`, `nomechamado`, `gravadora`, `datainicial`, `datafinal`) VALUES
-(3, 'Sergio Lopes', 'MK', '2016-09-27 07:43:00', '2016-09-27 15:28:00'),
-(4, 'Sergio Lopes', 'MK', '2016-09-26 15:14:32', '2016-09-27 13:40:00'),
-(5, 'Teste', 'abc', '2016-09-26 16:27:29', '2016-09-27 16:27:00'),
-(7, 'Hisoka', 'Hunter x Hunter', '2016-09-27 09:19:15', '2016-09-27 14:20:00'),
-(8, 'Kano', 'Mortal Kombat', '2016-09-27 06:59:00', '2016-09-28 14:10:00'),
-(9, 'Ali', 'ali', '2016-09-27 07:37:37', '2016-09-28 11:17:00'),
-(55, 'ssssssss', 'sssssssssssssss', '2016-09-23 13:20:00', '2016-09-29 16:16:00');
+INSERT INTO `chamado` (`idchamado`, `nomechamado`, `gravadora`, `datainicial`, `datafinal`, `nome`, `ramal`, `email`, `descricao`, `setor_fk`, `usuarios_fk`, `categoria_fk`, `subcategoria_fk`) VALUES
+(1, 'Teste 1', '0', '2016-10-03 09:00:00', '2016-10-05 13:19:00', 'Marcelo do Nascimento Sant'' Anna', '1248', 'marcelojunin2010@hotmail.com', 'Hoje acordei cedo, contemplei mais uma vez a natureza. A chuva fina chegava de mansinho. O encanto e aroma matinal traziam um ar de reflexão.  Enquanto isso, o meio ambiente pedia socorro. Era o homem construindo e destruindo a sua casa. ', 1, 3, 2, 1),
+(2, 'teste 2', '0', '2016-10-03 11:00:00', '2016-10-03 21:37:00', 'Marcelo do Nascimento Sant'' Anna', '1248', 'marcelojunin2010@hotmail.com', 'A sua irritação não solucionará problema algum. As suas contrariedades não alteram a natureza das coisas. Os seus desapontamentos não fazem o trabalho que só o tempo conseguirá realizar.', 1, 3, 1, 7),
+(14, 'Teste 3', '0', '2016-10-05 14:38:13', '2016-10-05 16:38:13', 'Marcelo do Nascimento Sant'' Anna', '1248', 'marcelojunin2010@hotmail.com', 'tttttt', 1, 3, 2, 2),
+(15, 'Teste 4', '0', '2016-10-06 13:31:33', '2016-10-06 16:31:33', 'Marcelo do Nascimento Sant'' Anna', '1248', 'marcelojunin2010@hotmail.com', 'Testando o sistema', 1, 3, 1, 3),
+(39, 'Teste 4', '0', '2016-10-06 14:21:11', '2016-10-06 15:21:11', 'Marcelo do Nascimento Sant'' Anna', '1248', 'marcelojunin2010@hotmail.com', 'Teste', 1, 3, 2, 1),
+(58, 'Teste 5', '0', '2016-10-06 14:22:57', '2016-10-06 20:22:57', 'Marcelo do Nascimento Sant'' Anna', '1248', 'marcelojunin2010@hotmail.com', 'Teste 123456', 1, 3, 3, 6);
 
 
 -- --------------------------------------------------------

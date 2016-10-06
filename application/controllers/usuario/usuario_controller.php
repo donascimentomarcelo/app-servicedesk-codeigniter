@@ -93,6 +93,7 @@ class Usuario_controller extends CI_Controller {
                 'email'=> $consulta->row()->email,
                 'senha'=> $consulta->row()->senha,
                 'perfil'=> $consulta->row()->perfil,
+                'ramal'=> $consulta->row()->ramal,
                 'setor_fk'=> $consulta->row()->setor_fk,
                 'status'=> $consulta->row()->status
                 
