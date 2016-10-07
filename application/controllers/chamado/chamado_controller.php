@@ -24,48 +24,9 @@ class Chamado_controller extends CI_Controller {
             
             $this->load->model('chamado/chamado_model');
 
-            $variaveis = $this->chamado_model->exibe_chamado();
+            $variaveis['consulta'] = $this->chamado_model->exibe_chamado();
             
-            for($i = 0; $i < count($variaveis); $i++){
-
-                $inicio = $variaveis[$i]['datainicial'];
-                $fim = $variaveis[$i]['datafinal'];
-  
-                date_default_timezone_set('America/Sao_Paulo');
-
-                $inicio = new DateTime($inicio);
-                $fim = new DateTime($fim);
-                $agora = new DateTime();
-
-                $diffInicioFim = $fim->getTimestamp() - $inicio->getTimestamp();
-                $diffInicioAgora = $agora->getTimestamp() - $inicio->getTimestamp();
-
-                $porcentagem = $diffInicioAgora / $diffInicioFim * 100;
-
-              
-                if($porcentagem < 25){
-
-                $class = 'success';
-                
-                }else if($porcentagem >25 && $porcentagem <=81){
-
-                $class = 'warning';
-
-                }else if($porcentagem >= 81 && $porcentagem <= 100) {
-                    
-                $class = 'danger';
-
-                }else if($porcentagem >= 100) {
-                    
-                $porcentagem = 100;
-                $class = 'danger';
-
-                }
-                
-                $variaveis[$i] += ['porcentagem' => $porcentagem, 'class' => $class];
-            }
-
-            $variaveis['consulta'] = $variaveis;
+            $variaveis['atendimento'] = $this->chamado_model->exibe_chamado_atendimento();
             
             
             $this->load->helper('valida_login/valida_helper');
@@ -135,7 +96,11 @@ class Chamado_controller extends CI_Controller {
                 "nome" => $consulta->row()->nome,
                 "email" => $consulta->row()->email,
                 "ramal" => $consulta->row()->ramal,
+                "nometec" => $consulta->row()->nometec,
+                "emailtec" => $consulta->row()->emailtec,
+                "ramaltec" => $consulta->row()->ramaltec,
                 "descricao" => $consulta->row()->descricao,
+                "statuschamado" => $consulta->row()->statuschamado,
                 "subcategoria_fk" => $consulta->row()->subcategoria_fk,
                 "categoria_fk" => $consulta->row()->categoria_fk,
                 "setor_fk" => $consulta->row()->setor_fk

@@ -24,9 +24,14 @@ class chamado_model extends CI_Model{
                 "usuarios_fk" => $id,
                 "nomechamado" => $this->input->post('nomechamado'),
                 "gravadora" => $this->input->post('gravadora'),
-                "nome" => $this->input->post('nome'),
-                "email" => $this->input->post('email'),
-                "ramal" => $this->input->post('ramal'),
+                "nometec" => $this->input->post('nometec'),
+                "emailtec" => $this->input->post('emailtec'),
+                "ramaltec" => $this->input->post('ramaltec'),
+              //  Verfiricar porque esta atualizando dados do solicitante.
+              //  "nome" => $this->input->post('nome'),
+              //  "email" => $this->input->post('email'),
+              //  "ramal" => $this->input->post('ramal'),
+                "statuschamado" => $this->input->post('statuschamado'),
                 "descricao" => $this->input->post('descricao'),
                // "subcategoria_fk" => $this->input->post('subcategoria_fk'),
                // "categoria_fk" => $this->input->post('categoria_fk'),
@@ -57,6 +62,7 @@ class chamado_model extends CI_Model{
                 "email" => $this->input->post('email'),
                 "ramal" => $this->input->post('ramal'),
                 "descricao" => $this->input->post('descricao'),
+                "statuschamado" => $this->input->post('statuschamado'),
                 "subcategoria_fk" => $this->input->post('subcategoria_fk'),
                 "categoria_fk" => $this->input->post('categoria_fk'),
                 "setor_fk" => $this->input->post('setor_fk'),
@@ -84,20 +90,114 @@ class chamado_model extends CI_Model{
         
     }
     
-    public function exibe_chamado($idchamado = 0){
+    public function exibe_chamado(){
         
-        if($idchamado != 0){
+            $this->db->where("statuschamado", 'aguardando');
+         
+            $variaveis = $this->db->get("chamado")->result_array();
             
-            $this->db->where("idchamado", $idchamado);
-        
-        }    
             
-            $retorno = $this->db->get("chamado")->result_array();
-            
-            return $retorno;
+            for($i = 0; $i < count($variaveis); $i++){
+
+                $inicio = $variaveis[$i]['datainicial'];
+                $fim = $variaveis[$i]['datafinal'];
+  
+                date_default_timezone_set('America/Sao_Paulo');
+
+                $inicio = new DateTime($inicio);
+                $fim = new DateTime($fim);
+                $agora = new DateTime();
+
+                $diffInicioFim = $fim->getTimestamp() - $inicio->getTimestamp();
+                $diffInicioAgora = $agora->getTimestamp() - $inicio->getTimestamp();
+
+                $porcentagem = $diffInicioAgora / $diffInicioFim * 100;
+
+              
+                if($porcentagem < 25){
+
+                $class = 'success';
+                
+                }else if($porcentagem >25 && $porcentagem <=81){
+
+                $class = 'warning';
+
+                }else if($porcentagem >= 81 && $porcentagem <= 100) {
+                    
+                $class = 'danger';
+
+                }else if($porcentagem >= 100) {
+                    
+                $porcentagem = 100;
+                $class = 'danger';
+
+                }
+                
+                $variaveis[$i] += ['porcentagem' => $porcentagem, 'class' => $class];
+            }
+
+            return $variaveis;
         
         
     }
+    
+    
+    
+    public function exibe_chamado_atendimento(){
+        
+            $id = $this->session->userdata('id');
+        
+            $this->db->where("statuschamado", 'ematendimento');
+            $this->db->where("usuarios_fk", $id);
+          
+            $variaveis = $this->db->get("chamado")->result_array();
+            
+            
+            for($i = 0; $i < count($variaveis); $i++){
+
+                $inicio = $variaveis[$i]['datainicial'];
+                $fim = $variaveis[$i]['datafinal'];
+  
+                date_default_timezone_set('America/Sao_Paulo');
+
+                $inicio = new DateTime($inicio);
+                $fim = new DateTime($fim);
+                $agora = new DateTime();
+
+                $diffInicioFim = $fim->getTimestamp() - $inicio->getTimestamp();
+                $diffInicioAgora = $agora->getTimestamp() - $inicio->getTimestamp();
+
+                $porcentagem = $diffInicioAgora / $diffInicioFim * 100;
+
+              
+                if($porcentagem < 25){
+
+                $class = 'success';
+                
+                }else if($porcentagem >25 && $porcentagem <=81){
+
+                $class = 'warning';
+
+                }else if($porcentagem >= 81 && $porcentagem <= 100) {
+                    
+                $class = 'danger';
+
+                }else if($porcentagem >= 100) {
+                    
+                $porcentagem = 100;
+                $class = 'danger';
+
+                }
+                
+                $variaveis[$i] += ['porcentagem' => $porcentagem, 'class' => $class];
+            }
+
+            return $variaveis;
+        
+        
+    }
+    
+    
     
     public function excluir($idchamado) {
         

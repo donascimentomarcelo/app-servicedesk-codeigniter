@@ -38,7 +38,7 @@
      
         
         $(document).ready(function(){
-				$('#tabela1').dataTable();
+				$('table.display').dataTable();
                                 
                                 $(document).ready(function(){
                                      $('.dropdown-toggle').dropdown();
@@ -119,6 +119,10 @@
     			$('#email').val(data.email); 
     			$('#ramal').val(data.ramal); 
     			$('#descricao').val(data.descricao); 
+    			$('#nometec').val(data.nometec); 
+    			$('#emailtec').val(data.emailtec); 
+    			$('#ramaltec').val(data.ramaltec); 
+                        $('#'+data.statuschamado).prop('checked', true);
     			$('#setor_fk').val(data.setor_fk); 
     			$('#subcategoria').val(data.subcategoria_fk); 
     			$('#categoria_fk').val(data.categoria_fk); 
@@ -148,6 +152,17 @@
     			$('#email').val(data.email); 
     			$('#ramal').val(data.ramal); 
     			$('#setor_fk').val(data.setor_fk); 
+    		}, 'json');
+    	}
+        
+        function amarrar(id){
+    		$.post(base_url+'/index.php/usuario/usuario_controller/dados_usuario', {
+    			id: id
+    		}, function (data){
+    			$('#idtec').val(data.id); 
+    			$('#nometec').val(data.nome); 
+    			$('#emailtec').val(data.email); 
+    			$('#ramaltec').val(data.ramal);  
     		}, 'json');
     	}
         
@@ -207,68 +222,13 @@
             });
         }
         
-        
+        $(function(){
+	$("#amarrar").click(function(){
+		$("#salvar").removeAttr('disabled');
+	});	
+})
         </script>
-        
-        <style type="text/css">
 
-	::selection{ background-color: #E13300; color: white; }
-	::moz-selection{ background-color: #E13300; color: white; }
-	::webkit-selection{ background-color: #E13300; color: white; }
-
-	body {
-		background-color: #fff;
-		margin: 40px;
-		font: 13px/20px normal Helvetica, Arial, sans-serif;
-		color: #4F5155;
-	}
-
-	a {
-		color: #333;
-		background-color: transparent;
-		font-weight: normal;
-	}
-
-	h1 {
-		color: #444;
-		background-color: transparent;
-		border-bottom: 1px solid #D0D0D0;
-		font-size: 19px;
-		font-weight: normal;
-		margin: 0 0 14px 0;
-		padding: 14px 15px 10px 15px;
-	}
-
-	code {
-		font-family: Consolas, Monaco, Courier New, Courier, monospace;
-		font-size: 12px;
-		background-color: #f9f9f9;
-		border: 1px solid #D0D0D0;
-		color: #002166;
-		display: block;
-		margin: 14px 0 14px 0;
-		padding: 12px 10px 12px 10px;
-	}
-
-	#body{
-		margin: 0 15px 0 15px;
-	}
-	
-	p.footer{
-		text-align: right;
-		font-size: 11px;
-		border-top: 1px solid #D0D0D0;
-		line-height: 32px;
-		padding: 0 10px 0 10px;
-		margin: 20px 0 0 0;
-	}
-	
-	#container{
-		margin: 10px;
-		border: 1px solid #D0D0D0;
-		-webkit-box-shadow: 0 0 8px #D0D0D0;
-	}
-	</style>
 </head>
 <body>
 
@@ -287,10 +247,62 @@
               ?>
 
 <div id="container">
-	<h1>Lista de Chamados</h1>
+	
         <div id="body">
+            
+             <div id="atendimento">
+               <nav class="navbar navbar-inverse">
+                    <div class="navbar-header">
+                      <a class="navbar-brand" href="#">Lista de chamados aguardando atendimento</a>
+                    </div>
+                 
+              </nav>
       
-           <table class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%" id="tabela1">
+           <table class="display table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%" id="">
+                <thead>
+                    <tr>
+                    <th style="text-align: center;">Código do Chamado</th>
+                    <th style="text-align: center;">Título do Chamado</th>
+                    <th style="text-align: center;">Gravadora</th>
+                    <th style="text-align: center;">Data e Hora Inicial</th>
+                    <th style="text-align: center;">Data e Hora Final</th>
+                    <th style="text-align: center;">SLA</th>
+                    <th style="text-align: center;">Visualizar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                <?php foreach ($atendimento  as $linha): ?> 
+                    
+                <tr>
+                    <td style="text-align: center;"><?php echo $linha['idchamado']?></td>
+                    <td style="text-align: center;"><?php echo $linha['nomechamado'] ?></td>
+                    <td style="text-align: center;"><?php echo $linha['gravadora']?></td>
+                    <td style="text-align: center;"><?php echo $linha['datainicial'] ?></td>
+                    <td style="text-align: center;"><?php echo $linha['datafinal'] ?></td>
+                    <td>
+                    <div class="progress">
+                        <div class="progress-bar-<?php echo $linha['class']?>" role="progressbar" aria-valuenow="70"
+                        aria-valuemin="0" aria-valuemax="100" style="width:<?php echo $linha['porcentagem']?>%">
+                          <?php echo  number_format($linha['porcentagem'], 2), PHP_EOL,'%';?>
+                        </div>
+                      </div>
+                    </td>
+                    <td style="text-align: center;"><a style="text-align: center;" href="javascript:;"  onclick="janelaNovoCd(<?= $linha['idchamado']?>)"><button type="button" class="glyphicon glyphicon-eye-open"></button></a></td>
+                </tr>
+                <?php endforeach;?>
+                </tbody>
+            </table>
+             </div>
+             <div id="aguardando">
+               <nav class="navbar navbar-inverse">
+                    <div class="navbar-header">
+                      <a class="navbar-brand" href="#">Lista de chamados em atendimento</a>
+                    </div>
+                 
+              </nav>
+            
+           <table class="display table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%" id="">
                 <thead>
                     <tr>
                     <th style="text-align: center;">Código do Chamado</th>
@@ -325,7 +337,7 @@
                 <?php endforeach;?>
                 </tbody>
             </table>
-            
+          </div>
 	</div>
         
          <!--START MODAL-->
@@ -338,6 +350,8 @@
                 <ul class="nav nav-tabs">
                         <li class="active"><a href="#first-tab" data-toggle="tab">Dados do chamado</a></li>
                         <li><a href="#second-tab" data-toggle="tab">Dados do Usuário</a></li>
+                        <li><a href="#third-tab" data-toggle="tab">Dados do Técnico</a></li>
+                        <li><a href="#fourth-tab" data-toggle="tab">Histórico</a></li>
                 </ul>
 	      <div class="modal-body">
 	      	
@@ -392,6 +406,7 @@
                           
                           </div>
                           <div class="tab-pane" id="second-tab">
+                          
                                 <div class="form-group">
                                     <label for="nome">Nome do Solicitante</label>
                                     <input type="text" class="form-control" id="nome"  name='nome'readonly="true">
@@ -415,21 +430,60 @@
                                 
                             </select>
 			  </div>
-                            
-                                
-                                <div class="form-group">
-                                    <label for="nome">Email</label>
+                             <div class="form-group">
+                                    <label for="nome">E-mail</label>
                                     <input type="text" class="form-control" id="email"  name='email' readonly="true">
                                 </div>
                          </div>  
+                            
+                            <div class="tab-pane" id="third-tab">
+                                 <div class="form-group">
+                                    <label for="nome">Código do Técnico</label>
+                                    <input type="text" class="form-control" id="idtec"  name='idtec'readonly="true">
+                                </div>
+                            
+                                 <div class="form-group">
+                                    <label for="nome">Nome do Técnico</label>
+                                    <input type="text" class="form-control" id="nometec"  name='nometec'readonly="true">
+                                </div>
+                                <div class="form-group">
+                                    <label for="nome">Ramal do Técnico</label>
+                                    <input type="text" class="form-control" id="ramaltec"  name='ramaltec' readonly="true">
+                                </div>
+                         
+                             <div class="form-group">
+                                    <label for="nome">E-mail do Técnico</label>
+                                    <input type="text" class="form-control" id="emailtec"  name='emailtec' readonly="true">
+                                </div>
+                                
+                                    <div class="form-group">
+                              <label for="email">Status:</label><br>
+			    <label class="radio-inline">
+                                <input type="radio" name="statuschamado" id="aguardando" value="aguardando" checked="checked"> Aguardando atendimento
+                              </label>
+                              <label class="radio-inline">
+                                <input type="radio" name="statuschamado" id="ematendimento" value="ematendimento"> Atender
+                              </label>
+                            </div>
+                                
+                            </div>
+                            
+                            <div class="tab-pane" id="fourth-tab">
+                                
+                            
+                                
+                            </div>
                         </div>  
 			</form>	    
 			    
 	      </div>
 	      <div class="modal-footer">
+                  <?php $id = $this->session->userdata('id')?>
 	        <button type="button" class="btn btn-default" data-dismiss="modal" onclick="refresh()" >Fechar</button>
+                
+	        <button type="button" id="amarrar" class="btn btn-default" onclick="amarrar(<?= $id?>)">Amarrar</button>
 	       
-               <button type="button" class="btn btn-primary" onclick="$('#formulario_chamado').submit()">Salvar</button>
+               <button type="button" id="salvar" class="btn btn-primary" disabled="disabled" onclick="$('#formulario_chamado').submit()">Salvar</button>
 	      </div>
 	    </div>
 	  </div>
