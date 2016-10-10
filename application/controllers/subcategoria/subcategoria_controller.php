@@ -119,7 +119,7 @@ class Subcategoria_controller extends CI_Controller {
             
             foreach($dados -> result() as $linha) {
                 
-            $option = "<label for='nome'>SLA</label><input type='text' class='form-control' id='sla' value='$linha->idsubcategoria'  name='sla'readonly='true'>"; 
+            $option = "<label for='nome'>SLA</label><input type='text' class='form-control' id='sla' value='$linha->sla'  name='sla'readonly='true'>"; 
             
             }
             

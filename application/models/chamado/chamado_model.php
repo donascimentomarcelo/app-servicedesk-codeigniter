@@ -21,7 +21,7 @@ class chamado_model extends CI_Model{
             
              $dados = array(
                  
-                "usuarios_fk" => $id,
+                //"usuarios_fk" => $id,
                 "nomechamado" => $this->input->post('nomechamado'),
                 "gravadora" => $this->input->post('gravadora'),
                 "nometec" => $this->input->post('nometec'),

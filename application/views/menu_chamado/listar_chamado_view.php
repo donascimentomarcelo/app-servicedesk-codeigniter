@@ -233,7 +233,7 @@
 <body>
 
 <div id="container">
-    <h1><?php foreach($preenche_dados -> result() as $dados):?> <img src="../../.<?php echo $dados->imagem;?>" class="img-circle" width="50px" height="50px"> <?php endforeach;?>Hello <?php echo $this->session->userdata('nome');?>, Welcome to CodeIgniter!  </h1>
+    <h1><?php foreach($preenche_dados -> result() as $dados):?> <img src="../../.<?php echo $dados->imagem;?>" class="img-circle" width="50px" height="50px"> <?php endforeach;?> <?php echo $this->session->userdata('nome');?> </h1>
 
               <?php if($this->session->userdata('perfil') == 'administrador'){
               
@@ -469,9 +469,28 @@
                             </div>
                             
                             <div class="tab-pane" id="fourth-tab">
-                                
-                            
-                                
+                              
+                                <table class="display table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%" id="">
+                                    <thead>
+                                        <tr>
+                                        <th style="text-align: center;">Técnico</th>
+                                        <th style="text-align: center;">Ramal</th>
+                                        <th style="text-align: center;">E-mail</th>
+                                        <th style="text-align: center;">Data</th>
+                                        <tr>
+                                    </thead>
+                                    <tbody>
+
+                                    <?php  ?> 
+
+                                    <tr>
+                                        <td style="text-align: center;"></td>
+                                        <td style="text-align: center;"></td>
+                                        <td style="text-align: center;"></td>
+                                        <td style="text-align: center;"></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>  
 			</form>	    
@@ -483,7 +502,8 @@
                 
 	        <button type="button" id="amarrar" class="btn btn-default" onclick="amarrar(<?= $id?>)">Amarrar</button>
 	       
-               <button type="button" id="salvar" class="btn btn-primary" disabled="disabled" onclick="$('#formulario_chamado').submit()">Salvar</button>
+              <!-- <button type="button" id="salvar" class="btn btn-primary"  disabled="disabled" onclick="$('#formulario_chamado').submit()">Salvar</button>-->
+               <button type="button" id="salvar" class="btn btn-primary"   onclick="$('#formulario_chamado').submit()">Salvar</button>
 	      </div>
 	    </div>
 	  </div>

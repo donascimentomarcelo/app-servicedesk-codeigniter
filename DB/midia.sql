@@ -50,6 +50,26 @@ CREATE TABLE IF NOT EXISTS `chamado` (
   foreign key(subcategoria_fk) references subcategoria(idsubcategoria)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=56 ;
 
+
+CREATE TABLE IF NOT EXISTS `historico` (
+  `idhistorico` int primary key auto_increment,
+  `nometec` varchar(32) NOT NULL,
+  `ramaltec` varchar(32) NOT NULL,
+  `emailtec` varchar(32) NOT NULL,
+  `data` datetime NOT NULL,
+  `chamado_fk`  int NOT NULL,
+  foreign key(chamado_fk) references chamado(idchamado)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+
+
+/*CREATE TABLE IF NOT EXISTS `chamado_historico` (
+  `idchamado_historico` int primary key auto_increment,
+   `chamado_fk`  int NOT NULL,
+   `historico_fk`  int NOT NULL,
+    foreign key(chamado_fk) references chamado(idchamado),
+    foreign key(historico_fk) references historico(idhistorico)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+*/
 --
 -- Extraindo dados da tabela `cd`
 --
