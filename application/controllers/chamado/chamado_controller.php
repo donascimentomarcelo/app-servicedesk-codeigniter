@@ -109,6 +109,105 @@ class Chamado_controller extends CI_Controller {
             echo json_encode($array_clientes);
         }
         
+        function historico(){
+        
+        $idchamado = $this->input->post("idchamado");
+            
+        $this->load->model("chamado/chamado_model");
+            
+        $consulta = $this->chamado_model->m_historico($idchamado);
+        
+        foreach($consulta -> result() as $linha){
+            $nome[] = $linha->nometecnico;
+            $email[] = $linha->emailtecnico;
+            $ramal[] = $linha->ramaltecnico;
+            $data[] = $linha->data;
+            
+             $consulta = array(
+            "nometecnico" => $nome,
+            "emailtecnico" => $email,
+            "ramaltecnico" => $ramal,
+            "data" => $data
+        );
+        }
+            
+       
+        
+        echo json_encode($consulta);
+        
+        }
+        
+        function meus_chamados(){
+            
+            $this->load->model("chamado/chamado_model");
+            
+            $variaveis['meus_chamados'] = $this->chamado_model->m_meus_chamados();
+            
+            $this->load->helper('valida_login/valida_helper');
+        
+            $variaveis['validacao'] = getValida();
+            
+            
+            $this->load->helper('preenche_dados/preenche_dados_helper');
+        
+            $variaveis['preenche_dados'] = getPreencheDados();
+            
+            
+            $this->load->model('categoria/categoria_model');
+        
+            $variaveis['categoria'] = $this->categoria_model->m_exibir_categoria();
+            
+            
+            $this->load->model('subcategoria/subcategoria_model');
+        
+            $variaveis['subcategoria'] = $this->subcategoria_model->m_exibir_subcategoria();
+            
+            
+            $this->load->model('usuario/usuario_model');
+            
+            $this->load->helper('setor_ativo/setor_ativo_helper');
+        
+            $variaveis['setor_ativo'] = getSetorAtivo();
+        
+            
+            $this->load->view("menu_chamado/meus_chamados_view",$variaveis);
+        }
+        
+        function historico_detalhado($idchamado = null){
+            
+            $this->load->model('chamado/chamado_model');
+            
+            $this->load->helper('valida_login/valida_helper');
+        
+            $variaveis['validacao'] = getValida();
+            
+            
+            $this->load->helper('preenche_dados/preenche_dados_helper');
+        
+            $variaveis['preenche_dados'] = getPreencheDados();
+            
+            
+            $this->load->model('categoria/categoria_model');
+        
+            $variaveis['categoria'] = $this->categoria_model->m_exibir_categoria();
+            
+            
+            $this->load->model('subcategoria/subcategoria_model');
+        
+            $variaveis['subcategoria'] = $this->subcategoria_model->m_exibir_subcategoria();
+            
+            
+            $this->load->model('usuario/usuario_model');
+            
+            $this->load->helper('setor_ativo/setor_ativo_helper');
+        
+            $variaveis['setor_ativo'] = getSetorAtivo();
+            
+            
+            $variaveis['historico_detalhado'] = $this->chamado_model->m_historico($idchamado);
+            
+            $this->load->view('menu_chamado/historico_chamado_view',$variaveis);
+        }
 }
 
 

@@ -8,6 +8,7 @@
             <ul class="nav navbar-nav">
               <li><a onclick="novo(<?= $id?>)"><span class="glyphicon glyphicon-plus"  ></span> Novo</a></li>
              <li><?php echo anchor('chamado/chamado_controller/listar_chamado', 'Abrir Chamado'); ?></li>
+             <li><?php echo anchor('chamado/chamado_controller/meus_chamados', 'Meus Chamados'); ?></li>
               <li class="dropdown">
                 <a class="dropdown-toggle " data-toggle="dropdown" href="#"> Configurações
                 <span class="caret"></span></a>

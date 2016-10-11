@@ -6,6 +6,7 @@
             </div>
             <ul class="nav navbar-nav">
              <li><?php echo anchor('chamado/chamado_controller/listar_chamado', 'Abrir Chamado'); ?></li>
+             <li><?php echo anchor('chamado/chamado_controller/meus_chamados', 'Meus Chamados'); ?></li>
               <li class="dropdown">
                 <a class="dropdown-toggle " data-toggle="dropdown" href="#"> Configurações
                 <span class="caret"></span></a>

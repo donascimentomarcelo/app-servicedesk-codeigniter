@@ -8,7 +8,9 @@
             </div>
             <ul class="nav navbar-nav">
               <li><?php echo anchor('usuario/usuario_controller/listar_usuario', 'Manter Usuário'); ?></li>
+              <li><?php echo anchor('chamado/chamado_controller/meus_chamados', 'Meus Chamados'); ?></li>
               <li><?php echo anchor('chamado/chamado_controller/listar_chamado', 'Abrir Chamado'); ?></li>
+              <li><?php echo anchor('chamado/chamado_controller/listar_chamado', 'Historico de Chamado'); ?></li>
                <li class="dropdown">
                 <a class="dropdown-toggle " data-toggle="dropdown" href="#"> Configurações
                 <span class="caret"></span></a>

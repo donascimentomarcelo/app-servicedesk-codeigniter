@@ -231,5 +231,71 @@ class chamado_model extends CI_Model{
         return $this->db->get();
         
     }
+    
+    
+    public function m_historico($idchamado = NULL) {
+        
+        if($idchamado != NULL){
+            $this->db->select('*');    
+            $this->db->from('historico');
+            $this->db->join('chamado', 'historico.chamado_fk = chamado.idchamado');
+            $this->db->where("chamado_fk", $idchamado);
+        }
+        
+        return $this->db->get();
+        
+    }
+    
+    function m_meus_chamados(){
+        
+        $id = $this->session->userdata('id');
+        
+            $this->db->where("usuarios_fk", $id);
+          
+            $variaveis = $this->db->get("chamado")->result_array();
+            
+            
+            for($i = 0; $i < count($variaveis); $i++){
+
+                $inicio = $variaveis[$i]['datainicial'];
+                $fim = $variaveis[$i]['datafinal'];
+  
+                date_default_timezone_set('America/Sao_Paulo');
+
+                $inicio = new DateTime($inicio);
+                $fim = new DateTime($fim);
+                $agora = new DateTime();
+
+                $diffInicioFim = $fim->getTimestamp() - $inicio->getTimestamp();
+                $diffInicioAgora = $agora->getTimestamp() - $inicio->getTimestamp();
+
+                $porcentagem = $diffInicioAgora / $diffInicioFim * 100;
+
+              
+                if($porcentagem < 25){
+
+                $class = 'success';
+                
+                }else if($porcentagem >25 && $porcentagem <=81){
+
+                $class = 'warning';
+
+                }else if($porcentagem >= 81 && $porcentagem <= 100) {
+                    
+                $class = 'danger';
+
+                }else if($porcentagem >= 100) {
+                    
+                $porcentagem = 100;
+                $class = 'danger';
+
+                }
+                
+                $variaveis[$i] += ['porcentagem' => $porcentagem, 'class' => $class];
+            }
+
+            return $variaveis;
+        
+    }
 }
             
