@@ -206,6 +206,7 @@ class Chamado_controller extends CI_Controller {
             
             
             $variaveis['historico_detalhado'] = $this->chamado_model->m_historico($idchamado);
+            $variaveis['historico'] = $this->chamado_model->m_historico_tabela($idchamado);
             
             $this->load->view('menu_chamado/historico_chamado_view',$variaveis);
             

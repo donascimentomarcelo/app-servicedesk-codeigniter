@@ -292,7 +292,6 @@
                 <ul class="nav nav-tabs">
                         <li class="active"><a href="#first-tab" data-toggle="tab">Dados do chamado</a></li>
                         <li><a href="#second-tab" data-toggle="tab">Dados do Usuário</a></li>
-                        <li><a href="#third-tab" data-toggle="tab">Dados do Técnico</a></li>
                         <li><a href="#fourth-tab" data-toggle="tab">Histórico</a></li>
                 </ul>
 	      <div class="modal-body">
@@ -378,38 +377,7 @@
                                 </div>
                          </div>  
                             
-                            <div class="tab-pane" id="third-tab">
-                                 <div class="form-group">
-                                    <label for="nome">Código do Técnico</label>
-                                    <input type="text" class="form-control" id="idtec"  name='idtec'readonly="true">
-                                </div>
-                            
-                                 <div class="form-group">
-                                    <label for="nome">Nome do Técnico</label>
-                                    <input type="text" class="form-control" id="nometec"  name='nometec'readonly="true" value="<?php set_value('nometecnico') ? : (isset($nometecnico) ? $nometecnico : '')?>">
-                                </div>
-                                <div class="form-group">
-                                    <label for="nome">Ramal do Técnico</label>
-                                    <input type="text" class="form-control" id="ramaltec"  name='ramaltec' readonly="true">
-                                </div>
-                         
-                             <div class="form-group">
-                                    <label for="nome">E-mail do Técnico</label>
-                                    <input type="text" class="form-control" id="emailtec"  name='emailtec' readonly="true">
-                                </div>
-                                
-                                    <div class="form-group">
-                              <label for="email">Status:</label><br>
-			    <label class="radio-inline">
-                                <input type="radio" name="statuschamado" id="aguardando" value="aguardando" checked="checked"> Aguardando atendimento
-                              </label>
-                              <label class="radio-inline">
-                                <input type="radio" name="statuschamado" id="ematendimento" value="ematendimento"> Atender
-                              </label>
-                            </div>
-                                
-                            </div>
-                            
+                           
                             <div class="tab-pane" id="fourth-tab">
                               
                                 <table class="display table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%" id="">
@@ -423,14 +391,17 @@
                                     </thead>
                                     <tbody>
 
-                                    <?php  ?> 
+                                    <?php foreach ($historico -> result() as $coluna):  ?> 
 
                                     <tr>
-                                        <td style="text-align: center;"><input type="text" class="form-control" id="nometecnico"  name='nometecnico' readonly="true"></td>
-                                        <td style="text-align: center;"></td>
-                                        <td style="text-align: center;"></td>
-                                        <td style="text-align: center;"></td>
+                                        <td style="text-align: center;"><?php echo $coluna->nometecnico?></td>
+                                        <td style="text-align: center;"><?php echo $coluna->ramaltecnico?></td>
+                                        <td style="text-align: center;"><?php echo $coluna->emailtecnico?></td>
+                                        <td style="text-align: center;"><?php echo $coluna->data?></td>
                                     </tr>
+                                    
+                                    <?php endforeach;?>
+                                    
                                     </tbody>
                                 </table>
                             </div>

@@ -250,6 +250,20 @@ class chamado_model extends CI_Model{
         
     }
     
+    
+    public function m_historico_tabela($idchamado = NULL) {
+        
+        if($idchamado != NULL){
+            $this->db->select('*');    
+            $this->db->from('chamado');
+            $this->db->join('historico', 'historico.chamado_fk = chamado.idchamado');
+            $this->db->where("idchamado", $idchamado);
+        }
+        
+        return $this->db->get();
+        
+    }
+    
     function m_meus_chamados(){
         
         $id = $this->session->userdata('id');
