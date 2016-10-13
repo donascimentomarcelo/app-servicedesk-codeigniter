@@ -92,7 +92,6 @@ class Chamado_controller extends CI_Controller {
                 
                 "idchamado" => $consulta->row()->idchamado,
                 "nomechamado" => $consulta->row()->nomechamado,
-                "gravadora" => $consulta->row()->gravadora,
                 "nome" => $consulta->row()->nome,
                 "email" => $consulta->row()->email,
                 "ramal" => $consulta->row()->ramal,
@@ -100,6 +99,7 @@ class Chamado_controller extends CI_Controller {
                 "emailtec" => $consulta->row()->emailtec,
                 "ramaltec" => $consulta->row()->ramaltec,
                 "descricao" => $consulta->row()->descricao,
+                "codusuario" => $consulta->row()->codusuario,
                 "statuschamado" => $consulta->row()->statuschamado,
                 "subcategoria_fk" => $consulta->row()->subcategoria_fk,
                 "categoria_fk" => $consulta->row()->categoria_fk,
@@ -136,6 +136,28 @@ class Chamado_controller extends CI_Controller {
         echo json_encode($consulta);
         
         }
+        
+        
+        function historico_datalhado(){
+        
+        $idhistorico = $this->input->post("idhistorico");
+            
+        $this->load->model("chamado/chamado_model");
+            
+        $consulta = $this->chamado_model->m_historico_datalhado($idhistorico);
+        
+        foreach($consulta -> result() as $linha){
+            $justificativa[] = $linha->justificativa;
+
+            
+             $consulta = array(
+            "justificativa" => $justificativa
+        );
+        }
+        echo json_encode($consulta);
+        
+        }
+        
         
         function meus_chamados(){
             
@@ -206,6 +228,7 @@ class Chamado_controller extends CI_Controller {
             
             
             $variaveis['historico_detalhado'] = $this->chamado_model->m_historico($idchamado);
+            
             $variaveis['historico'] = $this->chamado_model->m_historico_tabela($idchamado);
             
             $this->load->view('menu_chamado/historico_chamado_view',$variaveis);

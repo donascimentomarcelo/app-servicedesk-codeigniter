@@ -113,9 +113,9 @@
     			idchamado: idchamado
     		}, function (data){
     			$('#nomechamado').val(data.nomechamado);
-    			$('#gravadora').val(data.gravadora);
     			$('#idchamado').val(data.idchamado);//aqui eu seto a o input hidden com o id do cliente, para que a edição funcione. Em cada tela aberta, eu seto o id do cliente. 
     			$('#nome').val(data.nome); 
+    			$('#codusuario').val(data.codusuario); 
     			$('#email').val(data.email); 
     			$('#ramal').val(data.ramal); 
     			$('#descricao').val(data.descricao); 
@@ -160,7 +160,6 @@
         function limparCampo(){
             $("#idchamado").val(''); 
             $("#nomechamado").val(''); 
-            $("#gravadora").val(''); 
         }
         
         function carregaDadosNovoJSon(id){
@@ -266,13 +265,13 @@
            <table class="display table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%" id="">
                 <thead>
                     <tr>
-                    <th style="text-align: center;">Código do Chamado</th>
-                    <th style="text-align: center;">Título do Chamado</th>
-                    <th style="text-align: center;">Gravadora</th>
-                    <th style="text-align: center;">Data e Hora Inicial</th>
-                    <th style="text-align: center;">Data e Hora Final</th>
-                    <th style="text-align: center;">SLA</th>
-                    <th style="text-align: center;">Visualizar</th>
+                    <th style="text-align: center; width: 2%;">Código</th>
+                    <th style="text-align: center; width: 10%;">Título do Chamado</th>
+                    <th style="text-align: center; width: 10%;">Data e Hora Inicial</th>
+                    <th style="text-align: center; width: 10%;">Data e Hora Final</th>
+                    <th style="text-align: center; width: 30%;">SLA</th>
+                    <th style="text-align: center; width: 20%;">Descrição</th>
+                    <th style="text-align: center; width: 10px;">Visualizar</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -280,12 +279,11 @@
                 <?php foreach ($meus_chamados  as $linha): ?> 
                     
                 <tr>
-                    <td style="text-align: center;"><?php echo $linha['idchamado']?></td>
-                    <td style="text-align: center;"><?php echo $linha['nomechamado'] ?></td>
-                    <td style="text-align: center;"><?php echo $linha['gravadora']?></td>
-                    <td style="text-align: center;"><?php echo $linha['datainicial'] ?></td>
-                    <td style="text-align: center;"><?php echo $linha['datafinal'] ?></td>
-                    <td>
+                    <td style="text-align: center; width: 2%;"><?php echo $linha['idchamado']?></td>
+                    <td style="text-align: center; width: 10%;"><?php echo $linha['nomechamado'] ?></td>
+                    <td style="text-align: center; width: 10%;"><?php $i = $linha['datainicial']; echo date('d/m/Y H:i:s', strtotime($i));?></td>
+                    <td style="text-align: center; width: 10%;"><?php $j = $linha['datafinal']; echo date('d/m/Y H:i:s', strtotime($j));?></td>
+                    <td style="text-align: center; width: 20%;">
                     <div class="progress">
                         <div class="progress-bar-<?php echo $linha['class']?>" role="progressbar" aria-valuenow="70"
                         aria-valuemin="0" aria-valuemax="100" style="width:<?php echo $linha['porcentagem']?>%">
@@ -293,7 +291,11 @@
                         </div>
                       </div>
                     </td>
-                   <td style="text-align: center;">
+                     <td style=" width: 30%;"><?php $i = $linha['descricao'];
+                     $j = 80;
+                     echo substr_replace($i, (strlen($i) > $j ? '...' : ''), $j);
+                     ?></td>
+                   <td style="text-align: center; width: 10%;">
                         <a style="text-align: center;" href="javascript:;"  onclick="janelaNovoCd(<?= $linha['idchamado']?>)"><button type="button" class="glyphicon glyphicon-eye-open"></button></a>
                         <a style="text-align: center;" href="http://localhost/cd/index.php/chamado/chamado_controller/historico_detalhado/<?php echo$linha['idchamado']; ?>"><button type="button" class="glyphicon glyphicon-floppy-open"></button></a>
                     </td> </tr>
@@ -363,7 +365,7 @@
                                 
                           <div class="form-group">
                             <label for="exampleTextarea">Descrição</label>
-                            <textarea class="form-control" id="descricao" name="descricao" rows="3" readonly="true"></textarea>
+                            <textarea class="form-control" id="descricao" name="descricao" rows="3" readonly="true"  maxlength="499"></textarea>
                           </div>
                             
 			  <input type="hidden" name="idchamado" id="idchamado" value="" />
@@ -520,7 +522,7 @@
                                 
                           <div class="form-group">
                             <label for="exampleTextarea">Descrição</label>
-                            <textarea class="form-control" id="descricao" name="descricao" rows="3"></textarea>
+                            <textarea class="form-control" id="descricao" name="descricao" rows="3" maxlength="499"></textarea>
                           </div>
                             
 			  <input type="hidden" name="idchamado" id="idchamado" value="" />
@@ -560,7 +562,7 @@
                             <div class="tab-pane" id="third3-tab">
                                  <div class="form-group">
                                     <label for="nome">Código do Técnico</label>
-                                    <input type="text" class="form-control" id="idtec"  name='idtec'readonly="true">
+                                    <input type="text" class="form-control" id="codusuario"  name='usuarios_fk'readonly="true">
                                 </div>
                             
                                  <div class="form-group">

@@ -44,187 +44,33 @@
                                      $('.dropdown-toggle').dropdown();
                         });
                         
-                        $("#formulario_chamado").validate({
-                            rules : {
-                                  nomechamado:{
-                                         required:true,
-                                         minlength:3
-                                  },
-                                  gravadora:{
-                                         required:true,
-                                         minlength:3
-                                  }                               
-                            },
-                            messages:{
-                                  nomechamado:{
-                                         required:"Informe o nome do CD!",
-                                         minlength:"O nome deve ter pelo menos 3 caracteres"
-                                  },
-                                  gravadora:{
-                                         required:"Informe a gravadora!",
-                                         minlength:"O nome deve ter pelo menos 3 caracteres"
-                                  }    
-                            }
+                       
                      });
-		});
-        function minhaCallCack(){
-         swal({   title: "Registro salvo com sucesso!",
-             text: "Exito ao realizar operação.",
-             timer: 1000, 
-             showConfirmButton: false 
-         });
-        }
-        //http://t4t5.github.io/sweetalert/
-        /*
-    	 * Função que carrega após o DOM estiver carregado.
-    	 * Como estou usando o ajaxForm no formulário, é aqui que eu o configuro.
-    	 * Basicamente somente digo qual função será chamada quando os dados forem postados com sucesso.
-    	 * Se o retorno for igual a 1, então somente recarrego a janela.
-    	 */
-    	$(function(){
-    		$('#formulario_chamado').ajaxForm({
-    			success: function(data) {
-    				if (data == 1 || data == 11) {
-    					
-    					//Algo esta acontecendo no controller que está trazendo 11 no lugar de 1.
-    					//Faço esse if com || pq preciso que atualize a pagina.
-    					//se for sucesso, simplesmente recarrego a página. Aqui você pode usar sua imaginação.
-                                        
-    					//document.location.href = document.location.href;
-                                        success: minhaCallCack();
-                                        limparCampo();
-				    	
-    				}else{
-                                    alert(data);
-                                }
-    			}
-    		});
-    	});
-    
-    	//Aqui eu seto uma variável javascript com o base_url do CodeIgniter, para usar nas funções do post.
+		
     	var base_url = "<?= base_url() ?>";
-    	
-	    /*
-	     *	Esta função serve para preencher os campos do cliente na janela flutuante
-	     * usando jSon.  
-	     */
-    	function carregaDadosCdJSon(idchamado){
-    		$.post(base_url+'/index.php/chamado/chamado_controller/dados_chamado', {
-    			idchamado: idchamado
+
+    	function carregaDadosCdJSon(idhistorico){
+    		$.post(base_url+'/index.php/chamado/chamado_controller/historico_datalhado', {
+    			idhistorico: idhistorico
     		}, function (data){
-    			$('#nomechamado').val(data.nomechamado);
-    			$('#gravadora').val(data.gravadora);
-    			$('#idchamado').val(data.idchamado);//aqui eu seto a o input hidden com o id do cliente, para que a edição funcione. Em cada tela aberta, eu seto o id do cliente. 
-    			$('#nome').val(data.nome); 
-    			$('#email').val(data.email); 
-    			$('#ramal').val(data.ramal); 
-    			$('#descricao').val(data.descricao); 
-    			$('#nometec').val(data.nometec); 
-    			$('#emailtec').val(data.emailtec); 
-    			$('#ramaltec').val(data.ramaltec); 
-                        $('#'+data.statuschamado).prop('checked', true);
-    			$('#setor_fk').val(data.setor_fk); 
-    			$('#subcategoria').val(data.subcategoria_fk); 
-    			$('#categoria_fk').val(data.categoria_fk); 
+    			$('#justificativa').val(data.justificativa);
+    			 
     		}, 'json');
     	}
     
-    	function janelaNovoCd(idchamado){
+    	function janelaDescricao(idhistorico){
     		
-    		//antes de abrir a janela, preciso carregar os dados do chamado e preencher os campos dentro do modal
-    		carregaDadosCdJSon(idchamado);
-                
-                carregaTabelaJSon(idchamado);
-    		//alert(idchamado);
+    		carregaDadosCdJSon(idhistorico);
+                //alert(idhistorico);
     		
 	    	$('#modalEditarCliente').modal('show');
     	}
-        
-         function carregaTabelaJSon(idchamado){
-            $.post(base_url+'/index.php/chamado/chamado_controller/historico', {
-    			idchamado: idchamado
-    		}, function (data){
-    		var items = [];
-                $.each( data, function( key, val ) {
-                  items.push( "<li id='" + key + "'>" + val + "</li>" );
-                  alert(val);
-                });
-
-                $( "<ul/>", {
-                  "class": "my-new-list",
-                  html: items.join( "" )
-                }).appendTo( "body" );
-    		}, 'json');
-    	}
-        
-        function limparCampo(){
-            $("#idchamado").val(''); 
-            $("#nomechamado").val(''); 
-            $("#gravadora").val(''); 
-        }
-        
-        function carregaDadosNovoJSon(id){
-    		$.post(base_url+'/index.php/usuario/usuario_controller/dados_usuario', {
-    			id: id
-    		}, function (data){
-    			$('#nome').val(data.nome); 
-    			$('#email').val(data.email); 
-    			$('#ramal').val(data.ramal); 
-    			$('#setor_fk').val(data.setor_fk); 
-    		}, 'json');
-    	}
-        
-        function amarrar(id){
-    		$.post(base_url+'/index.php/usuario/usuario_controller/dados_usuario', {
-    			id: id
-    		}, function (data){
-    			$('#idtec').val(data.id); 
-    			$('#nometec').val(data.nome); 
-    			$('#emailtec').val(data.email); 
-    			$('#ramaltec').val(data.ramal);  
-    		}, 'json');
-    	}
-        
-    	function novo(id){
-            // na função limparCampo() eu apago os valores que estão no modal
-            // devido ter aberto o modal anteriormente, fica salvo os valores.
-                carregaDadosNovoJSon(id);
-            
-    		$('#modalEditarCliente').modal('show');
-    	}
-        
-        function confirma(idchamado){
-        resposta = confirm("Deseja realmente excluir esse aluno?");
-        if (resposta){
-            $.ajax({
-                type: "POST",
-                data: {
-                    idchamado: idchamado
-                },
-                
-                url: "http://localhost/cd/index.php/chamado/chamado_controller/excluir_chamado/"+idchamado,
-                success: function(data) {
-                    if(data == 1 || data == 11){
-                        swal("Excluído!", "Dado excluída com sucesso!", "success"); 
-                    }else{
-                        swal("Erro ao excluir", "Houve algum erro ao excluir!", "error"); 
-                        alert("Houve algum erro ao excluir!");
-                    }
-                },
-                error: function(){
-                    alert("Houve algum erro ao excluir!");
-                }
-            });
-        }
-    }
 
         function refresh(){
-            //document.location.href = document.location.href;
             location.reload();
         }
         
-        
-        
+          
         function buscar_subcategoria(idcategoria){
           $.post(base_url+"/index.php/subcategoria/subcategoria_controller/ajax_dados_subcategoria", {
             idcategoria : idcategoria
@@ -246,6 +92,7 @@
 		$("#salvar").removeAttr('disabled');
 	});	
 })
+
         </script>
 
 </head>
@@ -282,17 +129,15 @@
 	</div>
         
          <!--START MODAL-->
-         <div class="row">
-         <div class="col-xs-12 col-md-8">
-         <div class="modal-dialog" style="margin-left: 4%; width: 70%;">
-	    <div class="modal-content">
+        <div class="" id="modalUsuario" data-backdrop="static">
 	      <div class="modal-header">
-	        <h4 class="modal-title">Dados do Chamado</h4>
+	        <h4 class="modal-title">Dados do Chamado  <?php foreach($historico_detalhado -> result() as $linha): echo $linha->idchamado; endforeach?></h4>
 	      </div>
                 <ul class="nav nav-tabs">
                         <li class="active"><a href="#first-tab" data-toggle="tab">Dados do chamado</a></li>
                         <li><a href="#second-tab" data-toggle="tab">Dados do Usuário</a></li>
                         <li><a href="#fourth-tab" data-toggle="tab">Histórico</a></li>
+                        <li><a href="#fifth-tab" data-toggle="tab">Justificativas</a></li>
                 </ul>
 	      <div class="modal-body">
                 <form role="form"  id="formulario_chamado">
@@ -301,13 +146,13 @@
                             <div class="tab-pane active in" id="first-tab">
 			  <div class="form-group">
 			    <label for="nome">Título do Chamado</label>
-			    <input type="text" class="form-control" id="nomechamado" value="<?php echo $linha->nomechamado?>"  name='nomechamado'>
+			    <input type="text" class="form-control" id="nomechamado" value="<?php echo $linha->nomechamado?>"  readonly="true"  name='nomechamado' >
 			  </div>
                             
 			 
                             <div class="form-group">
 			    <label for="categoria">Categoria</label>
-                            <select class="form-control" name="categoria_fk" id="categoria_fk" required="required" onchange='buscar_subcategoria($(this).val())'>
+                            <select class="form-control" name="categoria_fk" id="categoria_fk" required="required" onchange='buscar_subcategoria($(this).val())' disabled >
                                 
                                 <option value="<?php echo $linha->categoria_fk?>"><?php echo $linha->nomecategoria?></option>
                                 <!--AQUI!-->
@@ -324,14 +169,9 @@
                             <div class="form-group">
                             <label for="exampleSelect1">Subcategoria</label>
                             
-                            <select class="form-control" name="subcategoria_fk" id="subcategoria" required="required" onchange='buscar_sla($(this).val())'>
+                            <select class="form-control" name="subcategoria_fk" id="subcategoria" required="required" onchange='buscar_sla($(this).val())' disabled>
                              <option value="<?php echo $linha->subcategoria_fk?>"><?php echo $linha->nomesubcategoria?></option>
-                                <!--AQUI!-->
-                                 <?php foreach ($subcategoria -> result() as $linha2): ?> 
                                 
-                                <option value="<?php echo $linha2->idsubcategoria?>"><?php echo $linha2->nomesubcategoria?></option>
-                                
-                                <?php endforeach;?>
                             </select>
                           </div>
                                 <div id="sla" class="form-group">
@@ -340,7 +180,7 @@
                                 
                           <div class="form-group">
                             <label for="exampleTextarea">Descrição</label>
-                            <textarea class="form-control" id="descricao" name="descricao" rows="3" ><?php echo $linha->descricao?></textarea>
+                            <textarea class="form-control" id="descricao" name="descricao" rows="3" maxlength="499" readonly="true"><?php echo $linha->descricao?></textarea>
                           </div>
                             
 			  <input type="hidden" name="idchamado" id="idchamado" value="" />
@@ -383,10 +223,12 @@
                                 <table class="display table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%" id="">
                                     <thead>
                                         <tr>
-                                        <th style="text-align: center;">Técnico</th>
-                                        <th style="text-align: center;">Ramal</th>
-                                        <th style="text-align: center;">E-mail</th>
-                                        <th style="text-align: center;">Data</th>
+                                        <th style="text-align: center; width: 18px;">Técnico</th>
+                                        <th style="text-align: center; width: 10px;">Ramal</th>
+                                        <th style="text-align: center; width: 20px;">E-mail</th>
+                                        <th style="text-align: center; width: 12px;">Data</th>
+                                        <th style="text-align: center; width: 18px;">Status</th>
+                                        <th style="text-align: center; width: 50%;">Justificativa</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -394,10 +236,16 @@
                                     <?php foreach ($historico -> result() as $coluna):  ?> 
 
                                     <tr>
-                                        <td style="text-align: center;"><?php echo $coluna->nometecnico?></td>
-                                        <td style="text-align: center;"><?php echo $coluna->ramaltecnico?></td>
-                                        <td style="text-align: center;"><?php echo $coluna->emailtecnico?></td>
-                                        <td style="text-align: center;"><?php echo $coluna->data?></td>
+                                        <td style="text-align: center; width: 18px;"><?php echo $coluna->nometecnico?></td>
+                                        <td style="text-align: center; width: 10px;"><?php echo $coluna->ramaltecnico?></td>
+                                        <td style="text-align: center; width: 20px;"><?php echo $coluna->emailtecnico?></td>
+                                        <td style="text-align: center; width: 12px;"><?php echo $coluna->data?></td>
+                                        <td style="text-align: center; width: 18px;"><?php echo $coluna->statuschamado?></td>
+                                        <td style=" width: 40%; "><a style="text-align: center;" href="javascript:;"  onclick="janelaDescricao(<?= $coluna->idhistorico ?>)"><button type="button" class="glyphicon glyphicon-eye-open"></button></a>
+                                        <?php 
+                                        $i = $coluna->justificativa;
+                                        $j = 120;
+                                        echo substr_replace($i, (strlen($i) > $j ? '...' : ''), $j); ?></td>
                                     </tr>
                                     
                                     <?php endforeach;?>
@@ -405,50 +253,61 @@
                                     </tbody>
                                 </table>
                             </div>
+                            <div class="tab-pane" id="fifth-tab">
+                                 <?php foreach ($historico -> result() as $coluna):?> 
+                                
+                                <div class="row">
+                                    <div class="col-xs-9">Nome: <?php echo $coluna->nometecnico ?></div>
+                                    <div class="col-xs-6">Status: <?php echo $coluna->statuschamado; ?></div>
+                                    <div class="col-xs-9">Data: <?php echo $coluna->data; ?></div>
+                                    <div class="col-xs-4">Justificativa:<br><?php echo $coluna->justificativa;?></div>
+                                </div>
+                                    <hr align="center" width="100%" size="2" color=#00000>
+                                  
+                                 <?php endforeach;?>
+                            </div>
                         </div>  
                     </form>	    
                 <?php endforeach;?>
-                 
+                  
+                <!--MODAL DESCRIÇÃO--> 
+                
+                 <div class="modal fade bs-example-modal-lg" id="modalEditarCliente" >
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h4 class="modal-title">Justificativa</h4>
+                        </div>
+                        
+                        <div class="modal-body">
+                                <form role="form" id="formulario_chamado">
+                                  <div class="form-group">
+                                  <label for="exampleTextarea">Justificativa</label>
+                                  <textarea class="form-control" id="justificativa" name="justificativa" rows="3" maxlength="499" readonly="true"></textarea>
+                                  </div>
+                              </form>	    
+                        </div>
+                          
+                        <div class="modal-footer">
+                            
+                          <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                
+                <!--MODAL DESCRIÇÃO--> 
+                  
 	      </div>
 	      <div class="modal-footer">
-                  <?php $id = $this->session->userdata('id')?>
-	        <button type="button" class="btn btn-default" data-dismiss="modal" onclick="refresh()" >Fechar</button>
-              
-	        <button type="button" id="amarrar" class="btn btn-default" onclick="amarrar(<?= $id?>)">Amarrar</button>
                 
-	       
-              <!-- <button type="button" id="salvar" class="btn btn-primary"  disabled="disabled" onclick="$('#formulario_chamado').submit()">Salvar</button>-->
-               <button type="button" id="salvar" class="btn btn-primary"   onclick="$('#formulario_chamado').submit()">Salvar</button>
+	        <button type="button" class="btn btn-default" data-dismiss="modal" onclick="refresh()" >Atualizar</button>
+             
 	      </div>
 	    </div>
 	  </div>
           </div>
-          <div class="col-xs-6 col-md-4" style="margin-left: -20%;">   
-          <div style="margin-left: 5%;margin-top: 4%; width: 160%;">
-                      
-                      <table class="display table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%" id="">
-                                    <thead>
-                                        <tr>
-                                        <th style="text-align: center;">Técnico</th>
-                                        <th style="text-align: center;">Ramal</th>
-                                        <th style="text-align: center;">Data</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-
-                                    <?php  ?> 
-
-                                    <tr>
-                                        <td style="text-align: center;"></td>
-                                        <td style="text-align: center;"></td>
-                                        <td style="text-align: center;"></td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                      
-                  </div>	    
-        </div>
-</div>
         
 	<p class="footer"><a href="javascript: history.back()">Voltar</a> <strong>{elapsed_time}</strong> seconds</p>
 </div>

@@ -58,7 +58,9 @@ CREATE TABLE IF NOT EXISTS `historico` (
   `emailtecnico` varchar(32) NOT NULL,
   `data` datetime NOT NULL,
   `chamado_fk`  int NOT NULL,
-  foreign key(chamado_fk) references chamado(idchamado)
+  `usuarios_fk` int NOT NULL,
+  foreign key(chamado_fk) references chamado(idchamado),
+  foreign key(usuarios_fk) references usuarios(id)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 

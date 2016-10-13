@@ -10,8 +10,6 @@ class chamado_model extends CI_Model{
     
     public function m_salvar_chamado() {
         
-        //$dados = $this->input->post();
-        
         $idchamado = $this->input->post("idchamado");
         $id = $this->session->userdata('id');
         
@@ -21,28 +19,50 @@ class chamado_model extends CI_Model{
             
              $dados = array(
                  
-                //"usuarios_fk" => $id,
+                "nometec" => $this->input->post('nometecnico'),
+                "emailtec" => $this->input->post('emailtecnico'),
+                "ramaltec" => $this->input->post('ramaltecnico'),
                 "nomechamado" => $this->input->post('nomechamado'),
-                "gravadora" => $this->input->post('gravadora'),
-                "nometec" => $this->input->post('nometec'),
-                "emailtec" => $this->input->post('emailtec'),
-                "ramaltec" => $this->input->post('ramaltec'),
-              //  Verfiricar porque esta atualizando dados do solicitante.
-              //  "nome" => $this->input->post('nome'),
-              //  "email" => $this->input->post('email'),
-              //  "ramal" => $this->input->post('ramal'),
+                "codusuario" => $this->input->post('usuarios_fk'),
                 "statuschamado" => $this->input->post('statuschamado'),
                 "descricao" => $this->input->post('descricao'),
-               // "subcategoria_fk" => $this->input->post('subcategoria_fk'),
-               // "categoria_fk" => $this->input->post('categoria_fk'),
                 "setor_fk" => $this->input->post('setor_fk'),
-               // "datainicial" => $inicio,
-               // "datafinal" => $fim
-                
                 
             );
             
             $query = $this->db->update("chamado", $dados);
+            
+            
+            if($query){
+                
+                $agora = date('Y-m-d H:i:s');
+                
+                $i = $this->input->post('statuschamado');
+                
+                if($i == 'aguardando'){
+                    
+                   $status =  'Aguardando Atendimento';
+                   
+                }elseif($i == 'ematendimento'){
+                    
+                    $status = 'Em Atendimento';
+                    
+                }
+                
+                $historico = array(
+                    
+                "nometecnico" => $this->input->post('nometecnico'),
+                "emailtecnico" => $this->input->post('emailtecnico'),
+                "ramaltecnico" => $this->input->post('ramaltecnico'),
+                "justificativa" => $this->input->post('justificativa'),
+                "usuarios_fk" => $this->input->post('usuarios_fk'),
+                "chamado_fk" => $this->input->post('idchamado'),
+                "statuschamado" => $status,
+                "data" => $agora
+                
+            );
+                 $query = $this->db->insert("historico", $historico);
+            }
             
         }else{
             
@@ -247,6 +267,18 @@ class chamado_model extends CI_Model{
         }
         
         return $this->db->get();
+        
+    }
+    
+    
+    public function m_historico_datalhado($idhistorico = NULL) {
+        
+        if($idhistorico != NULL){
+            
+            $this->db->where("idhistorico", $idhistorico);
+        }
+        
+        return $this->db->get('historico');
         
     }
     

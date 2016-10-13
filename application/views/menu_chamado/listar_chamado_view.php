@@ -113,9 +113,9 @@
     			idchamado: idchamado
     		}, function (data){
     			$('#nomechamado').val(data.nomechamado);
-    			$('#gravadora').val(data.gravadora);
     			$('#idchamado').val(data.idchamado);//aqui eu seto a o input hidden com o id do cliente, para que a edição funcione. Em cada tela aberta, eu seto o id do cliente. 
     			$('#nome').val(data.nome); 
+    			$('#codusuario').val(data.codusuario); 
     			$('#email').val(data.email); 
     			$('#ramal').val(data.ramal); 
     			$('#descricao').val(data.descricao); 
@@ -160,7 +160,6 @@
         function limparCampo(){
             $("#idchamado").val(''); 
             $("#nomechamado").val(''); 
-            $("#gravadora").val(''); 
         }
         
         function carregaDadosNovoJSon(id){
@@ -178,7 +177,7 @@
     		$.post(base_url+'/index.php/usuario/usuario_controller/dados_usuario', {
     			id: id
     		}, function (data){
-    			$('#idtec').val(data.id); 
+    			$('#codusuario').val(data.id); 
     			$('#nometec').val(data.nome); 
     			$('#emailtec').val(data.email); 
     			$('#ramaltec').val(data.ramal);  
@@ -282,7 +281,6 @@
                     <tr>
                     <th style="text-align: center;">Código do Chamado</th>
                     <th style="text-align: center;">Título do Chamado</th>
-                    <th style="text-align: center;">Gravadora</th>
                     <th style="text-align: center;">Data e Hora Inicial</th>
                     <th style="text-align: center;">Data e Hora Final</th>
                     <th style="text-align: center;">SLA</th>
@@ -296,9 +294,8 @@
                 <tr>
                     <td style="text-align: center;"><?php echo $linha['idchamado']?></td>
                     <td style="text-align: center;"><?php echo $linha['nomechamado'] ?></td>
-                    <td style="text-align: center;"><?php echo $linha['gravadora']?></td>
-                    <td style="text-align: center;"><?php echo $linha['datainicial'] ?></td>
-                    <td style="text-align: center;"><?php echo $linha['datafinal'] ?></td>
+                    <td style="text-align: center;"><?php $i = $linha['datainicial']; echo date('d/m/Y H:i:s', strtotime($i));?></td>
+                    <td style="text-align: center;"><?php $j = $linha['datafinal']; echo date('d/m/Y H:i:s', strtotime($j));?></td>
                     <td>
                     <div class="progress">
                         <div class="progress-bar-<?php echo $linha['class']?>" role="progressbar" aria-valuenow="70"
@@ -326,7 +323,6 @@
                     <tr>
                     <th style="text-align: center;">Código do Chamado</th>
                     <th style="text-align: center;">Título do Chamado</th>
-                    <th style="text-align: center;">Gravadora</th>
                     <th style="text-align: center;">Data e Hora Inicial</th>
                     <th style="text-align: center;">Data e Hora Final</th>
                     <th style="text-align: center;">SLA</th>
@@ -340,7 +336,6 @@
                 <tr>
                     <td style="text-align: center;"><?php echo $linha['idchamado']?></td>
                     <td style="text-align: center;"><?php echo $linha['nomechamado'] ?></td>
-                    <td style="text-align: center;"><?php echo $linha['gravadora']?></td>
                     <td style="text-align: center;"><?php echo $linha['datainicial'] ?></td>
                     <td style="text-align: center;"><?php echo $linha['datafinal'] ?></td>
                     <td>
@@ -418,7 +413,7 @@
                                 
                           <div class="form-group">
                             <label for="exampleTextarea">Descrição</label>
-                            <textarea class="form-control" id="descricao" name="descricao" rows="3"></textarea>
+                            <textarea class="form-control" id="descricao" name="descricao" rows="3" maxlength="499"></textarea>
                           </div>
                             
 			  <input type="hidden" name="idchamado" id="idchamado" value="" />
@@ -454,25 +449,25 @@
                                     <input type="text" class="form-control" id="email"  name='email' readonly="true">
                                 </div>
                          </div>  
-                            
+                            <!--DADOS AO AMARRAR CHAMADO AO TECNICO-->
                             <div class="tab-pane" id="third-tab">
                                  <div class="form-group">
                                     <label for="nome">Código do Técnico</label>
-                                    <input type="text" class="form-control" id="idtec"  name='idtec'readonly="true">
+                                    <input type="text" class="form-control" id="codusuario"  name='usuarios_fk'readonly="true">
                                 </div>
                             
                                  <div class="form-group">
                                     <label for="nome">Nome do Técnico</label>
-                                    <input type="text" class="form-control" id="nometec"  name='nometec'readonly="true">
+                                    <input type="text" class="form-control" id="nometec"  name='nometecnico'readonly="true">
                                 </div>
                                 <div class="form-group">
                                     <label for="nome">Ramal do Técnico</label>
-                                    <input type="text" class="form-control" id="ramaltec"  name='ramaltec' readonly="true">
+                                    <input type="text" class="form-control" id="ramaltec"  name='ramaltecnico' readonly="true">
                                 </div>
                          
                              <div class="form-group">
                                     <label for="nome">E-mail do Técnico</label>
-                                    <input type="text" class="form-control" id="emailtec"  name='emailtec' readonly="true">
+                                    <input type="text" class="form-control" id="emailtec"  name='emailtecnico' readonly="true">
                                 </div>
                                 
                                     <div class="form-group">
@@ -489,27 +484,11 @@
                             
                             <div class="tab-pane" id="fourth-tab">
                               
-                                <table class="display table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%" id="">
-                                    <thead>
-                                        <tr>
-                                        <th style="text-align: center;">Técnico</th>
-                                        <th style="text-align: center;">Ramal</th>
-                                        <th style="text-align: center;">E-mail</th>
-                                        <th style="text-align: center;">Data</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-
-                                    <?php  ?> 
-
-                                    <tr>
-                                        <td style="text-align: center;"><input type="text" class="form-control" id="nometecnico"  name='nometecnico' readonly="true"></td>
-                                        <td style="text-align: center;"></td>
-                                        <td style="text-align: center;"></td>
-                                        <td style="text-align: center;"></td>
-                                    </tr>
-                                    </tbody>
-                                </table>
+                            <div class="form-group">
+                            <label for="exampleTextarea">Justificativa</label>
+                            <textarea class="form-control" id="descricao" name="justificativa" rows="3" maxlength="499"></textarea>
+                            </div>
+                                
                             </div>
                         </div>  
 			</form>	    
