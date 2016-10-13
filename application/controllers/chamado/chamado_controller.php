@@ -175,6 +175,7 @@ class Chamado_controller extends CI_Controller {
         
         function historico_detalhado($idchamado = null){
             
+            
             $this->load->model('chamado/chamado_model');
             
             $this->load->helper('valida_login/valida_helper');
@@ -207,6 +208,7 @@ class Chamado_controller extends CI_Controller {
             $variaveis['historico_detalhado'] = $this->chamado_model->m_historico($idchamado);
             
             $this->load->view('menu_chamado/historico_chamado_view',$variaveis);
+            
         }
 }
 

@@ -237,9 +237,13 @@ class chamado_model extends CI_Model{
         
         if($idchamado != NULL){
             $this->db->select('*');    
-            $this->db->from('historico');
-            $this->db->join('chamado', 'historico.chamado_fk = chamado.idchamado');
-            $this->db->where("chamado_fk", $idchamado);
+            $this->db->from('chamado');
+            //$this->db->join('historico', 'historico.chamado_fk = chamado.idchamado');
+            $this->db->join('setor', 'chamado.setor_fk = setor.idsetor');
+            $this->db->join('categoria', 'chamado.categoria_fk = categoria.idcategoria');
+            $this->db->join('subcategoria', 'chamado.subcategoria_fk = subcategoria.idsubcategoria');
+            $this->db->join('usuarios', 'chamado.usuarios_fk = usuarios.id');
+            $this->db->where("idchamado", $idchamado);
         }
         
         return $this->db->get();

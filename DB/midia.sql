@@ -53,9 +53,9 @@ CREATE TABLE IF NOT EXISTS `chamado` (
 
 CREATE TABLE IF NOT EXISTS `historico` (
   `idhistorico` int primary key auto_increment,
-  `nometec` varchar(32) NOT NULL,
-  `ramaltec` varchar(32) NOT NULL,
-  `emailtec` varchar(32) NOT NULL,
+  `nometecnico` varchar(32) NOT NULL,
+  `ramaltecnico` varchar(32) NOT NULL,
+  `emailtecnico` varchar(32) NOT NULL,
   `data` datetime NOT NULL,
   `chamado_fk`  int NOT NULL,
   foreign key(chamado_fk) references chamado(idchamado)

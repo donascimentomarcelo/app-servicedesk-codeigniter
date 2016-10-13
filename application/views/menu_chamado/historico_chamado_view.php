@@ -2,36 +2,36 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>Abrir Chamado</title>
+	<title>Histórico de Chamado</title>
 
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-        <link href="../../../bootstrap/css/cd.css" rel="stylesheet" type="text/css"/>
+        <link href="../../../../bootstrap/css/cd.css" rel="stylesheet" type="text/css"/>
         
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-        <link href="../../../bootstrap/css/cd.css" rel="stylesheet" type="text/css"/>
+        <link href="../../../../bootstrap/css/cd.css" rel="stylesheet" type="text/css"/>
         
-        <link href="../../../bootstrap/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../../../../bootstrap/css/jquery.dataTables.min_h.css" rel="stylesheet" type="text/css"/>
         <link href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <link href="https://cdn.datatables.net/responsive/2.1.0/css/responsive.bootstrap.min.css" rel="stylesheet" type="text/css"/>
         
-        <script src="../../../bootstrap/js/jquery.js" type="text/javascript"></script>
-        <script src="../../../bootstrap/js/jquery.dataTables.min.js" type="text/javascript"></script>
-        <script src="../../../bootstrap/js/jquery.form.js" type="text/javascript"></script>
-        <script src="../../../bootstrap/js/bootbox.js" type="text/javascript"></script>
-        <script src="../../../bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-        <script src="../../../bootstrap/js/jquery.forms.js" type="text/javascript"></script>
-        <script src="../../../bootstrap/js/bootbox.min.js" type="text/javascript"></script>
+        <script src="../../../../bootstrap/js/jquery.js" type="text/javascript"></script>
+        <script src="../../../../bootstrap/js/jquery.dataTables.min.js" type="text/javascript"></script>
+        <script src="../../../../bootstrap/js/jquery.form.js" type="text/javascript"></script>
+        <script src="../../../../bootstrap/js/bootbox.js" type="text/javascript"></script>
+        <script src="../../../../bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="../../../../bootstrap/js/jquery.forms.js" type="text/javascript"></script>
+        <script src="../../../../bootstrap/js/bootbox.min.js" type="text/javascript"></script>
         
-        <script src="../../../bootstrap/js/jquery.validate.js" type="text/javascript"></script>
+        <script src="../../../../bootstrap/js/jquery.validate.js" type="text/javascript"></script>
         
-        <script src="../../../sweet/sweetalert-dev.js" type="text/javascript"></script>
-        <script src="../../../sweet/sweetalert.min.js" type="text/javascript"></script>
+        <script src="../../../../sweet/sweetalert-dev.js" type="text/javascript"></script>
+        <script src="../../../../sweet/sweetalert.min.js" type="text/javascript"></script>
         
-        <link href="../../../sweet/sweetalert.css" rel="stylesheet" type="text/css"/>
+        <link href="../../../../sweet/sweetalert.css" rel="stylesheet" type="text/css"/>
         
-        <link href="../../../craftpip-jquery/css/jquery-confirm.css" rel="stylesheet" type="text/css"/>
-        <script src="../../../craftpip-jquery/js/jquery-confirm.js" type="text/javascript"></script>
+        <link href="../../../../craftpip-jquery/css/jquery-confirm.css" rel="stylesheet" type="text/css"/>
+        <script src="../../../../craftpip-jquery/js/jquery-confirm.js" type="text/javascript"></script>
         
         <script type="text/javascript">
         
@@ -252,7 +252,7 @@
 <body>
 
 <div id="container">
-    <h1><?php foreach($preenche_dados -> result() as $dados):?> <img src="../../.<?php echo $dados->imagem;?>" class="img-circle" width="50px" height="50px"> <?php endforeach;?> <?php echo $this->session->userdata('nome');?> </h1>
+    <h1><?php foreach($preenche_dados -> result() as $dados):?> <img src="../../../.<?php echo $dados->imagem;?>" class="img-circle" width="50px" height="50px"> <?php endforeach;?> <?php echo $this->session->userdata('nome');?> </h1>
 
               <?php if($this->session->userdata('perfil') == 'administrador'){
               
@@ -272,7 +272,7 @@
              <div id="atendimento">
                <nav class="navbar navbar-inverse">
                     <div class="navbar-header">
-                      <a class="navbar-brand" href="#">Lista de chamados aguardando atendimento</a>
+                      <a class="navbar-brand" href="#">Histórico detalhado dos chamados</a>
                     </div>
                  
               </nav>
@@ -282,11 +282,12 @@
 	</div>
         
          <!--START MODAL-->
-        <div class="modal fade bs-example-modal-lg" id="modalEditarCliente" data-backdrop="static" >
-	  <div class="modal-dialog">
+         <div class="row">
+         <div class="col-xs-12 col-md-8">
+         <div class="modal-dialog" style="margin-left: 4%; width: 70%;">
 	    <div class="modal-content">
 	      <div class="modal-header">
-	        <h4 class="modal-title">Abrir Chamado</h4>
+	        <h4 class="modal-title">Dados do Chamado</h4>
 	      </div>
                 <ul class="nav nav-tabs">
                         <li class="active"><a href="#first-tab" data-toggle="tab">Dados do chamado</a></li>
@@ -295,13 +296,13 @@
                         <li><a href="#fourth-tab" data-toggle="tab">Histórico</a></li>
                 </ul>
 	      <div class="modal-body">
-	      	
-			<form role="form" method="post" action="<?= base_url('index.php/chamado/chamado_controller/salvar_chamado')?>" id="formulario_chamado">
+                <form role="form"  id="formulario_chamado">
+                    <?php foreach($historico_detalhado -> result() as $linha):?>
                         <div class="tab-content">
                             <div class="tab-pane active in" id="first-tab">
 			  <div class="form-group">
 			    <label for="nome">Título do Chamado</label>
-			    <input type="text" class="form-control" id="nomechamado"  name='nomechamado'>
+			    <input type="text" class="form-control" id="nomechamado" value="<?php echo $linha->nomechamado?>"  name='nomechamado'>
 			  </div>
                             
 			 
@@ -309,11 +310,11 @@
 			    <label for="categoria">Categoria</label>
                             <select class="form-control" name="categoria_fk" id="categoria_fk" required="required" onchange='buscar_subcategoria($(this).val())'>
                                 
-                                <option value="">Selecione uma categoria</option>
+                                <option value="<?php echo $linha->categoria_fk?>"><?php echo $linha->nomecategoria?></option>
                                 <!--AQUI!-->
-                                 <?php foreach ($categoria -> result() as $linha): ?> 
+                                 <?php foreach ($categoria -> result() as $linha1): ?> 
                                 
-                                <option value="<?php echo $linha->idcategoria?>"><?php echo $linha->nomecategoria?></option>
+                                <option value="<?php echo $linha1->idcategoria?>"><?php echo $linha1->nomecategoria?></option>
                                 
                                 <?php endforeach;?>
                                 
@@ -325,11 +326,11 @@
                             <label for="exampleSelect1">Subcategoria</label>
                             
                             <select class="form-control" name="subcategoria_fk" id="subcategoria" required="required" onchange='buscar_sla($(this).val())'>
-                             <option value="">Selecione uma categoria</option>
+                             <option value="<?php echo $linha->subcategoria_fk?>"><?php echo $linha->nomesubcategoria?></option>
                                 <!--AQUI!-->
-                                 <?php foreach ($subcategoria -> result() as $linha): ?> 
+                                 <?php foreach ($subcategoria -> result() as $linha2): ?> 
                                 
-                                <option value="<?php echo $linha->idsubcategoria?>"><?php echo $linha->nomesubcategoria?></option>
+                                <option value="<?php echo $linha2->idsubcategoria?>"><?php echo $linha2->nomesubcategoria?></option>
                                 
                                 <?php endforeach;?>
                             </select>
@@ -340,7 +341,7 @@
                                 
                           <div class="form-group">
                             <label for="exampleTextarea">Descrição</label>
-                            <textarea class="form-control" id="descricao" name="descricao" rows="3"></textarea>
+                            <textarea class="form-control" id="descricao" name="descricao" rows="3" ><?php echo $linha->descricao?></textarea>
                           </div>
                             
 			  <input type="hidden" name="idchamado" id="idchamado" value="" />
@@ -350,20 +351,20 @@
                           
                                 <div class="form-group">
                                     <label for="nome">Nome do Solicitante</label>
-                                    <input type="text" class="form-control" id="nome"  name='nome'readonly="true">
+                                    <input type="text" class="form-control" id="nome" value="<?php echo $linha->nome?>"  name='nome'readonly="true">
                                 </div>
                                 <div class="form-group">
                                     <label for="nome">Ramal</label>
-                                    <input type="text" class="form-control" id="ramal"  name='ramal' readonly="true">
+                                    <input type="text" class="form-control" id="ramal" value="<?php echo $linha->ramal?>"  name='ramal' readonly="true">
                                 </div>
                               
                            <div class="form-group">
 			    <label for="setor">Setor</label>
-                            <select class="form-control" name="setor_fk" id="setor_fk" required="required">
+                            <select class="form-control" name="setor_fk" id="setor_fk" disabled="true">
                                 
-                                <option value="">Selecione um Setor</option>
+                                  <option value="<?php echo $linha->setor_fk?>"><?php echo $linha->nomesetor?></option>
                                 
-                                 <?php foreach ($setor_ativo -> result() as $linha): ?> 
+                                 <?php foreach ($setor_ativo -> result() as $linha1): ?> 
                                 
                                 <option value="<?php echo $linha->idsetor?>"><?php echo $linha->nomesetor?></option>
                                 
@@ -373,7 +374,7 @@
 			  </div>
                              <div class="form-group">
                                     <label for="nome">E-mail</label>
-                                    <input type="text" class="form-control" id="email"  name='email' readonly="true">
+                                    <input type="text" class="form-control" id="email" value="<?php echo $linha->email?>"  name='email' readonly="true">
                                 </div>
                          </div>  
                             
@@ -385,7 +386,7 @@
                             
                                  <div class="form-group">
                                     <label for="nome">Nome do Técnico</label>
-                                    <input type="text" class="form-control" id="nometec"  name='nometec'readonly="true">
+                                    <input type="text" class="form-control" id="nometec"  name='nometec'readonly="true" value="<?php set_value('nometecnico') ? : (isset($nometecnico) ? $nometecnico : '')?>">
                                 </div>
                                 <div class="form-group">
                                     <label for="nome">Ramal do Técnico</label>
@@ -434,8 +435,9 @@
                                 </table>
                             </div>
                         </div>  
-			</form>	    
-			    
+                    </form>	    
+                <?php endforeach;?>
+                 
 	      </div>
 	      <div class="modal-footer">
                   <?php $id = $this->session->userdata('id')?>
@@ -449,8 +451,33 @@
 	      </div>
 	    </div>
 	  </div>
-	</div>
-        
+          </div>
+          <div class="col-xs-6 col-md-4" style="margin-left: -20%;">   
+          <div style="margin-left: 5%;margin-top: 4%; width: 160%;">
+                      
+                      <table class="display table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%" id="">
+                                    <thead>
+                                        <tr>
+                                        <th style="text-align: center;">Técnico</th>
+                                        <th style="text-align: center;">Ramal</th>
+                                        <th style="text-align: center;">Data</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                    <?php  ?> 
+
+                                    <tr>
+                                        <td style="text-align: center;"></td>
+                                        <td style="text-align: center;"></td>
+                                        <td style="text-align: center;"></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                      
+                  </div>	    
+        </div>
+</div>
         
 	<p class="footer"><a href="javascript: history.back()">Voltar</a> <strong>{elapsed_time}</strong> seconds</p>
 </div>
