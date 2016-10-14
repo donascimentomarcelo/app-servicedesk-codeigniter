@@ -311,13 +311,13 @@
 	  <div class="modal-dialog">
 	    <div class="modal-content">
 	      <div class="modal-header">
-	        <h4 class="modal-title">Abrir Chamado</h4>
+	        <h4 class="modal-title">Visualizar Chamado</h4>
 	      </div>
                 <ul class="nav nav-tabs">
                         <li class="active"><a href="#first-tab" data-toggle="tab">Dados do chamado</a></li>
                         <li><a href="#second-tab" data-toggle="tab">Dados do Usuário</a></li>
                         <li><a href="#third-tab" data-toggle="tab">Dados do Técnico</a></li>
-                        <li><a href="#fourth-tab" data-toggle="tab">Histórico</a></li>
+                       
                 </ul>
 	      <div class="modal-body">
 	      	
@@ -433,31 +433,7 @@
                             </div>
                                 
                             </div>
-                            
-                            <div class="tab-pane" id="fourth-tab">
-                              
-                                <table class="display table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%" id="">
-                                    <thead>
-                                        <tr>
-                                        <th style="text-align: center;">Técnico</th>
-                                        <th style="text-align: center;">Ramal</th>
-                                        <th style="text-align: center;">E-mail</th>
-                                        <th style="text-align: center;">Data</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-
-                                    <?php  ?> 
-
-                                    <tr>
-                                        <td style="text-align: center;"><input type="text" class="form-control" id="nometecnico"  name='nometecnico' readonly="true"></td>
-                                        <td style="text-align: center;"></td>
-                                        <td style="text-align: center;"></td>
-                                        <td style="text-align: center;"></td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </div>
+                           
                         </div>  
 			</form>	    
 			    
@@ -479,8 +455,8 @@
                 <ul class="nav nav-tabs">
                         <li class="active"><a href="#first1-tab" data-toggle="tab">Dados do chamado</a></li>
                         <li><a href="#second2-tab" data-toggle="tab">Dados do Usuário</a></li>
-                        <li><a href="#third3-tab" data-toggle="tab">Dados do Técnico</a></li>
-                        <li><a href="#fourth4-tab" data-toggle="tab">Histórico</a></li>
+                        
+                        
                 </ul>
 	      <div class="modal-body">
 	      	
@@ -559,52 +535,8 @@
                                 </div>
                          </div>  
                             
-                            <div class="tab-pane" id="third3-tab">
-                                 <div class="form-group">
-                                    <label for="nome">Código do Técnico</label>
-                                    <input type="text" class="form-control" id="codusuario"  name='usuarios_fk'readonly="true">
-                                </div>
-                            
-                                 <div class="form-group">
-                                    <label for="nome">Nome do Técnico</label>
-                                    <input type="text" class="form-control" id="nometec"  name='nometec'readonly="true">
-                                </div>
-                                <div class="form-group">
-                                    <label for="nome">Ramal do Técnico</label>
-                                    <input type="text" class="form-control" id="ramaltec"  name='ramaltec' readonly="true">
-                                </div>
+                           
                          
-                             <div class="form-group">
-                                    <label for="nome">E-mail do Técnico</label>
-                                    <input type="text" class="form-control" id="emailtec"  name='emailtec' readonly="true">
-                                </div>
-                                
-                            </div>
-                            
-                            <div class="tab-pane" id="fourth4-tab">
-                              
-                                <table class="display table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%" id="">
-                                    <thead>
-                                        <tr>
-                                        <th style="text-align: center;">Técnico</th>
-                                        <th style="text-align: center;">Ramal</th>
-                                        <th style="text-align: center;">E-mail</th>
-                                        <th style="text-align: center;">Data</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-
-                                    <?php  ?> 
-
-                                    <tr>
-                                        <td style="text-align: center;"></td>
-                                        <td style="text-align: center;"></td>
-                                        <td style="text-align: center;"></td>
-                                        <td style="text-align: center;"></td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </div>
                         </div>  
 			</form>	    
 			    

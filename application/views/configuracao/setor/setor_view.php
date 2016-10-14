@@ -10,6 +10,9 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
         <link href="../../../bootstrap/css/cd.css" rel="stylesheet" type="text/css"/>
+        <link href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <link href="https://cdn.datatables.net/responsive/2.1.0/css/responsive.bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        
         
         <link href="../../../bootstrap/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
         
@@ -190,7 +193,7 @@
 	<h1>Manter Usuário</h1>
         <div id="body">
 
-           <table cellspacing="0"  cellpadding="0" border="0" class="display" id="tabela1">
+           <table class="display table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%" id="tabela1">
                 <thead>
                     <tr>
                     <th>Código do Setor</th>

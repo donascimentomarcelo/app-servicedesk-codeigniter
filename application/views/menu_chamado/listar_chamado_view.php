@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>Abrir Chamado</title>
+	<title>Atander Chamado</title>
 
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
         <link href="../../../bootstrap/css/cd.css" rel="stylesheet" type="text/css"/>
@@ -241,10 +241,26 @@
         }
         
         $(function(){
-	$("#amarrar").click(function(){
-		$("#salvar").removeAttr('disabled');
-	});	
-})
+            $("#amarrar").click(function(){
+                    $("#salvar").removeAttr('disabled');
+            });	
+        });
+        
+         $(function(){
+            $(".allinput input:radio").click(function(){
+                for( i=0; i < $(this).length; i++ ){
+                    if($(this).is(":checked")){
+                        if($(this).val() == 'encerrar'){
+                          $("#justificativa").removeAttr("disabled");               
+                        } else{
+                          $("#justificativa").attr("disabled","disabled");
+                        }
+                     }
+                 }                     
+            });
+            
+        });
+        
         </script>
 
 </head>
@@ -336,8 +352,8 @@
                 <tr>
                     <td style="text-align: center;"><?php echo $linha['idchamado']?></td>
                     <td style="text-align: center;"><?php echo $linha['nomechamado'] ?></td>
-                    <td style="text-align: center;"><?php echo $linha['datainicial'] ?></td>
-                    <td style="text-align: center;"><?php echo $linha['datafinal'] ?></td>
+                    <td style="text-align: center;"><?php $i = $linha['datainicial']; echo date('d/m/Y H:i:s', strtotime($i)); ?></td>
+                    <td style="text-align: center;"><?php $j = $linha['datafinal']; echo date('d/m/Y H:i:s', strtotime($j));?></td>
                     <td>
                     <div class="progress">
                         <div class="progress-bar-<?php echo $linha['class']?>" role="progressbar" aria-valuenow="70"
@@ -470,14 +486,19 @@
                                     <input type="text" class="form-control" id="emailtec"  name='emailtecnico' readonly="true">
                                 </div>
                                 
-                                    <div class="form-group">
-                              <label for="email">Status:</label><br>
+                            <div class="form-group">
+                            <label for="email">Status:</label><br>
+                            <div class="allinput">
 			    <label class="radio-inline">
                                 <input type="radio" name="statuschamado" id="aguardando" value="aguardando" checked="checked"> Aguardando atendimento
                               </label>
                               <label class="radio-inline">
                                 <input type="radio" name="statuschamado" id="ematendimento" value="ematendimento"> Atender
                               </label>
+                              <label class="radio-inline">
+                                <input type="radio" name="statuschamado" id="encerrar" value="encerrar"> Encerrar
+                              </label>
+                            </div>
                             </div>
                                 
                             </div>
@@ -486,7 +507,7 @@
                               
                             <div class="form-group">
                             <label for="exampleTextarea">Justificativa</label>
-                            <textarea class="form-control" id="descricao" name="justificativa" rows="3" maxlength="499"></textarea>
+                            <textarea class="form-control" id="justificativa" name="justificativa" rows="3" maxlength="499" disabled required="required"></textarea>
                             </div>
                                 
                             </div>
@@ -502,7 +523,7 @@
                 
 	       
               <!-- <button type="button" id="salvar" class="btn btn-primary"  disabled="disabled" onclick="$('#formulario_chamado').submit()">Salvar</button>-->
-               <button type="button" id="salvar" class="btn btn-primary"   onclick="$('#formulario_chamado').submit()">Salvar</button>
+               <button type="button" disabled="disabled" id="salvar" class="btn btn-primary"   onclick="$('#formulario_chamado').submit()">Salvar</button>
 	      </div>
 	    </div>
 	  </div>

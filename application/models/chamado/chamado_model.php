@@ -47,6 +47,13 @@ class chamado_model extends CI_Model{
                     
                     $status = 'Em Atendimento';
                     
+                }elseif($i == 'encerrar'){
+                    
+                    $status = 'Encerrado';
+                    
+                }elseif($i == 'reabrir'){
+                    
+                    $status = 'Reaberto';
                 }
                 
                 $historico = array(
@@ -66,7 +73,6 @@ class chamado_model extends CI_Model{
             
         }else{
             
-    
             $sla = $this->input->post('sla');
             
             $sla = (int)$sla;
@@ -77,7 +83,6 @@ class chamado_model extends CI_Model{
             $dados = array(
                 "usuarios_fk" => $id,
                 "nomechamado" => $this->input->post('nomechamado'),
-                "gravadora" => $this->input->post('gravadora'),
                 "nome" => $this->input->post('nome'),
                 "email" => $this->input->post('email'),
                 "ramal" => $this->input->post('ramal'),
@@ -86,6 +91,7 @@ class chamado_model extends CI_Model{
                 "subcategoria_fk" => $this->input->post('subcategoria_fk'),
                 "categoria_fk" => $this->input->post('categoria_fk'),
                 "setor_fk" => $this->input->post('setor_fk'),
+                "statuschamado" => 'aguardando',
                 "datainicial" => $inicio,
                 "datafinal" => $fim
                 

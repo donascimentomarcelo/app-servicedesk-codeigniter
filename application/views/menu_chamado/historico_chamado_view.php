@@ -88,10 +88,10 @@
         }
         
         $(function(){
-	$("#amarrar").click(function(){
-		$("#salvar").removeAttr('disabled');
-	});	
-})
+            $("#amarrar").click(function(){
+                    $("#salvar").removeAttr('disabled');
+            });	
+        })
 
         </script>
 
@@ -254,13 +254,14 @@
                                 </table>
                             </div>
                             <div class="tab-pane" id="fifth-tab">
+                                <h1 style="text-align: center;">Histórico de chamados</h1>
                                  <?php foreach ($historico -> result() as $coluna):?> 
                                 
                                 <div class="row">
-                                    <div class="col-xs-9">Nome: <?php echo $coluna->nometecnico ?></div>
-                                    <div class="col-xs-6">Status: <?php echo $coluna->statuschamado; ?></div>
-                                    <div class="col-xs-9">Data: <?php echo $coluna->data; ?></div>
-                                    <div class="col-xs-4">Justificativa:<br><?php echo $coluna->justificativa;?></div>
+                                    <div class="col-xs-9"><b>Nome</b>: <?php echo $coluna->nometecnico ?></div>
+                                    <div class="col-xs-6"><b>Status</b>: <?php echo $coluna->statuschamado; ?></div>
+                                    <div class="col-xs-9"><b>Data</b>: <?php $i = $coluna->data; echo date('d/m/Y H:i:s', strtotime($i));?></div>
+                                    <div class="col-xs-4"><div id="divjustificativa"><b>Justificativa</b>: <?php echo $coluna->justificativa;?></div></div>
                                 </div>
                                     <hr align="center" width="100%" size="2" color=#00000>
                                   
@@ -311,6 +312,13 @@
         
 	<p class="footer"><a href="javascript: history.back()">Voltar</a> <strong>{elapsed_time}</strong> seconds</p>
 </div>
-
+<style type="text/css">
+#divjustificativa{
+    width:100%;
+    height:100%;
+    background-color:rgba(0, 0, 0, 0.02);
+    border-radius: 10px;
+    }
+</style>
 </body>
 </html>
