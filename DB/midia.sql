@@ -52,6 +52,7 @@ CREATE TABLE IF NOT EXISTS `chamado` (
 
 
 CREATE TABLE IF NOT EXISTS `historico` (
+  `idhistorico` int primary key auto_increment,
   `nometecnico` varchar(50) NOT NULL,
   `ramaltecnico` varchar(32) NOT NULL,
   `emailtecnico` varchar(32) NOT NULL,

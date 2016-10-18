@@ -292,8 +292,12 @@
                       </div>
                     </td>
                      <td style=" width: 30%;"><?php $i = $linha['descricao'];
+                     if(isset($i)){
                      $j = 80;
                      echo substr_replace($i, (strlen($i) > $j ? '...' : ''), $j);
+                     }else{
+                         echo'Nenhuma descrição encontrada...';
+                     }
                      ?></td>
                    <td style="text-align: center; width: 10%;">
                         <a style="text-align: center;" href="javascript:;"  onclick="janelaNovoCd(<?= $linha['idchamado']?>)"><button type="button" class="glyphicon glyphicon-eye-open"></button></a>
@@ -421,18 +425,7 @@
                                     <label for="nome">E-mail do Técnico</label>
                                     <input type="text" class="form-control" id="emailtec"  name='emailtec' readonly="true">
                                 </div>
-                                
-                                    <div class="form-group">
-                              <label for="email">Status:</label><br>
-			    <label class="radio-inline">
-                                <input type="radio" name="statuschamado" id="aguardando" value="aguardando" checked="checked" readonly="true"> Aguardando atendimento
-                              </label>
-                              <label class="radio-inline">
-                                <input type="radio" name="statuschamado" id="ematendimento" value="ematendimento" readonly="true"> Atender
-                              </label>
-                            </div>
-                                
-                            </div>
+                              </div>
                            
                         </div>  
 			</form>	    

@@ -92,7 +92,7 @@
                                         
     					//document.location.href = document.location.href;
                                         success: minhaCallCack();
-                                        limparCampo();
+                                        //limparCampo();
 				    	
     				}else{
                                     alert(data);
@@ -126,6 +126,15 @@
     			$('#setor_fk').val(data.setor_fk); 
     			$('#subcategoria').val(data.subcategoria_fk); 
     			$('#categoria_fk').val(data.categoria_fk); 
+                        
+                         if( data.statuschamado == 'ematendimento'){
+                        $("#salvar").removeAttr('disabled');
+                        $("#amarrar").hide();
+                        }else{
+                        $("#salvar").addAttr('disabled');
+                        
+                        }
+                        
     		}, 'json');
     	}
     
@@ -146,14 +155,12 @@
     		}, function (data){
     		var items = [];
                 $.each( data, function( key, val ) {
-                  items.push( "<li id='" + key + "'>" + val + "</li>" );
-                  alert(val);
+                  $('table').html(items.push( "<td id='" + key + "'>" + val + "</td>" ));
+                 //items.push( "<td id='" + key + "'>" + val + "</td>" );
+                 // alert(val);
                 });
 
-                $( "<ul/>", {
-                  "class": "my-new-list",
-                  html: items.join( "" )
-                }).appendTo( "body" );
+                $('.historico').append(items);
     		}, 'json');
     	}
         
@@ -250,7 +257,7 @@
             $(".allinput input:radio").click(function(){
                 for( i=0; i < $(this).length; i++ ){
                     if($(this).is(":checked")){
-                        if($(this).val() == 'encerrar'){
+                        if($(this).val() == 'encerrar' || $(this).val() == 'aguardando'){
                           $("#justificativa").removeAttr("disabled");               
                         } else{
                           $("#justificativa").attr("disabled","disabled");
@@ -381,7 +388,8 @@
                         <li class="active"><a href="#first-tab" data-toggle="tab">Dados do chamado</a></li>
                         <li><a href="#second-tab" data-toggle="tab">Dados do Usuário</a></li>
                         <li><a href="#third-tab" data-toggle="tab">Dados do Técnico</a></li>
-                        <li><a href="#fourth-tab" data-toggle="tab">Histórico</a></li>
+                        <li><a href="#fourth-tab" data-toggle="tab">Justificativa</a></li>
+                        <li><a href="#fifth-tab" data-toggle="tab">Histórico</a></li>
                 </ul>
 	      <div class="modal-body">
 	      	
@@ -509,7 +517,12 @@
                             <label for="exampleTextarea">Justificativa</label>
                             <textarea class="form-control" id="justificativa" name="justificativa" rows="3" maxlength="499" disabled required="required"></textarea>
                             </div>
-                                
+                          
+                            </div>
+                            <div class="tab-pane" id="fifth-tab">
+                                <table>
+                                <tr class="historico">
+                                </table>
                             </div>
                         </div>  
 			</form>	    
@@ -517,7 +530,7 @@
 	      </div>
 	      <div class="modal-footer">
                   <?php $id = $this->session->userdata('id')?>
-	        <button type="button" class="btn btn-default" data-dismiss="modal" onclick="refresh()" >Fechar</button>
+	        <button type="button"  class="btn btn-default" data-dismiss="modal" onclick="refresh()" >Fechar</button>
               
 	        <button type="button" id="amarrar" class="btn btn-default" onclick="amarrar(<?= $id?>)">Amarrar</button>
                 

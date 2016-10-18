@@ -53,8 +53,11 @@
     		$.post(base_url+'/index.php/chamado/chamado_controller/historico_datalhado', {
     			idhistorico: idhistorico
     		}, function (data){
+                        if(data.justificativa == '0'){
+                        $('#justificativa').val(data.justificativa = 'Nenhuma justificativa encontrada.') ;   
+                        }else{
     			$('#justificativa').val(data.justificativa);
-    			 
+                    }
     		}, 'json');
     	}
     
@@ -239,13 +242,21 @@
                                         <td style="text-align: center; width: 18px;"><?php echo $coluna->nometecnico?></td>
                                         <td style="text-align: center; width: 10px;"><?php echo $coluna->ramaltecnico?></td>
                                         <td style="text-align: center; width: 20px;"><?php echo $coluna->emailtecnico?></td>
-                                        <td style="text-align: center; width: 12px;"><?php echo $coluna->data?></td>
+                                        <td style="text-align: center; width: 12px;"><?php $i = $coluna->data; echo date('d/m/Y H:i:s', strtotime($i));?></td>
                                         <td style="text-align: center; width: 18px;"><?php echo $coluna->statuschamado?></td>
                                         <td style=" width: 40%; "><a style="text-align: center;" href="javascript:;"  onclick="janelaDescricao(<?= $coluna->idhistorico ?>)"><button type="button" class="glyphicon glyphicon-eye-open"></button></a>
                                         <?php 
                                         $i = $coluna->justificativa;
                                         $j = 120;
-                                        echo substr_replace($i, (strlen($i) > $j ? '...' : ''), $j); ?></td>
+                                        if($i != '0'){
+                                            
+                                        echo substr_replace($i, (strlen($i) > $j ? '...' : ''), $j);
+                                        
+                                        }else{
+                                            
+                                            echo'Nenhuma justificativa encontrada.';
+                                        }
+                                        ?></td>
                                     </tr>
                                     
                                     <?php endforeach;?>
@@ -261,7 +272,16 @@
                                     <div class="col-xs-9"><b>Nome</b>: <?php echo $coluna->nometecnico ?></div>
                                     <div class="col-xs-6"><b>Status</b>: <?php echo $coluna->statuschamado; ?></div>
                                     <div class="col-xs-9"><b>Data</b>: <?php $i = $coluna->data; echo date('d/m/Y H:i:s', strtotime($i));?></div>
-                                    <div class="col-xs-4"><div id="divjustificativa"><b>Justificativa</b>: <?php echo $coluna->justificativa;?></div></div>
+                                    <div class="col-xs-4"><div id="divjustificativa"><b>Justificativa</b>: <?php $i = $coluna->justificativa;
+                                     if($i != '0'){
+                                            
+                                        echo $i;
+                                        
+                                        }else{
+                                            
+                                            echo'Nenhuma justificativa encontrada.';
+                                        }
+                                    ?></div></div>
                                 </div>
                                     <hr align="center" width="100%" size="2" color=#00000>
                                   
@@ -283,7 +303,7 @@
                         <div class="modal-body">
                                 <form role="form" id="formulario_chamado">
                                   <div class="form-group">
-                                  <label for="exampleTextarea">Justificativa</label>
+                                  
                                   <textarea class="form-control" id="justificativa" name="justificativa" rows="3" maxlength="499" readonly="true"></textarea>
                                   </div>
                               </form>	    

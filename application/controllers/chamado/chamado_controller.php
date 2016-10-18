@@ -115,7 +115,7 @@ class Chamado_controller extends CI_Controller {
             
         $this->load->model("chamado/chamado_model");
             
-        $consulta = $this->chamado_model->m_historico($idchamado);
+        $consulta = $this->chamado_model->m_historico_ajax($idchamado);
         
         foreach($consulta -> result() as $linha){
             $nome[] = $linha->nometecnico;
@@ -130,7 +130,7 @@ class Chamado_controller extends CI_Controller {
             "data" => $data
         );
         }
-            
+            //eduubessa
        
         
         echo json_encode($consulta);
