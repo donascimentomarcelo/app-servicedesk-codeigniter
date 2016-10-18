@@ -17,7 +17,6 @@
         
         <script src="../../../bootstrap/js/jquery.js" type="text/javascript"></script>
         <script src="../../../bootstrap/js/jquery.dataTables.min.js" type="text/javascript"></script>
-        <script src="../../../bootstrap/js/jquery.form.js" type="text/javascript"></script>
         <script src="../../../bootstrap/js/bootbox.js" type="text/javascript"></script>
         <script src="../../../bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
         <script src="../../../bootstrap/js/jquery.forms.js" type="text/javascript"></script>
@@ -35,38 +34,46 @@
         
         <script type="text/javascript">
         
-     
-        
-        $(document).ready(function(){
-				$('table.display').dataTable();
-                                
-                                $(document).ready(function(){
-                                     $('.dropdown-toggle').dropdown();
+     $(document).ready(function(){
+                    $('.dropdown-toggle').dropdown();
                         });
                         
-                        $("#formulario_chamado").validate({
-                            rules : {
-                                  nomechamado:{
-                                         required:true,
-                                         minlength:3
-                                  },
-                                  gravadora:{
-                                         required:true,
-                                         minlength:3
-                                  }                               
-                            },
-                            messages:{
-                                  nomechamado:{
-                                         required:"Informe o nome do CD!",
-                                         minlength:"O nome deve ter pelo menos 3 caracteres"
-                                  },
-                                  gravadora:{
-                                         required:"Informe a gravadora!",
-                                         minlength:"O nome deve ter pelo menos 3 caracteres"
-                                  }    
-                            }
-                     });
-		});
+     $(document).ready(function(){
+                    $("#formulario_chamado").validate({
+            rules : {
+                  nomechamado:{
+                         required:true,
+                         minlength:3
+                  },
+                  gravadora:{
+                         required:true,
+                         minlength:3
+                  }                               
+            },
+            messages:{
+                  nomechamado:{
+                         required:"Informe o nome do CD!",
+                         minlength:"O nome deve ter pelo menos 3 caracteres"
+                  },
+                  gravadora:{
+                         required:"Informe a gravadora!",
+                         minlength:"O nome deve ter pelo menos 3 caracteres"
+                  }    
+            }
+     });
+});
+        
+    $(document).ready(function(){
+            $('table.display').dataTable();
+    });
+    $(document).ready(function(){
+            $('#tabela').dataTable({
+                
+             
+                
+            });
+    });
+    
         function minhaCallCack(){
          swal({   title: "Registro salvo com sucesso!",
              text: "Exito ao realizar operação.",
@@ -89,6 +96,8 @@
     					//Algo esta acontecendo no controller que está trazendo 11 no lugar de 1.
     					//Faço esse if com || pq preciso que atualize a pagina.
     					//se for sucesso, simplesmente recarrego a página. Aqui você pode usar sua imaginação.
+    					
+    					//Algo esta acontecendo no controller que está trazendo 11 no lugar de 1.
                                         
     					//document.location.href = document.location.href;
                                         success: minhaCallCack();
@@ -153,14 +162,16 @@
             $.post(base_url+'/index.php/chamado/chamado_controller/historico', {
     			idchamado: idchamado
     		}, function (data){
-    		var items = [];
-                $.each( data, function( key, val ) {
-                  $('table').html(items.push( "<td id='" + key + "'>" + val + "</td>" ));
-                 //items.push( "<td id='" + key + "'>" + val + "</td>" );
-                 // alert(val);
-                });
+    		var buscarvalor = '';
 
-                $('.historico').append(items);
+                for(var i in data['justificativa']){
+                    buscarvalor += '<tr><td>' + data['justificativa'][i] + '</td></tr>';
+                }
+
+                $('.add-info').html(buscarvalor);
+
+                // console.log(data);
+
     		}, 'json');
     	}
         
@@ -382,7 +393,7 @@
 	  <div class="modal-dialog">
 	    <div class="modal-content">
 	      <div class="modal-header">
-	        <h4 class="modal-title">Abrir Chamado</h4>
+	        <h4 class="modal-title">Atander Chamado</h4>
 	      </div>
                 <ul class="nav nav-tabs">
                         <li class="active"><a href="#first-tab" data-toggle="tab">Dados do chamado</a></li>
@@ -520,9 +531,19 @@
                           
                             </div>
                             <div class="tab-pane" id="fifth-tab">
-                                <table>
-                                <tr class="historico">
-                                </table>
+                                <table  class="  table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="10%" id="tabela" >
+                                   <thead>
+                                    <tr>
+                                      <td>Descrição</td>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                      <tr id="char"  class="add-info">
+                                          
+                                      </tr>
+
+                                </tbody>
+                              </table>
                             </div>
                         </div>  
 			</form>	    
@@ -541,7 +562,11 @@
 	    </div>
 	  </div>
 	</div>
-        
+         <style>
+             
+          
+             
+         </style>
         
 	<p class="footer"><a href="javascript: history.back()">Voltar</a> <strong>{elapsed_time}</strong> seconds</p>
 </div>

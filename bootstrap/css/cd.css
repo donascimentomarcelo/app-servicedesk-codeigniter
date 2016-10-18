@@ -69,4 +69,10 @@
         #atendimento{
             margin-top: 1%;
         }
-        
+        #char {
+            width: 570px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: wrap;
+            display: block;
+	}

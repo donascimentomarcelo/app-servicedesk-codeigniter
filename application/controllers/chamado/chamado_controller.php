@@ -121,11 +121,14 @@ class Chamado_controller extends CI_Controller {
             $nome[] = $linha->nometecnico;
             $email[] = $linha->emailtecnico;
             $ramal[] = $linha->ramaltecnico;
+            $justificativa[] = $linha->justificativa;
             $data[] = $linha->data;
+            
             
              $consulta = array(
             "nometecnico" => $nome,
             "emailtecnico" => $email,
+            "justificativa" => $justificativa,
             "ramaltecnico" => $ramal,
             "data" => $data
         );
