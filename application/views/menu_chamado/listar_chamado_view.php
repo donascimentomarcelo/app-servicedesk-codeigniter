@@ -136,13 +136,12 @@
     			$('#subcategoria').val(data.subcategoria_fk); 
     			$('#categoria_fk').val(data.categoria_fk); 
                         
-                         if( data.statuschamado == 'ematendimento'){
+                if( data.statuschamado == 'ematendimento'){
                         $("#salvar").removeAttr('disabled');
                         $("#amarrar").hide();
-                        }else{
+                }else{
                         $("#salvar").addAttr('disabled');
-                        
-                        }
+                }
                         
     		}, 'json');
     	}
@@ -164,8 +163,11 @@
     		}, function (data){
     		var buscarvalor = '';
 
-                for(var i in data['justificativa']){
-                    buscarvalor += '<tr><td>' + data['justificativa'][i] + '</td></tr>';
+                for(var i in data['justificativa','nometecnico','statuschamado', 'data']){
+                    if(data['justificativa'][i] == '0'){
+                        data['justificativa'][i] = 'Nenhuma Justificativa a exibir.';
+                    }
+                    buscarvalor += '<div id="divjustificativa"><span><u><b>Responsável:</b></u> '+data['nometecnico'][i]+'</span><br><span> <u><b>Status:</b></u> '+data['statuschamado'][i]+'</span><br><span> <u><b>Data:</b></u> '+data['data'][i] +'</span><br> <u><b>Justificativa:</b></u> ' + data['justificativa'][i] + '</div><br>';
                 }
 
                 $('.add-info').html(buscarvalor);
@@ -531,19 +533,11 @@
                           
                             </div>
                             <div class="tab-pane" id="fifth-tab">
-                                <table  class="  table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="10%" id="tabela" >
-                                   <thead>
-                                    <tr>
-                                      <td>Descrição</td>
-                                    </tr>
-                                  </thead>
-                                  <tbody>
-                                      <tr id="char"  class="add-info">
+                                
+                                 
+                                <div id="char"  class="add-info"></div>
                                           
-                                      </tr>
-
-                                </tbody>
-                              </table>
+                                     
                             </div>
                         </div>  
 			</form>	    

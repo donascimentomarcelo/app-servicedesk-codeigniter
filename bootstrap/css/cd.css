@@ -76,3 +76,9 @@
             white-space: wrap;
             display: block;
 	}
+        #divjustificativa{
+        width:100%;
+        height:100%;
+        background-color:rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        }

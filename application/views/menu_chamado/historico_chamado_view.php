@@ -333,12 +333,7 @@
 	<p class="footer"><a href="javascript: history.back()">Voltar</a> <strong>{elapsed_time}</strong> seconds</p>
 </div>
 <style type="text/css">
-#divjustificativa{
-    width:100%;
-    height:100%;
-    background-color:rgba(0, 0, 0, 0.02);
-    border-radius: 10px;
-    }
+
 </style>
 </body>
 </html>

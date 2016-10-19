@@ -122,6 +122,7 @@ class Chamado_controller extends CI_Controller {
             $email[] = $linha->emailtecnico;
             $ramal[] = $linha->ramaltecnico;
             $justificativa[] = $linha->justificativa;
+            $statuschamado[] = $linha->statuschamado;
             $data[] = $linha->data;
             
             
@@ -130,12 +131,11 @@ class Chamado_controller extends CI_Controller {
             "emailtecnico" => $email,
             "justificativa" => $justificativa,
             "ramaltecnico" => $ramal,
+            "statuschamado" => $statuschamado,
             "data" => $data
         );
         }
-            //eduubessa
-       
-        
+          
         echo json_encode($consulta);
         
         }
