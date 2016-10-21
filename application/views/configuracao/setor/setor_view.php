@@ -190,7 +190,7 @@
 <body>
 
 <div id="container">
-	<h1>Manter Usuário</h1>
+	<h1>Manter Setor</h1>
         <div id="body">
 
            <table class="display table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%" id="tabela1">
@@ -257,7 +257,7 @@
 	</div>
         
         
-	<p class="footer"><a href="javascript: history.back()">Voltar</a> <strong>{elapsed_time}</strong> seconds</p>
+	<p class="footer"></p>
 </div>
   <style type="text/css">
 

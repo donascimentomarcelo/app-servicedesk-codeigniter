@@ -73,7 +73,7 @@
         
         <?php include 'C:\xampp\htdocs\cd\application\views\menu_head\usuario\menu_inicial.php';?>
 	
-	<p class="footer">Page rendered in <strong>{elapsed_time}</strong> seconds</p>
+	<p class="footer"></p>
 </div>
 
 </body>

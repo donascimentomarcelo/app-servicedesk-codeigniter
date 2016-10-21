@@ -104,15 +104,10 @@
 <div id="container">
     <h1><?php foreach($preenche_dados -> result() as $dados):?> <img src="../../../.<?php echo $dados->imagem;?>" class="img-circle" width="50px" height="50px"> <?php endforeach;?> <?php echo $this->session->userdata('nome');?> </h1>
 
-              <?php if($this->session->userdata('perfil') == 'administrador'){
+              <?php 
               
-                  include 'C:\xampp\htdocs\cd\application\views\menu_head\administrador\menu.php';
+                  include 'C:\xampp\htdocs\cd\application\views\menu_head\administrador\menu_inicial.php';
              
-              }else{
-                  
-                  include 'C:\xampp\htdocs\cd\application\views\menu_head\usuario\menu.php';
-            
-              }
               ?>
 
 <div id="container">
@@ -329,8 +324,7 @@
 	    </div>
 	  </div>
           </div>
-        
-	<p class="footer"><a href="javascript: history.back()">Voltar</a> <strong>{elapsed_time}</strong> seconds</p>
+        <p class="footer"></p>
 </div>
 <style type="text/css">
 

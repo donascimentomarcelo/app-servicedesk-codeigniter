@@ -34,6 +34,14 @@
                     <li><a href="http://localhost/cd/index.php/chamado/chamado_controller/listar_chamado" class="glyphicon glyphicon-eye-open"> Atender Chamado</a></li>
                 </ul>
               </li>
+              <li class="dropdown">
+                <a class="dropdown-toggle " data-toggle="dropdown" href="#"> Indicadores
+                <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="http://localhost/cd/index.php/indicadores/indicadores_controller/carrega_view_indicadores" class="glyphicon glyphicon-sort"> Localizador de Chamados</a></li>
+                    <li><a href="http://localhost/cd/index.php/indicadores/indicadores_controller/listar_indicadores" class="glyphicon glyphicon-sort"> indicadores</a></li>
+                </ul>
+              </li>
               <li><a href="http://localhost/cd/index.php/login/login_controller/sair"><span class="glyphicon glyphicon-off"></span> Sair</a></li>
              </ul>
           </div>

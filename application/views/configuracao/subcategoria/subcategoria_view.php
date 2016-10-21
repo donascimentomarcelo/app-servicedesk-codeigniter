@@ -284,7 +284,7 @@
 	</div>
         
         
-	<p class="footer"><a href="javascript: history.back()">Voltar</a> <strong>{elapsed_time}</strong> seconds</p>
+	<p class="footer"></p>
 </div>
   <style type="text/css">
 

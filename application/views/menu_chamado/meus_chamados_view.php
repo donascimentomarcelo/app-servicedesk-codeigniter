@@ -147,7 +147,7 @@
     		var items = [];
                 $.each( data, function( key, val ) {
                   items.push( "<li id='" + key + "'>" + val + "</li>" );
-                  alert(val);
+                  //alert(val);
                 });
 
                 $( "<ul/>", {
@@ -315,7 +315,7 @@
 	  <div class="modal-dialog">
 	    <div class="modal-content">
 	      <div class="modal-header">
-	        <h4 class="modal-title">Visualizar Chamado</h4>
+	        <h4 class="modal-title">Visualizar Rápida do Chamado</h4>
 	      </div>
                 <ul class="nav nav-tabs">
                         <li class="active"><a href="#first-tab" data-toggle="tab">Dados do chamado</a></li>
@@ -336,7 +336,7 @@
 			 
                             <div class="form-group">
 			    <label for="categoria">Categoria</label>
-                            <select class="form-control" name="categoria_fk" id="categoria_fk" required="required" onchange='buscar_subcategoria($(this).val()) 'readonly="true">
+                            <select class="form-control" name="categoria_fk" id="categoria_fk" required="required" onchange='buscar_subcategoria($(this).val()) ' disabled>
                                 
                                 <option value="">Selecione uma categoria</option>
                                 <!--AQUI!-->
@@ -353,7 +353,7 @@
                             <div class="form-group">
                             <label for="exampleSelect1">Subcategoria</label>
                             
-                            <select class="form-control" name="subcategoria_fk" id="subcategoria" required="required" onchange='buscar_sla($(this).val())' readonly="true">
+                            <select class="form-control" name="subcategoria_fk" id="subcategoria" required="required" onchange='buscar_sla($(this).val())' disabled>
                              <option value="">Selecione uma categoria</option>
                                 <!--AQUI!-->
                                  <?php foreach ($subcategoria -> result() as $linha): ?> 
@@ -388,7 +388,7 @@
                               
                            <div class="form-group">
 			    <label for="setor">Setor</label>
-                            <select class="form-control" name="setor_fk" id="setor_fk" required="required" readonly="true">
+                            <select class="form-control" name="setor_fk" id="setor_fk" required="required" disabled>
                                 
                                 <option value="">Selecione um Setor</option>
                                 
@@ -409,7 +409,7 @@
                             <div class="tab-pane" id="third-tab">
                                  <div class="form-group">
                                     <label for="nome">Código do Técnico</label>
-                                    <input type="text" class="form-control" id="idtec"  name='idtec'readonly="true">
+                                    <input type="text" class="form-control" id="codusuario"  name='idtec'readonly="true">
                                 </div>
                             
                                  <div class="form-group">
@@ -542,10 +542,9 @@
 	      </div>
 	    </div>
 	  </div>
-	</div>
+	</div>        
         
-        
-	<p class="footer"><a href="javascript: history.back()">Voltar</a> <strong>{elapsed_time}</strong> seconds</p>
+	<p class="footer"></p>
 </div>
 
 </body>

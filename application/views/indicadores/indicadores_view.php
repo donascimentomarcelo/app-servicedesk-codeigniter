@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>Perfil Pessoal</title>
+	<title>Indicadores</title>
 
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
         <link href="../../../bootstrap/css/cd.css" rel="stylesheet" type="text/css"/>
@@ -32,15 +32,18 @@
         <link href="../../../craftpip-jquery/css/jquery-confirm.css" rel="stylesheet" type="text/css"/>
         <script src="../../../craftpip-jquery/js/jquery-confirm.js" type="text/javascript"></script>
         
+        <script src="../../../bootstrap/js/moment.js" type="text/javascript"></script>
+        <script src="../../../bootstrap/js/bootstrap-datetimepicker.min.js" type="text/javascript"></script>
         <script type="text/javascript">
         
+         $(document).ready(function(){
+                                     $('.dropdown-toggle').dropdown();
+                        });
      
         
         $(document).ready(function(){
                         
-                        $(document).ready(function(){
-                                     $('.dropdown-toggle').dropdown();
-                        });
+                       
                         
                         $("#formulario_usuario").validate({
                             rules : {
@@ -74,20 +77,7 @@
          });
         }
 
-    	$(function(){
-    		$('#formulario_usuario').ajaxForm({
-    			success: function(data) {
-    				if (data == 1 || data == 11 || data == 10) {
-                                    
-                                    success: minhaCallCack();
-                                    
-				    	
-    				}else{
-                                    alert(data);
-                                }
-    			}
-    		});
-    	});
+    	
     
     	var base_url = "<?= base_url() ?>";
     
@@ -95,7 +85,7 @@
             document.location.href = document.location.href;
         }
         
-        
+      
         </script>
         
       
@@ -124,58 +114,101 @@
              <div class="" id="modalUsuario" data-backdrop="static" >
 	  
 	      <div class="modal-header">
-	        <h4 class="modal-title">Alterar Dados Pessoais</h4>
+	        <h4 class="modal-title">Painel de Indicadores</h4>
 	      </div>
 	      <div class="modal-body">
-	      	<?php foreach($consulta -> result() as $dados):?>
-			<form role="form" method="post" action="<?= base_url('index.php/perfil_pessoal/perfil_pessoal_controller/atualiza_perfil')?>" id="formulario_usuario" enctype="multipart/form-data">
-			  <div class="form-group" >
-                              <img src="../../.<?php echo $dados->imagem;?>" class="img-circle" width="100px" height="100px">
-                              
-			  </div>
-			  <div class="form-group">
-			    <label for="nome">Foto de Perfil</label>
-                            <input type="file" name="imagem"  id="imagem" value="../../.<?php echo $dados->imagem;?>">
-			  </div>
-			  <div class="form-group">
-			    <label for="nome">Nome</label>
-                            <input type="text"  class="form-control" id="nome"  name='nome' value="<?php echo $dados->nome?>">
-			  </div>
-			 
-			  <div class="form-group">
-			    <label for="email">Senha</label>
-                            <input type="password"  class="form-control" id="senha" name='senha' value="<?php echo $dados->senha?>">
-			  </div>
-			  <div class="form-group">
-			    <label for="nome">E-mail</label>
-			    <input type="text"  class="form-control" id="email"  name='email' value="<?php echo $dados->email?>">
-			  </div>
-			  <div class="form-group">
-			    <label for="nome">Ramal</label>
-			    <input type="text"  class="form-control" id="ramal"  name='ramal' value="<?php echo $dados->ramal?>">
-			  </div>
-			  <div class="form-group">
-			    <label for="setor">Setor</label>
-                            <select class="form-control" name="setor_fk" id="setor_fk" required="required">
+	      	<form role="form" method="post" action="<?= base_url('index.php/indicadores/indicadores_controller/localizador')?>">
+		
+                  <div class="container">
+                     
+                  
+                      <div class="container">
+                        <div class='col-md-5'>
+                            <div class="form-group">
                                 
-                                <option value="<?php echo $dados->idsetor?>"><?php echo $dados->nomesetor?></option>
+                                    <label>Data Inicial: </label>
+                                    <input type="date" name="datainicial">
                                 
-                                 <?php foreach ($setor_ativo -> result() as $linha): ?> 
+                            </div>
+                        </div>
+                        <div class='col-md-5'>
+                            <div class="form-group">
                                 
-                                <option value="<?php echo $linha->idsetor?>"><?php echo $linha->nomesetor?></option>
+                                     <label>Data Final: </label>
+                                     <input type="date" name="datafinal">
                                 
-                                <?php endforeach;?>
-                                
-                            </select>
-			  </div>
-			  
-			  <input type="hidden" name="id" id="id" value="<?php echo $dados->id?>" />
-			</form>	    
-		<?php endforeach; ?>	    
+                            </div>
+                        </div>
+                    </div>
+                      
+                        <div class="form-group">
+                            <div class="allinput" >
+                            <label for="email" style="margin-left: 10%;">Status:</label>
+			    <label class="radio-inline">
+                                <input type="radio" name="statuschamado" id="aguardando" value="aguardando" checked="checked"> Aguardando atendimento
+                              </label>
+                              <label class="radio-inline">
+                                <input type="radio" name="statuschamado" id="ematendimento" value="ematendimento"> Em atendimento
+                              </label>
+                              <label class="radio-inline">
+                                <input type="radio" name="statuschamado" id="encerrar" value="encerrar"> Encerrdo
+                              </label>
+                            </div>
+                            </div>
+                      
+                  </div>
+                    
+                    <button type="submit" class="btn btn-primary" >Pesquisar</button>
+        
+		</form>	    
+		
+                  
+                  
+                  
 	      </div>
 	      <div class="modal-footer">
 	      
-               <button type="button" class="btn btn-primary" onclick="$('#formulario_usuario').submit()">Atualizar</button>
+                    <table class="display table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%" id="">
+                        <thead>
+                            <tr>
+                            <th style="text-align: center; width: 18px;">Técnico</th>
+                            <th style="text-align: center; width: 10px;">Ramal</th>
+                            <th style="text-align: center; width: 20px;">E-mail</th>
+                            <th style="text-align: center; width: 12px;">Data</th>
+                            <th style="text-align: center; width: 18px;">Status</th>
+                            <th style="text-align: center; width: 50%;">Justificativa</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                        <?php foreach ($dados -> result() as $coluna):  ?> 
+
+                        <tr>
+                            <td style="text-align: center; width: 18px;"><?php echo $coluna->nometecnico?></td>
+                            <td style="text-align: center; width: 10px;"><?php echo $coluna->ramaltecnico?></td>
+                            <td style="text-align: center; width: 20px;"><?php echo $coluna->emailtecnico?></td>
+                            <td style="text-align: center; width: 12px;"><?php $i = $coluna->data; echo date('d/m/Y H:i:s', strtotime($i));?></td>
+                            <td style="text-align: center; width: 18px;"><?php echo $coluna->statuschamado?></td>
+                            <td style=" width: 40%; "><a style="text-align: center;" href="javascript:;"  onclick="janelaDescricao(<?= $coluna->idhistorico ?>)"><button type="button" class="glyphicon glyphicon-eye-open"></button></a>
+                            <?php 
+                            $i = $coluna->justificativa;
+                            $j = 120;
+                            if($i != '0'){
+
+                            echo substr_replace($i, (strlen($i) > $j ? '...' : ''), $j);
+
+                            }else{
+
+                                echo'Nenhuma justificativa encontrada.';
+                            }
+                            ?></td>
+                        </tr>
+
+                        <?php endforeach;?>
+
+                                    </tbody>
+                </table>
+              
 	      </div>
 	    </div>
 	  </div>
