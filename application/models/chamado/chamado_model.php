@@ -223,7 +223,7 @@ class chamado_model extends CI_Model{
         
     }
     
-    
+    /*
     
     public function excluir($idchamado) {
         
@@ -240,6 +240,8 @@ class chamado_model extends CI_Model{
         }
         
     }
+     
+    */
     
     public function m_list_chamado($idchamado = NULL) {
         

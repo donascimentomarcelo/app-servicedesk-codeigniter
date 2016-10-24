@@ -114,11 +114,11 @@
              <div class="" id="modalUsuario" data-backdrop="static" >
 	  
 	      <div class="modal-header">
-	        <h4 class="modal-title">Painel de Indicadores</h4>
+	        <h4 class="modal-title">Painel de Localizador de Chamados</h4>
 	      </div>
                  
 	      <div class="modal-body">
-	      	<form role="form" method="post" action="<?= base_url('index.php/indicadores/indicadores_controller/localizador')?>">
+	      	<form role="form" method="post" action="<?= base_url('index.php/indicadores/indicadores_controller/indicadores')?>">
 		
                   <div class="container">
                      
@@ -127,16 +127,16 @@
                         <div class='col-md-5'>
                             <div class="form-group">
                                 
-                                    <label>Data Inicial: </label>
-                                    <input type="date" name="datainicial">
+                                    <label for="nome">Data Inicial: </label>
+                                    <input type="date" name="datainicial" class="form-control">
                                 
                             </div>
                         </div>
                         <div class='col-md-5'>
                             <div class="form-group">
                                 
-                                     <label>Data Final: </label>
-                                     <input type="date" name="datafinal">
+                                     <label for="nome">Data Final: </label>
+                                     <input type="date" name="datafinal" class="form-control">
                                 
                             </div>
                         </div>
@@ -171,13 +171,9 @@
 	            <table class="display table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%" id="">
                         <thead>
                             <tr>
-                            <th style="text-align: center; ">Código</th>
-                            <th style="text-align: center; ">Nome do Chamado</th>
-                            <th style="text-align: center; ">Status</th>
-                            <th style="text-align: center; ">Data Inicial</th>
-                            <th style="text-align: center; ">Data Final</th>
-                            <th style="text-align: center; ">Descrição</th>
-                            <th style="text-align: center; ">SLA</th>
+                            <th style="text-align: center; ">Chamado</th>
+                            <th style="text-align: center; ">Solicitante</th>
+                            <th style="text-align: center; ">Técnico</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -185,35 +181,13 @@
                         <?php 
                         if(isset($consulta)){
                             
-                            foreach ($consulta as $coluna):  ?> 
+                            foreach ($consulta -> result() as $coluna):  ?> 
 
                         <tr>
-                            <td style="text-align: center; "><?php echo $coluna['idchamado'];?></td>
-                            <td style="text-align: center; "><?php echo $coluna['nomechamado']?></td>
-                            <td style="text-align: center; "><?php echo $coluna['statuschamado']?></td>
-                            <td style="text-align: center; "><?php $i = $coluna['datainicial']; echo date('d/m/Y H:i:s', strtotime($i));?></td>
-                            <td style="text-align: center; "><?php $j = $coluna['datafinal']; echo date('d/m/Y H:i:s', strtotime($j));?></td>
-                            <td style=" width: 40%; ">
-                            <?php 
-                            $i = $coluna['descricao'];
-                            $j = 120;
-                            if($i != '0'){
-
-                            echo substr_replace($i, (strlen($i) > $j ? '...' : ''), $j);
-
-                            }else{
-
-                                echo'Nenhuma justificativa encontrada.';
-                            }
-                            ?></td>
-                            <td>
-                            <div class="progress">
-                                <div class="progress-bar-<?php echo $coluna['class']?>" role="progressbar" aria-valuenow="70"
-                                aria-valuemin="0" aria-valuemax="100" style="width:<?php echo $coluna['porcentagem']?>%">
-                                  <?php echo  number_format($coluna['porcentagem'], 2), PHP_EOL,'%';?>
-                                </div>
-                            </div>
-                            </td>
+                            <td style="text-align: center; "><?php echo $coluna->idchamado;?></td>
+                            <td style="text-align: center; "><?php echo $coluna->nomechamado?></td>
+                            <td style="text-align: center; "><?php echo $coluna->statuschamado?></td>
+                            
                         </tr>
 
                         <?php endforeach;
