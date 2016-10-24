@@ -116,6 +116,7 @@
 	      <div class="modal-header">
 	        <h4 class="modal-title">Painel de Indicadores</h4>
 	      </div>
+                 
 	      <div class="modal-body">
 	      	<form role="form" method="post" action="<?= base_url('index.php/indicadores/indicadores_controller/localizador')?>">
 		
@@ -167,31 +168,34 @@
                   
 	      </div>
 	      <div class="modal-footer">
-	      
-                    <table class="display table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%" id="">
+	            <table class="display table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%" id="">
                         <thead>
                             <tr>
-                            <th style="text-align: center; width: 18px;">Técnico</th>
-                            <th style="text-align: center; width: 10px;">Ramal</th>
-                            <th style="text-align: center; width: 20px;">E-mail</th>
-                            <th style="text-align: center; width: 12px;">Data</th>
-                            <th style="text-align: center; width: 18px;">Status</th>
-                            <th style="text-align: center; width: 50%;">Justificativa</th>
+                            <th style="text-align: center; ">Código</th>
+                            <th style="text-align: center; ">Nome do Chamado</th>
+                            <th style="text-align: center; ">Status</th>
+                            <th style="text-align: center; ">Data Inicial</th>
+                            <th style="text-align: center; ">Data Final</th>
+                            <th style="text-align: center; ">Descrição</th>
+                            <th style="text-align: center; ">SLA</th>
                             </tr>
                         </thead>
                         <tbody>
 
-                        <?php foreach ($dados -> result() as $coluna):  ?> 
+                        <?php 
+                        if(isset($consulta)){
+                            
+                            foreach ($consulta as $coluna):  ?> 
 
                         <tr>
-                            <td style="text-align: center; width: 18px;"><?php echo $coluna->nometecnico?></td>
-                            <td style="text-align: center; width: 10px;"><?php echo $coluna->ramaltecnico?></td>
-                            <td style="text-align: center; width: 20px;"><?php echo $coluna->emailtecnico?></td>
-                            <td style="text-align: center; width: 12px;"><?php $i = $coluna->data; echo date('d/m/Y H:i:s', strtotime($i));?></td>
-                            <td style="text-align: center; width: 18px;"><?php echo $coluna->statuschamado?></td>
-                            <td style=" width: 40%; "><a style="text-align: center;" href="javascript:;"  onclick="janelaDescricao(<?= $coluna->idhistorico ?>)"><button type="button" class="glyphicon glyphicon-eye-open"></button></a>
+                            <td style="text-align: center; "><?php echo $coluna['idchamado'];?></td>
+                            <td style="text-align: center; "><?php echo $coluna['nomechamado']?></td>
+                            <td style="text-align: center; "><?php echo $coluna['statuschamado']?></td>
+                            <td style="text-align: center; "><?php $i = $coluna['datainicial']; echo date('d/m/Y H:i:s', strtotime($i));?></td>
+                            <td style="text-align: center; "><?php $j = $coluna['datafinal']; echo date('d/m/Y H:i:s', strtotime($j));?></td>
+                            <td style=" width: 40%; ">
                             <?php 
-                            $i = $coluna->justificativa;
+                            $i = $coluna['descricao'];
                             $j = 120;
                             if($i != '0'){
 
@@ -202,9 +206,18 @@
                                 echo'Nenhuma justificativa encontrada.';
                             }
                             ?></td>
+                            <td>
+                            <div class="progress">
+                                <div class="progress-bar-<?php echo $coluna['class']?>" role="progressbar" aria-valuenow="70"
+                                aria-valuemin="0" aria-valuemax="100" style="width:<?php echo $coluna['porcentagem']?>%">
+                                  <?php echo  number_format($coluna['porcentagem'], 2), PHP_EOL,'%';?>
+                                </div>
+                            </div>
+                            </td>
                         </tr>
 
-                        <?php endforeach;?>
+                        <?php endforeach;
+                        }?>
 
                                     </tbody>
                 </table>
@@ -217,64 +230,6 @@
     
 <p class="footer"></p>
 </div>
-  <style type="text/css">
-
-	::selection{ background-color: #E13300; color: white; }
-	::moz-selection{ background-color: #E13300; color: white; }
-	::webkit-selection{ background-color: #E13300; color: white; }
-
-	body {
-		background-color: #fff;
-		margin: 40px;
-		font: 13px/20px normal Helvetica, Arial, sans-serif;
-		color: #4F5155;
-	}
-
-	a {
-		color: #003399;
-		background-color: transparent;
-		font-weight: normal;
-	}
-
-	h1 {
-		color: #444;
-		background-color: transparent;
-		border-bottom: 1px solid #D0D0D0;
-		font-size: 19px;
-		font-weight: normal;
-		margin: 0 0 14px 0;
-		padding: 14px 15px 10px 15px;
-	}
-
-	code {
-		font-family: Consolas, Monaco, Courier New, Courier, monospace;
-		font-size: 12px;
-		background-color: #f9f9f9;
-		border: 1px solid #D0D0D0;
-		color: #002166;
-		display: block;
-		margin: 14px 0 14px 0;
-		padding: 12px 10px 12px 10px;
-	}
-
-	#body{
-		margin: 0 15px 0 15px;
-	}
-	
-	p.footer{
-		text-align: right;
-		font-size: 11px;
-		border-top: 1px solid #D0D0D0;
-		line-height: 32px;
-		padding: 0 10px 0 10px;
-		margin: 20px 0 0 0;
-	}
-	
-	#container{
-		margin: 10px;
-		border: 1px solid #D0D0D0;
-		-webkit-box-shadow: 0 0 8px #D0D0D0;
-	}
-	</style>
+ 
 </body>
 </html>
