@@ -171,9 +171,8 @@
 	            <table class="display table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%" id="">
                         <thead>
                             <tr>
-                            <th style="text-align: center; ">Chamado</th>
-                            <th style="text-align: center; ">Solicitante</th>
-                            <th style="text-align: center; ">Técnico</th>
+                            <th style="text-align: center; ">Chamados</th>
+                           
                             </tr>
                         </thead>
                         <tbody>
@@ -181,12 +180,10 @@
                         <?php 
                         if(isset($consulta)){
                             
-                            foreach ($consulta -> result() as $coluna):  ?> 
+                            foreach ($consulta  as $coluna):  ?> 
 
                         <tr>
-                            <td style="text-align: center; "><?php echo $coluna->idchamado;?></td>
-                            <td style="text-align: center; "><?php echo $coluna->nomechamado?></td>
-                            <td style="text-align: center; "><?php echo $coluna->statuschamado?></td>
+                            <td style="text-align: center; "><?php echo $coluna['count(idchamado)'];?></td>
                             
                         </tr>
 

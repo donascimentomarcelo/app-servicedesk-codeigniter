@@ -86,24 +86,16 @@ class indicadores_model extends CI_Model{
             $datainicial = $this->input->post('datainiciale');
             $datafinal = $this->input->post('datafinal');
 
-
-            if($status != "" && $datafinal != "" && $datainicial != ""){
-
-            $this->db->select('*');
+            $this->db->select('count(idchamado)');
             $this->db->from('chamado');
             $this->db->where('statuschamado', $status);
             $this->db->where('datainicial >=', $datainicial);
             $this->db->where('datafinal <=', $datafinal);
 
-            $variaveis = $this->db->get()->num_rows();
+            return $variaveis = $this->db->get()->result_array();
 
-            }else{
+           
 
-            $this->db->select('*');
-            $this->db->from('chamado');
-
-            $variaveis = $this->db->get()->num_rows();
-
-        }
+        
     }
 }
