@@ -82,3 +82,12 @@
         background-color:rgba(0, 0, 0, 0.1);
         border-radius: 10px;
         }
+        #form_padrao{
+            width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+        }
+        .table{
+            margin-top: 3px;
+        }

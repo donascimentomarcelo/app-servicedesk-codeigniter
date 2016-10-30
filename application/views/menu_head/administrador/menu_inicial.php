@@ -44,6 +44,15 @@
                     <li><a href="http://localhost/cd/index.php/indicadores/indicadores_controller/indicadores" class="glyphicon glyphicon-sort"> Chamado x Técnico</a></li>
                 </ul>
               </li>
+              <li class="dropdown">
+                <a class="dropdown-toggle " data-toggle="dropdown" href="#"> Inventário
+                <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="http://localhost/cd/index.php/inventario/inventario_controller/hardware_list" class="glyphicon glyphicon-hdd"> Hardware</a></li>
+                    <li><a href="http://localhost/cd/index.php/inventario/inventario_controller/software_list" class="glyphicon glyphicon-folder-open"> Software</a></li>
+                    <li><a href="http://localhost/cd/index.php/inventario/inventario_controller/indicadores" class="glyphicon glyphicon-sort"> #</a></li>
+                </ul>
+              </li>
               <li><a href="http://localhost/cd/index.php/login/login_controller/sair"><span class="glyphicon glyphicon-off"></span> Sair</a></li>
             </ul>
           </div>
