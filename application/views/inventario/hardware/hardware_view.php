@@ -35,27 +35,58 @@
         
         <script type="text/javascript">
         
-         $(document).ready(function(){
-                                     $('.dropdown-toggle').dropdown();
-                        });
+        $(document).ready(function(){
+            $('.dropdown-toggle').dropdown();
+        });
      
         angular.module("hardware", []);
         angular.module("hardware").controller("hardwarecrtl", function($scope){
             $scope.dados = [
-                {nome:"teste", modelo: "teste"},
-                {nome:"teste1", modelo: "teste1"},
-                {nome:"teste2", modelo: "teste2"}
+                {nome:"teste", modelo: "teste", marca:"sony"},
+                {nome:"teste1", modelo: "teste1", marca:"sony"},
+                {nome:"teste2", modelo: "teste2", marca:"sony"}
+            ];
+            
+            $scope.marca = [
+                {nome:"sony", codigo: 1},
+                {nome:"sansung", codigo: 2},
+                {nome:"LG", codigo:3}
             ];
             
             $scope.registraInventario = function(registro){
                 $scope.dados.unshift(angular.copy(registro));
                 delete $scope.registro;
             };
+            
+            $scope.apagarRegistro = function(dados){
+              $scope.dados = dados.filter(function (registro){
+                 if(!registro.selecionado) return registro; 
+              });
+              
+            };
+            
+            
+            $scope.registroSelecionado = function(dados){
+                return dados.some(function(registro){
+                    return registro.selecionado;
+                });
+          
+            };
+            
         });
         
         
         </script>
-        
+        <style>
+            .cinza{
+                background-color: #ccc;
+            }
+            
+            .negrito{
+                font-weight: bold;
+            }
+            
+        </style>
       
 </head>
 <body>
@@ -86,28 +117,40 @@
 	      </div>
 	      <div class="modal-body">
 	      	
-			<form role="form" method="post" action="<?= base_url('index.php/perfil_pessoal/perfil_pessoal_controller/atualiza_perfil')?>" id="formulario_usuario" enctype="multipart/form-data">
+			<form role="form" name="inventarioForm" method="post" action="<?= base_url('index.php/perfil_pessoal/perfil_pessoal_controller/atualiza_perfil')?>" id="formulario_usuario" enctype="multipart/form-data">
 			  <div class="form-group">
 			    
-                              <input type="text" class="form-control" name="nomeproduto" ng-model="registro.nome" placeholder="Nome do produto">
+                              <input type="text" class="form-control" ng-model="registro.nome" name="nomeproduto"  placeholder="Nome do produto" ng-required="true">
 			  </div>
                             <div class="form-group">
                             
-                                <input type="text" class="form-control" name="nomeproduto" ng-model="registro.modelo"placeholder="Modelo do produto">
+                                <input type="text" class="form-control" ng-model="registro.modelo" name="nomeproduto" placeholder="Modelo do produto" ng-required="true">
                           </div>
+                            <div class="form-group">
+                                <select type="text" class="form-control" ng-model="registro.marca" ng-options="marca.nome for marca in marca" ng-required="true">
+                                    <option value="">Selecione uma marca</option>
+                                </select>
+                            </div>
                             
                          <div>
-                             <button type="button" ng-click="registraInventario(registro)" ng-disabled="!registro.nome ||  !registro.modelo" class="btn btn-secondary btn-lg btn-block">Registrar</button>
+                             <button type="button" ng-click="registraInventario(registro)" ng-disabled="inventarioForm.$invalid" class="btn btn-secondary btn-lg btn-block">Registrar</button>
+                             <button type="button" ng-click="apagarRegistro(dados)" ng-if="registroSelecionado(dados)"  class="btn btn-secondary btn-lg btn-block">Apagar</button>
+                             <!--<button type="button" ng-click="apagarRegistro(dados)" ng-disabled="!registroSelecionado(dados)"  class="btn btn-secondary btn-lg btn-block">Apagar</button>-->
                          </div>  
                             
 			</form>	    
-                  <table class="table table-striped">
+                  <table ng-show="dados.length > 0" class="table">
                       <tr>
-                          <th>Nome</th>
-                          <th>Marca</th>
+                          <th></th>
+                          <th style="text-align: center;">Nome</th>
+                          <th style="text-align: center;">Modelo</th>
+                          <th style="text-align: center;">Marca</th>
                       </tr>
-                      <tr ng-repeat="dados in dados">
-                          <td ng-repeat="(key, value) in dados">{{value}}</td>
+                      <tr ng-class="{'cinza negrito': dados.selecionado}" ng-repeat="dados in dados">
+                          <td><input type="checkbox" ng-model="dados.selecionado"></td>
+                          <td>{{dados.nome}}</td>
+                          <td>{{dados.modelo}}</td>
+                          <td>{{dados.marca.nome}}</td>
                       </tr>
                   </table>
 	      </div>
