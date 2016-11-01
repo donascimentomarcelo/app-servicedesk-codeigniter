@@ -122,6 +122,12 @@ create table subcategoria (
     foreign key (categoria_fk) references categoria(idcategoria)
 );
 
+create table inventario(
+    idinventario int primary key auto_increment,
+    nome varchar(20),
+    modelo varchar(20),
+    marca varchar(20)
+    );
 --
 -- Extraindo dados da tabela `usuarios`
 --

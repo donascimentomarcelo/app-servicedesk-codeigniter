@@ -19,4 +19,30 @@ class Inventario_controller extends CI_Controller {
         $this->load->view('inventario/hardware/hardware_view',$variaveis);
     }
     
+    function listagem(){
+        
+        $this->load->model('inventario/inventario_model');
+        
+        $inventario = $this->inventario_model->m_hardware_list();
+        
+        echo $inventario;
+    }
+    
+    function registro_hardware(){
+        
+        $this->load->model('inventario/inventario_model');
+        
+        $insert = $this->inventario_model->m_registro_hardware();
+        
+        if($insert){
+            
+            echo 1;
+            
+        }else{
+            
+            echo 0;
+        }
+        
+    }
+    
 }

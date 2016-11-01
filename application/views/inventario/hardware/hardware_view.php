@@ -40,22 +40,37 @@
         });
      
         angular.module("hardware", []);
-        angular.module("hardware").controller("hardwarecrtl", function($scope){
+        angular.module("hardware").controller("hardwarecrtl", function($scope,$http){
+            /*
             $scope.dados = [
                 {nome:"teste", modelo: "teste", marca:"sony"},
                 {nome:"teste1", modelo: "teste1", marca:"sony"},
                 {nome:"teste2", modelo: "teste2", marca:"sony"}
             ];
-            
-            $scope.marca = [
+            */
+            $scope.dados = [];
+        var carregaHardware = function(){
+            $http.get("http://localhost/cd/index.php/inventario/inventario_controller/listagem").success(function(data, status){
+                console.log(data);
+                //$scope.dados = data;
+                $scope.dados = data;
+            }).error(function(data){
+                $scope.message = "aconteceu um erro:"+data;
+            });
+        };   
+        
+        $scope.marca = [
                 {nome:"sony", codigo: 1},
                 {nome:"sansung", codigo: 2},
                 {nome:"LG", codigo:3}
             ];
             
             $scope.registraInventario = function(registro){
-                $scope.dados.unshift(angular.copy(registro));
+                $http.post("http://localhost/cd/index.php/inventario/inventario_controller/registro_hardware", registro).success(function(data){
                 delete $scope.registro;
+                carregaHardware();
+                //$scope.dados.unshift(angular.copy(registro));
+                });
             };
             
             $scope.apagarRegistro = function(dados){
@@ -72,6 +87,8 @@
                 });
           
             };
+            
+            carregaHardware();
             
         });
         
@@ -115,19 +132,20 @@
 	      <div class="modal-header">
 	        <h4 class="modal-title">Inventário - Hardware</h4>
 	      </div>
+                 <div>{{message}}</div>   
 	      <div class="modal-body">
 	      	
 			<form role="form" name="inventarioForm" method="post" action="<?= base_url('index.php/perfil_pessoal/perfil_pessoal_controller/atualiza_perfil')?>" id="formulario_usuario" enctype="multipart/form-data">
 			  <div class="form-group">
 			    
-                              <input type="text" class="form-control" ng-model="registro.nome" name="nomeproduto"  placeholder="Nome do produto" ng-required="true">
+                              <input type="text" class="form-control" ng-model="registro.nome" name="nome"  placeholder="Nome do produto" ng-required="true">
 			  </div>
                             <div class="form-group">
                             
-                                <input type="text" class="form-control" ng-model="registro.modelo" name="nomeproduto" placeholder="Modelo do produto" ng-required="true">
+                                <input type="text" class="form-control" ng-model="registro.modelo" name="modelo" placeholder="Modelo do produto" ng-required="true">
                           </div>
                             <div class="form-group">
-                                <select type="text" class="form-control" ng-model="registro.marca" ng-options="marca.nome for marca in marca" ng-required="true">
+                                <select type="text" class="form-control" ng-model="registro.marca.nome" name="marca" ng-options="marca.nome for marca in marca" ng-required="true">
                                     <option value="">Selecione uma marca</option>
                                 </select>
                             </div>
@@ -150,9 +168,11 @@
                           <td><input type="checkbox" ng-model="dados.selecionado"></td>
                           <td>{{dados.nome}}</td>
                           <td>{{dados.modelo}}</td>
-                          <td>{{dados.marca.nome}}</td>
+                          <td>{{dados.marca}}</td>
+                          <!--<td>{{dados.marca.nome}}</td>-->
                       </tr>
                   </table>
+                  
 	      </div>
 	      <div class="modal-footer">
 	      
