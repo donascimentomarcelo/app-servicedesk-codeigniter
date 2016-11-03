@@ -55,4 +55,22 @@ class Inventario_controller extends CI_Controller {
         
     }
     
+    function exclui_hardware(){
+        
+        $this->load->model('inventario/inventario_model');
+        
+        $deletar = $this->inventario_model->m_exclui_hardware();
+        
+        if($deletar){
+            
+            echo 1;
+            
+        }else{
+            
+            echo 0;
+            
+        }
+        
+    }
+    
 }

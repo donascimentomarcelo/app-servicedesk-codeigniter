@@ -29,11 +29,15 @@ class inventario_model extends CI_Model{
          
         }
         
-        return json_encode($arr);
+        if(isset($arr)){
         
+        return json_encode($arr);
+        }
     }
     function m_hardware_list_where($idinventario = NULL){
         
+        $_GET = json_decode(file_get_contents('php://input'), true);
+        $idinventario = $this->input->get('idinventario');
         echo var_dump($idinventario);
         
         if ($idinventario != NULL){
@@ -67,11 +71,7 @@ class inventario_model extends CI_Model{
         
         $nome = $this->input->post('nome');
         $modelo = $this->input->post('modelo');
-        $j = $this->input->post('marca');
-        
-        foreach ($j as $i){
-            $marca = $i['nome'];
-        }
+        $marca = $this->input->post('marca');
         
         $dados = array(
            'nome'=> $nome,
@@ -83,7 +83,7 @@ class inventario_model extends CI_Model{
         
         if($id != 0){
             
-            $this->db->where('inventario', $id);
+            $this->db->where('idinventario', $id);
             $query = $this->db->update('inventario', $dados);
             
         }else{
@@ -102,5 +102,28 @@ class inventario_model extends CI_Model{
             
         }
         
+    }
+    
+    function m_exclui_hardware(){
+        
+        
+       $data = json_decode(file_get_contents("php://input"));     
+ 
+       $idinvantario  = $data->idinventario;
+       
+       $this->db->where('idinventario', $idinvantario);
+       $query = $this->db->delete('inventario');
+       
+       
+       if($query){
+           
+           return  TRUE;
+           
+       }else{
+           
+           return $this->db->_error_number();
+           
+       }
+    
     }
 }

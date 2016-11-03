@@ -55,7 +55,7 @@
                 //$scope.dados = data;
                 $scope.dados = data;
             }).error(function(data){
-                $scope.message = "aconteceu um erro:"+data;
+                $scope.message = "Aconteceu um erro:"+data;
             });
         };   
         
@@ -72,18 +72,27 @@
                 //$scope.dados.unshift(angular.copy(registro));
                 });
             };
-            $scope.edit = function(idinventario){
-                $http.get("http://localhost/cd/index.php/inventario/inventario_controller/listagem_where",idinventario).success(function(data){
-                $scope.preenche = data;
-                });
-              console.log(idinventario);  
+            $scope.edit = function(dados){
+                
+                $scope.registro = dados;
+                
+              console.log(dados);  
             };
+            $scope.apagarRegistro = function(idinventario){
+              $http.post("http://localhost/cd/index.php/inventario/inventario_controller/exclui_hardware",{idinventario:idinventario}).success(function(data){
+                  carregaHardware();
+              }).error(function(data){
+                  $scope.message = "Aconteceu um erro: "+data;
+              });
+              
+            };
+            /*
             $scope.apagarRegistro = function(dados){
               $scope.dados = dados.filter(function (registro){
                  if(!registro.selecionado) return registro; 
               });
               
-            };
+            };*/
             
             
             $scope.registroSelecionado = function(dados){
@@ -147,15 +156,19 @@
 			  </div>
 			  <div class="form-group">
 			    
-                              <input type="text" class="form-control" ng-model="registro.nome" name="nome" value="{{preenche.nome}}"  placeholder="Nome do produto" ng-required="true">
+                              <input type="text" class="form-control" ng-model="registro.nome" name="nome"  placeholder="Nome do produto" ng-required="true">
 			  </div>
                             <div class="form-group">
                             
                                 <input type="text" class="form-control" ng-model="registro.modelo" name="modelo" placeholder="Modelo do produto" ng-required="true">
                           </div>
                             <div class="form-group">
-                                <select type="text" class="form-control" ng-model="registro.marca.nome" name="marca" ng-options="marca.nome for marca in marca" ng-required="true">
-                                    <option value="">Selecione uma marca</option>
+                                <select type="text" class="form-control" ng-model="registro.marca" name="marca" >
+                                <!--<select type="text" class="form-control" ng-model="registro.marca.nome" name="marca" ng-options="marca.nome for marca in marca" ng-required="true">-->
+                                    <option value="">{{registro.marca}}</option>
+                                    <option value="sony">Sony</option>
+                                    <option value="sansung">Sansung</option>
+                                    <option value="lenovo">Lenovo</option>
                                 </select>
                             </div>
                             
@@ -166,6 +179,7 @@
                          </div>  
                             
 			</form>	    
+                  
                   <table ng-show="dados.length > 0" class="table">
                       <tr>
                           <th></th>
@@ -181,7 +195,8 @@
                           <td>{{dados.nome}}</td>
                           <td>{{dados.modelo}}</td>
                           <td>{{dados.marca}}</td>
-                          <td><a href="javascript:;"  ng-click="edit(dados.idinventario)"><button type="button" class="glyphicon glyphicon-cog"></button></a></td>
+                          <td><a href="javascript:;"  ng-click="edit(dados)"><button type="button" class="glyphicon glyphicon-edit"></button></a></td>
+                          <td><a href="javascript:;"  ng-click="apagarRegistro(dados.idinventario)"><button type="button" class="glyphicon glyphicon-trash"></button></a></td>
                           <!--<td>{{dados.marca.nome}}</td>-->
                       </tr>
                   </table>
