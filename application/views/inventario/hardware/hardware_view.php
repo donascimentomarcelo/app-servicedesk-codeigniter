@@ -72,7 +72,12 @@
                 //$scope.dados.unshift(angular.copy(registro));
                 });
             };
-            
+            $scope.edit = function(idinventario){
+                $http.get("http://localhost/cd/index.php/inventario/inventario_controller/listagem_where",idinventario).success(function(data){
+                $scope.preenche = data;
+                });
+              console.log(idinventario);  
+            };
             $scope.apagarRegistro = function(dados){
               $scope.dados = dados.filter(function (registro){
                  if(!registro.selecionado) return registro; 
@@ -135,10 +140,14 @@
                  <div>{{message}}</div>   
 	      <div class="modal-body">
 	      	
-			<form role="form" name="inventarioForm" method="post" action="<?= base_url('index.php/perfil_pessoal/perfil_pessoal_controller/atualiza_perfil')?>" id="formulario_usuario" enctype="multipart/form-data">
+			<form role="form" name="inventarioForm" method="post" id="formulario_usuario" enctype="multipart/form-data">
 			  <div class="form-group">
 			    
-                              <input type="text" class="form-control" ng-model="registro.nome" name="nome"  placeholder="Nome do produto" ng-required="true">
+                              <input type="hidden" class="form-control" ng-model="registro.idinventario" name="idinventario">
+			  </div>
+			  <div class="form-group">
+			    
+                              <input type="text" class="form-control" ng-model="registro.nome" name="nome" value="{{preenche.nome}}"  placeholder="Nome do produto" ng-required="true">
 			  </div>
                             <div class="form-group">
                             
@@ -160,15 +169,19 @@
                   <table ng-show="dados.length > 0" class="table">
                       <tr>
                           <th></th>
+                          <th style="text-align: center;">ID</th>
                           <th style="text-align: center;">Nome</th>
                           <th style="text-align: center;">Modelo</th>
                           <th style="text-align: center;">Marca</th>
+                          <th></th>
                       </tr>
                       <tr ng-class="{'cinza negrito': dados.selecionado}" ng-repeat="dados in dados">
                           <td><input type="checkbox" ng-model="dados.selecionado"></td>
+                          <td>{{dados.idinventario}}</td>
                           <td>{{dados.nome}}</td>
                           <td>{{dados.modelo}}</td>
                           <td>{{dados.marca}}</td>
+                          <td><a href="javascript:;"  ng-click="edit(dados.idinventario)"><button type="button" class="glyphicon glyphicon-cog"></button></a></td>
                           <!--<td>{{dados.marca.nome}}</td>-->
                       </tr>
                   </table>

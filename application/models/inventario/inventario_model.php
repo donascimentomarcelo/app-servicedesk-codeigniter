@@ -19,6 +19,7 @@ class inventario_model extends CI_Model{
        
         $arr[] = array( 
             
+                "idinventario" => $linha->idinventario, 
                 "nome" => $linha->nome, 
                 "modelo" => $linha->modelo, 
                 "marca" => $linha->marca
@@ -26,6 +27,34 @@ class inventario_model extends CI_Model{
         );
          
          
+        }
+        
+        return json_encode($arr);
+        
+    }
+    function m_hardware_list_where($idinventario = NULL){
+        
+        echo var_dump($idinventario);
+        
+        if ($idinventario != NULL){
+        $this->db->select('*');
+        $this->db->from('inventario');
+        $this->db->where('idinventario', $idinventario);
+        
+        $variaveis = $this->db->get();
+        
+        foreach($variaveis -> result() as $linha){
+       
+        $arr[] = array( 
+            
+                "idinventario" => $linha->idinventario, 
+                "nome" => $linha->nome, 
+                "modelo" => $linha->modelo, 
+                "marca" => $linha->marca
+           
+        );
+         
+        }
         }
         
         return json_encode($arr);

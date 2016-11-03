@@ -45,4 +45,14 @@ class Inventario_controller extends CI_Controller {
         
     }
     
+    function listagem_where($idinventario = NULL){
+        
+        $this->load->model('inventario/inventario_model');
+        
+        $inventario = $this->inventario_model->m_hardware_list_where($idinventario);
+        
+        echo $inventario;
+        
+    }
+    
 }
