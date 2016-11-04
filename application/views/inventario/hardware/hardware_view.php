@@ -8,21 +8,10 @@
         
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
         <link href="../../../bootstrap/css/cd.css" rel="stylesheet" type="text/css"/>
-        
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-        <link href="../../../bootstrap/css/cd.css" rel="stylesheet" type="text/css"/>
-        
-        <link href="../../../bootstrap/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
-        
+       
         <script src="../../../bootstrap/js/jquery.js" type="text/javascript"></script>
-        <script src="../../../bootstrap/js/jquery.dataTables.min.js" type="text/javascript"></script>
-        <script src="../../../bootstrap/js/bootbox.js" type="text/javascript"></script>
         <script src="../../../bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-        <script src="../../../bootstrap/js/jquery.forms.js" type="text/javascript"></script>
-        <script src="../../../bootstrap/js/bootbox.min.js" type="text/javascript"></script>
-        <script src="../../../bootstrap/js/jquery.confirm.js" type="text/javascript"></script>
-        
+       
         <script src="../../../bootstrap/js/jquery.validate.js" type="text/javascript"></script>
         
         <script src="../../../sweet/sweetalert-dev.js" type="text/javascript"></script>
@@ -72,18 +61,22 @@
                 //$scope.dados.unshift(angular.copy(registro));
                 });
             };
+            
             $scope.edit = function(dados){
-                
                 $scope.registro = dados;
-                
-              console.log(dados);  
+                //console.log(dados);  
             };
+            
             $scope.apagarRegistro = function(idinventario){
               $http.post("http://localhost/cd/index.php/inventario/inventario_controller/exclui_hardware",{idinventario:idinventario}).success(function(data){
                   carregaHardware();
               }).error(function(data){
                   $scope.message = "Aconteceu um erro: "+data;
               });
+              
+            };
+            $scope.apagarMultiplosRegistro = function(idinventario){
+             console.log(idinventario);
               
             };
             /*
@@ -93,18 +86,21 @@
               });
               
             };*/
-            
+        
+            $scope.ordenarPor = function(campo){
+                $scope.criterioDeOrdenacao = campo;
+                $scope.ordenacao = !$scope.ordenacao;
+            };           
             
             $scope.registroSelecionado = function(dados){
                 return dados.some(function(registro){
                     return registro.selecionado;
                 });
-          
             };
             
             carregaHardware();
             
-        });
+            });
         
         
         </script>
@@ -173,30 +169,31 @@
                             </div>
                             
                          <div>
-                             <button type="button" ng-click="registraInventario(registro)" ng-disabled="inventarioForm.$invalid" class="btn btn-secondary btn-lg btn-block">Registrar</button>
-                             <button type="button" ng-click="apagarRegistro(dados)" ng-if="registroSelecionado(dados)"  class="btn btn-secondary btn-lg btn-block">Apagar</button>
+                             <button type="button" ng-click="registraInventario(registro)" ng-disabled="inventarioForm.$invalid" class="btn btn-secondary">Registrar</button>
+                             <button type="button" ng-click="apagarMultiplosRegistro(dados)" ng-if="registroSelecionado(dados)"  class="btn btn-secondary">Apagar</button>
                              <!--<button type="button" ng-click="apagarRegistro(dados)" ng-disabled="!registroSelecionado(dados)"  class="btn btn-secondary btn-lg btn-block">Apagar</button>-->
                          </div>  
                             
 			</form>	    
-                  
+                  <input class="form-control" id="search" type="text" ng-model="search" placeholder="Pesquise o pelo nome do Hardware."/>
                   <table ng-show="dados.length > 0" class="table">
                       <tr>
-                          <th></th>
-                          <th style="text-align: center;">ID</th>
-                          <th style="text-align: center;">Nome</th>
-                          <th style="text-align: center;">Modelo</th>
-                          <th style="text-align: center;">Marca</th>
+                          <!--<th></th>-->
+                          <th style="text-align: center;" ng-click="ordenarPor('idinventario')"> ID</th>
+                          <th style="text-align: center;" ng-click="ordenarPor('nome')">Nome</th>
+                          <th style="text-align: center;" ng-click="ordenarPor('modelo')">Modelo</th>
+                          <th style="text-align: center;" ng-click="ordenarPor('marca')">Marca</th>
                           <th></th>
                       </tr>
-                      <tr ng-class="{'cinza negrito': dados.selecionado}" ng-repeat="dados in dados">
-                          <td><input type="checkbox" ng-model="dados.selecionado"></td>
+                      <tr ng-class="{'cinza negrito': dados.selecionado}" ng-repeat="dados in dados | filter:{nome:search} | orderBy:criterioDeOrdenacao:ordenacao">
+                          <!--chama o ng-model="search" para realizar a filtragem no input de busca--->
+                          <!--<td><input type="checkbox" ng-model="dados.selecionado"></td>-->
                           <td>{{dados.idinventario}}</td>
                           <td>{{dados.nome}}</td>
                           <td>{{dados.modelo}}</td>
                           <td>{{dados.marca}}</td>
-                          <td><a href="javascript:;"  ng-click="edit(dados)"><button type="button" class="glyphicon glyphicon-edit"></button></a></td>
-                          <td><a href="javascript:;"  ng-click="apagarRegistro(dados.idinventario)"><button type="button" class="glyphicon glyphicon-trash"></button></a></td>
+                          <td><a href="javascript:;"  ng-click="edit(dados)"><button type="button" class="glyphicon glyphicon-edit"></button></a> | 
+                              <a href="javascript:;"  ng-click="apagarRegistro(dados.idinventario)"><button type="button" class="glyphicon glyphicon-trash"></button></a></td>
                           <!--<td>{{dados.marca.nome}}</td>-->
                       </tr>
                   </table>

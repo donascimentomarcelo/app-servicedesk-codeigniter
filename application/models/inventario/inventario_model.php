@@ -12,6 +12,7 @@ class inventario_model extends CI_Model{
         
         $this->db->select('*');
         $this->db->from('inventario');
+        $this->db->order_by("idinventario", "desc");
         
         $variaveis = $this->db->get();
         
