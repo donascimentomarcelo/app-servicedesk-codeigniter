@@ -4,23 +4,20 @@
 	<meta charset="utf-8">
 	<title>Inventário - Hardware</title>
 
-        <script src="../../../angular/angular-1.5.8/angular.min.js" type="text/javascript"></script>
+        <script src="../../../angular/lib/angular.min.js" type="text/javascript"></script>
+        <script src="../../../angular/lib/dirPagination.js" type="text/javascript"></script>
+        <script src="../../../angular/js/app.js" type="text/javascript"></script>
+        <script src="../../../angular/js/controllers/hardwarecrtl.js" type="text/javascript"></script>
+        <script src="../../../angular/js/services/hardwareAPIService.js" type="text/javascript"></script>
+        <script src="../../../angular/js/value/configValue.js" type="text/javascript"></script>
         
-        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-        <link href="../../../bootstrap/css/cd.css" rel="stylesheet" type="text/css"/>
-       
         <script src="../../../bootstrap/js/jquery.js" type="text/javascript"></script>
         <script src="../../../bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-       
-        <script src="../../../bootstrap/js/jquery.validate.js" type="text/javascript"></script>
-        
-        <script src="../../../sweet/sweetalert-dev.js" type="text/javascript"></script>
-        <script src="../../../sweet/sweetalert.min.js" type="text/javascript"></script>
-        
-        <link href="../../../sweet/sweetalert.css" rel="stylesheet" type="text/css"/>
-        
-        <link href="../../../craftpip-jquery/css/jquery-confirm.css" rel="stylesheet" type="text/css"/>
         <script src="../../../craftpip-jquery/js/jquery-confirm.js" type="text/javascript"></script>
+       
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <link href="../../../bootstrap/css/cd.css" rel="stylesheet" type="text/css"/>
+        <link href="../../../craftpip-jquery/css/jquery-confirm.css" rel="stylesheet" type="text/css"/>
         
         <script type="text/javascript">
         
@@ -28,93 +25,8 @@
             $('.dropdown-toggle').dropdown();
         });
      
-        angular.module("hardware", []);
-        angular.module("hardware").controller("hardwarecrtl", function($scope,$http){
-            /*
-            $scope.dados = [
-                {nome:"teste", modelo: "teste", marca:"sony"},
-                {nome:"teste1", modelo: "teste1", marca:"sony"},
-                {nome:"teste2", modelo: "teste2", marca:"sony"}
-            ];
-            */
-            $scope.dados = [];
-        var carregaHardware = function(){
-            $http.get("http://localhost/cd/index.php/inventario/inventario_controller/listagem").success(function(data, status){
-                console.log(data);
-                //$scope.dados = data;
-                $scope.dados = data;
-            }).error(function(data){
-                $scope.message = "Aconteceu um erro:"+data;
-            });
-        };   
-        
-        $scope.marca = [
-                {nome:"sony", codigo: 1},
-                {nome:"sansung", codigo: 2},
-                {nome:"LG", codigo:3}
-            ];
-            
-            $scope.registraInventario = function(registro){
-                $http.post("http://localhost/cd/index.php/inventario/inventario_controller/registro_hardware", registro).success(function(data){
-                delete $scope.registro;
-                carregaHardware();
-                //$scope.dados.unshift(angular.copy(registro));
-                });
-            };
-            
-            $scope.edit = function(dados){
-                $scope.registro = dados;
-                //console.log(dados);  
-            };
-            
-            $scope.apagarRegistro = function(idinventario){
-              $http.post("http://localhost/cd/index.php/inventario/inventario_controller/exclui_hardware",{idinventario:idinventario}).success(function(data){
-                  carregaHardware();
-              }).error(function(data){
-                  $scope.message = "Aconteceu um erro: "+data;
-              });
-              
-            };
-            $scope.apagarMultiplosRegistro = function(idinventario){
-             console.log(idinventario);
-              
-            };
-            /*
-            $scope.apagarRegistro = function(dados){
-              $scope.dados = dados.filter(function (registro){
-                 if(!registro.selecionado) return registro; 
-              });
-              
-            };*/
-        
-            $scope.ordenarPor = function(campo){
-                $scope.criterioDeOrdenacao = campo;
-                $scope.ordenacao = !$scope.ordenacao;
-            };           
-            
-            $scope.registroSelecionado = function(dados){
-                return dados.some(function(registro){
-                    return registro.selecionado;
-                });
-            };
-            
-            carregaHardware();
-            
-            });
-        
-        
-        </script>
-        <style>
-            .cinza{
-                background-color: #ccc;
-            }
-            
-            .negrito{
-                font-weight: bold;
-            }
-            
-        </style>
-      
+         </script>
+       
 </head>
 <body>
     
@@ -144,8 +56,9 @@
 	      </div>
                  <div>{{message}}</div>   
 	      <div class="modal-body">
-	      	
-			<form role="form" name="inventarioForm" method="post" id="formulario_usuario" enctype="multipart/form-data">
+                  <div class="row">
+                      <div class="col-md-6">
+                        <form role="form" name="inventarioForm" method="post" id="formulario_usuario" enctype="multipart/form-data">
 			  <div class="form-group">
 			    
                               <input type="hidden" class="form-control" ng-model="registro.idinventario" name="idinventario">
@@ -156,7 +69,7 @@
 			  </div>
                             <div class="form-group">
                             
-                                <input type="text" class="form-control" ng-model="registro.modelo" name="modelo" placeholder="Modelo do produto" ng-required="true">
+                              <input type="text" class="form-control" ng-model="registro.modelo" name="modelo" placeholder="Modelo do produto" ng-required="true">
                           </div>
                             <div class="form-group">
                                 <select type="text" class="form-control" ng-model="registro.marca" name="marca" >
@@ -174,30 +87,44 @@
                              <!--<button type="button" ng-click="apagarRegistro(dados)" ng-disabled="!registroSelecionado(dados)"  class="btn btn-secondary btn-lg btn-block">Apagar</button>-->
                          </div>  
                             
-			</form>	    
-                  <input class="form-control" id="search" type="text" ng-model="search" placeholder="Pesquise o pelo nome do Hardware."/>
-                  <table ng-show="dados.length > 0" class="table">
-                      <tr>
-                          <!--<th></th>-->
-                          <th style="text-align: center;" ng-click="ordenarPor('idinventario')"> ID</th>
-                          <th style="text-align: center;" ng-click="ordenarPor('nome')">Nome</th>
-                          <th style="text-align: center;" ng-click="ordenarPor('modelo')">Modelo</th>
-                          <th style="text-align: center;" ng-click="ordenarPor('marca')">Marca</th>
-                          <th></th>
-                      </tr>
-                      <tr ng-class="{'cinza negrito': dados.selecionado}" ng-repeat="dados in dados | filter:{nome:search} | orderBy:criterioDeOrdenacao:ordenacao">
-                          <!--chama o ng-model="search" para realizar a filtragem no input de busca--->
-                          <!--<td><input type="checkbox" ng-model="dados.selecionado"></td>-->
-                          <td>{{dados.idinventario}}</td>
-                          <td>{{dados.nome}}</td>
-                          <td>{{dados.modelo}}</td>
-                          <td>{{dados.marca}}</td>
-                          <td><a href="javascript:;"  ng-click="edit(dados)"><button type="button" class="glyphicon glyphicon-edit"></button></a> | 
-                              <a href="javascript:;"  ng-click="apagarRegistro(dados.idinventario)"><button type="button" class="glyphicon glyphicon-trash"></button></a></td>
-                          <!--<td>{{dados.marca.nome}}</td>-->
-                      </tr>
-                  </table>
-                  
+			</form>	   
+                      </div>
+                      <div class="col-md-6">
+                        <input class="form-control" id="search" type="text" ng-model="search" placeholder="Pesquise o pelo nome do Hardware."/>
+                        <table ng-show="dados.length > 0" class="table">
+                                <tr>
+                                    <!--<th></th>-->
+                                    <th style="text-align: center;" ng-click="ordenarPor('idinventario')"> ID
+                                    <span class="glyphicon sort-icon" ng-show="criterioDeOrdenacao==='idinventario'" ng-class="{'glyphicon-chevron-up':ordenacao,'glyphicon-chevron-down':!ordenacao}"></span>
+                                    </th>
+                                    <th style="text-align: center;" ng-click="ordenarPor('nome')">Nome
+                                    <span class="glyphicon sort-icon" ng-show="criterioDeOrdenacao==='nome'" ng-class="{'glyphicon-chevron-up':ordenacao,'glyphicon-chevron-down':!ordenacao}"></span>
+                                    </th>
+                                    <th style="text-align: center;" ng-click="ordenarPor('modelo')">Modelo
+                                    <span class="glyphicon sort-icon" ng-show="criterioDeOrdenacao==='modelo'" ng-class="{'glyphicon-chevron-up':ordenacao,'glyphicon-chevron-down':!ordenacao}"></span>
+                                    </th>
+                                    <th style="text-align: center;" ng-click="ordenarPor('marca')">Marca
+                                    <span class="glyphicon sort-icon" ng-show="criterioDeOrdenacao==='marca'" ng-class="{'glyphicon-chevron-up':ordenacao,'glyphicon-chevron-down':!ordenacao}"></span>
+                                    </th>
+                                    <th></th>
+                                </tr>
+                            </tbody>
+                                <tr ng-class="{'cinza negrito': dados.selecionado}" dir-paginate="dados in dados | filter:{nome:search} | orderBy:criterioDeOrdenacao:ordenacao| itemsPerPage:5">
+                                    <!--chama o ng-model="search" para realizar a filtragem no input de busca--->
+                                    <!--<td><input type="checkbox" ng-model="dados.selecionado"></td>-->
+                                    <td>{{dados.idinventario}}</td>
+                                    <td>{{dados.nome}}</td>
+                                    <td>{{dados.modelo}}</td>
+                                    <td>{{dados.marca}}</td>
+                                    <td><a href="javascript:;"  ng-click="edit(dados)"><button type="button" class="glyphicon glyphicon-edit"></button></a> | 
+                                        <a href="javascript:;"  ng-click="apagarRegistro(dados.idinventario)"><button type="button" class="glyphicon glyphicon-trash"></button></a></td>
+                                    <!--<td>{{dados.marca.nome}}</td>-->
+                                </tr>
+                            </tbody>
+                        </table>
+                  <dir-pagination-controls max-size="5" direction-links="true" boundary-links="true"></dir-pagination-controls>
+                 </div>
+                 </div>
 	      </div>
 	      <div class="modal-footer">
 	      

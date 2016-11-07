@@ -83,7 +83,7 @@
         border-radius: 10px;
         }
         #form_padrao{
-            width: 800px;
+            width: 1000px;
             margin-left: auto;
             margin-right: auto;
             text-align: center;
@@ -94,3 +94,32 @@
         #search{
             margin-top: 4px;
         }
+        
+        /*PAGINATION*/
+         .cinza{
+                background-color: #ccc;
+            }
+            
+            .negrito{
+                font-weight: bold;
+            }
+            
+            .pagination > .active > a, .pagination > .active > a:focus, .pagination > .active > a:hover, .pagination > .active > span, .pagination > .active > span:focus, .pagination > .active > span:hover {
+            background-color: black;
+            border-color: black;
+            color: white;
+            cursor: default;
+            z-index: 3;
+        }
+            .pagination > li > a, .pagination > li > span {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            color: black;
+            float: left;
+            line-height: 1.42857;
+            margin-left: -1px;
+            padding: 6px 12px;
+            position: relative;
+            text-decoration: none;
+        }
+         /*PAGINATION*/

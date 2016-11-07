@@ -73,6 +73,8 @@ class Inventario_controller extends CI_Controller {
         
     }
     
+    //SOFTWARE
+    
     function software_list(){
         
         $this->load->helper('valida_login/valida_helper');
