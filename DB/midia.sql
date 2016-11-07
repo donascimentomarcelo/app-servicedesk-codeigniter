@@ -128,6 +128,13 @@ create table inventario(
     modelo varchar(20),
     marca varchar(20)
     );
+
+create table software(
+    idsoftware int primary key auto_increment,
+    nomesoftware varchar(20),
+    serialsoftware varchar(20),
+    marcasoftware varchar(20)
+    );
 --
 -- Extraindo dados da tabela `usuarios`
 --

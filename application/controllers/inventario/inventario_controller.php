@@ -73,4 +73,30 @@ class Inventario_controller extends CI_Controller {
         
     }
     
+    function software_list(){
+        
+        $this->load->helper('valida_login/valida_helper');
+        
+        $variaveis['validacao'] = getValida();
+
+
+        $this->load->helper('preenche_dados/preenche_dados_helper');
+
+        $variaveis['preenche_dados'] = getPreencheDados();
+        
+        
+        $this->load->view('inventario/hardware/hardware_view',$variaveis);
+        
+    }
+    
+    function listagem_software(){
+        
+        $this->load->model('inventario/inventario_model');
+        
+        $software = $this->inventario_model->m_software_list();
+        
+        echo $software;
+        
+    }
+    
 }

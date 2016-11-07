@@ -7,6 +7,31 @@ class inventario_model extends CI_Model{
         parent::__construct();
         
     }    
+    function m_software_list(){
+        
+        $this->db->select('*');
+        $this->db->from('software');
+        $this->db->order_by('idsoftware', 'desc');
+        
+        $variaveis = $this->db->get();
+        
+        foreach($variaveis -> result() as $linha){
+            
+            $arr[] =  array(
+                
+                "idsoftware" => $linha->idsoftware,
+                "nomesoftware" => $linha->nomesoftware,
+                "modelosoftware" => $linha->modelosoftware,
+                "marcasoftware" => $linha->marcasoftware
+                
+            );
+            
+        }
+        
+        return json_encode($arr);
+    }
+    
+    //HARDWARE
     
     function m_hardware_list(){
         
@@ -26,8 +51,7 @@ class inventario_model extends CI_Model{
                 "marca" => $linha->marca
            
         );
-         
-         
+        
         }
         
         if(isset($arr)){
