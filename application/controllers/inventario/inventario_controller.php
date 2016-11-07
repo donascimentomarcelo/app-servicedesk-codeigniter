@@ -101,4 +101,39 @@ class Inventario_controller extends CI_Controller {
         
     }
     
+    function registrar_software(){
+        
+        $this->load->model('inventario/inventario_model');
+        
+        $registro = $this->inventario_model->m_registrar_software();
+        
+        if($registro){
+            
+            echo 1;
+            
+        }else{
+            
+            echo 0;
+            
+        }
+        
+    }
+    
+    function excluir_software(){
+        
+        $this->load->model('inventario/inventario_model');
+        
+        $exclusao = $this->inventario_model->m_excluir_software();
+        
+        if($exclusao){
+            
+            echo 1;
+            
+        }else{
+            
+            echo 0;
+            
+        }
+    }
+    
 }
