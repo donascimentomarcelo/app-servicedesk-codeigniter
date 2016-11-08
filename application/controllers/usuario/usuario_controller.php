@@ -115,8 +115,15 @@ class Usuario_controller extends CI_Controller {
             echo 0;
             
         }
-        
-        
     }
+   
+     function getPreencheDados(){
+         
+    	$this->load->model('usuario/usuario_model');
+        
+        $data = $this->usuario_model->m_list_usuario_angular();
+        
+        echo $data;
+    }   
     
 }

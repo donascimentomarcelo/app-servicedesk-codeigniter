@@ -19,12 +19,20 @@ angular.module("hardware").factory("hardwareAPI", function($http, config){
         
     };
     
+     var _getLoadData = function(){
+        
+        return $http.get(config.baseUrl+"/cd/index.php/usuario/usuario_controller/getPreencheDados");
+        
+    };
+    
     return{
         
         getCarregaHardware : _getCarregaHardware,
         
         getRegistraInventario : _getRegistraInventario,
         
-        getApagarRegistro : _getApagarRegistro
+        getApagarRegistro : _getApagarRegistro,
+        
+        getLoadData : _getLoadData
     };
 });

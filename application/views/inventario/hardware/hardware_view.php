@@ -28,25 +28,17 @@
          </script>
        
 </head>
-<body>
+
+<body ng-controller="hardwarecrtl">
     
 <div id="container">
-	<h1><?php foreach($preenche_dados -> result() as $dados):?> <img src="../../.<?php echo $dados->imagem;?>" class="img-circle" width="50px" height="50px"> <?php endforeach;?> <?php echo $this->session->userdata('nome');?></h1>
+    <div ng-repeat="datauser in datauser">
+        <h1> <img src="{{datauser.imagemmenu}}" class="img-circle" width="50px" height="50px"> {{datauser.nomemenu}}</h1>
+    </div>
+	<!--<h1><?php// foreach($preenche_dados -> result() as $dados):?> <img src="../../.<?php //echo $dados->imagem;?>" class="img-circle" width="50px" height="50px"> <?php// endforeach;?> <?php //echo $this->session->userdata('nome');?></h1>-->
+       
+        <?php include 'C:\xampp\htdocs\cd\application\views\menu_head\administrador\menu_inicial.php'; ?>
         
-	  <?php if($this->session->userdata('perfil') == 'administrador'){
-              
-                  include 'C:\xampp\htdocs\cd\application\views\menu_head\administrador\menu_inicial.php';
-             
-              }else{
-                  
-                  include 'C:\xampp\htdocs\cd\application\views\menu_head\usuario\menu_inicial.php';
-            
-              }
-              ?>
-        
-</head>
-<body ng-controller="hardwarecrtl">
-
         <div id="container">
 
              <div class="" id="form_padrao" data-backdrop="static" >
@@ -73,7 +65,6 @@
                           </div>
                             <div class="form-group">
                                 <select type="text" class="form-control" ng-model="registro.marca" name="marca" >
-                                <!--<select type="text" class="form-control" ng-model="registro.marca.nome" name="marca" ng-options="marca.nome for marca in marca" ng-required="true">-->
                                     <option value="">{{registro.marca}}</option>
                                     <option value="sony">Sony</option>
                                     <option value="sansung">Sansung</option>
@@ -84,7 +75,6 @@
                          <div>
                              <button type="button" ng-click="registraInventario(registro)" ng-disabled="inventarioForm.$invalid" class="btn btn-secondary">Registrar</button>
                              <button type="button" ng-click="apagarMultiplosRegistro(dados)" ng-if="registroSelecionado(dados)"  class="btn btn-secondary">Apagar</button>
-                             <!--<button type="button" ng-click="apagarRegistro(dados)" ng-disabled="!registroSelecionado(dados)"  class="btn btn-secondary btn-lg btn-block">Apagar</button>-->
                          </div>  
                             
 			</form>	   
@@ -93,7 +83,6 @@
                         <input class="form-control" id="search" type="text" ng-model="search" placeholder="Pesquise o pelo nome do Hardware."/>
                         <table ng-show="dados.length > 0" class="table">
                                 <tr>
-                                    <!--<th></th>-->
                                     <th style="text-align: center;" ng-click="ordenarPor('idinventario')"> ID
                                     <span class="glyphicon sort-icon" ng-show="criterioDeOrdenacao==='idinventario'" ng-class="{'glyphicon-chevron-up':ordenacao,'glyphicon-chevron-down':!ordenacao}"></span>
                                     </th>
@@ -110,15 +99,14 @@
                                 </tr>
                             </tbody>
                                 <tr ng-class="{'cinza negrito': dados.selecionado}" dir-paginate="dados in dados | filter:{nome:search} | orderBy:criterioDeOrdenacao:ordenacao| itemsPerPage:5">
-                                    <!--chama o ng-model="search" para realizar a filtragem no input de busca--->
-                                    <!--<td><input type="checkbox" ng-model="dados.selecionado"></td>-->
                                     <td>{{dados.idinventario}}</td>
                                     <td>{{dados.nome}}</td>
                                     <td>{{dados.modelo}}</td>
                                     <td>{{dados.marca}}</td>
-                                    <td><a href="javascript:;"  ng-click="edit(dados)"><button type="button" class="glyphicon glyphicon-edit"></button></a> | 
-                                        <a href="javascript:;"  ng-click="apagarRegistro(dados.idinventario)"><button type="button" class="glyphicon glyphicon-trash"></button></a></td>
-                                    <!--<td>{{dados.marca.nome}}</td>-->
+                                    <td>
+                                        <a href="javascript:;"  ng-click="edit(dados)"><button type="button" class="glyphicon glyphicon-edit"></button></a> | 
+                                        <a href="javascript:;"  ng-click="apagarRegistro(dados.idinventario)"><button type="button" class="glyphicon glyphicon-trash"></button></a>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>

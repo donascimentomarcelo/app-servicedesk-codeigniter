@@ -130,6 +130,30 @@ class usuario_model extends CI_Model{
         
     }
     
+    public function m_list_usuario_angular(){
+        
+       $id = $this->session->userdata('id');
+            
+        $this->db->select('*');    
+        $this->db->from('usuarios');
+        $this->db->join('setor', 'usuarios.setor_fk = setor.idsetor');
+        $this->db->where('id',$id);
+   
+        
+        $data = $this->db->get();
+        
+        foreach ($data -> result() as $row):
+            $arr[] = array(
+                'nomemenu' => $row->nome,
+                'imagemmenu' => $row->imagem,
+                'setormenu' => $row->nomesetor
+            );
+        endforeach;
+        
+        return json_encode($arr);
+        
+    }
+    
     public function del_usuario($id) {
         
         $this->db->where('id', $id);

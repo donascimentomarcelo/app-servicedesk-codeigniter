@@ -20,7 +20,8 @@ class perfil_pessoal_model extends CI_Model{
     }
     
        public function atualizar_perfil($imagem) {
-        
+        $imagem = '../../.'.$imagem;
+           
         if(empty($imagem)){
             
              $id = $this->input->post('id');

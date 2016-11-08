@@ -38,15 +38,7 @@
               });
               
             };
-          
-            /*
-            $scope.apagarRegistro = function(dados){
-              $scope.dados = dados.filter(function (registro){
-                 if(!registro.selecionado) return registro; 
-              });
-              
-            };*/
-        
+         
             $scope.ordenarPor = function(campo){
                 $scope.criterioDeOrdenacao = campo;
                 $scope.ordenacao = !$scope.ordenacao;
@@ -57,12 +49,20 @@
                     return registro.selecionado;
                 });
             };
+
             
-            $scope.list = $scope.$parent.personList;
-            $scope.config = {
-              itemsPerPage: 5,
-              fillLastPage: true
+            $scope.datauser = [];
+
+           var loaDdata = function(){
+                hardwareAPI.getLoadData().success(function(data){
+                    $scope.datauser = data;
+                }).error(function(data){
+                    $scope.message = "Aconteceu um erro ao carregar os dados: "+data;
+                });
+
             };
+            
+            loaDdata();
             
             carregaHardware();
             
