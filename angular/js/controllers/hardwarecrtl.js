@@ -7,14 +7,15 @@
                 hardwareAPI.getCarregaHardware().success(function(data, status){
                    $scope.dados = data;
                 }).error(function(data){
-                    $scope.message = "Aconteceu um erro:"+data;
+                    $scope.error = "Aconteceu um erro:"+data;
                 });
             };   
         
             $scope.marca = [
                 {nome:"sony", codigo: 1},
                 {nome:"sansung", codigo: 2},
-                {nome:"LG", codigo:3}
+                {nome:"LG", codigo:3},
+                {nome:"lenovo", codigo:4}
             ];
             
             $scope.registraInventario = function(registro){
@@ -34,7 +35,7 @@
               hardwareAPI.getApagarRegistro(idinventario).success(function(data){
                   carregaHardware();
               }).error(function(data){
-                  $scope.message = "Aconteceu um erro: "+data;
+                  $scope.error = "Aconteceu um erro: "+data;
               });
               
             };
@@ -57,12 +58,12 @@
                 hardwareAPI.getLoadData().success(function(data){
                     $scope.datauser = data;
                 }).error(function(data){
-                    $scope.message = "Aconteceu um erro ao carregar os dados: "+data;
+                    $scope.error = "Aconteceu um erro ao carregar os dados: "+data;
                 });
 
             };
             
-            loaDdata();
+            //loaDdata();
             
             carregaHardware();
             

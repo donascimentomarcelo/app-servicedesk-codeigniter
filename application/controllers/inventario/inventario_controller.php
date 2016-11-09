@@ -87,7 +87,7 @@ class Inventario_controller extends CI_Controller {
         $variaveis['preenche_dados'] = getPreencheDados();
         
         
-        $this->load->view('inventario/hardware/hardware_view',$variaveis);
+        $this->load->view('inventario/software/software_view',$variaveis);
         
     }
     

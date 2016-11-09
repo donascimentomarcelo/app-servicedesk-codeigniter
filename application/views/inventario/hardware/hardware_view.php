@@ -32,10 +32,10 @@
 <body ng-controller="hardwarecrtl">
     
 <div id="container">
-    <div ng-repeat="datauser in datauser">
+   <!-- <div ng-repeat="datauser in datauser">
         <h1> <img src="{{datauser.imagemmenu}}" class="img-circle" width="50px" height="50px"> {{datauser.nomemenu}}</h1>
-    </div>
-	<!--<h1><?php// foreach($preenche_dados -> result() as $dados):?> <img src="../../.<?php //echo $dados->imagem;?>" class="img-circle" width="50px" height="50px"> <?php// endforeach;?> <?php //echo $this->session->userdata('nome');?></h1>-->
+    </div>-->
+	<h1><?php foreach($preenche_dados -> result() as $dados):?> <img src="../../.<?php echo $dados->imagem;?>" class="img-circle" width="50px" height="50px"> <?php endforeach;?> <?php echo $this->session->userdata('nome');?></h1>
        
         <?php include 'C:\xampp\htdocs\cd\application\views\menu_head\administrador\menu_inicial.php'; ?>
         
@@ -46,7 +46,7 @@
 	      <div class="modal-header">
 	        <h4 class="modal-title">Inventário - Hardware</h4>
 	      </div>
-                 <div>{{message}}</div>   
+                 <div>{{error}}</div>   
 	      <div class="modal-body">
                   <div class="row">
                       <div class="col-md-6">
@@ -65,10 +65,8 @@
                           </div>
                             <div class="form-group">
                                 <select type="text" class="form-control" ng-model="registro.marca" name="marca" >
-                                    <option value="">{{registro.marca}}</option>
-                                    <option value="sony">Sony</option>
-                                    <option value="sansung">Sansung</option>
-                                    <option value="lenovo">Lenovo</option>
+                                    <option value="">{{marca.nome}}</option>
+                                    <option ng-repeat="marca in marca" value="{{marca.nome}}" >{{marca.nome}}</option>
                                 </select>
                             </div>
                             
