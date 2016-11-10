@@ -49,7 +49,7 @@
                 <ul class="dropdown-menu">
                     <li><a href="http://localhost/cd/index.php/inventario/inventario_controller/hardware_list" class="glyphicon glyphicon-hdd"> Hardware</a></li>
                     <li><a href="http://localhost/cd/index.php/indicadores/inventario_controller/software_list" class="glyphicon glyphicon-folder-open"> Software</a></li>
-                    <li><a href="http://localhost/cd/index.php/indicadores/inventario_controller/indicadores" class="glyphicon glyphicon-sort"> #</a></li>
+                    <li><a href="http://localhost/cd/index.php/indicadores/inventario_controller/configuracao_inventario_list" class="glyphicon glyphicon-cog"> Configuração</a></li>
                 </ul>
               </li>
               <li><a href="http://localhost/cd/index.php/login/login_controller/sair"><span class="glyphicon glyphicon-off"></span> Sair</a></li>

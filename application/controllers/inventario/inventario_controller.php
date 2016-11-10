@@ -136,4 +136,51 @@ class Inventario_controller extends CI_Controller {
         }
     }
     
+    //  CONFIGURAÇÃO 
+    
+    function configuracao_inventario_list(){
+        
+        $this->load->helper('valida_login/valida_helper');
+        
+        $variaveis['validacao'] = getValida();
+
+
+        $this->load->helper('preenche_dados/preenche_dados_helper');
+
+        $variaveis['preenche_dados'] = getPreencheDados();
+        
+        
+        $this->load->view('inventario/config/config_view',$variaveis);
+        
+    }
+    
+    function list_config(){
+        
+        $this->load->model('inventario/inventario_model');
+        
+        $list = $this->inventario_model->m_list_config();
+        
+        echo $list;
+        
+    }
+    
+    function save_or_edit_config(){
+        
+        $this->load->model('inventario/inventario_model');
+        
+        $action = $this->inventario_model->m_save_or_edit_config();
+        
+        if($action){
+            
+            echo 1;
+            
+        }else{
+            
+            echo 0;
+            
+        }
+        
+    }
+    
+    
 }

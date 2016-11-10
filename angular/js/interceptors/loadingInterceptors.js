@@ -18,7 +18,7 @@
                         $timeout(function(){
                             
                         $rootScope.loading = false;
-                        },100);
+                        },1000);
                         return response;
                     },
                     responseError: function(rejection){

@@ -140,3 +140,13 @@
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
+        
+        .label-config-inventario{
+            margin-right: 90%;
+        }
+        .radios-bts{
+            margin-right: 66%;
+        }
+        .radios-bts-two{
+            margin-right: 74%;
+        }

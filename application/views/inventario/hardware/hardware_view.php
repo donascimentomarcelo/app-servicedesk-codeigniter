@@ -88,16 +88,16 @@
                         <table ng-show="dados.length > 0" class="table">
                                 <tr>
                                     <th style="text-align: center;" ng-click="ordenarPor('idinventario')"> ID
-                                    <span class="glyphicon sort-icon" ng-show="criterioDeOrdenacao==='idinventario'" ng-class="{'glyphicon-chevron-up':ordenacao,'glyphicon-chevron-down':!ordenacao}"></span>
+                                    <span class="glyphicon sort-icon" ng-show="criterioDeOrdenacao==='idinventario'" ng-class="{'glyphicon-triangle-bottom':ordenacao,'glyphicon-triangle-top':!ordenacao}"></span>
                                     </th>
                                     <th style="text-align: center;" ng-click="ordenarPor('nome')">Nome
-                                    <span class="glyphicon sort-icon" ng-show="criterioDeOrdenacao==='nome'" ng-class="{'glyphicon-chevron-up':ordenacao,'glyphicon-chevron-down':!ordenacao}"></span>
+                                    <span class="glyphicon sort-icon" ng-show="criterioDeOrdenacao==='nome'" ng-class="{'glyphicon-triangle-bottom':ordenacao,'glyphicon-triangle-top':!ordenacao}"></span>
                                     </th>
                                     <th style="text-align: center;" ng-click="ordenarPor('modelo')">Modelo
-                                    <span class="glyphicon sort-icon" ng-show="criterioDeOrdenacao==='modelo'" ng-class="{'glyphicon-chevron-up':ordenacao,'glyphicon-chevron-down':!ordenacao}"></span>
+                                    <span class="glyphicon sort-icon" ng-show="criterioDeOrdenacao==='modelo'" ng-class="{'glyphicon-triangle-bottom':ordenacao,'glyphicon-triangle-top':!ordenacao}"></span>
                                     </th>
                                     <th style="text-align: center;" ng-click="ordenarPor('marca')">Marca
-                                    <span class="glyphicon sort-icon" ng-show="criterioDeOrdenacao==='marca'" ng-class="{'glyphicon-chevron-up':ordenacao,'glyphicon-chevron-down':!ordenacao}"></span>
+                                    <span class="glyphicon sort-icon" ng-show="criterioDeOrdenacao==='marca'" ng-class="{'glyphicon-triangle-bottom':ordenacao,'glyphicon-triangle-top':!ordenacao}"></span>
                                     </th>
                                     <th></th>
                                 </tr>

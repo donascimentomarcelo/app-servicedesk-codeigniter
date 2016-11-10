@@ -186,5 +186,64 @@ class inventario_model extends CI_Model{
         }
     }
     
+    //CONFIG
     
+
+    function m_list_config(){
+        
+        $this->db->select('*');
+        $this->db->from('inventario_config');
+        $this->db->order_by('idconfig', 'desc');
+        
+        $data = $this->db->get();
+        
+        foreach ($data -> result() as $row):
+            $arr = array(
+                
+                'nome_config' => $row->nome_config,
+                'categoria_config' => $row->categoria_config,
+                'status_config' => $row->status_config
+                
+            );
+        endforeach;
+        
+        return json_encode($arr);
+    }
+    
+    function save_or_edit_config(){
+        
+        $data = json(file_get_contents("php://input"));
+        
+        $idconfig = $this->input->post('idconfig');
+        
+         $arr = array(
+                
+                'nome_config' => $this->input->post('nome_config'),
+                'categoria_config' => $this->input->post('categoria_config'),
+                'status_config' => $this->input->post('status_config')
+                
+            );
+        
+        if($idconfig != 0){
+            
+            $this->db->where('idconfig', $idconfig);
+            $action = $this->db->update('inventario_config',$arr);
+            
+        }else{
+            
+            $action = $this->db->insert('inventario_config',$arr);
+            
+        }
+        
+        if($action){
+        
+            return TRUE;
+            
+        }else{
+            
+            return FALSE;
+            
+        }
+    
+   } 
 }

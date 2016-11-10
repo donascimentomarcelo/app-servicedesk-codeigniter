@@ -62,6 +62,9 @@
                                   </div>
                           </div>
                           <div class="col-md-6">
+                              <div class="form-group">
+                                  <input class="form-control" type="text" placeholder="Pesquise o pelo nome do Software." 
+                              </div>
                               <table class="table">
                                   <tr>
                                       <td>ID</td>
