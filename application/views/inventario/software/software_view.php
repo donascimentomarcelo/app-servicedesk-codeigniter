@@ -7,7 +7,7 @@
         <script src="../../../angular/lib/angular.min.js" type="text/javascript"></script>
         <script src="../../../angular/lib/dirPagination.js" type="text/javascript"></script>
         <script src="../../../angular/js/app.js" type="text/javascript"></script>
-        <script src="../../../angular/js/controllers/hardwarecrtl.js" type="text/javascript"></script>
+        <script src="../../../angular/js/controllers/inventario/hardwarecrtl.js" type="text/javascript"></script>
         <script src="../../../angular/js/services/hardwareAPIService.js" type="text/javascript"></script>
         <script src="../../../angular/js/value/configValue.js" type="text/javascript"></script>
         

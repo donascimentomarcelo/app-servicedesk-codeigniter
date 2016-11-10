@@ -7,9 +7,11 @@
         <script src="../../../angular/lib/angular.min.js" type="text/javascript"></script>
         <script src="../../../angular/lib/dirPagination.js" type="text/javascript"></script>
         <script src="../../../angular/js/app.js" type="text/javascript"></script>
-        <script src="../../../angular/js/controllers/hardwarecrtl.js" type="text/javascript"></script>
+        <script src="../../../angular/js/controllers/inventario/hardwarecrtl.js" type="text/javascript"></script>
         <script src="../../../angular/js/services/hardwareAPIService.js" type="text/javascript"></script>
         <script src="../../../angular/js/value/configValue.js" type="text/javascript"></script>
+        <!--<script src="../../../angular/js/config/interceptorconfig.js" type="text/javascript"></script>-->
+        <!--<script src="../../../angular/js/interceptors/loadingInterceptors.js" type="text/javascript"></script>-->
         
         <script src="../../../bootstrap/js/jquery.js" type="text/javascript"></script>
         <script src="../../../bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
@@ -79,6 +81,10 @@
                       </div>
                       <div class="col-md-6">
                         <input class="form-control" id="search" type="text" ng-model="search" placeholder="Pesquise o pelo nome do Hardware."/>
+                        <!--<div ng-show="loading">
+                            <h5><div class="loader"></div></h5>
+                        </div>
+                        <div ng-hide="loading">-->
                         <table ng-show="dados.length > 0" class="table">
                                 <tr>
                                     <th style="text-align: center;" ng-click="ordenarPor('idinventario')"> ID
@@ -109,8 +115,9 @@
                             </tbody>
                         </table>
                   <dir-pagination-controls max-size="5" direction-links="true" boundary-links="true"></dir-pagination-controls>
+                 <!--</div>-->
                  </div>
-                 </div>
+              </div>
 	      </div>
 	      <div class="modal-footer">
 	      
