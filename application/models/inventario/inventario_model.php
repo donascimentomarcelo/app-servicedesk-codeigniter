@@ -106,7 +106,7 @@ class inventario_model extends CI_Model{
         
         $data = json_decode(file_get_contents("php://input"));     
  
-        $idinvantario  = $data->idinventario;
+        $idinvantario  = (int)$data->idinventario;
         
         var_dump($idinvantario);
         
@@ -114,12 +114,12 @@ class inventario_model extends CI_Model{
         $this->db->from('inventario_hw');
         $this->db->join('inventario_config','inventario_hw.idinventario = inventario_config.idconfig');
         $this->db->where('categoria_config', 'hardware');
-        $this->db->where('idconfig', $id);
+        $this->db->where('idconfig', $idinvantario);
         $this->db->order_by('idconfig', 'desc');
         
-        $data = $this->db->get();
+        $result = $this->db->get();
         
-        foreach ($data -> result() as $row):
+        foreach ($result -> result() as $row):
             $arr[] = array(
                 
                 'idconfig' => $row->idconfig,

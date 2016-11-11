@@ -33,7 +33,7 @@ angular.module("hardware").factory("hardwareAPI", function($http, config){
     
     var _getLoadEdit = function(idinventario){
         
-       return $http.get(config.baseUrl+"/cd/index.php/inventario/inventario_controller/list_edit_hw",{idinventario:idinventario});
+       return $http.post(config.baseUrl+"/cd/index.php/inventario/inventario_controller/list_edit_hw",{idinventario:idinventario});
         
     };
     
