@@ -122,19 +122,32 @@ create table subcategoria (
     foreign key (categoria_fk) references categoria(idcategoria)
 );
 
-create table inventario(
+create table inventario_config(
+    idconfig int primary key auto_increment,
+    nome_config varchar(20),
+    categoria_config enum('hardware','software') NOT NULL,
+    status_config enum('ativo','inativo') NOT NULL
+);
+
+create table inventario_hw(
     idinventario int primary key auto_increment,
     nome varchar(20),
     modelo varchar(20),
-    marca varchar(20)
+    marca varchar(20),
+    inventario_config_fk int,
+    foreign key(inventario_config_fk) references inventario_config(idconfig)
     );
 
-create table software(
+create table inventario_sw(
     idsoftware int primary key auto_increment,
     nomesoftware varchar(20),
     serialsoftware varchar(20),
-    marcasoftware varchar(20)
+    marcasoftware varchar(20),
+    inventario_config_fk int,
+    foreign key(inventario_config_fk) references inventario_config(idconfig)
     );
+
+
 --
 -- Extraindo dados da tabela `usuarios`
 --

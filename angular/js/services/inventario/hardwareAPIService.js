@@ -25,6 +25,12 @@ angular.module("hardware").factory("hardwareAPI", function($http, config){
         
     };
     
+    var _getLoadConfig = function(){
+        
+        return $http.get(config.baseUrl+"/cd/index.php/inventario/inventario_controller/list_config");  
+        
+    };
+    
     return{
         
         getCarregaHardware : _getCarregaHardware,
@@ -33,6 +39,8 @@ angular.module("hardware").factory("hardwareAPI", function($http, config){
         
         getApagarRegistro : _getApagarRegistro,
         
-        getLoadData : _getLoadData
+        getLoadData : _getLoadData,
+        
+        getLoadConfig : _getLoadConfig
     };
 });

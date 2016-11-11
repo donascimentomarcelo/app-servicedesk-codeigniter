@@ -63,6 +63,14 @@
 
             };
             
+            var LoadConfig =  function(){
+              hardwareAPI.getLoadConfig().success(function(data){
+                  $scope.dataconfig = data;
+              }).error(function(data){
+                  $scope.error = "Aconteceu um erro ao carregar as marcar:"+data;
+              });
+            };
+            
             //loaDdata();
             
             carregaHardware();

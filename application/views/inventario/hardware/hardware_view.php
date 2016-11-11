@@ -8,7 +8,7 @@
         <script src="../../../angular/lib/dirPagination.js" type="text/javascript"></script>
         <script src="../../../angular/js/app.js" type="text/javascript"></script>
         <script src="../../../angular/js/controllers/inventario/hardwarecrtl.js" type="text/javascript"></script>
-        <script src="../../../angular/js/services/hardwareAPIService.js" type="text/javascript"></script>
+        <script src="../../../angular/js/services/inventario/hardwareAPIService.js" type="text/javascript"></script>
         <script src="../../../angular/js/value/configValue.js" type="text/javascript"></script>
         <!--<script src="../../../angular/js/config/interceptorconfig.js" type="text/javascript"></script>-->
         <!--<script src="../../../angular/js/interceptors/loadingInterceptors.js" type="text/javascript"></script>-->
@@ -106,7 +106,7 @@
                                     <td>{{dados.idinventario}}</td>
                                     <td>{{dados.nome}}</td>
                                     <td>{{dados.modelo}}</td>
-                                    <td>{{dados.marca}}</td>
+                                    <td>{{dados.nome_config}}</td>
                                     <td>
                                         <a href="javascript:;"  ng-click="edit(dados)"><button type="button" class="glyphicon glyphicon-edit"></button></a> | 
                                         <a href="javascript:;"  ng-click="apagarRegistro(dados.idinventario)"><button type="button" class="glyphicon glyphicon-trash"></button></a>

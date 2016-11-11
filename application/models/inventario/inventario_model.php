@@ -14,7 +14,8 @@ class inventario_model extends CI_Model{
     function m_hardware_list(){
         
         $this->db->select('*');
-        $this->db->from('inventario');
+        $this->db->from('inventario_hw');
+        $this->db->join('inventario_config','inventario_hw.idinventario = inventario_config.idconfig');
         $this->db->order_by("idinventario", "desc");
         
         $variaveis = $this->db->get();
@@ -26,7 +27,8 @@ class inventario_model extends CI_Model{
                 "idinventario" => $linha->idinventario, 
                 "nome" => $linha->nome, 
                 "modelo" => $linha->modelo, 
-                "marca" => $linha->marca
+                "inventario_config_fk" => $linha->inventario_config_fk,
+                "nome_config" => $linha->nome_config
            
         );
         
@@ -57,11 +59,11 @@ class inventario_model extends CI_Model{
         if($id != 0){
             
             $this->db->where('idinventario', $id);
-            $query = $this->db->update('inventario', $dados);
+            $query = $this->db->update('inventario_hw', $dados);
             
         }else{
             
-            $query = $this->db->insert('inventario', $dados);
+            $query = $this->db->insert('inventario_hw', $dados);
             
         }
         
@@ -85,7 +87,7 @@ class inventario_model extends CI_Model{
        $idinvantario  = $data->idinventario;
        
        $this->db->where('idinventario', $idinvantario);
-       $query = $this->db->delete('inventario');
+       $query = $this->db->delete('inventario_hw');
        
        
        if($query){
@@ -105,7 +107,7 @@ class inventario_model extends CI_Model{
     function m_software_list(){
         
         $this->db->select('*');
-        $this->db->from('software');
+        $this->db->from('inventario_sw');
         $this->db->order_by('idsoftware', 'desc');
         
         $variaveis = $this->db->get();
@@ -146,11 +148,11 @@ class inventario_model extends CI_Model{
          if($idsoftware != 0){
              
              $this->db->where('idsoftware', $idsoftware);
-             $query = $this->db->update('software', $arr);
+             $query = $this->db->update('inventario_sw', $arr);
              
          }else{
              
-             $query = $this->db->insert('software', $arr);
+             $query = $this->db->insert('inventario_sw', $arr);
              
          }
      
@@ -173,7 +175,7 @@ class inventario_model extends CI_Model{
         $idsoftware = $data->idsoftware;
         
         $this->db->where('idsoftware', $idsoftware);
-        $exclusao = $this->db->delete('software');
+        $exclusao = $this->db->delete('inventario_sw');
         
         if($exclusao){
             
