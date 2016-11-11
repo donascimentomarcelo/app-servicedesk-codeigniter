@@ -58,7 +58,7 @@
 			  </div>
 			  <div class="form-group">
 			    
-                              <input type="text" class="form-control" ng-model="registro.nome" name="nome"  placeholder="Nome do produto" ng-required="true">
+                              <input type="text" class="form-control" ng-model="registro.nome" name="nome"  placeholder="Nome do produto" ng-required="true" value="{{registro.nome}}">
 			  </div>
                             <div class="form-group">
                             

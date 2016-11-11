@@ -28,8 +28,8 @@
             
             $scope.edit = function(idinventario){
                 hardwareAPI.getLoadEdit(idinventario).success(function(data){
-                //console.log(data); 
                  $scope.registro = data;
+                 console.log($scope.registro); 
                 }).error(function(data){
                     $scope.error = "Aconteceu um erro ao carregar: "+data;
                 });

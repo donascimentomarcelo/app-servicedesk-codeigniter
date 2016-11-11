@@ -122,10 +122,11 @@ class inventario_model extends CI_Model{
         foreach ($result -> result() as $row):
             $arr[] = array(
                 
-                'idconfig' => $row->idconfig,
-                'nome_config' => $row->nome_config,
-                'categoria_config' => $row->categoria_config,
-                'status_config' => $row->status_config
+                "idinventario" => $row->idinventario, 
+                "nome" => $row->nome, 
+                "modelo" => $row->modelo, 
+                "inventario_config_fk" => $row->inventario_config_fk,
+                "nome_config" => $row->nome_config
                 
             );
         endforeach;
