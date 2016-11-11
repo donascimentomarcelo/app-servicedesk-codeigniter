@@ -26,9 +26,13 @@
                 });
             };
             
-            $scope.edit = function(dados){
-                $scope.registro = dados;
-                //console.log(dados);  
+            $scope.edit = function(idinventario){
+                hardwareAPI.getLoadEdit(idinventario).success(function(data){
+                console.log(data); 
+               // $scope.registro = data;
+                }).error(function(data){
+                    $scope.error = "Aconteceu um erro ao carregar: "+data;
+                });
             };
             
             $scope.apagarRegistro = function(idinventario){
@@ -72,6 +76,8 @@
             };
             
             //loaDdata();
+            
+            LoadConfig();
             
             carregaHardware();
             

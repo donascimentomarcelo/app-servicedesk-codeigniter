@@ -133,7 +133,6 @@ create table inventario_hw(
     idinventario int primary key auto_increment,
     nome varchar(20),
     modelo varchar(20),
-    marca varchar(20),
     inventario_config_fk int,
     foreign key(inventario_config_fk) references inventario_config(idconfig)
     );
@@ -142,7 +141,6 @@ create table inventario_sw(
     idsoftware int primary key auto_increment,
     nomesoftware varchar(20),
     serialsoftware varchar(20),
-    marcasoftware varchar(20),
     inventario_config_fk int,
     foreign key(inventario_config_fk) references inventario_config(idconfig)
     );

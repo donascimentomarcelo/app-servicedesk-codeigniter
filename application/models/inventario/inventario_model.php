@@ -46,12 +46,12 @@ class inventario_model extends CI_Model{
         
         $nome = $this->input->post('nome');
         $modelo = $this->input->post('modelo');
-        $marca = $this->input->post('marca');
+        $FK_marca = $this->input->post('idconfig');
         
         $dados = array(
            'nome'=> $nome,
            'modelo'=>$modelo,
-           'marca'=>$marca
+           'inventario_config_fk'=>$FK_marca
         );
         
         $id = $this->input->post('idinventario');
@@ -100,6 +100,37 @@ class inventario_model extends CI_Model{
            
        }
     
+    }
+    
+    function m_edit_hw(){
+        
+        $data = json_decode(file_get_contents("php://input"));     
+ 
+        $idinvantario  = $data->idinventario;
+        
+        var_dump($idinvantario);
+        
+        $this->db->select('*');
+        $this->db->from('inventario_hw');
+        $this->db->join('inventario_config','inventario_hw.idinventario = inventario_config.idconfig');
+        $this->db->where('categoria_config', 'hardware');
+        $this->db->where('idconfig', $id);
+        $this->db->order_by('idconfig', 'desc');
+        
+        $data = $this->db->get();
+        
+        foreach ($data -> result() as $row):
+            $arr[] = array(
+                
+                'idconfig' => $row->idconfig,
+                'nome_config' => $row->nome_config,
+                'categoria_config' => $row->categoria_config,
+                'status_config' => $row->status_config
+                
+            );
+        endforeach;
+        
+        return json_encode($arr);
     }
     
     //SOFTWARE
@@ -200,8 +231,32 @@ class inventario_model extends CI_Model{
         $data = $this->db->get();
         
         foreach ($data -> result() as $row):
-            $arr = array(
+            $arr[] = array(
                 
+                'idconfig' => $row->idconfig,
+                'nome_config' => $row->nome_config,
+                'categoria_config' => $row->categoria_config,
+                'status_config' => $row->status_config
+                
+            );
+        endforeach;
+        
+        return json_encode($arr);
+    }
+    
+    function m_list_config_hw(){
+        
+        $this->db->select('*');
+        $this->db->from('inventario_config');
+        $this->db->where('categoria_config', 'hardware');
+        $this->db->order_by('idconfig', 'desc');
+        
+        $data = $this->db->get();
+        
+        foreach ($data -> result() as $row):
+            $arr[] = array(
+                
+                'idconfig' => $row->idconfig,
                 'nome_config' => $row->nome_config,
                 'categoria_config' => $row->categoria_config,
                 'status_config' => $row->status_config

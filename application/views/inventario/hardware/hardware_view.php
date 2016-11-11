@@ -16,7 +16,6 @@
         <script src="../../../bootstrap/js/jquery.js" type="text/javascript"></script>
         <script src="../../../bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
         <script src="../../../craftpip-jquery/js/jquery-confirm.js" type="text/javascript"></script>
-       
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
         <link href="../../../bootstrap/css/cd.css" rel="stylesheet" type="text/css"/>
         <link href="../../../craftpip-jquery/css/jquery-confirm.css" rel="stylesheet" type="text/css"/>
@@ -66,9 +65,9 @@
                               <input type="text" class="form-control" ng-model="registro.modelo" name="modelo" placeholder="Modelo do produto" ng-required="true">
                           </div>
                             <div class="form-group">
-                                <select type="text" class="form-control" ng-model="registro.marca" name="marca" >
-                                    <option value="">{{marca.nome}}</option>
-                                    <option ng-repeat="marca in marca" value="{{marca.nome}}" >{{marca.nome}}</option>
+                                <select type="text" class="form-control" ng-model="registro.idconfig" name="dataconfig" >
+                                    <option value="{{dataconfig.idconfig}}">{{dataconfig.nome_config}}</option>
+                                    <option ng-repeat="dataconfig in dataconfig" value="{{dataconfig.idconfig}}" >{{dataconfig.nome_config}}</option>
                                 </select>
                             </div>
                             
@@ -96,8 +95,8 @@
                                     <th style="text-align: center;" ng-click="ordenarPor('modelo')">Modelo
                                     <span class="glyphicon sort-icon" ng-show="criterioDeOrdenacao==='modelo'" ng-class="{'glyphicon-triangle-bottom':ordenacao,'glyphicon-triangle-top':!ordenacao}"></span>
                                     </th>
-                                    <th style="text-align: center;" ng-click="ordenarPor('marca')">Marca
-                                    <span class="glyphicon sort-icon" ng-show="criterioDeOrdenacao==='marca'" ng-class="{'glyphicon-triangle-bottom':ordenacao,'glyphicon-triangle-top':!ordenacao}"></span>
+                                    <th style="text-align: center;" ng-click="ordenarPor('dataconfig')">Marca
+                                    <span class="glyphicon sort-icon" ng-show="criterioDeOrdenacao==='dataconfig'" ng-class="{'glyphicon-triangle-bottom':ordenacao,'glyphicon-triangle-top':!ordenacao}"></span>
                                     </th>
                                     <th></th>
                                 </tr>
@@ -108,7 +107,7 @@
                                     <td>{{dados.modelo}}</td>
                                     <td>{{dados.nome_config}}</td>
                                     <td>
-                                        <a href="javascript:;"  ng-click="edit(dados)"><button type="button" class="glyphicon glyphicon-edit"></button></a> | 
+                                        <a href="javascript:;"  ng-click="edit(dados.idinventario)"><button type="button" class="glyphicon glyphicon-edit"></button></a> | 
                                         <a href="javascript:;"  ng-click="apagarRegistro(dados.idinventario)"><button type="button" class="glyphicon glyphicon-trash"></button></a>
                                     </td>
                                 </tr>

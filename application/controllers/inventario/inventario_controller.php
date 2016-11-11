@@ -73,6 +73,16 @@ class Inventario_controller extends CI_Controller {
         
     }
     
+    function list_edit_hw(){
+        
+        $this->load->model('inventario/inventario_model');
+        
+        $list = $this->inventario_model->m_edit_hw();
+        
+        echo $list;
+        
+    }
+    
     //SOFTWARE
     
     function software_list(){
@@ -153,6 +163,17 @@ class Inventario_controller extends CI_Controller {
         $this->load->view('inventario/config/config_view',$variaveis);
         
     }
+    
+    function list_config_hw(){
+        
+        $this->load->model('inventario/inventario_model');
+        
+        $list = $this->inventario_model->m_list_config_hw();
+        
+        echo $list;
+        
+    }
+    
     
     function list_config(){
         
