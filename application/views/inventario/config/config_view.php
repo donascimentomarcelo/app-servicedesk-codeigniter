@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html ng-app="inventarioConfig">
 <head>
 	<meta charset="utf-8">
 	<title>Inventário - Configurações</title>
@@ -7,8 +7,8 @@
         <script src="../../../angular/lib/angular.min.js" type="text/javascript"></script>
         <script src="../../../angular/lib/dirPagination.js" type="text/javascript"></script>
         <script src="../../../angular/js/app.js" type="text/javascript"></script>
-        <script src="../../../angular/js/controllers/inventario/hardwarecrtl.js" type="text/javascript"></script>
-        <script src="../../../angular/js/services/hardwareAPIService.js" type="text/javascript"></script>
+        <script src="../../../angular/js/controllers/inventario/configcrtl.js" type="text/javascript"></script>
+        <script src="../../../angular/js/services/inventario/configAPIService.js" type="text/javascript"></script>
         <script src="../../../angular/js/value/configValue.js" type="text/javascript"></script>
         
         <script src="../../../bootstrap/js/jquery.js" type="text/javascript"></script>
@@ -29,7 +29,7 @@
         
       
         </head>
-        <body>
+        <body ng-controller="configcrtl">
 
         <div id="container">
                 <h1><?php foreach($preenche_dados -> result() as $dados):?> <img src="../../.<?php echo $dados->imagem;?>" class="img-circle" width="50px" height="50px"> <?php endforeach;?> <?php echo $this->session->userdata('nome');?></h1>
@@ -83,22 +83,23 @@
                                   <input class="form-control" type="text" placeholder="Pesquise o pelo nome do Software." 
                               </div>
                               <table class="table">
-                                  <tr>
+                                  <tr>  
                                       <td>ID</td>
                                       <td>Nome do Software</td>
                                       <td>Licença</td>
                                       <td>Fabricante</td>
                                       <td></td>
                                   </tr>
-                                  <tr>
-                                      <td></td>
-                                      <td></td>
-                                      <td></td>
-                                      <td></td>
+                                  <tr dir-paginate="dataConfig in dataConfig | itemsPerPage:5">
+                                      <td>{{dataConfig.idconfig}}</td>
+                                      <td>{{dataConfig.nome_config}}</td>
+                                      <td>{{dataConfig.categoria_config}}</td>
+                                      <td>{{dataConfig.status_config}}</td>
                                       <td></td>
                                   </tr>
                               </table>
                           </div>
+                           <dir-pagination-controls max-size="5" direction-links="true" boundary-links="true"></dir-pagination-controls>
                       </div>
                   </div>
                   <div class="modal-footer">

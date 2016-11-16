@@ -65,13 +65,14 @@
                               <input type="text" class="form-control" ng-model="registro.modelo" name="modelo" placeholder="Modelo do produto" ng-required="true">
                           </div>
                             <div class="form-group">
-                                <select type="text" class="form-control" ng-model="registro.idconfig" name="dataconfig" >
-                                    <option value="{{dataconfig.idconfig}}">{{dataconfig.nome_config}}</option>
+                                <select type="text" class="form-control" ng-model="registro.inventario_config_fk" name="inventario_config_fk" ng-required="true">
+                                    <option value="">Selecione uma marca.</option>
                                     <option ng-repeat="dataconfig in dataconfig" value="{{dataconfig.idconfig}}" >{{dataconfig.nome_config}}</option>
                                 </select>
                             </div>
                             
                          <div>
+                             <button type="button" ng-click="new()" class="btn btn-secondary">Novo</button>
                              <button type="button" ng-click="registraInventario(registro)" ng-disabled="inventarioForm.$invalid" class="btn btn-secondary">Registrar</button>
                              <button type="button" ng-click="apagarMultiplosRegistro(dados)" ng-if="registroSelecionado(dados)"  class="btn btn-secondary">Apagar</button>
                          </div>  
@@ -84,6 +85,7 @@
                             <h5><div class="loader"></div></h5>
                         </div>
                         <div ng-hide="loading">-->
+                        <div class="height-table">
                         <table ng-show="dados.length > 0" class="table">
                                 <tr>
                                     <th style="text-align: center;" ng-click="ordenarPor('idinventario')"> ID
@@ -101,18 +103,18 @@
                                     <th></th>
                                 </tr>
                             </tbody>
-                                <tr ng-class="{'cinza negrito': dados.selecionado}" dir-paginate="dados in dados | filter:{nome:search} | orderBy:criterioDeOrdenacao:ordenacao| itemsPerPage:5">
+                                <tr ng-click="edit(dados); itemClicked($index)"  ng-class="{ 'cinza negrito': $index == selectedIndex }" dir-paginate="dados in dados | filter:{nome:search} | orderBy:criterioDeOrdenacao:ordenacao| itemsPerPage:5">
                                     <td>{{dados.idinventario}}</td>
                                     <td>{{dados.nome}}</td>
                                     <td>{{dados.modelo}}</td>
                                     <td>{{dados.nome_config}}</td>
                                     <td>
-                                        <a href="javascript:;"  ng-click="edit(dados.idinventario)"><button type="button" class="glyphicon glyphicon-edit"></button></a> | 
-                                        <a href="javascript:;"  ng-click="apagarRegistro(dados.idinventario)"><button type="button" class="glyphicon glyphicon-trash"></button></a>
+                                    <a href="javascript:;"  ng-click="apagarRegistro(dados.idinventario)"><button type="button" class="glyphicon glyphicon-trash"></button></a>
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
+                            </div>
                   <dir-pagination-controls max-size="5" direction-links="true" boundary-links="true"></dir-pagination-controls>
                  <!--</div>-->
                  </div>

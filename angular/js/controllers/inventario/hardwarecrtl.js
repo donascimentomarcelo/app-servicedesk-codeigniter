@@ -21,18 +21,24 @@
             $scope.registraInventario = function(registro){
                 hardwareAPI.getRegistraInventario(registro).success(function(data){
                 delete $scope.registro;
+                delete $scope.selectedIndex;
                 carregaHardware();
                 //$scope.dados.unshift(angular.copy(registro));
                 });
             };
             
-            $scope.edit = function(idinventario){
-                hardwareAPI.getLoadEdit(idinventario).success(function(data){
-                 $scope.registro = data;
-                 console.log($scope.registro); 
-                }).error(function(data){
-                    $scope.error = "Aconteceu um erro ao carregar: "+data;
-                });
+            $scope.edit = function(dados){
+               $scope.registro = dados;
+            };
+            
+            $scope.new = function(){
+                delete $scope.registro;
+                delete $scope.selectedIndex;
+            };
+            
+            //$scope.selectedIndex = 0;
+            $scope.itemClicked = function($index){
+                $scope.selectedIndex = $index;
             };
             
             $scope.apagarRegistro = function(idinventario){

@@ -97,7 +97,7 @@
         
         /*PAGINATION*/
          .cinza{
-                background-color: #ccc;
+                background-color: #e3dada4d;
             }
             
             .negrito{
@@ -149,4 +149,14 @@
         }
         .radios-bts-two{
             margin-right: 74%;
+        }
+        span {
+          cursor: pointer;
+        }
+
+        .selected-class-name {
+          color: red;
+        }
+        .height-table{
+            height: 225px;
         }

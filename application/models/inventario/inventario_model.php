@@ -15,7 +15,7 @@ class inventario_model extends CI_Model{
         
         $this->db->select('*');
         $this->db->from('inventario_hw');
-        $this->db->join('inventario_config','inventario_hw.idinventario = inventario_config.idconfig');
+        $this->db->join('inventario_config','inventario_hw.inventario_config_fk = inventario_config.idconfig');
         $this->db->order_by("idinventario", "desc");
         
         $variaveis = $this->db->get();
@@ -46,12 +46,12 @@ class inventario_model extends CI_Model{
         
         $nome = $this->input->post('nome');
         $modelo = $this->input->post('modelo');
-        $FK_marca = $this->input->post('idconfig');
+        $inventario_config_fk = $this->input->post('inventario_config_fk');
         
         $dados = array(
            'nome'=> $nome,
            'modelo'=>$modelo,
-           'inventario_config_fk'=>$FK_marca
+           'inventario_config_fk'=>$inventario_config_fk
         );
         
         $id = $this->input->post('idinventario');
@@ -114,9 +114,8 @@ class inventario_model extends CI_Model{
         $this->db->from('inventario_hw');
         $this->db->join('inventario_config','inventario_hw.idinventario = inventario_config.idconfig');
         $this->db->where('categoria_config', 'hardware');
-        $this->db->where('idconfig', $idinvantario);
-        $this->db->order_by('idconfig', 'desc');
-        
+        $this->db->where('idinventario', $idinvantario);
+       
         $result = $this->db->get();
         
         foreach ($result -> result() as $row):
