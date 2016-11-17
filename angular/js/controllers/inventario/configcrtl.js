@@ -6,11 +6,35 @@
             var loadConfig = function(){
                 configAPI.getLoadConfig().success(function(data){
                     $scope.dataConfig = data;
-                    console.log('motre-me o que tens :'+data);
                 }).error(function(data){
                     $scope.error = "Ocorreu um erro :"+data;
                 });
             };
+            
+            $scope.actionConfig = function(action){
+                configAPI.getActionConfig(action).success(function(data){
+                delete $scope.action;
+                delete $scope.selectIndex;
+                loadConfig();
+                }).error(function(data){
+                    $scope.error = "Aconteceu um erro :"+data;
+                });
+            };
+            
+            $scope.editConfig = function(dataConfig){
+                $scope.action = dataConfig;
+            };
+            
+            $scope.new = function(){
+                delete $scope.action;
+                delete $scope.selectIndex;
+            };
+            
+            $scope.ordenationBy = function(click){
+                $scope.ordenationCritery = click;
+                $scope.ordenation = !$scope.ordenation;
+            };
+            
             loadConfig();
 
         });

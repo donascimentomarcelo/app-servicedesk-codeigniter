@@ -16,7 +16,8 @@
         <script src="../../../bootstrap/js/jquery.js" type="text/javascript"></script>
         <script src="../../../bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
         <script src="../../../craftpip-jquery/js/jquery-confirm.js" type="text/javascript"></script>
-        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+         <link href="../../../bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+       <!-- <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">-->
         <link href="../../../bootstrap/css/cd.css" rel="stylesheet" type="text/css"/>
         <link href="../../../craftpip-jquery/css/jquery-confirm.css" rel="stylesheet" type="text/css"/>
         
@@ -52,35 +53,38 @@
                   <div class="row">
                       <div class="col-md-6">
                         <form role="form" name="inventarioForm" method="post" id="formulario_usuario" enctype="multipart/form-data">
-			  <div class="form-group">
-			    
-                              <input type="hidden" class="form-control" ng-model="registro.idinventario" name="idinventario">
-			  </div>
-			  <div class="form-group">
-			    
-                              <input type="text" class="form-control" ng-model="registro.nome" name="nome"  placeholder="Nome do produto" ng-required="true" value="{{registro.nome}}">
-			  </div>
-                            <div class="form-group">
-                            
-                              <input type="text" class="form-control" ng-model="registro.modelo" name="modelo" placeholder="Modelo do produto" ng-required="true">
-                          </div>
-                            <div class="form-group">
-                                <select type="text" class="form-control" ng-model="registro.inventario_config_fk" name="inventario_config_fk" ng-required="true">
-                                    <option value="">Selecione uma marca.</option>
-                                    <option ng-repeat="dataconfig in dataconfig" value="{{dataconfig.idconfig}}" >{{dataconfig.nome_config}}</option>
-                                </select>
+                            <div class="height-form">  
+                                <div class="form-group">
+
+                                    <input type="hidden" class="form-control" ng-model="registro.idinventario" name="idinventario">
+                                </div>
+                                <div class="form-group">
+
+                                    <input type="text" class="form-control" ng-model="registro.nome" name="nome"  placeholder="Nome do produto" ng-required="true">
+                                </div>
+                                  <div class="form-group">
+
+                                    <input type="text" class="form-control" ng-model="registro.modelo" name="modelo" placeholder="Modelo do produto" ng-required="true">
+                                </div>
+                                  <div class="form-group">
+                                      <select type="text" class="form-control" ng-model="registro.inventario_config_fk" name="inventario_config_fk" ng-required="true">
+                                          <option value="">Selecione uma marca.</option>
+                                          <option ng-repeat="dataconfig in dataconfig" value="{{dataconfig.idconfig}}" >{{dataconfig.nome_config}}</option>
+                                      </select>
+                                  </div>
                             </div>
-                            
-                         <div>
-                             <button type="button" ng-click="new()" class="btn btn-secondary">Novo</button>
-                             <button type="button" ng-click="registraInventario(registro)" ng-disabled="inventarioForm.$invalid" class="btn btn-secondary">Registrar</button>
-                             <button type="button" ng-click="apagarMultiplosRegistro(dados)" ng-if="registroSelecionado(dados)"  class="btn btn-secondary">Apagar</button>
-                         </div>  
-                            
+                               <div>
+                                   <button type="button" ng-click="new()" class="btn btn-secondary">Novo</button>
+                                   <button type="button" ng-click="registraInventario(registro)" ng-disabled="inventarioForm.$invalid" class="btn btn-secondary">Registrar</button>
+                                   <button type="button" ng-click="apagarMultiplosRegistro(dados)" ng-if="registroSelecionado(dados)"  class="btn btn-secondary">Apagar</button>
+                               </div>  
 			</form>	   
                       </div>
                       <div class="col-md-6">
-                        <input class="form-control" id="search" type="text" ng-model="search" placeholder="Pesquise o pelo nome do Hardware."/>
+                          <div class="margin-top-table">
+                            <div class="margin-top-table">
+                               <input class="form-control" id="search" type="text" ng-model="search" placeholder="Pesquise o pelo nome do Hardware."/>
+                            </div>
                         <!--<div ng-show="loading">
                             <h5><div class="loader"></div></h5>
                         </div>
@@ -103,7 +107,7 @@
                                     <th></th>
                                 </tr>
                             </tbody>
-                                <tr ng-click="edit(dados); itemClicked($index)"  ng-class="{ 'cinza negrito': $index == selectedIndex }" dir-paginate="dados in dados | filter:{nome:search} | orderBy:criterioDeOrdenacao:ordenacao| itemsPerPage:5">
+                                <tr ng-click="edit(dados); itemClicked($index)"  ng-class="{ 'cinza negrito': $index === selectedIndex }" dir-paginate="dados in dados | filter:{nome:search} | orderBy:criterioDeOrdenacao:ordenacao| itemsPerPage:5">
                                     <td>{{dados.idinventario}}</td>
                                     <td>{{dados.nome}}</td>
                                     <td>{{dados.modelo}}</td>
@@ -115,7 +119,8 @@
                             </tbody>
                         </table>
                             </div>
-                  <dir-pagination-controls max-size="5" direction-links="true" boundary-links="true"></dir-pagination-controls>
+                    <dir-pagination-controls max-size="5" direction-links="true" boundary-links="true"></dir-pagination-controls>
+                  </div>
                  <!--</div>-->
                  </div>
               </div>

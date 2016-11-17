@@ -249,6 +249,7 @@ class inventario_model extends CI_Model{
         $this->db->select('*');
         $this->db->from('inventario_config');
         $this->db->where('categoria_config', 'hardware');
+        $this->db->where('status_config', 'ativo');
         $this->db->order_by('idconfig', 'desc');
         
         $data = $this->db->get();
@@ -267,9 +268,9 @@ class inventario_model extends CI_Model{
         return json_encode($arr);
     }
     
-    function save_or_edit_config(){
+    function m_save_or_edit_config(){
         
-        $data = json(file_get_contents("php://input"));
+        $_POST = json_decode(file_get_contents('php://input'), true);
         
         $idconfig = $this->input->post('idconfig');
         

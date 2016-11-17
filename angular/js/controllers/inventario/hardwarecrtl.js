@@ -11,12 +11,7 @@
                 });
             };   
         
-            $scope.marca = [
-                {nome:"sony", codigo: 1},
-                {nome:"sansung", codigo: 2},
-                {nome:"LG", codigo:3},
-                {nome:"lenovo", codigo:4}
-            ];
+            
             
             $scope.registraInventario = function(registro){
                 hardwareAPI.getRegistraInventario(registro).success(function(data){
@@ -61,18 +56,6 @@
                 });
             };
 
-            
-            $scope.datauser = [];
-
-           var loaDdata = function(){
-                hardwareAPI.getLoadData().success(function(data){
-                    $scope.datauser = data;
-                }).error(function(data){
-                    $scope.error = "Aconteceu um erro ao carregar os dados: "+data;
-                });
-
-            };
-            
             var LoadConfig =  function(){
               hardwareAPI.getLoadConfig().success(function(data){
                   $scope.dataconfig = data;
@@ -81,10 +64,18 @@
               });
             };
             
-            //loaDdata();
-            
             LoadConfig();
             
             carregaHardware();
             
         });
+        
+        
+        /*
+        $scope.marca = [
+                {nome:"sony", codigo: 1},
+                {nome:"sansung", codigo: 2},
+                {nome:"LG", codigo:3},
+                {nome:"lenovo", codigo:4}
+            ];
+        */

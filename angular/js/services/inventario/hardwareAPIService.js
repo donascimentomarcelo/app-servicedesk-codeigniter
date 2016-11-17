@@ -31,12 +31,7 @@ angular.module("hardware").factory("hardwareAPI", function($http, config){
         
     };
     
-    var _getLoadEdit = function(idinventario){
-        
-       return $http.post(config.baseUrl+"/cd/index.php/inventario/inventario_controller/list_edit_hw",{idinventario:idinventario});
-        
-    };
-    
+   
     return{
         
         getCarregaHardware : _getCarregaHardware,
@@ -47,8 +42,6 @@ angular.module("hardware").factory("hardwareAPI", function($http, config){
         
         getLoadData : _getLoadData,
         
-        getLoadConfig : _getLoadConfig,
-        
-        getLoadEdit : _getLoadEdit
+        getLoadConfig : _getLoadConfig
     };
 });

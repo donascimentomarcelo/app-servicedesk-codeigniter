@@ -145,10 +145,10 @@
             margin-right: 90%;
         }
         .radios-bts{
-            margin-right: 66%;
+            margin-right: 65%;
         }
         .radios-bts-two{
-            margin-right: 74%;
+            margin-right: 73%;
         }
         span {
           cursor: pointer;
@@ -159,4 +159,10 @@
         }
         .height-table{
             height: 225px;
+        }
+        .height-form{
+            height: 291px;
+        }
+        .margin-top-table{
+            margin-top: 3%;
         }
