@@ -27,12 +27,17 @@
             
             $scope.new = function(){
                 delete $scope.action;
-                delete $scope.selectIndex;
+                delete $scope.selectedIndex;
             };
             
             $scope.ordenationBy = function(click){
                 $scope.ordenationCritery = click;
                 $scope.ordenation = !$scope.ordenation;
+            };
+            
+            $scope.itemClicked = function(idconfig){
+                console.log(idconfig)
+                $scope.selectedIndex = idconfig;
             };
             
             loadConfig();

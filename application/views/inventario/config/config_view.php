@@ -107,7 +107,7 @@
                                         </tr>
                                       </thead>
                                       <tbody>
-                                        <tr ng-click="editConfig(dataConfig)" dir-paginate="dataConfig in dataConfig | filter:{nome_config:search} | orderBy:ordenationCritery:ordenation | itemsPerPage:5">
+                                        <tr ng-click="editConfig(dataConfig); itemClicked(dataConfig.idconfig)" ng-class="{ 'cinza negrito': selectedIndex === dataConfig.idconfig }" dir-paginate="dataConfig in dataConfig | filter:{nome_config:search} | orderBy:ordenationCritery:ordenation | itemsPerPage:5">
                                             <td>{{dataConfig.idconfig}}</td>
                                             <td>{{dataConfig.nome_config}}</td>
                                             <td>{{dataConfig.categoria_config}}</td>
