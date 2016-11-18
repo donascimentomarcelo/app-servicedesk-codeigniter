@@ -16,8 +16,8 @@
         <script src="../../../bootstrap/js/jquery.js" type="text/javascript"></script>
         <script src="../../../bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
         <script src="../../../craftpip-jquery/js/jquery-confirm.js" type="text/javascript"></script>
-         <link href="../../../bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-       <!-- <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">-->
+        <!-- <link href="../../../bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>-->
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
         <link href="../../../bootstrap/css/cd.css" rel="stylesheet" type="text/css"/>
         <link href="../../../craftpip-jquery/css/jquery-confirm.css" rel="stylesheet" type="text/css"/>
         
@@ -107,7 +107,7 @@
                                     <th></th>
                                 </tr>
                             </tbody>
-                                <tr ng-click="edit(dados); itemClicked($index)"  ng-class="{ 'cinza negrito': $index === selectedIndex }" dir-paginate="dados in dados | filter:{nome:search} | orderBy:criterioDeOrdenacao:ordenacao| itemsPerPage:5">
+                                <tr ng-click="edit(dados); itemClicked(dados.idinventario)"  ng-class="{ 'cinza negrito': selectedIndex === dados.idinventario }" dir-paginate="dados in dados | filter:{nome:search} | orderBy:criterioDeOrdenacao:ordenacao| itemsPerPage:5">
                                     <td>{{dados.idinventario}}</td>
                                     <td>{{dados.nome}}</td>
                                     <td>{{dados.modelo}}</td>

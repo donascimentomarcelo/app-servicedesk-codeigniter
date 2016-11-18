@@ -14,8 +14,8 @@
         <script src="../../../bootstrap/js/jquery.js" type="text/javascript"></script>
         <script src="../../../bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
         <script src="../../../craftpip-jquery/js/jquery-confirm.js" type="text/javascript"></script>
-        <link href="../../../bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-       <!-- <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">-->
+        <!-- <link href="../../../bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>-->
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
         <link href="../../../bootstrap/css/cd.css" rel="stylesheet" type="text/css"/>
         <link href="../../../craftpip-jquery/css/jquery-confirm.css" rel="stylesheet" type="text/css"/>
         

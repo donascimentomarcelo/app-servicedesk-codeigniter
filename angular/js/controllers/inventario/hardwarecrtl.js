@@ -32,8 +32,8 @@
             };
             
             //$scope.selectedIndex = 0;
-            $scope.itemClicked = function($index){
-                $scope.selectedIndex = $index;
+            $scope.itemClicked = function(idinventario){
+                $scope.selectedIndex = idinventario;
             };
             
             $scope.apagarRegistro = function(idinventario){
