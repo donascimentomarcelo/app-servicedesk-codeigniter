@@ -101,7 +101,7 @@ class Inventario_controller extends CI_Controller {
         
     }
     
-    function listagem_software(){
+    function list_software(){
         
         $this->load->model('inventario/inventario_model');
         
@@ -111,11 +111,11 @@ class Inventario_controller extends CI_Controller {
         
     }
     
-    function registrar_software(){
+    function insert_or_update_software(){
         
         $this->load->model('inventario/inventario_model');
         
-        $registro = $this->inventario_model->m_registrar_software();
+        $registro = $this->inventario_model->m_insert_or_update_software();
         
         if($registro){
             
@@ -169,6 +169,15 @@ class Inventario_controller extends CI_Controller {
         $this->load->model('inventario/inventario_model');
         
         $list = $this->inventario_model->m_list_config_hw();
+        
+        echo $list;
+        
+    }
+    function list_config_sw(){
+        
+        $this->load->model('inventario/inventario_model');
+        
+        $list = $this->inventario_model->m_list_config_sw();
         
         echo $list;
         

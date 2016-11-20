@@ -139,6 +139,7 @@ class inventario_model extends CI_Model{
         
         $this->db->select('*');
         $this->db->from('inventario_sw');
+        $this->db->join('inventario_config','inventario_sw.inventario_config_fk = inventario_config.idconfig');
         $this->db->order_by('idsoftware', 'desc');
         
         $variaveis = $this->db->get();
@@ -149,8 +150,9 @@ class inventario_model extends CI_Model{
                 
                 "idsoftware" => $linha->idsoftware,
                 "nomesoftware" => $linha->nomesoftware,
-                "modelosoftware" => $linha->modelosoftware,
-                "marcasoftware" => $linha->marcasoftware
+                "serialsoftware" => $linha->serialsoftware,
+                "nome_config" => $linha->nome_config,
+                "inventario_config_fk" => $linha->inventario_config_fk
                 
             );
             
@@ -159,20 +161,20 @@ class inventario_model extends CI_Model{
         return json_encode($arr);
     }
     
-    function m_registrar_software(){
+    function m_insert_or_update_software(){
         
          $_POST = json_decode(file_get_contents('php://input'), true);
          
          $idsoftware = $this->input->post('idsoftware');
          $nomesoftware = $this->input->post('nomesoftware');
-         $marcasoftware = $this->input->post('marcasoftware');
-         $modelosoftware = $this->input->post('modelosoftware');
+         $serialsoftware = $this->input->post('serialsoftware');
+         $inventario_config_fk = $this->input->post('inventario_config_fk');
          
          $arr = array(
              
              'nomesoftware' => $nomesoftware,
-             'marcasoftware' => $marcasoftware,
-             'modelosoftware' => $modelosoftware
+             'serialsoftware' => $serialsoftware,
+             'inventario_config_fk' => $inventario_config_fk
              
          );
          
@@ -249,6 +251,29 @@ class inventario_model extends CI_Model{
         $this->db->select('*');
         $this->db->from('inventario_config');
         $this->db->where('categoria_config', 'hardware');
+        $this->db->where('status_config', 'ativo');
+        $this->db->order_by('idconfig', 'desc');
+        
+        $data = $this->db->get();
+        
+        foreach ($data -> result() as $row):
+            $arr[] = array(
+                
+                'idconfig' => $row->idconfig,
+                'nome_config' => $row->nome_config,
+                'categoria_config' => $row->categoria_config,
+                'status_config' => $row->status_config
+                
+            );
+        endforeach;
+        
+        return json_encode($arr);
+    }
+    function m_list_config_sw(){
+        
+        $this->db->select('*');
+        $this->db->from('inventario_config');
+        $this->db->where('categoria_config', 'software');
         $this->db->where('status_config', 'ativo');
         $this->db->order_by('idconfig', 'desc');
         
