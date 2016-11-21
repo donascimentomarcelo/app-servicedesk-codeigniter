@@ -80,19 +80,19 @@
                                   <table class="table" ng-show="dataSoftware.length > 0">
                                         <thead>
                                             <tr>
-                                                <td style="text-align: center;" ng-click="ordenationBy('idsoftware')"> ID
+                                                <th style="text-align: center;" ng-click="ordenationBy('idsoftware')"> ID
                                                 <span class="glyphicon sort-icon" ng-show="ordenationCritery==='idsoftware'" ng-class="{'glyphicon-triangle-bottom':ordenation,'glyphicon-triangle-top':!ordenation}"></span>
-                                                </td>
-                                                <td style="text-align: center;" ng-click="ordenationBy('nomesoftware')">Nome do Software
+                                                </th>
+                                                <th style="text-align: center;" ng-click="ordenationBy('nomesoftware')">Nome do Software
                                                 <span class="glyphicon sort-icon" ng-show="ordenationCritery==='nomesoftware'" ng-class="{'glyphicon-triangle-bottom':ordenation,'glyphicon-triangle-top':!ordenation}"></span>
-                                                </td>
-                                                <td style="text-align: center;" ng-click="ordenationBy('serialsoftware')">Serial Number
+                                                </th>
+                                                <th style="text-align: center;" ng-click="ordenationBy('serialsoftware')">Serial Number
                                                 <span class="glyphicon sort-icon" ng-show="ordenationCritery==='serialsoftware'" ng-class="{'glyphicon-triangle-bottom':ordenation,'glyphicon-triangle-top':!ordenation}"></span>
-                                                </td>
-                                                <td style="text-align: center;" ng-click="ordenationBy('nome_config')">Fabricante
+                                                </th>
+                                                <th style="text-align: center;" ng-click="ordenationBy('nome_config')">Fabricante
                                                 <span class="glyphicon sort-icon" ng-show="ordenationCritery==='nome_config'" ng-class="{'glyphicon-triangle-bottom':ordenation,'glyphicon-triangle-top':!ordenation}"></span>
-                                                </td>
-                                                <td></td>
+                                                </th>
+                                                <th></th>
                                             </tr>
                                         </thead>
                                         <tbody>
