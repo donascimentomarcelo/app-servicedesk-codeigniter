@@ -14,7 +14,7 @@
         <script src="../../../bootstrap/js/jquery.js" type="text/javascript"></script>
         <script src="../../../bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
         <script src="../../../craftpip-jquery/js/jquery-confirm.js" type="text/javascript"></script>
-       
+        <!--  <link href="../../../bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>-->
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
         <link href="../../../bootstrap/css/cd.css" rel="stylesheet" type="text/css"/>
         <link href="../../../craftpip-jquery/css/jquery-confirm.css" rel="stylesheet" type="text/css"/>
@@ -43,53 +43,74 @@
                   <div class="modal-header">
                     <h4 class="modal-title">Inventário - Software</h4>
                   </div>
+                  <div>{{error}}</div>   
                   <div class="modal-body">
                       <div class="row">
                           <div class="col-md-6">
-                                  <div class="form-group">
-                                      <input class="form-control" type="hidden" ng-model="action.idsoftware">
-                                  </div>
-                                  <div class="form-group">
-                                      <input class="form-control" type="text" placeholder="Nome do software" ng-model="action.nomesoftware">
-                                  </div>
-                                  <div class="form-group">
-                                      <input class="form-control" type="text" placeholder="Serial Number" ng-model="action.serialsoftware">
-                                  </div>
-                                  <div class="form-group">
-                                      <select class="form-control" ng-model="action.inventario_config_fk">
-                                          <option value="">Preencha esse campo.</option>
-                                          <option ng-repeat="dataConfigSoftware in dataConfigSoftware" value="{{dataConfigSoftware.idconfig}}">{{dataConfigSoftware.nome_config}}</option>
-                                      </select>
-                                  </div>
-                              <button type="button" class="btn btn-secondary" ng-click="new()">Novo</button>
-                              <button type="button" class="btn btn-secondary" ng-click="actionSoftware(action)">Registrar</button>
+                                <form name="formSoftware">
+                                    <div class="height-form">
+                                            <div class="form-group">
+                                                <input class="form-control" type="hidden" ng-model="action.idsoftware">
+                                            </div>
+                                            <div class="form-group">
+                                                <input class="form-control" type="text" placeholder="Nome do software" ng-model="action.nomesoftware" ng-required="true">
+                                            </div>
+                                            <div class="form-group">
+                                                <input class="form-control" type="text" placeholder="Serial Number" ng-model="action.serialsoftware" ng-required="true">
+                                            </div>
+                                            <div class="form-group">
+                                                <select class="form-control" ng-model="action.inventario_config_fk" ng-required="true">
+                                                    <option value="">Selecione um fabricante.</option>
+                                                    <option ng-repeat="dataConfigSoftware in dataConfigSoftware" value="{{dataConfigSoftware.idconfig}}">{{dataConfigSoftware.nome_config}}</option>
+                                                </select>
+                                            </div>
+                                    </div>
+                                    <div>
+                                        <button type="button" class="btn btn-secondary" ng-click="new()">Novo</button>
+                                        <button type="button" class="btn btn-secondary" ng-click="actionSoftware(action)" ng-disabled="formSoftware.$invalid">Registrar</button>
+                                    </div>
+                                </form>
                           </div>
                           <div class="col-md-6">
-                              <div class="form-group">
-                                  <input class="form-control" type="text" placeholder="Pesquise o pelo nome do Software." 
-                              </div>
-                              <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <td>ID</td>
-                                            <td>Nome do Software</td>
-                                            <td>Serial Number</td>
-                                            <td>Fabricante</td>
-                                            <td></td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr ng-click="update(dataSoftware)" dir-paginate="dataSoftware in dataSoftware | itemsPerPage : 5">
-                                            <td>{{dataSoftware.idsoftware}}</td>
-                                            <td>{{dataSoftware.nomesoftware}}</td>
-                                            <td>{{dataSoftware.serialsoftware}}</td>
-                                            <td>{{dataSoftware.nome_config}}</td>
-                                            <td></td>
-                                        </tr>
-                                    </tbody>
-                              </table>
-                              <dir-pagination-controls max-size="5" direction-link="true" boundary-link="true"></dir-pagination-controls>
-                          </div>
+                            <div class="margin-top-table">  
+                                <div class="form-group">
+                                    <input class="form-control" type="text" placeholder="Pesquise o pelo nome do Software." ng-model="search">
+                                </div>
+                                <div class="height-table">
+                                  <table class="table" ng-show="dataSoftware.length > 0">
+                                        <thead>
+                                            <tr>
+                                                <td style="text-align: center;" ng-click="ordenationBy('idsoftware')"> ID
+                                                <span class="glyphicon sort-icon" ng-show="ordenationCritery==='idsoftware'" ng-class="{'glyphicon-triangle-bottom':ordenation,'glyphicon-triangle-top':!ordenation}"></span>
+                                                </td>
+                                                <td style="text-align: center;" ng-click="ordenationBy('nomesoftware')">Nome do Software
+                                                <span class="glyphicon sort-icon" ng-show="ordenationCritery==='nomesoftware'" ng-class="{'glyphicon-triangle-bottom':ordenation,'glyphicon-triangle-top':!ordenation}"></span>
+                                                </td>
+                                                <td style="text-align: center;" ng-click="ordenationBy('serialsoftware')">Serial Number
+                                                <span class="glyphicon sort-icon" ng-show="ordenationCritery==='serialsoftware'" ng-class="{'glyphicon-triangle-bottom':ordenation,'glyphicon-triangle-top':!ordenation}"></span>
+                                                </td>
+                                                <td style="text-align: center;" ng-click="ordenationBy('nome_config')">Fabricante
+                                                <span class="glyphicon sort-icon" ng-show="ordenationCritery==='nome_config'" ng-class="{'glyphicon-triangle-bottom':ordenation,'glyphicon-triangle-top':!ordenation}"></span>
+                                                </td>
+                                                <td></td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-click="update(dataSoftware); itemSelected(dataSoftware.idsoftware)" ng-class="{'cinza negrito': selectedIndex === dataSoftware.idsoftware}" dir-paginate="dataSoftware in dataSoftware | orderBy:ordenationCritery:ordenation | filter:{nomesoftware:search}| itemsPerPage : 5">
+                                                <td>{{dataSoftware.idsoftware}}</td>
+                                                <td>{{dataSoftware.nomesoftware}}</td>
+                                                <td>{{dataSoftware.serialsoftware}}</td>
+                                                <td>{{dataSoftware.nome_config}}</td>
+                                                <td>
+                                                    <a href="javascript:;"  ng-click="delete(dataSoftware.idsoftware)"><button type="button" class="glyphicon glyphicon-trash"></button></a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                  </table>
+                                </div>
+                                <dir-pagination-controls ng-show="dataSoftware.length > 0" max-size="5" direction-link="true" boundary-link="true"></dir-pagination-controls>
+                            </div>
+                        </div>
                       </div>
                   </div>
                   <div class="modal-footer">

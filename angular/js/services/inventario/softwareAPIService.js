@@ -19,6 +19,12 @@
             return $http.post(config.baseUrl+"/cd/index.php/inventario/inventario_controller/insert_or_update_software",action);
             
         };
+        
+        var _getDeleteSoftware = function(idsoftware){
+            
+            return $http.post(config.baseUrl+"/cd/index.php/inventario/inventario_controller/delete_software",{idsoftware : idsoftware});
+            
+        };
        
         return{
           
@@ -26,7 +32,9 @@
                
                getConfigLoadSoftware : _getConfigLoadSoftware,
                
-               getActionSoftware : _getActionSoftware
+               getActionSoftware : _getActionSoftware,
+               
+               getDeleteSoftware : _getDeleteSoftware
             
         };
     });

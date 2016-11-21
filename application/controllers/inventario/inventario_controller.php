@@ -129,11 +129,11 @@ class Inventario_controller extends CI_Controller {
         
     }
     
-    function excluir_software(){
+    function delete_software(){
         
         $this->load->model('inventario/inventario_model');
         
-        $exclusao = $this->inventario_model->m_excluir_software();
+        $exclusao = $this->inventario_model->m_delete_software();
         
         if($exclusao){
             

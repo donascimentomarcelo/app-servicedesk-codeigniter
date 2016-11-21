@@ -201,7 +201,7 @@ class inventario_model extends CI_Model{
      
     }
     
-    function m_excluir_software(){
+    function m_delete_software(){
         
         $data = json_decode(file_get_contents("php://input"));
         

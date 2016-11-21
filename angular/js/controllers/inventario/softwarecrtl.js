@@ -21,12 +21,27 @@
                     };
                     
                     $scope.actionSoftware = function(action){
-                        softwareAPI.getActionSoftware(action).success(function(data){
+                        softwareAPI.getActionSoftware(action).success(function(){
                             delete $scope.action;
+                            delete $scope.selectedIndex;
                             loadSoftware();
                         }).error(function(data){
                             $scope.error = "Aconteceu um erro :"+data;
                         });
+                    };
+                    
+                    $scope.delete = function(idsoftware){
+                        softwareAPI.getDeleteSoftware(idsoftware).success(function(){
+                            delete $scope.action;
+                            delete $scope.selectedIndex;
+                            loadSoftware();
+                        }).error(function(data){
+                            $scope.error = "Aconteceu um erro :"+data;
+                        });
+                    };
+                    
+                    $scope.itemSelected = function(idsoftware){
+                        $scope.selectedIndex = idsoftware;
                     };
                     
                     $scope.update = function(dataSoftware){
@@ -35,6 +50,12 @@
                     
                     $scope.new = function(){
                         delete $scope.action;
+                        delete $scope.selectedIndex;
+                    };
+                    
+                    $scope.ordenationBy = function(click){
+                        $scope.ordenationCritery = click;
+                        $scope.ordenation = !$scope.ordenation;
                     };
                     
                     

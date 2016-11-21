@@ -90,35 +90,35 @@
                         </div>
                         <div ng-hide="loading">-->
                         <div class="height-table">
-                        <table ng-show="dados.length > 0" class="table">
-                                <tr>
-                                    <th style="text-align: center;" ng-click="ordenarPor('idinventario')"> ID
-                                    <span class="glyphicon sort-icon" ng-show="criterioDeOrdenacao==='idinventario'" ng-class="{'glyphicon-triangle-bottom':ordenacao,'glyphicon-triangle-top':!ordenacao}"></span>
-                                    </th>
-                                    <th style="text-align: center;" ng-click="ordenarPor('nome')">Nome
-                                    <span class="glyphicon sort-icon" ng-show="criterioDeOrdenacao==='nome'" ng-class="{'glyphicon-triangle-bottom':ordenacao,'glyphicon-triangle-top':!ordenacao}"></span>
-                                    </th>
-                                    <th style="text-align: center;" ng-click="ordenarPor('modelo')">Modelo
-                                    <span class="glyphicon sort-icon" ng-show="criterioDeOrdenacao==='modelo'" ng-class="{'glyphicon-triangle-bottom':ordenacao,'glyphicon-triangle-top':!ordenacao}"></span>
-                                    </th>
-                                    <th style="text-align: center;" ng-click="ordenarPor('dataconfig')">Marca
-                                    <span class="glyphicon sort-icon" ng-show="criterioDeOrdenacao==='dataconfig'" ng-class="{'glyphicon-triangle-bottom':ordenacao,'glyphicon-triangle-top':!ordenacao}"></span>
-                                    </th>
-                                    <th></th>
-                                </tr>
-                            </tbody>
-                                <tr ng-click="edit(dados); itemClicked(dados.idinventario)"  ng-class="{ 'cinza negrito': selectedIndex === dados.idinventario }" dir-paginate="dados in dados | filter:{nome:search} | orderBy:criterioDeOrdenacao:ordenacao| itemsPerPage:5">
-                                    <td>{{dados.idinventario}}</td>
-                                    <td>{{dados.nome}}</td>
-                                    <td>{{dados.modelo}}</td>
-                                    <td>{{dados.nome_config}}</td>
-                                    <td>
-                                    <a href="javascript:;"  ng-click="apagarRegistro(dados.idinventario)"><button type="button" class="glyphicon glyphicon-trash"></button></a>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                            </div>
+                            <table ng-show="dados.length > 0" class="table">
+                                    <tr>
+                                        <th style="text-align: center;" ng-click="ordenarPor('idinventario')"> ID
+                                        <span class="glyphicon sort-icon" ng-show="criterioDeOrdenacao==='idinventario'" ng-class="{'glyphicon-triangle-bottom':ordenacao,'glyphicon-triangle-top':!ordenacao}"></span>
+                                        </th>
+                                        <th style="text-align: center;" ng-click="ordenarPor('nome')">Nome
+                                        <span class="glyphicon sort-icon" ng-show="criterioDeOrdenacao==='nome'" ng-class="{'glyphicon-triangle-bottom':ordenacao,'glyphicon-triangle-top':!ordenacao}"></span>
+                                        </th>
+                                        <th style="text-align: center;" ng-click="ordenarPor('modelo')">Modelo
+                                        <span class="glyphicon sort-icon" ng-show="criterioDeOrdenacao==='modelo'" ng-class="{'glyphicon-triangle-bottom':ordenacao,'glyphicon-triangle-top':!ordenacao}"></span>
+                                        </th>
+                                        <th style="text-align: center;" ng-click="ordenarPor('dataconfig')">Marca
+                                        <span class="glyphicon sort-icon" ng-show="criterioDeOrdenacao==='dataconfig'" ng-class="{'glyphicon-triangle-bottom':ordenacao,'glyphicon-triangle-top':!ordenacao}"></span>
+                                        </th>
+                                        <th></th>
+                                    </tr>
+                                </tbody>
+                                    <tr ng-click="edit(dados); itemClicked(dados.idinventario)"  ng-class="{ 'cinza negrito': selectedIndex === dados.idinventario }" dir-paginate="dados in dados | filter:{nome:search} | orderBy:criterioDeOrdenacao:ordenacao| itemsPerPage:5">
+                                        <td>{{dados.idinventario}}</td>
+                                        <td>{{dados.nome}}</td>
+                                        <td>{{dados.modelo}}</td>
+                                        <td>{{dados.nome_config}}</td>
+                                        <td>
+                                        <a href="javascript:;"  ng-click="apagarRegistro(dados.idinventario)"><button type="button" class="glyphicon glyphicon-trash"></button></a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     <dir-pagination-controls max-size="5" direction-links="true" boundary-links="true"></dir-pagination-controls>
                   </div>
                  <!--</div>-->
