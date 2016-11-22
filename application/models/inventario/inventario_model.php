@@ -1,4 +1,4 @@
-<?php
+    <?php
 
 class inventario_model extends CI_Model{
     

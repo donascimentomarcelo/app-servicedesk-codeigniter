@@ -18,6 +18,31 @@ class usuario_model extends CI_Model{
             return $retorno;
         
     }
+    public function m_list_user() {
+        
+            $this->db->select('*');    
+            $this->db->from('usuarios');
+            $this->db->join('setor', 'usuarios.setor_fk = setor.idsetor');
+       
+            $return = $this->db->get();
+            
+            foreach($return -> result() as $row):
+                $arr[] = array(
+                    "id" => $row->id,
+                    "nome" => $row->nome,
+                    "email" => $row->email,
+                    "ramal" => $row->ramal,
+                    "perfil" => $row->perfil,
+                    "nomesetor" => $row->nomesetor,
+                    "status" => $row->status,
+                    "setor_fk" => $row->setor_fk
+                );
+            endforeach;
+            
+
+            return json_encode($arr);
+        
+    }
     
     function setor_ativo(){
         

@@ -15,3 +15,9 @@ angular.module("software").value("config",{
     baseUrl : "http://localhost"
     
 });
+
+angular.module("user").value("config",{
+    
+    baseUrl : "http://localhost"
+    
+});

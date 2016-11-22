@@ -28,6 +28,16 @@ class Usuario_controller extends CI_Controller {
         
     }
     
+    function list_user(){
+        
+        $this->load->model('usuario/usuario_model');
+        
+        $data = $this->usuario_model->m_list_user();
+        
+        echo $data;
+        
+    }
+    
     public function salvar_usuario() {
         
         $this->load->model('usuario/usuario_model');

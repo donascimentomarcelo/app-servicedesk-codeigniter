@@ -1,9 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html ng-app="user">
 <head>
 	<meta charset="utf-8">
 	<title>Manter Usuário</title>
 
+        <script src="../../../angular/lib/angular.min.js" type="text/javascript"></script>
+        <script src="../../../angular/lib/dirPagination.js" type="text/javascript"></script>
+        <script src="../../../angular/js/app.js" type="text/javascript"></script>
+        <script src="../../../angular/js/controllers/user/usercrtl.js" type="text/javascript"></script>
+        <script src="../../../angular/js/services/user/userAPIService.js" type="text/javascript"></script>
+        <script src="../../../angular/js/value/configValue.js" type="text/javascript"></script>
+       
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
         <link href="../../../bootstrap/css/cd.css" rel="stylesheet" type="text/css"/>
         
@@ -42,7 +49,7 @@
      
         
         $(document).ready(function(){
-				$('#tabela1').dataTable();
+				//$('#tabela1').dataTable();
                                 
                                 $(document).ready(function(){
                                      $('.dropdown-toggle').dropdown();
@@ -189,7 +196,7 @@
         
       
 </head>
-<body>
+<body ng-controller="usercrtl">
 
 <div id="container">
 	<h1><?php foreach($preenche_dados -> result() as $dados):?> <img src="../../.<?php echo $dados->imagem;?>" class="img-circle" width="50px" height="50px"> <?php endforeach;?> <?php echo $this->session->userdata('nome');?>  </h1>
@@ -201,26 +208,199 @@
 <div id="container">
 	<h1>Manter Usuário</h1>
         <div id="body">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="modal-body">
 
-           <table class="display table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%" id="tabela1">
-                <thead>
-                    <tr>
-                    <th>Código do Usuário</th>
-                    <th>Usuário</th>
-                    <th>E-Mail</th>
-                    <th>Perfil</th>
-                    <th>Ramal</th>
-                    <th>Setor</th>
-                    <th>Status</th>
-                    <th>Opções</th>
-                    </tr>
-                </thead>
-                <tbody>
+                                 <form role="form" method="post" action="<?= base_url('index.php/usuario/usuario_controller/salvar_usuario')?>" id="formulario_usuario" enctype="multipart/form-data">
+                                   <div class="form-group">
+                                     <label for="nome">Foto de Perfil</label>
+                                     <input type="file" name="imagem"  id="imagem">
+                                   </div>
+                                   <div class="form-group">
+                                     <input type="text"  class="form-control" id="nome"  name='nome' placeholder="Nome do Usuário">
+                                   </div>
+
+                                   <div class="form-group">
+                                     <input type="password"  class="form-control" id="senha" name='senha' placeholder="Senha do Usuário">
+                                   </div>
+                                   <div class="form-group">
+                                    <input type="text"  class="form-control" id="email"  name='email' placeholder="E-mail do Usuário">
+                                   </div>
+                                   <div class="form-group">
+                                    <input type="text"  class="form-control" id="ramal"  name='ramal' placeholder="Ramal do Usuário">
+                                   </div>
+                                   <div class="form-group">
+                                       <label for="email">Perfil:</label><br>
+                                     <label class="radio-inline">
+                                         <input type="radio" name="perfil" id="usuario" value="usuario" checked="checked"> Usuário
+                                       </label>
+                                       <label class="radio-inline">
+                                         <input type="radio" name="perfil" id="administrador" value="administrador"> Administrador
+                                       </label>
+                                     </div>
+                                   <div class="form-group">
+                                       <label for="email">Status:</label><br>
+                                     <label class="radio-inline">
+                                         <input type="radio" name="status" id="ativo" value="ativo" checked="checked"> Ativo
+                                       </label>
+                                       <label class="radio-inline">
+                                         <input type="radio" name="status" id="inativo" value="inativo"> Inativo
+                                       </label>
+                                     </div>
+                                   <div class="form-group">
+                                     <select class="form-control" name="setor_fk" id="setor_fk" required="required">
+
+                                         <option value="">Selecione um Setor</option>
+
+                                          <?php foreach ($setor_ativo -> result() as $linha): ?> 
+
+                                         <option value="<?php echo $linha->idsetor?>"><?php echo $linha->nomesetor?></option>
+
+                                         <?php endforeach;?>
+
+                                     </select>
+                                   </div>
+
+                                   <input type="hidden" name="id" id="id" value="" />
+                                    <hr>
+                                    <div>
+                                               <button type="button" ng-click="new()" class="btn btn-secondary">Novo</button>
+                                               <button type="button" ng-click="registraInventario(registro)" ng-disabled="inventarioForm.$invalid" class="btn btn-secondary">Registrar</button>
+                                    </div>  
+                                 </form>	    
+
+                       </div>
+                        <!-- <button type="button" class="btn btn-default" data-dismiss="modal" onclick="refresh()" >Fechar</button>
+
+                        <button type="button" class="btn btn-primary" onclick="$('#formulario_usuario').submit()">Salvar</button>-->
+                      
+                </div>
+                <div class="col-md-8">
+                     <div class="form-group">
+                         <input type="texte"  class="form-control" placeholder="Pesquise pelo nome do usuário">
+                     </div>
+
+                    <table class="table" cellspacing="0" width="100%" id="tabela1">
+                         <thead>
+                             <tr>
+                             <th style="text-align: center;">Código do Usuário</th>
+                             <th style="text-align: center;">Usuário</th>
+                             <th style="text-align: center;">E-Mail</th>
+                             <th style="text-align: center;">Perfil</th>
+                           <!--  <th style="text-align: center;">Ramal</th>-->
+                           <!--   <th style="text-align: center;">Setor</th>-->
+                             <th style="text-align: center;">Status</th>
+                             <th></th>
+                             </tr>
+                         </thead>
+                         <tbody>
+
+                         <tr dir-paginate="userData in userData | itemsPerPage :5">
+                             <td style="text-align: center;">{{userData.id}}</td>
+                             <td style="text-align: center;">{{userData.nome}}</td>
+                             <td style="text-align: center;">{{userData.email}}</td>
+                             <td style="text-align: center;">{{userData.perfil}}</td>
+                           <!--  <td style="text-align: center;">{{userData.ramal}}</td>-->
+                           <!--   <td style="text-align: center;">{{userData.nomesetor}}</td>-->
+                             <td style="text-align: center;">{{userData.status}}</td>
+                             <td style="text-align: center;"></td>
+                           </tr>
+
+                         </tbody>
+                     </table>
+
+                </div>
+            </div>
+            
+                  <!--START MODAL--><!--
+                 <div class="modal fade bs-example-modal-lg" id="modalUsuario" data-backdrop="static" >
+                   <div class="modal-dialog">
+                     <div class="modal-content">
+                       <div class="modal-header">
+                         <h4 class="modal-title">Manter Usuário</h4>
+                       </div>
+                       <div class="modal-body">
+
+                                 <form role="form" method="post" action="<?= base_url('index.php/usuario/usuario_controller/salvar_usuario')?>" id="formulario_usuario" enctype="multipart/form-data">
+                                   <div class="form-group">
+                                     <label for="nome">Foto de Perfil</label>
+                                     <input type="file" name="imagem"  id="imagem">
+                                   </div>
+                                   <div class="form-group">
+                                     <label for="nome">Nome</label>
+                                     <input type="text"  class="form-control" id="nome"  name='nome'>
+                                   </div>
+
+                                   <div class="form-group">
+                                     <label for="email">Senha</label>
+                                     <input type="password"  class="form-control" id="senha" name='senha'>
+                                   </div>
+                                   <div class="form-group">
+                                     <label for="nome">E-mail</label>
+                                     <input type="text"  class="form-control" id="email"  name='email'>
+                                   </div>
+                                   <div class="form-group">
+                                     <label for="nome">Ramal</label>
+                                     <input type="text"  class="form-control" id="ramal"  name='ramal'>
+                                   </div>
+                                   <div class="form-group">
+                                       <label for="email">Perfil:</label><br>
+                                     <label class="radio-inline">
+                                         <input type="radio" name="perfil" id="usuario" value="usuario" checked="checked"> Usuário
+                                       </label>
+                                       <label class="radio-inline">
+                                         <input type="radio" name="perfil" id="administrador" value="administrador"> Administrador
+                                       </label>
+                                     </div>
+                                   <div class="form-group">
+                                       <label for="email">Status:</label><br>
+                                     <label class="radio-inline">
+                                         <input type="radio" name="status" id="ativo" value="ativo" checked="checked"> Ativo
+                                       </label>
+                                       <label class="radio-inline">
+                                         <input type="radio" name="status" id="inativo" value="inativo"> Inativo
+                                       </label>
+                                     </div>
+                                   <div class="form-group">
+                                     <label for="setor">Setor</label>
+                                     <select class="form-control" name="setor_fk" id="setor_fk" required="required">
+
+                                         <option value="">Selecione um Setor</option>
+
+                                          <?php foreach ($setor_ativo -> result() as $linha): ?> 
+
+                                         <option value="<?php echo $linha->idsetor?>"><?php echo $linha->nomesetor?></option>
+
+                                         <?php endforeach;?>
+
+                                     </select>
+                                   </div>
+
+                                   <input type="hidden" name="id" id="id" value="" />
+                                 </form>	    
+
+                       </div>
+                       <div class="modal-footer">
+                         <button type="button" class="btn btn-default" data-dismiss="modal" onclick="refresh()" >Fechar</button>
+
+                        <button type="button" class="btn btn-primary" onclick="$('#formulario_usuario').submit()">Salvar</button>
+                       </div>
+                     </div>
+                   </div>
+                 </div>
+-->
+
+                 <p class="footer"></p>
+        </div>
+ </div>
+</body>
+</html>
+<!--
+ <?php //foreach ($consulta -> result() as $linha): ?> 
                     
-                <?php foreach ($consulta -> result() as $linha): ?> 
-                    
-                <tr>
-                    <td style="text-align: center;"><?php echo $linha->id ?></td>
+                <tr ng-repeat="userData in userData">
+                    <td style="text-align: center;">{{userData.id}}</td>
                     <td style="text-align: center;"><?php echo $linha->nome ?></td>
                     <td style="text-align: center;"><?php echo $linha->email ?></td>
                     <td style="text-align: center;"><?php echo $linha->perfil ?></td>
@@ -229,150 +409,6 @@
                     <td style="text-align: center;"><?php echo $linha->status ?></td>
                     <td style="text-align: center;"><a href="javascript:;"  onclick="janelaNovoUsuario(<?= $linha->id ?>)"><button type="button" class="glyphicon glyphicon-cog"></button></a><a href="javascript:;"  onclick="confirma(<?= $linha->id ?>)"><button type="button" class="glyphicon glyphicon-trash"></button></a></td>
                 </tr>
-                <?php endforeach;?>
-                </tbody>
-            </table>
-            
-	</div>
-        
-         <!--START MODAL-->
-        <div class="modal fade bs-example-modal-lg" id="modalUsuario" data-backdrop="static" >
-	  <div class="modal-dialog">
-	    <div class="modal-content">
-	      <div class="modal-header">
-	        <h4 class="modal-title">Manter Usuário</h4>
-	      </div>
-	      <div class="modal-body">
-	      	
-			<form role="form" method="post" action="<?= base_url('index.php/usuario/usuario_controller/salvar_usuario')?>" id="formulario_usuario" enctype="multipart/form-data">
-			  <div class="form-group">
-			    <label for="nome">Foto de Perfil</label>
-                            <input type="file" name="imagem"  id="imagem">
-			  </div>
-                          <div class="form-group">
-			    <label for="nome">Nome</label>
-                            <input type="text"  class="form-control" id="nome"  name='nome'>
-			  </div>
-			 
-			  <div class="form-group">
-			    <label for="email">Senha</label>
-                            <input type="password"  class="form-control" id="senha" name='senha'>
-			  </div>
-			  <div class="form-group">
-			    <label for="nome">E-mail</label>
-			    <input type="text"  class="form-control" id="email"  name='email'>
-			  </div>
-			  <div class="form-group">
-			    <label for="nome">Ramal</label>
-			    <input type="text"  class="form-control" id="ramal"  name='ramal'>
-			  </div>
-			  <div class="form-group">
-                              <label for="email">Perfil:</label><br>
-			    <label class="radio-inline">
-                                <input type="radio" name="perfil" id="usuario" value="usuario" checked="checked"> Usuário
-                              </label>
-                              <label class="radio-inline">
-                                <input type="radio" name="perfil" id="administrador" value="administrador"> Administrador
-                              </label>
-                            </div>
-			  <div class="form-group">
-                              <label for="email">Status:</label><br>
-			    <label class="radio-inline">
-                                <input type="radio" name="status" id="ativo" value="ativo" checked="checked"> Ativo
-                              </label>
-                              <label class="radio-inline">
-                                <input type="radio" name="status" id="inativo" value="inativo"> Inativo
-                              </label>
-                            </div>
-			  <div class="form-group">
-			    <label for="setor">Setor</label>
-                            <select class="form-control" name="setor_fk" id="setor_fk" required="required">
-                                
-                                <option value="">Selecione um Setor</option>
-                                
-                                 <?php foreach ($setor_ativo -> result() as $linha): ?> 
-                                
-                                <option value="<?php echo $linha->idsetor?>"><?php echo $linha->nomesetor?></option>
-                                
-                                <?php endforeach;?>
-                                
-                            </select>
-			  </div>
-			  
-			  <input type="hidden" name="id" id="id" value="" />
-			</form>	    
-			    
-	      </div>
-	      <div class="modal-footer">
-	        <button type="button" class="btn btn-default" data-dismiss="modal" onclick="refresh()" >Fechar</button>
-	       
-               <button type="button" class="btn btn-primary" onclick="$('#formulario_usuario').submit()">Salvar</button>
-	      </div>
-	    </div>
-	  </div>
-	</div>
-        
-        
-	<p class="footer"></p>
-</div>
-  <style type="text/css">
+                <?php //endforeach;?>
 
-	::selection{ background-color: #E13300; color: white; }
-	::moz-selection{ background-color: #E13300; color: white; }
-	::webkit-selection{ background-color: #E13300; color: white; }
-
-	body {
-		background-color: #fff;
-		margin: 40px;
-		font: 13px/20px normal Helvetica, Arial, sans-serif;
-		color: #4F5155;
-	}
-
-	a {
-		color: #333;
-		background-color: transparent;
-		font-weight: normal;
-	}
-
-	h1 {
-		color: #444;
-		background-color: transparent;
-		border-bottom: 1px solid #D0D0D0;
-		font-size: 19px;
-		font-weight: normal;
-		margin: 0 0 14px 0;
-		padding: 14px 15px 10px 15px;
-	}
-
-	code {
-		font-family: Consolas, Monaco, Courier New, Courier, monospace;
-		font-size: 12px;
-		background-color: #f9f9f9;
-		border: 1px solid #D0D0D0;
-		color: #002166;
-		display: block;
-		margin: 14px 0 14px 0;
-		padding: 12px 10px 12px 10px;
-	}
-
-	#body{
-		margin: 0 15px 0 15px;
-	}
-	
-	p.footer{
-		text-align: right;
-		font-size: 11px;
-		border-top: 1px solid #D0D0D0;
-		line-height: 32px;
-		padding: 0 10px 0 10px;
-		margin: 20px 0 0 0;
-	}
-	
-	#container{
-		margin: 10px;
-		border: 1px solid #D0D0D0;
-		-webkit-box-shadow: 0 0 8px #D0D0D0;
-	}
-	</style>
-</body>
-</html>
+-->
