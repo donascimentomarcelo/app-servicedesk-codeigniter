@@ -28,7 +28,7 @@
             $scope.insert_or_edit = function (action) {
 
                 userAPI.getActionUser(action).success(function () {
-                    
+                    //http://stackoverflow.com/questions/24443246/angularjs-how-to-upload-multipart-form-data-and-a-file
                     delete $scope.action;
                     delete $scope.selectedIndex;
                     loadUser();

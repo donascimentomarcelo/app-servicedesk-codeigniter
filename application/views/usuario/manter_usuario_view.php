@@ -6,6 +6,8 @@
 
         <script src="../../../angular/lib/angular.min.js" type="text/javascript"></script>
         <script src="../../../angular/lib/dirPagination.js" type="text/javascript"></script>
+        <script src="../../../angular/lib/angular-file.js" type="text/javascript"></script>
+        <script src="../../../angular/lib/angular-resource.min.js" type="text/javascript"></script>
         <script src="../../../angular/js/app.js" type="text/javascript"></script>
         <script src="../../../angular/js/controllers/user/usercrtl.js" type="text/javascript"></script>
         <script src="../../../angular/js/services/user/userAPIService.js" type="text/javascript"></script>
