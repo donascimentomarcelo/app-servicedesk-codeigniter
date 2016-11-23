@@ -83,4 +83,28 @@ class setor_model extends CI_Model{
         return $consulta;
         
     }
+    
+    public function m_active_sector() {
+        
+        $this->db->select('*');    
+        $this->db->from('setor');
+        $this->db->where('statussetor', 'ativo');
+
+        $data = $this->db->get();
+        
+        foreach ($data -> result() as $row):
+            
+            $arr[]= array (
+                
+                    'idsetor'=>$row->idsetor,
+                    'nomesetor'=>$row->nomesetor,
+                    'statussetor'=>$row->statussetor
+                
+                );
+        
+        endforeach;
+
+        return json_encode($arr);
+        
+    }
 }

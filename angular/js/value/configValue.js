@@ -18,6 +18,6 @@ angular.module("software").value("config",{
 
 angular.module("user").value("config",{
     
-    baseUrl : "http://localhost"
+    baseUrl : "http://localhost/cd/index.php/"
     
 });

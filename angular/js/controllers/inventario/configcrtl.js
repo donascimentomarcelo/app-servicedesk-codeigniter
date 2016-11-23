@@ -36,7 +36,6 @@
             };
             
             $scope.itemClicked = function(idconfig){
-                console.log(idconfig)
                 $scope.selectedIndex = idconfig;
             };
             

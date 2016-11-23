@@ -8,17 +8,7 @@ class Usuario_controller extends CI_Controller {
         
         $variaveis['validacao'] = getValidaAdministrador();
         
-        
-        $this->load->model('usuario/usuario_model');
-        
-        $variaveis['consulta'] = $this->usuario_model->exibe_usuario();
-        
-        
-        $this->load->helper('setor_ativo/setor_ativo_helper');
-        
-        $variaveis['setor_ativo'] = getSetorAtivo();
-        
-        
+       
         $this->load->helper('preenche_dados/preenche_dados_helper');
         
         $variaveis['preenche_dados'] = getPreencheDados();
@@ -32,9 +22,15 @@ class Usuario_controller extends CI_Controller {
         
         $this->load->model('usuario/usuario_model');
         
-        $data = $this->usuario_model->m_list_user();
+        echo $this->usuario_model->m_list_user();
         
-        echo $data;
+    }
+    
+    public function insert_or_edit_user() {
+        
+        $this->load->model('usuario/usuario_model');
+   
+        echo $this->usuario_model->m_insert_or_edit_user();
         
     }
     
@@ -64,7 +60,7 @@ class Usuario_controller extends CI_Controller {
 
     }
     
-    public function do_upload(){
+  public function do_upload(){
 
             if(isset($_FILES["imagem"])){
         
