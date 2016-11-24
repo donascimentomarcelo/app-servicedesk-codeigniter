@@ -8,4 +8,4 @@
     
     angular.module("user", ['angularUtils.directives.dirPagination','ur.file','ngResource']);
     
-    angular.module("profile", ['angularUtils.directives.dirPagination']);
+    angular.module("profile", []);

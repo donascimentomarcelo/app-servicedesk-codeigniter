@@ -118,7 +118,7 @@ class perfil_pessoal_model extends CI_Model{
         $return = $this->db->get();
         
         foreach ($return ->result() as $row):
-            $arr = array(
+            $arr[] = array(
                 "id" => $row->id,
                 "nome" => $row->nome,
                 "email" => $row->email,
@@ -126,7 +126,9 @@ class perfil_pessoal_model extends CI_Model{
                 "perfil" => $row->perfil,
                 "nomesetor" => $row->nomesetor,
                 "status" => $row->status,
-                "setor_fk" => $row->setor_fk
+                "setor_fk" => $row->setor_fk,
+                "senha" => $row->senha,
+                "imagem" => $row->imagem
             );
         endforeach;
         
@@ -134,4 +136,38 @@ class perfil_pessoal_model extends CI_Model{
         
     }
     
+    public function m_update_profile() {
+        
+        $_POST = json_decode(file_get_contents('php://input'), true);
+      
+        $id = $this->input->post('id');
+
+        $arr = array(
+            'nome' => $this->input->post('nome'),
+            'email' => $this->input->post('email'),
+            'email' => $this->input->post('email'),
+            'ramal' => $this->input->post('ramal'),
+            'setor_fk' => $this->input->post('setor_fk')
+        );
+
+        if ($id != 0) {
+
+            $this->db->where('id', $id);
+
+            $return = $this->db->update('usuarios', $arr);
+        } else {
+
+            $return = $this->db->insert('usuarios', $arr);
+        }
+
+        if ($return) {
+
+            return TRUE;
+            
+        } else {
+
+            return FALSE;
+        }
+    }
+
 }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html ng-app="profile">
 <head>
 	<meta charset="utf-8">
 	<title>Perfil Pessoal</title>
@@ -11,8 +11,12 @@
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
         <link href="../../../bootstrap/css/cd.css" rel="stylesheet" type="text/css"/>
         
-       
-        
+        <script src="../../../angular/lib/angular.min.js" type="text/javascript"></script>
+        <script src="../../../angular/js/app.js" type="text/javascript"></script>
+        <script src="../../../angular/js/controllers/profile/profilectrl.js" type="text/javascript"></script>
+        <script src="../../../angular/js/services/profile/profileAPIService.js" type="text/javascript"></script>
+        <script src="../../../angular/js/value/configValue.js" type="text/javascript"></script>
+      
         <script type="text/javascript">
         
      
@@ -59,148 +63,85 @@
         
       
 </head>
-<body>
+<body ng-controller="profilectrl">
     
-<div id="container">
-	<h1><?php foreach($preenche_dados -> result() as $dados):?> <img src="../../.<?php echo $dados->imagem;?>" class="img-circle" width="50px" height="50px"> <?php endforeach;?> <?php echo $this->session->userdata('nome');?></h1>
-        
-	  <?php if($this->session->userdata('perfil') == 'administrador'){
-              
-                  include 'C:\xampp\htdocs\cd\application\views\menu_head\administrador\menu_inicial.php';
-             
-              }else{
-                  
-                  include 'C:\xampp\htdocs\cd\application\views\menu_head\usuario\menu_inicial.php';
-            
-              }
-              ?>
-        
-</head>
-<body>
-
         <div id="container">
+            <h1><?php foreach ($preenche_dados->result() as $dados): ?> <img src="../../.<?php echo $dados->imagem; ?>" class="img-circle" width="50px" height="50px"> <?php endforeach; ?> <?php echo $this->session->userdata('nome'); ?></h1>
 
-             <div class="" id="form_padrao" data-backdrop="static" >
-	  
-	      <div class="modal-header">
-	        <h4 class="modal-title">Alterar Dados Pessoais</h4>
-	      </div>
-	      <div class="modal-body">
-	      	<?php foreach($consulta -> result() as $dados):?>
-			<form role="form" method="post" action="<?= base_url('index.php/perfil_pessoal/perfil_pessoal_controller/atualiza_perfil')?>" id="formulario_usuario" enctype="multipart/form-data">
-			  <div class="form-group" >
-                              <img src="../../.<?php echo $dados->imagem;?>" class="img-circle" width="100px" height="100px">
-                              
-			  </div>
-			  <div class="form-group">
-			    <label for="nome">Foto de Perfil</label>
-                            <input type="file" name="imagem"  id="imagem" value="../../.<?php echo $dados->imagem;?>">
-			  </div>
-			  <div class="form-group">
-			    <label for="nome">Nome</label>
-                            <input type="text"  class="form-control" id="nome"  name='nome' value="<?php echo $dados->nome?>">
-			  </div>
-			 
-			  <div class="form-group">
-			    <label for="email">Senha</label>
-                            <input type="password"  class="form-control" id="senha" name='senha' value="<?php echo $dados->senha?>">
-			  </div>
-			  <div class="form-group">
-			    <label for="nome">E-mail</label>
-			    <input type="text"  class="form-control" id="email"  name='email' value="<?php echo $dados->email?>">
-			  </div>
-			  <div class="form-group">
-			    <label for="nome">Ramal</label>
-			    <input type="text"  class="form-control" id="ramal"  name='ramal' value="<?php echo $dados->ramal?>">
-			  </div>
-			  <div class="form-group">
-			    <label for="setor">Setor</label>
-                            <select class="form-control" name="setor_fk" id="setor_fk" required="required">
-                                
-                                <option value="<?php echo $dados->idsetor?>"><?php echo $dados->nomesetor?></option>
-                                
-                                 <?php foreach ($setor_ativo -> result() as $linha): ?> 
-                                
-                                <option value="<?php echo $linha->idsetor?>"><?php echo $linha->nomesetor?></option>
-                                
-                                <?php endforeach;?>
-                                
-                            </select>
-			  </div>
-			  
-			  <input type="hidden" name="id" id="id" value="<?php echo $dados->id?>" />
-			</form>	    
-		<?php endforeach; ?>	    
-	      </div>
-	      <div class="modal-footer">
-	      
-               <button type="button" class="btn btn-primary" onclick="$('#formulario_usuario').submit()">Atualizar</button>
-	      </div>
-	    </div>
-	  </div>
-	</div>
-   </div>
-    
-<p class="footer"></p>
-</div>
-  <style type="text/css">
+            <?php
+            if ($this->session->userdata('perfil') == 'administrador') {
 
-	::selection{ background-color: #E13300; color: white; }
-	::moz-selection{ background-color: #E13300; color: white; }
-	::webkit-selection{ background-color: #E13300; color: white; }
+                include 'C:\xampp\htdocs\cd\application\views\menu_head\administrador\menu_inicial.php';
+            } else {
 
-	body {
-		background-color: #fff;
-		margin: 40px;
-		font: 13px/20px normal Helvetica, Arial, sans-serif;
-		color: #4F5155;
-	}
+                include 'C:\xampp\htdocs\cd\application\views\menu_head\usuario\menu_inicial.php';
+            }
+            ?>
 
-	a {
-		color: #003399;
-		background-color: transparent;
-		font-weight: normal;
-	}
+            <div id="container">
 
-	h1 {
-		color: #444;
-		background-color: transparent;
-		border-bottom: 1px solid #D0D0D0;
-		font-size: 19px;
-		font-weight: normal;
-		margin: 0 0 14px 0;
-		padding: 14px 15px 10px 15px;
-	}
+                <h1>Alterar Dados Pessoais</h1>
+                 <div id="body">
+                    <div class="row">
+                       <div class="col-md-4">
+                            <div class="modal-body">
+                                <div ng-repeat="dataProfile in dataProfile">
+                                    <form role="form" name='formProfile' method="post" action="<?= base_url('index.php/perfil_pessoal/perfil_pessoal_controller/atualiza_perfil') ?>" id="formulario_usuario" enctype="multipart/form-data">
 
-	code {
-		font-family: Consolas, Monaco, Courier New, Courier, monospace;
-		font-size: 12px;
-		background-color: #f9f9f9;
-		border: 1px solid #D0D0D0;
-		color: #002166;
-		display: block;
-		margin: 14px 0 14px 0;
-		padding: 12px 10px 12px 10px;
-	}
+                                        <div class="form-group" >
+                                            <img data-ng-src="{{dataProfile.imagem}}" class="img-circle" width="100px" height="100px">
 
-	#body{
-		margin: 0 15px 0 15px;
-	}
-	
-	p.footer{
-		text-align: right;
-		font-size: 11px;
-		border-top: 1px solid #D0D0D0;
-		line-height: 32px;
-		padding: 0 10px 0 10px;
-		margin: 20px 0 0 0;
-	}
-	
-	#container{
-		margin: 10px;
-		border: 1px solid #D0D0D0;
-		-webkit-box-shadow: 0 0 8px #D0D0D0;
-	}
-	</style>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <input type="text"  class="form-control"  ng-model="dataProfile.nome" placeholder="Informe o Nome."  ng-required="true"> 
+                                        </div>
+
+
+                                        <div class="form-group">
+                                            <input type="password"  class="form-control"  ng-model="dataProfile.senha" placeholder="Informe a Senha."  ng-required="true">
+                                        </div>
+
+
+                                        <div class="form-group">
+                                            <input type="text"  class="form-control"  ng-model="dataProfile.email" placeholder="Informe o E-mail."  ng-required="true">
+                                        </div>
+
+
+                                        <div class="form-group">
+                                            <input type="text"  class="form-control"  ng-model="dataProfile.ramal" placeholder="Informe o Ramal."  ng-required="true">
+                                        </div>
+
+
+                                        <div class="form-group">
+                                            <select class="form-control" ng-model="dataProfile.setor_fk"  ng-required="true" >
+
+                                                <option ng-repeat="dataSector in dataSector" value="{{dataSector.idsetor}}" >{{dataSector.nomesetor}}</option>
+
+
+
+                                            </select>
+                                        </div>
+
+                                        <input type="hidden" ng-model="dataProfile.id"/>
+
+                                        <div>
+                                            <button type="button" class="btn btn-secondary" ng-if="!formProfile.$invalid" ng-click="alterProfile(dataProfile)" >Atualizar</button>
+                                        </div>
+
+                                    </form>	    
+                                </div> 
+                            </div>
+                        </div>
+                    </div> 
+                </div>
+            </div>
+       </div>
+
+      <p class="footer"></p>
+  
 </body>
 </html>
+
+	
+
