@@ -103,4 +103,35 @@ class perfil_pessoal_model extends CI_Model{
         
     }
     
+    public function m_load_profile(){
+        
+         $id = $this->session->userdata('id');
+        
+        if($id != NULL){
+            
+            $this->db->select('*');    
+            $this->db->from('usuarios');
+            $this->db->join('setor', 'usuarios.setor_fk = setor.idsetor');
+            $this->db->where('id',$id);
+        }
+        
+        $return = $this->db->get();
+        
+        foreach ($return ->result() as $row):
+            $arr = array(
+                "id" => $row->id,
+                "nome" => $row->nome,
+                "email" => $row->email,
+                "ramal" => $row->ramal,
+                "perfil" => $row->perfil,
+                "nomesetor" => $row->nomesetor,
+                "status" => $row->status,
+                "setor_fk" => $row->setor_fk
+            );
+        endforeach;
+        
+        return json_encode($arr);
+        
+    }
+    
 }

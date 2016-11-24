@@ -43,14 +43,10 @@
         
         <div id="container">
 
-             <div class="" id="form_padrao" data-backdrop="static" >
-	  
-	      <div class="modal-header">
-	        <h4 class="modal-title">Inventário - Hardware</h4>
-	      </div>
+	      <h1>Inventário - Hardware</h1>
+	      <div id="body">
                  <div>{{error}}</div>   
-	      <div class="modal-body">
-                  <div class="row">
+	        <div class="row">
                       <div class="col-md-6">
                         <form role="form" name="inventarioForm" method="post" id="formulario_usuario" enctype="multipart/form-data">
                             <div class="height-form">  
@@ -98,21 +94,21 @@
                                         <th style="text-align: center;" ng-click="ordenarPor('nome')">Nome
                                         <span class="glyphicon sort-icon" ng-show="criterioDeOrdenacao==='nome'" ng-class="{'glyphicon-triangle-bottom':ordenacao,'glyphicon-triangle-top':!ordenacao}"></span>
                                         </th>
-                                        <th style="text-align: center;" ng-click="ordenarPor('modelo')">Modelo
+                                        <th class="none-table-768 none-table-480" style="text-align: center;" ng-click="ordenarPor('modelo')">Modelo
                                         <span class="glyphicon sort-icon" ng-show="criterioDeOrdenacao==='modelo'" ng-class="{'glyphicon-triangle-bottom':ordenacao,'glyphicon-triangle-top':!ordenacao}"></span>
                                         </th>
-                                        <th style="text-align: center;" ng-click="ordenarPor('dataconfig')">Marca
+                                        <th class="none-table-768 none-table-480" style="text-align: center;" ng-click="ordenarPor('dataconfig')">Marca
                                         <span class="glyphicon sort-icon" ng-show="criterioDeOrdenacao==='dataconfig'" ng-class="{'glyphicon-triangle-bottom':ordenacao,'glyphicon-triangle-top':!ordenacao}"></span>
                                         </th>
                                         <th></th>
                                     </tr>
                                 </tbody>
                                     <tr ng-click="edit(dados); itemClicked(dados.idinventario)"  ng-class="{ 'cinza negrito': selectedIndex === dados.idinventario }" dir-paginate="dados in dados | filter:{nome:search} | orderBy:criterioDeOrdenacao:ordenacao| itemsPerPage:5">
-                                        <td>{{dados.idinventario}}</td>
-                                        <td>{{dados.nome}}</td>
-                                        <td>{{dados.modelo}}</td>
-                                        <td>{{dados.nome_config}}</td>
-                                        <td>
+                                        <td style="text-align: center;">{{dados.idinventario}}</td>
+                                        <td style="text-align: center;">{{dados.nome}}</td>
+                                        <td class="none-table-768 none-table-480" style="text-align: center;">{{dados.modelo}}</td>
+                                        <td class="none-table-768 none-table-480" style="text-align: center;">{{dados.nome_config}}</td>
+                                        <td style="text-align: center;">
                                         <a href="javascript:;"  ng-click="apagarRegistro(dados.idinventario)"><button type="button" class="glyphicon glyphicon-trash"></button></a>
                                         </td>
                                     </tr>
@@ -124,12 +120,13 @@
                  <!--</div>-->
                  </div>
               </div>
-	      </div>
+	    
 	      <div class="modal-footer">
 	      
               
 	      </div>
-	    </div>
+	  
+	  </div>
 	  </div>
 	</div>
    </div>

@@ -50,11 +50,6 @@
 
                                 <form role="form" name="useu_form" enctype="multipart/form-data">
                                     <div class="form-group">
-                                        <label for="nome">Foto de Perfil</label>
-                                        <input type="file"  ng-model="action.imagem" id="imagem">
-                                    </div>
-
-                                    <div class="form-group">
                                         <input type="hidden" value="" ng-model="action.id" />
                                     </div>
 
@@ -113,6 +108,7 @@
                             </div>
 
                         </div>
+                        <div class="margin-top-table">
                         <div class="col-md-8">
                             <div class="form-group">
                                 <input type="texte"  class="form-control" ng-model="search" placeholder="Pesquise pelo nome do usuário">
@@ -127,13 +123,13 @@
                                         <th style="text-align: center;" ng-click="ordenationBy('nome')">Nome do Usuário
                                             <span class="glyphicon sort-icon" ng-show="ordenationCritery === 'nome'" ng-class="{'glyphicon-triangle-bottom':ordenation,'glyphicon-triangle-top':!ordenation}"></span>
                                         </th>
-                                        <th style="text-align: center;" ng-click="ordenationBy('email')">E-Mail
+                                        <th class="none-table-768 none-table-480" style="text-align: center;" ng-click="ordenationBy('email')">E-Mail
                                             <span class="glyphicon sort-icon" ng-show="ordenationCritery === 'email'" ng-class="{'glyphicon-triangle-bottom':ordenation,'glyphicon-triangle-top':!ordenation}"></span>
                                         </th>
-                                        <th style="text-align: center;" ng-click="ordenationBy('perfil')">Perfil
+                                        <th class="none-table-768 none-table-480" style="text-align: center;" ng-click="ordenationBy('perfil')">Perfil
                                             <span class="glyphicon sort-icon" ng-show="ordenationCritery === 'perfil'" ng-class="{'glyphicon-triangle-bottom':ordenation,'glyphicon-triangle-top':!ordenation}"></span>
                                         </th>
-                                        <th style="text-align: center;" ng-click="ordenationBy('status')">Status
+                                        <th class="none-table-480" style="text-align: center;" ng-click="ordenationBy('status')">Status
                                             <span class="glyphicon sort-icon" ng-show="ordenationCritery === 'status'" ng-class="{'glyphicon-triangle-bottom':ordenation,'glyphicon-triangle-top':!ordenation}"></span>
                                         </th>
                                     </tr>
@@ -142,13 +138,14 @@
                                     <tr ng-click="edit(userData); itemClicked(userData.id)" ng-class="{ 'cinza negrito': selectedIndex === userData.id }" dir-paginate="userData in userData | orderBy:ordenationCritery:ordenation | filter:{nome:search} | itemsPerPage :10">
                                         <td style="text-align: center;">{{userData.id}}</td>
                                         <td style="text-align: center;">{{userData.nome}}</td>
-                                        <td style="text-align: center;">{{userData.email}}</td>
-                                        <td style="text-align: center;">{{userData.perfil}}</td>
-                                        <td style="text-align: center;">{{userData.status}}</td>
+                                        <td class="none-table-768 none-table-480" style="text-align: center;">{{userData.email}}</td>
+                                        <td class="none-table-768 none-table-480" style="text-align: center;">{{userData.perfil}}</td>
+                                        <td class="none-table-480"style="text-align: center;">{{userData.status}}</td>
                                     </tr>
                                 </tbody>
                             </table>
                             <dir-pagination-controls max-size="5" direction-links="true" boundary-links="true"></dir-pagination-controls>
+                        </div>
                         </div>
                     </div>
                      <p class="footer"></p>

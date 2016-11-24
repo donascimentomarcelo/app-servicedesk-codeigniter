@@ -19,12 +19,6 @@ angular.module("hardware").factory("hardwareAPI", function($http, config){
         
     };
     
-     var _getLoadData = function(){
-        
-        return $http.get(config.baseUrl+"/cd/index.php/usuario/usuario_controller/getPreencheDados");
-        
-    };
-    
     var _getLoadConfig = function(){
         
         return $http.get(config.baseUrl+"/cd/index.php/inventario/inventario_controller/list_config_hw");  
@@ -39,8 +33,6 @@ angular.module("hardware").factory("hardwareAPI", function($http, config){
         getRegistraInventario : _getRegistraInventario,
         
         getApagarRegistro : _getApagarRegistro,
-        
-        getLoadData : _getLoadData,
         
         getLoadConfig : _getLoadConfig
     };

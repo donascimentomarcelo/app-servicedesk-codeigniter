@@ -44,14 +44,7 @@ class Perfil_pessoal_controller extends CI_Controller {
     function  atualiza_perfil(){
         
         $this->load->model('perfil_pessoal/perfil_pessoal_model');
-   
-        /*
-        $insert = $this->usuario_model->m_salvar_usuario();
-        $this->load->helper('upload_perfil/foto_helper');
-        
-        $upload = getFoto();
-        */
-        
+ 
         $imagem = $this->do_upload();
         
         $insert = $this->perfil_pessoal_model->atualizar_perfil($imagem);
@@ -83,6 +76,13 @@ class Perfil_pessoal_controller extends CI_Controller {
                 return FALSE;
                 
         }
+    }
+    
+    public function load_profile() {
+        
+        $this->load->model('perfil_pessoal/perfil_pessoal_model');
+        
+        echo  $this->perfil_pessoal_model->m_load_profile();
     }
 
     

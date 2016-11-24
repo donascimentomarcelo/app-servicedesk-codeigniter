@@ -163,6 +163,39 @@
         .height-form{
             height: 291px;
         }
+        
+        
+        @media (max-width: 1000px){
+                .height-form{
+                height: 150px;
+            }
+        }
+        @media (max-width: 408px){
+                .height-form{
+                height: 150px;
+            }
+        }
+        
         .margin-top-table{
-            margin-top: 3%;
+            margin-top: 2%;
+        }
+        
+        @media (max-width:768px) {
+            #id_a_ocultar_em_tablet {
+                display: none;
+            }
+
+            .none-table-768 {
+                display: none;
+            }
+        }
+
+        @media (max-width:480px) {
+            #id_a_ocultar_em_smartphone {
+                display: none;
+            }
+
+            .none-table-480 {
+                display: none;
+            }
         }

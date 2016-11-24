@@ -11,26 +11,7 @@
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
         <link href="../../../bootstrap/css/cd.css" rel="stylesheet" type="text/css"/>
         
-        <link href="../../../bootstrap/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
-        
-        <script src="../../../bootstrap/js/jquery.js" type="text/javascript"></script>
-        <script src="../../../bootstrap/js/jquery.dataTables.min.js" type="text/javascript"></script>
-        <script src="../../../bootstrap/js/jquery.form.js" type="text/javascript"></script>
-        <script src="../../../bootstrap/js/bootbox.js" type="text/javascript"></script>
-        <script src="../../../bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-        <script src="../../../bootstrap/js/jquery.forms.js" type="text/javascript"></script>
-        <script src="../../../bootstrap/js/bootbox.min.js" type="text/javascript"></script>
-        <script src="../../../bootstrap/js/jquery.confirm.js" type="text/javascript"></script>
-        
-        <script src="../../../bootstrap/js/jquery.validate.js" type="text/javascript"></script>
-        
-        <script src="../../../sweet/sweetalert-dev.js" type="text/javascript"></script>
-        <script src="../../../sweet/sweetalert.min.js" type="text/javascript"></script>
-        
-        <link href="../../../sweet/sweetalert.css" rel="stylesheet" type="text/css"/>
-        
-        <link href="../../../craftpip-jquery/css/jquery-confirm.css" rel="stylesheet" type="text/css"/>
-        <script src="../../../craftpip-jquery/js/jquery-confirm.js" type="text/javascript"></script>
+       
         
         <script type="text/javascript">
         
@@ -41,29 +22,7 @@
                         $(document).ready(function(){
                                      $('.dropdown-toggle').dropdown();
                         });
-                        
-                        $("#formulario_usuario").validate({
-                            rules : {
-                                  nome:{
-                                         required:true,
-                                         minlength:3
-                                  },
-                                  email:{
-                                         required:true,
-                                         minlength:3
-                                  }                               
-                            },
-                            messages:{
-                                  nome:{
-                                         required:"Informe o Campo Nome!",
-                                         minlength:"O Nome deve ter pelo menos 3 caracteres"
-                                  },
-                                  email:{
-                                         required:"Informe o E-mail!",
-                                         minlength:"O E-mail deve ter pelo menos 3 caracteres"
-                                  }    
-                            }
-                     });
+                       
 		});
                 
         function minhaCallCack(){
