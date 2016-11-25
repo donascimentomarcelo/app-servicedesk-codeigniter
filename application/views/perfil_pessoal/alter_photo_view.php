@@ -75,34 +75,32 @@
             <div id="container">
 
                 <h1>Alterar Foto</h1>
-                 <div id="body">
+                <div id="body">
                     <div class="row">
-                       <div class="col-md-4">
+                        <div class="col-md-4">
                             <div class="modal-body">
                                 <form role="form" method="post" action="<?= base_url('index.php/perfil_pessoal/perfil_pessoal_controller/atualiza_perfil') ?>" id="formulario_usuario" enctype="multipart/form-data">
-                                        <?php foreach($consulta -> result() as $dados):?>
+                                    <?php foreach ($consulta->result() as $dados): ?>
                                         <div class="form-group" >
-                                            <img src="../../.<?php echo $dados->imagem;?>" class="img-circle" width="100px" height="100px">
+                                            <img src="../../.<?php echo $dados->imagem; ?>" class="img-circle" width="100px" height="100px">
                                         </div>
                                         <div class="form-group">
-                                           <input type="file" name="imagem" value="../../.<?php echo $dados->imagem;?>" class="filestyle" data-icon="false">
+                                            <input type="file" name="imagem" value="../../.<?php echo $dados->imagem; ?>" class="filestyle" data-icon="false">
                                         </div>
-                                        <input type="hidden" name="id" value="<?php echo $dados->id?>"/>
+                                        <input type="hidden" name="id" value="<?php echo $dados->id ?>"/>
 
                                         <div>
-                                            <button type="button" class="btn btn-secondary">Atualizar</button>
+                                            <button type="button" class="btn btn-secondary" onclick="$('#formulario_usuario').submit()">Atualizar</button>
                                         </div>
-                                        <?php endforeach; ?>	
-                                    </form>	    
-                                </div> 
-                            </div>
+                                    <?php endforeach; ?>	
+                                </form>	    
+                            </div> 
                         </div>
-                    </div> 
-                </div>
+                    </div>
+                </div> 
             </div>
-       </div>
-
-      <p class="footer"></p>
+        </div>
+    <p class="footer"></p>
   
 </body>
 </html>
