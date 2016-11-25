@@ -10,6 +10,7 @@
                 <span class="caret"></span></a>
                 <ul class="dropdown-menu">
                     <li><a href="http://localhost/cd/index.php/perfil_pessoal/perfil_pessoal_controller/alterar_perfil" class="glyphicon glyphicon-user"> Config. de Perfil</a></li>
+                    <li><a href="http://localhost/cd/index.php/perfil_pessoal/perfil_pessoal_controller/alter_photo" class="glyphicon glyphicon-user"> Alterar Foto</a></li>
                 </ul>
               </li>
              
