@@ -27,3 +27,9 @@ angular.module("profile").value("config",{
     baseUrl : "http://localhost/cd/index.php/"
     
 });
+
+angular.module("photo_profile").value("config",{
+    
+    baseUrl : "http://localhost/cd/index.php/"
+    
+});

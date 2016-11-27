@@ -9,3 +9,5 @@
     angular.module("user", ['angularUtils.directives.dirPagination','ur.file','ngResource']);
     
     angular.module("profile", []);
+    
+    angular.module("photo_profile", []);

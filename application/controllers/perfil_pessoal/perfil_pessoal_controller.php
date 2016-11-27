@@ -20,43 +20,28 @@ class Perfil_pessoal_controller extends CI_Controller {
        $this->load->view('perfil_pessoal/perfil_pessoal_view', $variaveis);
         
     }
+    
+    public function load_image() {
+        
+        $this->load->model('perfil_pessoal/perfil_pessoal_model');
+    
+        echo $this->perfil_pessoal_model->m_load_image();
+    }
 
     
-    function  atualiza_perfil(){
+    function  alter_photo_profile(){
         
         $this->load->model('perfil_pessoal/perfil_pessoal_model');
  
-        $imagem = $this->do_upload();
-        
-        $insert = $this->perfil_pessoal_model->atualizar_perfil($imagem);
+        echo $this->perfil_pessoal_model->m_alter_photo_profile();
 
-            if($insert){
-
-                echo 1;
-
-            }else{
-
-                echo 0;
-            }
+           
     }
     
     public function do_upload(){
 
-            if(isset($_FILES["imagem"])){
         
-              $type = explode('.', $_FILES["imagem"]["name"]);
-              $type = $type[count($type)-1];
-              $url = "./imagem/".uniqid(rand()).'.'.$type;
-                if(in_array($type, array("jpg","jpeg","gif","png")))
-                    if(is_uploaded_file($_FILES["imagem"]["tmp_name"]))
-                        if(move_uploaded_file($_FILES["imagem"]["tmp_name"], $url))
-                return $url;
-               //return "";
-            }else {
-        
-                return FALSE;
-                
-        }
+
     }
     
     public function load_profile() {

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="profile">
+<html>
 <head>
 	<meta charset="utf-8">
 	<title>Alterar Foto</title>
@@ -10,7 +10,8 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
         <script src="../../../bootstrap/js/bootstrap-filestyle.min.js" type="text/javascript"></script>
-       
+        
+        <script src="../../../angular/lib/angular.min.js" type="text/javascript"></script>
         <script type="text/javascript">
         
      
@@ -57,7 +58,7 @@
         
       
 </head>
-<body ng-controller="profilectrl">
+<body>
     
         <div id="container">
             <h1><?php foreach ($preenche_dados->result() as $dados): ?> <img src="../../.<?php echo $dados->imagem; ?>" class="img-circle" width="50px" height="50px"> <?php endforeach; ?> <?php echo $this->session->userdata('nome'); ?></h1>
@@ -79,16 +80,14 @@
                     <div class="row">
                         <div class="col-md-4">
                             <div class="modal-body">
-                                <form role="form" method="post" action="<?= base_url('index.php/perfil_pessoal/perfil_pessoal_controller/atualiza_perfil') ?>" id="formulario_usuario" enctype="multipart/form-data">
+                                <form role="form" name="form_image" method="post" action="<?= base_url('index.php/perfil_pessoal/perfil_pessoal_controller/alter_photo_profile') ?>" id="formulario_usuario" enctype="multipart/form-data">
                                     <?php foreach ($consulta->result() as $dados): ?>
                                         <div class="form-group" >
                                             <img src="../../.<?php echo $dados->imagem; ?>" class="img-circle" width="100px" height="100px">
                                         </div>
                                         <div class="form-group">
-                                            <input type="file" name="imagem" value="../../.<?php echo $dados->imagem; ?>" class="filestyle" data-icon="false">
+                                            <input type="file" name="imagem" class="filestyle" data-icon="false" required="required">
                                         </div>
-                                        <input type="hidden" name="id" value="<?php echo $dados->id ?>"/>
-
                                         <div>
                                             <button type="button" class="btn btn-secondary" onclick="$('#formulario_usuario').submit()">Atualizar</button>
                                         </div>
@@ -107,3 +106,29 @@
 
 	
 
+<!--
+
+<script src="../../../angular/lib/angular.min.js" type="text/javascript"></script>
+<script src="../../../angular/lib/ngModel.js" type="text/javascript"></script>
+<script src="../../../angular/js/app.js" type="text/javascript"></script>
+
+<script src="../../../angular/js/controllers/photo_profile/photo_profilectrl.js" type="text/javascript"></script>
+<script src="../../../angular/js/services/photo_profile/photo_profileAPIService.js" type="text/javascript"></script>
+
+<script src="../../../angular/js/value/configValue.js" type="text/javascript"></script>
+        
+
+<div ng-repeat="dataProfilePhoto in dataProfilePhoto">
+        <div class="form-group" >
+            <img ng-src="../../.{{dataProfilePhoto.imagem}}" class="img-circle" width="100px" height="100px">
+        </div>
+    </div> 
+
+        <div class="form-group">
+            <input type="file" name="imagem" ng-model="action.imagem" class="filestyle" data-icon="false" required="required">
+        </div>
+        <div>
+            <button type="button" ng-click="alterPhotoProfile(action)" class="btn btn-secondary">Atualizar</button>
+        </div>	
+</form>	    
+-->

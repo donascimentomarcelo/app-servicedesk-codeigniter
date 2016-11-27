@@ -19,29 +19,56 @@ class perfil_pessoal_model extends CI_Model{
         
     }
     
-       public function atualizar_perfil($imagem) {
+       public function m_alter_photo_profile() {
            
-        $imagem = '../../.'.$imagem;
+            $file_name = $_FILES['imagem']['name'];
+            $file_name_pieces = end(explode(".",  $file_name));
 
-            $dados = array(
-                'imagem' => $imagem
-            );
+            $length = 20;
+            $key = '';
+            $keys = array_merge(range(0, 9), range('a', 'z'));
 
-
-            $id = $this->input->post('id');
-            $this->db->where('id', $id);
-            $query = $this->db->update('usuarios', $dados);
-
-            if ($query) {
-
-                return TRUE;
-                
-            } else {
-
-                return FALSE;
+            for ($i = 0; $i < $length; $i++) 
+            {
+                $key .= $keys[array_rand($keys)];
             }
+
+            $new_file_name = $key;
+
+            $config['file_name']            = $new_file_name;
+            $config['upload_path']          = './imagem/';
+            $config['allowed_types']        = 'gif|jpg|png';
+            $config['max_size']             = 100;
+            $config['max_width']            = 1024;
+            $config['max_height']           = 768;
+
+            $this->load->library('upload');
+
+            $this->upload->initialize($config);
+
+            if ( ! $this->upload->do_upload('imagem'))
+            {
+                    $error = array('error' => $this->upload->display_errors());
+
+                    return $error;
+            }
+            else
+            {
+
+                    $imagem = './imagem/'.$new_file_name.'.'.$file_name_pieces;
+                    
+                    $id = $this->session->userdata('id');
+                    $this->db->where('id', $id);
+                    $this->db->set('imagem', $imagem);
+                    $this->db->update('usuarios');
+
+                    return TRUE;
+            }
+           
         }
 
+        
+        
         public function m_list_usuario($id = NULL){
         
         if($id != NULL){
@@ -53,6 +80,28 @@ class perfil_pessoal_model extends CI_Model{
         }
         
         return $this->db->get();
+        
+    }
+    
+    
+        public function m_load_image(){
+        
+            $id = $this->session->userdata('id');
+            
+            $this->db->select('*');    
+            $this->db->from('usuarios');
+            $this->db->join('setor', 'usuarios.setor_fk = setor.idsetor');
+            $this->db->where('id',$id);
+        
+            $return = $this->db->get();
+            
+            foreach($return ->result() as $row):
+                $arr[] = array(
+                    'imagem' => $row->imagem
+                );
+            endforeach;
+            
+            return json_encode($arr);
         
     }
     
@@ -88,6 +137,8 @@ class perfil_pessoal_model extends CI_Model{
         return json_encode($arr);
         
     }
+    
+    
     
     public function m_update_profile() {
         
