@@ -11,6 +11,10 @@
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
         <script src="../../../bootstrap/js/bootstrap-filestyle.min.js" type="text/javascript"></script>
         
+        <script src="../../../bootstrap/js/jquery.forms.js" type="text/javascript"></script>
+        <script src="../../../sweet/sweetalert-dev.js" type="text/javascript"></script>
+        <link href="../../../sweet/sweetalert.css" rel="stylesheet" type="text/css"/>
+        <script src="../../../sweet/sweetalert.min.js" type="text/javascript"></script>
         <script src="../../../angular/lib/angular.min.js" type="text/javascript"></script>
         <script type="text/javascript">
         
@@ -25,7 +29,7 @@
 		});
                 
         function minhaCallCack(){
-         swal({   title: "Perfil Alterado com sucesso!",
+         swal({   title: "Foto Alterada com sucesso!",
              text: "Exito ao realizar operação.",
              timer: 1000, 
              showConfirmButton: false 
