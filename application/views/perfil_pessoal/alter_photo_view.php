@@ -39,7 +39,7 @@
     	$(function(){
     		$('#formulario_usuario').ajaxForm({
     			success: function(data) {
-    				if (data == 1 || data == 11 || data == 10) {
+    				if (data === 1) {
                                     
                                     success: minhaCallCack();
                                     
@@ -58,6 +58,13 @@
         }
         
         $(":file").filestyle({icon: false});
+        
+        function novo(){
+                
+    		$('#alterPhoto').modal('show');
+            
+    	}
+        
         </script>
         
       
@@ -84,24 +91,51 @@
                     <div class="row">
                         <div class="col-md-4">
                             <div class="modal-body">
-                                <form role="form" name="form_image" method="post" action="<?= base_url('index.php/perfil_pessoal/perfil_pessoal_controller/alter_photo_profile') ?>" id="formulario_usuario" enctype="multipart/form-data">
+                                
                                     <?php foreach ($consulta->result() as $dados): ?>
                                         <div class="form-group" >
                                             <img src="../../.<?php echo $dados->imagem; ?>" class="img-circle" width="100px" height="100px">
                                         </div>
-                                        <div class="form-group">
-                                            <input type="file" name="imagem" class="filestyle" data-icon="false" required="required">
-                                        </div>
+                                       
                                         <div>
-                                            <button type="button" class="btn btn-secondary" onclick="$('#formulario_usuario').submit()">Atualizar</button>
+                                            <button type="button" class="btn btn-secondary" onclick="novo()">Atualizar</button>
                                         </div>
                                     <?php endforeach; ?>	
-                                </form>	    
+                               
                             </div> 
                         </div>
                     </div>
                 </div> 
             </div>
+            
+            
+            <div class="modal fade bs-example-modal-lg" id="alterPhoto" data-backdrop="static" >
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h4 class="modal-title">Selecione a nova foto para seu perfil!</h4>
+                  </div>
+                  <div class="modal-body">
+
+                      <form role="form" name="form_image" method="post" action="<?= base_url('index.php/perfil_pessoal/perfil_pessoal_controller/alter_photo_profile') ?>" id="formulario_usuario" enctype="multipart/form-data">
+
+                        <div class="form-group">
+                            <input type="file" name="imagem" class="filestyle" data-icon="false" required="required">
+                        </div>
+
+                      </form>
+
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" onclick="refresh()" >Fechar</button>
+
+                   <button type="button" class="btn btn-secondary" onclick="$('#formulario_usuario').submit()">Atualizar</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            
         </div>
     <p class="footer"></p>
   
