@@ -10,4 +10,4 @@
     
     angular.module("profile", []);
     
-    angular.module("photo_profile", []);
+    angular.module("photo_profile", ['naif.base64']);

@@ -9,9 +9,9 @@
             };
             
             
-            var _getSavePhotoProfileAPI =  function(action){
+            var _getSavePhotoProfileAPI =  function(imagem){
                 
-                return $http.post(config.baseUrl+"perfil_pessoal/perfil_pessoal_controller/alter_photo_profile",action);   
+                return $http.post(config.baseUrl+"perfil_pessoal/perfil_pessoal_controller/alter_photo_profile",{imagem : imagem});   
                 
             };
             

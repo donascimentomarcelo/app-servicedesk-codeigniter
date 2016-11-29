@@ -35,6 +35,13 @@
              showConfirmButton: false 
          });
         }
+        function fillImage(){
+         swal({   title: "ERRO!",
+             text: "Anexe uma imagem para realizar a operação.",
+             timer: 2000, 
+             showConfirmButton: false 
+         });
+        }
 
     	$(function(){
     		$('#formulario_usuario').ajaxForm({
@@ -44,8 +51,10 @@
                                     success: minhaCallCack();
                                     
 				    	
-    				}else{
-                                    alert(data);
+    				}else if(data === "1230"){
+                                    
+                                    fillImage();
+                                    
                                 }
     			}
     		});

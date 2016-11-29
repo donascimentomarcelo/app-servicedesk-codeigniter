@@ -21,7 +21,23 @@ class perfil_pessoal_model extends CI_Model{
     
        public function m_alter_photo_profile() {
            
+            /*
+            $array = json_decode(file_get_contents('php://input'));
+            
+            $time = time();
+            
+            $i = file_put_contents('./imagem/'.$time.'.png', base64_decode($array['imagem']['base64']));
+            
+            var_dump($i);
+            */
+           
+            if(empty($_FILES['imagem']['name'])){
+                return "1230";
+            }
+           
+            
             $file_name = $_FILES['imagem']['name'];
+            
             $file_name_pieces = end(explode(".",  $file_name));
 
             $length = 20;

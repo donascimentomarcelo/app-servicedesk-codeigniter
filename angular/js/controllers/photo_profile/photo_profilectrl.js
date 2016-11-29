@@ -11,9 +11,10 @@
                     });
                 };
             
-                $scope.alterPhotoProfile = function(action){
-                    photoProfileAPI.getSavePhotoProfileAPI(action).success(function(){
-                        console.log(action);
+                $scope.alterPhotoProfile = function(imagem){
+                    photoProfileAPI.getSavePhotoProfileAPI(imagem).success(function(data){
+                        console.log(imagem);
+                        console.log('Data console :'+data);
                         loadDataPhoto();
                     }).error(function(data){
                         $scope.error = "Houve um erro :"+data;
