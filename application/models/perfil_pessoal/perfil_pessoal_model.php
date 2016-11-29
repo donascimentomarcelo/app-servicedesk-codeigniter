@@ -29,15 +29,24 @@ class perfil_pessoal_model extends CI_Model{
             $i = file_put_contents('./imagem/'.$time.'.png', base64_decode($array['imagem']['base64']));
             
             var_dump($i);
+             
+             if(empty($_FILES['imagem']['name'])){
+                
+                return "1230";
+                 
+            }elseif($_FILES['imagem']['type'] != 'gif' || $_FILES['imagem']['type'] != 'jpg'  || $_FILES['imagem']['type'] != 'png'){
+                
+                return"1231";
+                
+            }elseif($_FILES['imagem']['size'] != 100){
+                
+                return"1232";
+                
+            } 
+             
             */
            
-            if(empty($_FILES['imagem']['name'])){
-                return "1230";
-            }
-           
-            
             $file_name = $_FILES['imagem']['name'];
-            
             $file_name_pieces = end(explode(".",  $file_name));
 
             $length = 20;

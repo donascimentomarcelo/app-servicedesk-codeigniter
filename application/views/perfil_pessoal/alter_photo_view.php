@@ -36,7 +36,21 @@
          });
         }
         function fillImage(){
-         swal({   title: "ERRO!",
+         swal({   title: "ERRO DE ENVIO!",
+             text: "Anexe uma imagem para realizar a operação.",
+             timer: 2000, 
+             showConfirmButton: false 
+         });
+        }
+        function typeImage(){
+         swal({   title: "ERRO DE EXTENSÃO!",
+             text: "Os formatos aceitos serão somente : gif, jpg e png.",
+             timer: 2000, 
+             showConfirmButton: false 
+         });
+        }
+        function sizeImage(){
+         swal({   title: "ERRO DE TAMANHO!",
              text: "Anexe uma imagem para realizar a operação.",
              timer: 2000, 
              showConfirmButton: false 
@@ -49,11 +63,18 @@
     				if (data === 1) {
                                     
                                     success: minhaCallCack();
-                                    
-				    	
+                                    	
     				}else if(data === "1230"){
                                     
                                     fillImage();
+                                    
+                                }else if(data === "1231"){
+                                    
+                                    typeImage();
+                                    
+                                }else if(data === "1232"){
+                                    
+                                    sizeImage();
                                     
                                 }
     			}
