@@ -6,13 +6,21 @@
             
             var _getLoadDataSector = function(){
                 
-                return $http.get(config.baseUrl+"setor/setor_controller/loadSector");
+                return $http.get(config.baseUrl+"loadSector");
+                
+            };
+            
+            var _getSaveOrEditSector = function(action){
+                
+                return $http.post(config.baseUrl+"save_or_edit_sector", action);
                 
             };
             
             return{
                 
-                getLoadDataSector : _getLoadDataSector
+                getLoadDataSector : _getLoadDataSector,
+                
+                getSaveOrEditSector : _getSaveOrEditSector
                 
             };
             

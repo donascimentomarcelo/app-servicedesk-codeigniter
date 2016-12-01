@@ -28,36 +28,6 @@
                         });
                        
 		});
-                
-        function minhaCallCack(){
-         swal({   title: "Perfil Alterado com sucesso!",
-             text: "Exito ao realizar operação.",
-             timer: 1000, 
-             showConfirmButton: false 
-         });
-        }
-
-    	$(function(){
-    		$('#formulario_usuario').ajaxForm({
-    			success: function(data) {
-    				if (data == 1 || data == 11 || data == 10) {
-                                    
-                                    success: minhaCallCack();
-                                    
-				    	
-    				}else{
-                                    alert(data);
-                                }
-    			}
-    		});
-    	});
-    
-    	var base_url = "<?= base_url() ?>";
-    
-        function refresh(){
-            document.location.href = document.location.href;
-        }
-        
         
         </script>
         

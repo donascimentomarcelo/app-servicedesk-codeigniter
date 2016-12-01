@@ -45,9 +45,6 @@
             include 'C:\xampp\htdocs\cd\application\views\menu_head\administrador\menu.php';
         ?>
 
-</head>
-<body>
-
 <div id="container">
 	<h1>Manter Setor</h1>
         <div id="body">
@@ -55,47 +52,60 @@
                 <div class="col-md-4">
                     <div class="modal-body">
 
-                        <form role="form" method="post" action="<?= base_url('index.php/setor/setor_controller/salvar_setor') ?>" id="formulario_setor">
+                        <form role="form" method="post" name="formSector">
                             <div class="form-group">
-                                <input type="text"  class="form-control" placeholder="Nome do setor.">
+                                <input type="hidden" ng-model="action.idsetor" value="" />
+                            </div>
+                            <div class="form-group">
+                                <input type="text"  class="form-control" ng-model="action.nomesetor" ng-required="true" placeholder="Nome do setor.">
                             </div>
                             <div class="form-group">
                                 <label for="email">Status:</label><br>
                                 <label class="radio-inline">
-                                    <input type="radio" name="statussetor" value="ativo" checked="checked"> Ativo
+                                    <input type="radio" value="ativo" ng-model="action.statussetor" ng-required="true"> Ativo
                                 </label>
                                 <label class="radio-inline">
-                                    <input type="radio" name="statussetor"  value="inativo"> Inativo
+                                    <input type="radio"  value="inativo" ng-model="action.statussetor" ng-required="true"> Inativo
                                 </label>
                             </div>
-                            <input type="hidden" name="idsetor" id="idsetor" value="" />
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" ng-if="!formSector.$invalid" ng-click="saveOrEdit(action)" >Salvar</button>
+
+                                <button type="button" class="btn btn-default" ng-click="new()">Novo</button>
+                            </div>
                         </form>	    
 
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" >Novo</button>
-
-                        <button type="button" class="btn btn-default" >Salvar</button>
-                    </div>
                 </div>
+                <div class="margin-top-table">
                 <div class="col-md-8">
+                    <input type="text"  class="form-control" ng-model="search" placeholder="Pesquise pelo nome do setor.">
                     <table class="table">
                         <thead>
                             <tr>
-                                <th style="text-align: center;">Código do Setor</th>
-                                <th style="text-align: center;">Nome do Setor</th>
-                                <th style="text-align: center;">Status</th>
+                                <th class="none-table-480" style="text-align: center;" ng-click="ordenationBy('idsetor')">Código do Setor
+                                <span class="glyphicon sort-icon" ng-show="ordenationCritery === 'idsetor'" ng-class="{'glyphicon-triangle-bottom':ordenation,'glyphicon-triangle-top':!ordenation}"></span>
+                                </th>
+                                <th style="text-align: center;" ng-click="ordenationBy('nomesetor')">Nome do Setor
+                                <span class="glyphicon sort-icon" ng-show="ordenationCritery === 'nomesetor'" ng-class="{'glyphicon-triangle-bottom':ordenation,'glyphicon-triangle-top':!ordenation}"></span>
+                                </th>
+                                <th class="none-table-768 none-table-480" style="text-align: center;" ng-click="ordenationBy('statussetor')">Status
+                                <span class="glyphicon sort-icon" ng-show="ordenationCritery === 'statussetor'" ng-class="{'glyphicon-triangle-bottom':ordenation,'glyphicon-triangle-top':!ordenation}"></span>
+                                </th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr dir-paginate="dataSector in dataSector | itemsPerPage : 5">
-                                <td style="text-align: center;">{{dataSector.idsetor}}</td>
+                            <tr ng-click="edit(dataSector); itemClicked(dataSector.idsetor)" ng-class="{ 'cinza negrito': selectedIndex === dataSector.idsetor }" dir-paginate="dataSector in dataSector | orderBy:ordenationCritery:ordenation | filter:{nomesetor:search}| itemsPerPage : 5">
+                                <td class="none-table-480" style="text-align: center;">{{dataSector.idsetor}}</td>
                                 <td style="text-align: center;">{{dataSector.nomesetor}}</td>
-                                <td style="text-align: center;">{{dataSector.statussetor}}</td>
+                                <td class="none-table-768 none-table-480" style="text-align: center;">{{dataSector.statussetor}}</td>
                             </tr>
-                             <dir-pagination-controls max-size="5" direction-links="true" boundary-links="true"></dir-pagination-controls>
                         </tbody>
                     </table>
+                    <div style="text-align: center;">
+                             <dir-pagination-controls max-size="5" direction-links="true" boundary-links="true"></dir-pagination-controls>
+                    </div>
+                </div>
                 </div>
             </div>
 

@@ -36,6 +36,6 @@ angular.module("photo_profile").value("config",{
 
 angular.module("sector").value("config",{
     
-    baseUrl : "http://localhost/cd/index.php/"
+    baseUrl : "http://localhost/cd/index.php/setor/setor_controller/"
     
 });
