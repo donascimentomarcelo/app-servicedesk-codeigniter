@@ -8,6 +8,25 @@ class setor_model extends CI_Model{
         
     }  
     
+    public function m_loadSector() {
+        
+        $this->db->select("*");
+        $this->db->from("setor");
+        
+        $return = $this->db->get();
+        
+        foreach ($return ->result() as $row):
+            $arr[] = array(
+                'idsetor'=> $row->idsetor,
+                'nomesetor'=> $row->nomesetor,
+                'statussetor'=> $row->statussetor
+            );
+        endforeach;
+        
+        return json_encode($arr);
+        
+    }
+    
     function m_listar_setor($idsetor = 0){
         
         if($idsetor != 0){

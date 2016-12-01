@@ -77,7 +77,16 @@ class Setor_controller extends CI_Controller {
         echo json_encode($array_setor);
     }
     
-     function active_sector()
+    
+    public function loadSector() {
+        
+        $this->load->model('setor/setor_model');
+        
+        echo $this->setor_model->m_loadSector();
+        
+    }
+    
+    public function active_sector()
     {
     	
     	$this->load->model('setor/setor_model');

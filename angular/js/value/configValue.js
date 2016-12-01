@@ -33,3 +33,9 @@ angular.module("photo_profile").value("config",{
     baseUrl : "http://localhost/cd/index.php/"
     
 });
+
+angular.module("sector").value("config",{
+    
+    baseUrl : "http://localhost/cd/index.php/"
+    
+});
