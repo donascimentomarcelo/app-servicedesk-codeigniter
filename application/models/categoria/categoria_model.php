@@ -1,77 +1,47 @@
 <?php
 class categoria_model extends CI_Model{
     
-    function __construct() {
-        
+    function __construct() 
+    {
         parent::__construct();
-        
     }
     
-    function m_exibir_categoria($idcategoria = 0){
-        
-        if($idcategoria != 0){
-            
-            $this->db->where('idcategoria', $idcategoria);
-            
-        }
-        
-        return $this->db->get('categoria');
+    public function MLoadCategory() 
+    {
+        $this->db->select("*");
+        $this->db->from("categoria");
+
+        $return = $this->db->get();
+
+        foreach ($return->result()as $row):
+            $arr[] = array(
+                'idcategoria' => $row->idcategoria,
+                'nomecategoria' => $row->nomecategoria
+            );
+        endforeach;
+
+        return json_encode($arr);
     }
     
-    function m_salvar_categoria(){
-        
-        $idcategoria = $this->input->post('idcategoria');
-        
-        $dados = $this->input->post();
-        
-        if($idcategoria != 0){
-            
-            $this->db->where('idcategoria', $idcategoria);
-            
-            $retorno = $this->db->update('categoria', $dados);
-            
-        }else{
-            
-            $retorno = $this->db->insert('categoria', $dados);
-            
+    public function MSaveOrEditCategory() 
+    {
+        $array = json_decode(file_get_contents('php://input'), true);
+
+        $id = $array['idcategoria'];
+        $nomecategoria = $array['nomecategoria'];
+
+        $arr = array('nomecategoria' => $nomecategoria);
+
+        if ($id != 0) {
+
+            $this->db->where('idcategoria', $id);
+            $return = $this->db->update('categoria', $arr);
+        } else {
+
+            $return = $this->db->insert('categoria', $arr);
         }
-        
-        if($retorno){
-            
-            return TRUE;
-            
-        }else{
-            
-            return FALSE;
-            
-        }
+
+        return $return;
     }
-    function m_excluir_categoria($idcategoria){
-        
-        $this->db->where('idcategoria', $idcategoria);
-        
-        if($this->db->delete('categoria')){
-            
-            return TRUE;
-            
-        }else{
-            
-            return FALSE;
-            
-        }
-    }
-    
-    function m_dados_categoria($idcategoria){
-        
-        if($idcategoria != NULL){
-            
-            $this->db->where('idcategoria', $idcategoria);
-            
-        }
-        
-        return $this->db->get('categoria');
-        
-    }
-    
     
 }

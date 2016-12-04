@@ -39,3 +39,9 @@ angular.module("sector").value("config",{
     baseUrl : "http://localhost/cd/index.php/setor/setor_controller/"
     
 });
+
+angular.module("category").value("config",{
+    
+    baseUrl : "http://localhost/cd/index.php/categoria/categoria_controller/"
+    
+});

@@ -13,3 +13,5 @@
     angular.module("photo_profile", ['naif.base64']);
     
     angular.module("sector", ['angularUtils.directives.dirPagination']);
+    
+    angular.module("category", ['angularUtils.directives.dirPagination']);
