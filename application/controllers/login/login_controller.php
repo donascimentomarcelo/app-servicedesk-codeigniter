@@ -49,10 +49,11 @@ class Login_controller extends CI_Controller {
             $id = $valida_perfil->id;
         
         endforeach;
-        
+        $ip = getenv("REMOTE_ADDR");
         //declaro o array para resgatar do banco o nome e o perfil e usar na sessão.
         $session = array(
                     'perfil' =>  $perfil,
+                    'ip' => $ip,
                     'nome' =>  $nome,
                     'id' =>  $id,
                     'logado' => true

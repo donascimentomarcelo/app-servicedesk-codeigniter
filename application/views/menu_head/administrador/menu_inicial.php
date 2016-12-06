@@ -1,6 +1,6 @@
+<?php $id = $this->session->userdata('id');
+      $ip = $this->session->userdata('ip');?>
 <div id="body">
-          
-                
         <nav class="navbar navbar-inverse">
           <div class="container-fluid">
             <div class="navbar-header">
