@@ -1,3 +1,4 @@
+var ip = "152.92.5.122";
 angular.module("hardware").value("config",{
     
     baseUrl : "http://localhost"

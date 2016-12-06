@@ -12,9 +12,9 @@
                 <a class="dropdown-toggle " data-toggle="dropdown" href="#"> Opções de Usuário
                 <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                    <li><a href="http://localhost/cd/index.php/perfil_pessoal/perfil_pessoal_controller/alterar_perfil" class="glyphicon glyphicon-user"> Config. de Perfil</a></li>
-                    <li><a href="http://localhost/cd/index.php/perfil_pessoal/perfil_pessoal_controller/alter_photo" class="glyphicon glyphicon-user"> Alterar Foto</a></li>
-                    <li><a href="http://localhost/cd/index.php/usuario/usuario_controller/listar_usuario" class="glyphicon glyphicon-user"> Config. de Usuário</a></li>
+                    <li><a href="/cd/index.php/perfil_pessoal/perfil_pessoal_controller/alterar_perfil#/" class="glyphicon glyphicon-user"> Config. de Perfil</a></li>
+                    <li><a href="/cd/index.php/perfil_pessoal/perfil_pessoal_controller/alter_photo" class="glyphicon glyphicon-user"> Alterar Foto</a></li>
+                    <li><a href="/cd/index.php/usuario/usuario_controller/listar_usuario#/" class="glyphicon glyphicon-user"> Config. de Usuário</a></li>
                 </ul>
               </li>
               

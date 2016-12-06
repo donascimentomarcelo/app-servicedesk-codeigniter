@@ -1,23 +1,23 @@
 
 
 
-            angular.module("user").factory("userAPI", function($http, config){
+            angular.module("user").factory("userAPI", function($http, config, $location){
                 
                 var _getLoadUser = function(){
                     
-                    return $http.get(config.baseUrl+"usuario/usuario_controller/list_user");
+                    return $http.get($location.path()+'cd/index.php/usuario/usuario_controller/list_user');
                     
                 };
                 
                 var _getActionUser = function(action){
                     
-                    return $http.post(config.baseUrl+"usuario/usuario_controller/insert_or_edit_user",action);
+                    return $http.post($location.path()+"cd/index.php/usuario/usuario_controller/insert_or_edit_user",action);
                     
                 };
                 
                 var _getLoadSector = function(){
                     
-                    return $http.get(config.baseUrl+"setor/setor_controller/active_sector");
+                    return $http.get($location.path()+"cd/index.php/setor/setor_controller/active_sector");
                     
                 };
                 

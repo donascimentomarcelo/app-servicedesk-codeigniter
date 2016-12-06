@@ -5,6 +5,7 @@
         <title>Manter Usuário</title>
 
         <script src="../../../angular/lib/angular.min.js" type="text/javascript"></script>
+        <script src="../../../angular/lib/angular-route.js" type="text/javascript"></script>
         <script src="../../../angular/lib/dirPagination.js" type="text/javascript"></script>
         <script src="../../../angular/lib/angular-file.js" type="text/javascript"></script>
         <script src="../../../angular/lib/angular-resource.min.js" type="text/javascript"></script>
@@ -34,7 +35,7 @@
     </head>
     <body ng-controller="usercrtl">
 
-        <div id="container">
+        
             <h1><?php foreach ($preenche_dados->result() as $dados): ?> <img src="../../.<?php echo $dados->imagem; ?>" class="img-circle" width="50px" height="50px"> <?php endforeach; ?> <?php echo $this->session->userdata('nome'); ?>  </h1>
 
             <?php
