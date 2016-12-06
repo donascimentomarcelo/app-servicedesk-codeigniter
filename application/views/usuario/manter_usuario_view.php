@@ -13,7 +13,11 @@
         <script src="../../../angular/js/controllers/user/usercrtl.js" type="text/javascript"></script>
         <script src="../../../angular/js/services/user/userAPIService.js" type="text/javascript"></script>
         <script src="../../../angular/js/value/configValue.js" type="text/javascript"></script>
-
+        
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link rel="stylesheet" href="https://code.getmdl.io/1.2.1/material.indigo-pink.min.css">
+        <script defer src="https://code.getmdl.io/1.2.1/material.min.js"></script>
+        
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
         <link href="../../../bootstrap/css/cd.css" rel="stylesheet" type="text/css"/>
 
@@ -53,21 +57,22 @@
                                     <div class="form-group">
                                         <input type="hidden" value="" ng-model="action.id" />
                                     </div>
+                                    
+                                  <div class="mdl-textfield mdl-js-textfield">
+                                      <input class="mdl-textfield__input" type="text" id="sample3" ng-model="action.nome" ng-required="true" placeholder="Nome do Usuário.">
+                                  </div>
 
-                                    <div class="form-group">
-                                        <input type="text"  class="form-control" ng-model="action.nome" placeholder="Nome do Usuário" ng-required="true">
+
+                                    <div class="mdl-textfield mdl-js-textfield">
+                                        <input type="password"  class="mdl-textfield__input" ng-model="action.senha" placeholder="Senha do Usuário." ng-required="true">
                                     </div>
 
-                                    <div class="form-group">
-                                        <input type="password"  class="form-control" ng-model="action.senha" placeholder="Senha do Usuário" ng-required="true">
+                                    <div class="mdl-textfield mdl-js-textfield">
+                                        <input type="text"  class="mdl-textfield__input" ng-model="action.email" placeholder="E-mail do Usuário." ng-required="true">
                                     </div>
 
-                                    <div class="form-group">
-                                        <input type="text"  class="form-control" ng-model="action.email" placeholder="E-mail do Usuário" ng-required="true">
-                                    </div>
-
-                                    <div class="form-group">
-                                        <input type="text"  class="form-control" ng-model="action.ramal" placeholder="Ramal do Usuário" ng-required="true">
+                                    <div class="mdl-textfield mdl-js-textfield">
+                                        <input type="text"  class="mdl-textfield__input" ng-model="action.ramal" placeholder="Ramal do Usuário." ng-required="true">
                                     </div>
 
                                     <div class="form-group">
@@ -101,8 +106,8 @@
 
                                     <hr>
                                     <div>
-                                        <button type="button" ng-click="new ()" class="btn btn-secondary">Novo</button>
-                                        <button type="button" ng-click="insert_or_edit(action)" ng-if="!useu_form.$invalid" class="btn btn-secondary">Registrar</button>
+                                        <button type="button" ng-click="new ()" class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored"> <i class="material-icons">add</i></button>
+                                        <button type="button" ng-click="insert_or_edit(action)" ng-if="!useu_form.$invalid" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">Registrar</button>
                                     </div>  
                                 </form>	    
 
@@ -111,11 +116,18 @@
                         </div>
                         <div class="margin-top-table">
                         <div class="col-md-8">
-                            <div class="form-group">
-                                <input type="texte"  class="form-control" ng-model="search" placeholder="Pesquise pelo nome do usuário">
+                          
+                          <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
+                            <label class="mdl-button mdl-js-button mdl-button--icon" for="sample6">
+                              <i class="material-icons">search</i>
+                            </label>
+                            <div class="mdl-textfield__expandable-holder">
+                              <input class="mdl-textfield__input" type="text" id="sample6" ng-model="search">
+                              <label class="mdl-textfield__label" for="sample-expandable">Pesquise pelo nome do usuário</label>
                             </div>
+                          </div>
 
-                            <table class="table" cellspacing="0" width="100%" id="tabela1">
+                            <table class="mdl-data-table mdl-js-data-table  mdl-shadow--2dp" cellspacing="0" width="100%" id="tabela1">
                                 <thead>
                                     <tr>
                                         <th style="text-align: center;" ng-click="ordenationBy('id')">ID
