@@ -163,24 +163,38 @@
         .height-form{
             height: 291px;
         }
-        
-        
-        @media (max-width: 1000px){
-                .height-form{
-                height: 150px;
-            }
-        }
-        @media (max-width: 408px){
-                .height-form{
-                height: 150px;
-            }
-        }
-        
         .margin-top-table{
-            margin-top: 2%;
-        }
+                margin-top: 2%;
+            }
         
-        @media (max-width:768px) {
+        
+            
+        @media (max-width: 2440px){
+            .height-form{
+            height: 150px;
+            }
+            .full-width { 
+                width: 70%; 
+            }
+            .formResponsive{
+                width: 70%;
+                margin-right: 60%;
+                margin-left: 2%;
+            }
+            .affix {
+            top: 0;
+            width: 100%;
+            margin-left: 80%;
+            
+            }
+
+            .affix + .container-fluid {
+                padding-top: 70px;
+            }
+        }
+       
+        @media (max-width:992px) {
+            
             #id_a_ocultar_em_tablet {
                 display: none;
             }
@@ -188,9 +202,63 @@
             .none-table-768 {
                 display: none;
             }
+            
+            .full-width { 
+                width: 100%; 
+            }
+            .formResponsive{
+                width: 70%;
+                margin-right: 60%;
+                margin-left: 2%;
+            }
+            .affix {
+            top: 0;
+            width: 100%;
+            margin-left: 80%;
+            
+            }
+
+            .affix + .container-fluid {
+                padding-top: 70px;
+            }
+        }
+        @media (max-width:768px) {
+            
+            #id_a_ocultar_em_tablet {
+                display: none;
+            }
+
+            .none-table-768 {
+                display: none;
+            }
+            
+            
+            .full-width { 
+                    width: 100%; 
+            }
+            .formResponsive{
+                width: 100%;
+                margin-left: 2%;
+            }
+            .formResponsive{
+                width: 70%;
+                margin-right: 60%;
+                margin-left: 2%;
+            }
+            .affix {
+            top: 0;
+            width: 100%;
+            margin-left: 70%;
+            
+            }
+
+            .affix + .container-fluid {
+                padding-top: 70px;
+            }
         }
 
         @media (max-width:480px) {
+            
             #id_a_ocultar_em_smartphone {
                 display: none;
             }
@@ -198,4 +266,32 @@
             .none-table-480 {
                 display: none;
             }
+            
+            .full-width { 
+                width: 100%; 
+                margin-left: auto; 
+                margin-right: auto; 
+            }
+            .affix {
+            top: 0;
+            width: 100%;
+            margin-left: 60%;
+            
+            }
+
+            .affix + .container-fluid {
+                padding-top: 70px;
+            }
+        }
+        @media (max-width: 408px){
+            
+            .height-form{
+                height: 150px;
+            }
+            
+            .full-width { 
+                    width: 100%; 
+                    margin-left: auto; 
+                    margin-right: auto; 
+                }
         }
