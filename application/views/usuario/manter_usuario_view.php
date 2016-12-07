@@ -3,6 +3,10 @@
     <head>
         <meta charset="utf-8">
         <title>Manter Usuário</title>
+        
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link rel="stylesheet" href="https://code.getmdl.io/1.2.1/material.indigo-pink.min.css">
+        <script defer src="https://code.getmdl.io/1.2.1/material.min.js"></script>
 
         <script src="../../../angular/lib/angular.min.js" type="text/javascript"></script>
         <script src="../../../angular/lib/angular-route.js" type="text/javascript"></script>
@@ -14,9 +18,6 @@
         <script src="../../../angular/js/services/user/userAPIService.js" type="text/javascript"></script>
         <script src="../../../angular/js/value/configValue.js" type="text/javascript"></script>
         
-        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-        <link rel="stylesheet" href="https://code.getmdl.io/1.2.1/material.indigo-pink.min.css">
-        <script defer src="https://code.getmdl.io/1.2.1/material.min.js"></script>
         
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
         <link href="../../../bootstrap/css/cd.css" rel="stylesheet" type="text/css"/>
@@ -32,8 +33,7 @@
             $(document).ready(function(){
                 $('.dropdown-toggle').dropdown();
             });
-              
-        </script>
+      </script>
 
 
     </head>
@@ -57,24 +57,30 @@
                                     <div class="form-group">
                                         <input type="hidden" value="" ng-model="action.id" />
                                     </div>
-                                    
-                                  <div class="mdl-textfield mdl-js-textfield">
-                                      <input class="mdl-textfield__input" type="text" id="sample3" ng-model="action.nome" ng-required="true" placeholder="Nome do Usuário.">
-                                  </div>
-
-
-                                    <div class="mdl-textfield mdl-js-textfield">
-                                        <input type="password"  class="mdl-textfield__input" ng-model="action.senha" placeholder="Senha do Usuário." ng-required="true">
+                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                        <input class="mdl-textfield__input" type="text" id="name"  ng-model="action.nome" ng-required="true">
+                                        <label class="mdl-textfield__label" for="name">Nome do Usuário</label>
                                     </div>
-
-                                    <div class="mdl-textfield mdl-js-textfield">
-                                        <input type="text"  class="mdl-textfield__input" ng-model="action.email" placeholder="E-mail do Usuário." ng-required="true">
+                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                        <input class="mdl-textfield__input" type="password" id="password"  ng-model="action.senha" ng-required="true">
+                                        <label class="mdl-textfield__label" for="name">Senha</label>
                                     </div>
-
-                                    <div class="mdl-textfield mdl-js-textfield">
-                                        <input type="text"  class="mdl-textfield__input" ng-model="action.ramal" placeholder="Ramal do Usuário." ng-required="true">
+                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                        <input class="mdl-textfield__input" type="text" id="email"  ng-model="action.email" ng-required="true">
+                                        <label class="mdl-textfield__label" for="email">E-mail</label>
                                     </div>
-
+                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                        <input class="mdl-textfield__input" type="text" id="ramal"  ng-model="action.ramal" ng-required="true">
+                                        <label class="mdl-textfield__label" for="ramal">Ramal</label>
+                                    </div>
+                                     <label class="mdl-radio mdl-js-radio" for="administrador">
+                                        <input type="radio" id="administrador" name="perfil" value="administrador" ng-model="action.perfil" class="mdl-radio__button" ng-required="true">
+                                        <span class="mdl-radio__label">Administrador</span>
+                                     </label>
+                                     <label class="mdl-radio mdl-js-radio" for="usuario">
+                                        <input type="radio" id="usuario" name="perfil" value="usuario" ng-model="action.perfil" class="mdl-radio__button" ng-required="true">
+                                        <span class="mdl-radio__label">Usuário</span>
+                                     </label>
                                     <div class="form-group">
                                         <label for="email">Perfil:</label><br>
                                         <label class="radio-inline">

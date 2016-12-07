@@ -54,7 +54,7 @@
                     <li><a href="http://localhost/cd/index.php/inventario/inventario_controller/configuracao_inventario_list" class="glyphicon glyphicon-cog"> Configuração</a></li>
                 </ul>
               </li>
-              <li><a href="http://localhost/cd/index.php/login/login_controller/sair"><span class="glyphicon glyphicon-off"></span> Sair</a></li>
+              <li><a href="/cd/index.php/login/login_controller/sair"><span class="glyphicon glyphicon-off"></span> Sair</a></li>
             </ul>
           </div>
         </nav>

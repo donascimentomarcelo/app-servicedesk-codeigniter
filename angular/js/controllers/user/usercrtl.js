@@ -40,11 +40,19 @@
             };
 
             $scope.edit = function (userData) {
+                angular.element(document.getElementById('name')).parent().addClass('is-focused');
+                angular.element(document.getElementById('email')).parent().addClass('is-focused');
+                angular.element(document.getElementById('ramal')).parent().addClass('is-focused');
+                angular.element(document.getElementById('administrador')).prop('checked', true).addClass('is-focused');
+                
                 $scope.action = userData;
             };
 
             $scope.new = function () {
                 delete $scope.action;
+                angular.element(document.getElementById('name')).parent().removeClass('is-focused');
+                angular.element(document.getElementById('email')).parent().removeClass('is-focused');
+                angular.element(document.getElementById('ramal')).parent().removeClass('is-focused');
                 delete $scope.selectedIndex;
             };
 
