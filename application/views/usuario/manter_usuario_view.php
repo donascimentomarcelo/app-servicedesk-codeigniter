@@ -73,6 +73,7 @@
                                         <input class="mdl-textfield__input" type="text" id="ramal"  ng-model="action.ramal" ng-required="true">
                                         <label class="mdl-textfield__label" for="ramal">Ramal</label>
                                     </div>
+                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                                      <label class="mdl-radio mdl-js-radio" for="administrador">
                                         <input type="radio" id="administrador" name="perfil" value="administrador" ng-model="action.perfil" class="mdl-radio__button" ng-required="true">
                                         <span class="mdl-radio__label">Administrador</span>
@@ -81,26 +82,18 @@
                                         <input type="radio" id="usuario" name="perfil" value="usuario" ng-model="action.perfil" class="mdl-radio__button" ng-required="true">
                                         <span class="mdl-radio__label">Usuário</span>
                                      </label>
-                                    <div class="form-group">
-                                        <label for="email">Perfil:</label><br>
-                                        <label class="radio-inline">
-                                            <input type="radio" name="perfil" id="usuario" value="usuario" checked="checked" ng-model="action.perfil" ng-required="true"> Usuário
-                                        </label>
-                                        <label class="radio-inline">
-                                            <input type="radio" name="perfil" id="administrador" value="administrador" ng-model="action.perfil" ng-required="true"> Administrador
-                                        </label>
                                     </div>
-
-                                    <div class="form-group">
-                                        <label for="email">Status:</label><br>
-                                        <label class="radio-inline">
-                                            <input type="radio" name="status" id="ativo" value="ativo" checked="checked" ng-model="action.status" ng-required="true"> Ativo
-                                        </label>
-                                        <label class="radio-inline">
-                                            <input type="radio" name="status" id="inativo" value="inativo" ng-model="action.status" ng-required="true"> Inativo
-                                        </label>
+                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                     <label class="mdl-radio mdl-js-radio" for="ativo">
+                                        <input type="radio" id="ativo" name="status" value="ativo" ng-model="action.status" class="mdl-radio__button" ng-required="true">
+                                        <span class="mdl-radio__label">Ativo</span>
+                                     </label>
+                                     <label class="mdl-radio mdl-js-radio" for="inativo">
+                                        <input type="radio" id="inativo" name="status" value="inativo" ng-model="action.status" class="mdl-radio__button" ng-required="true">
+                                        <span class="mdl-radio__label">Inativo</span>
+                                     </label>
                                     </div>
-
+                                    
                                     <div class="form-group">
                                         <select class="form-control" ng-model="action.setor_fk" ng-required="true">
 

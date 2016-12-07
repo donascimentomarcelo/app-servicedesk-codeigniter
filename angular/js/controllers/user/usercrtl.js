@@ -43,17 +43,23 @@
                 angular.element(document.getElementById('name')).parent().addClass('is-focused');
                 angular.element(document.getElementById('email')).parent().addClass('is-focused');
                 angular.element(document.getElementById('ramal')).parent().addClass('is-focused');
-                angular.element(document.getElementById('administrador')).prop('checked', true).addClass('is-focused');
+                document.getElementById(''+userData.perfil+'').parentNode.MaterialRadio.check();
+                document.getElementById(''+userData.status+'').parentNode.MaterialRadio.check();
                 
                 $scope.action = userData;
             };
 
             $scope.new = function () {
                 delete $scope.action;
+                delete $scope.selectedIndex;
+                
                 angular.element(document.getElementById('name')).parent().removeClass('is-focused');
                 angular.element(document.getElementById('email')).parent().removeClass('is-focused');
                 angular.element(document.getElementById('ramal')).parent().removeClass('is-focused');
-                delete $scope.selectedIndex;
+                document.getElementById('administrador').parentNode.MaterialRadio.uncheck();
+                document.getElementById('usuario').parentNode.MaterialRadio.uncheck();
+                document.getElementById('ativo').parentNode.MaterialRadio.uncheck();
+                document.getElementById('inativo').parentNode.MaterialRadio.uncheck();
             };
 
             $scope.ordenationBy = function (click) {

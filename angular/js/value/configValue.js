@@ -46,3 +46,4 @@ angular.module("category").value("config",{
     baseUrl : "http://localhost/cd/index.php/categoria/categoria_controller/"
     
 });
+

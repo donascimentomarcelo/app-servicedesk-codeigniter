@@ -2,17 +2,17 @@
 
 
         
-        angular.module("sector").factory("sectorAPI", function($http, config){
+        angular.module("sector").factory("sectorAPI", function($http){
             
             var _getLoadDataSector = function(){
                 
-                return $http.get(config.baseUrl+"loadSector");
+                return $http.get('/cd/index.php/setor/setor_controller/loadSector');
                 
             };
             
             var _getSaveOrEditSector = function(action){
                 
-                return $http.post(config.baseUrl+"save_or_edit_sector", action);
+                return $http.post('/cd/index.php/setor/setor_controller/save_or_edit_sector', action);
                 
             };
             
