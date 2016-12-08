@@ -56,6 +56,7 @@
                 angular.element(document.getElementById('name')).parent().removeClass('is-focused');
                 angular.element(document.getElementById('email')).parent().removeClass('is-focused');
                 angular.element(document.getElementById('ramal')).parent().removeClass('is-focused');
+                angular.element(document.getElementById('password')).parent().removeClass('is-focused');
                 document.getElementById('administrador').parentNode.MaterialRadio.uncheck();
                 document.getElementById('usuario').parentNode.MaterialRadio.uncheck();
                 document.getElementById('ativo').parentNode.MaterialRadio.uncheck();

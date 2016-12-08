@@ -182,7 +182,30 @@
                 margin-left: 2%;
             }
             .affix {
-            top: 0;
+            bottom: 10%;
+            width: 100%;
+            margin-left: 80%;
+            
+            }
+
+            .affix + .container-fluid {
+                padding-top: 70px;
+            }
+        }
+        @media (max-width: 1024px){
+            .height-form{
+            height: 150px;
+            }
+            .full-width { 
+                width: 70%; 
+            }
+            .formResponsive{
+                width: 70%;
+                margin-right: 60%;
+                margin-left: 2%;
+            }
+            .affix {
+            bottom: 10%;
             width: 100%;
             margin-left: 80%;
             
@@ -212,7 +235,7 @@
                 margin-left: 2%;
             }
             .affix {
-            top: 0;
+            bottom: 10%;
             width: 100%;
             margin-left: 80%;
             
@@ -246,7 +269,7 @@
                 margin-left: 2%;
             }
             .affix {
-            top: 0;
+            bottom: 10%;
             width: 100%;
             margin-left: 70%;
             
@@ -273,9 +296,9 @@
                 margin-right: auto; 
             }
             .affix {
-            top: 0;
+            bottom: 10%;
             width: 100%;
-            margin-left: 60%;
+            margin-left: 67%;
             
             }
 

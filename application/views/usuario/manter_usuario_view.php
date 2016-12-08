@@ -108,7 +108,7 @@
                                     </div>
                                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-width">
                                         <input class="mdl-textfield__input" type="password" id="password"  ng-model="action.senha" ng-required="true">
-                                        <label class="mdl-textfield__label" for="name">Senha</label>
+                                        <label class="mdl-textfield__label" for="password">Senha</label>
                                     </div>
                                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-width">
                                         <input class="mdl-textfield__input" type="text" id="email"  ng-model="action.email" ng-required="true">
@@ -150,8 +150,9 @@
 
                                     <hr>
                                     <div  data-spy="affix" data-offset-top="500">
+                                        
+                                        <button type="button" ng-click="insert_or_edit(action)" ng-if="!useu_form.$invalid" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect"><i class="material-icons">archive</i></button><br><br>
                                         <button type="button" ng-click="new ()" class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored"> <i class="material-icons">add</i></button>
-                                        <button type="button" ng-click="insert_or_edit(action)" ng-if="!useu_form.$invalid" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">Registrar</button>
                                     </div>  
                                 </form>	    
 
