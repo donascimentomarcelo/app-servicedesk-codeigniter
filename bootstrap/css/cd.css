@@ -4,7 +4,7 @@
 
 	body {
 		background-color: #fff;
-		margin: 40px;
+		margin: 0px;
 		font: 13px/20px normal Helvetica, Arial, sans-serif;
 		color: #4F5155;
 	}
@@ -167,7 +167,7 @@
             height: 291px;
         }
         .margin-top-table{
-            margin-top: 2%;
+            margin-top: 0%;
         }
         /*RADIO BUTTON*/
         .radio-methods {
@@ -297,7 +297,7 @@
             .affix {
             bottom: 10%;
             width: 100%;
-            margin-left: 70%;
+            margin-left: 60%;
             
             }
 
@@ -324,7 +324,7 @@
             .affix {
             bottom: 10%;
             width: 100%;
-            margin-left: 67%;
+            margin-left: 50%;
             
             }
 
@@ -347,6 +347,6 @@
                     margin-right: auto; 
                 }
         }
-        form {
-  padding: 20px;
-}
+        .mdl-layout__header{
+        background-color: rgb(77, 78, 82);
+        }

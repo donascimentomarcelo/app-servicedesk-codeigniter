@@ -36,69 +36,86 @@
       </script>
     </head>
     <body ng-controller="usercrtl" style="margin-left: 0px;">
-
-        
-            <h1><?php foreach ($preenche_dados->result() as $dados): ?> <img src="../../.<?php echo $dados->imagem; ?>" class="img-circle" width="50px" height="50px"> <?php endforeach; ?> <?php echo $this->session->userdata('nome'); ?>  </h1>
-
-            <?php
-            include 'C:\xampp\htdocs\cd\application\views\menu_head\administrador\menu.php';
-            ?>
+         <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+                <header class="mdl-layout__header">
+                  <div class="mdl-layout__header-row">
+                    <!-- Title -->
+                    <span class="mdl-layout-title">Menu</span>
+                    <!-- Add spacer, to align navigation to the right -->
+                    <div class="mdl-layout-spacer"></div>
+                    <!-- Navigation. We hide it in small screens. -->
+                    <nav class="mdl-navigation mdl-layout--large-screen-only">
+                      <a class="mdl-navigation__link" href="">Link</a>
+                      <a class="mdl-navigation__link" href="">Link</a>
+                      <a class="mdl-navigation__link" href="">Link</a>
+                      <a class="mdl-navigation__link" href="">Link</a>
+                      <a href="/cd/index.php/login/login_controller/sair"><i class="material-icons">power_settings_new</i></a>
+                    </nav>
+                  </div>
+                </header>
+                <div class="mdl-layout__drawer">
+                  <span class="mdl-layout-title">Title</span>
+                  <nav class="mdl-navigation">
+                    <a class="mdl-navigation__link" href="">Link</a>
+                    <a class="mdl-navigation__link" href="">Link</a>
+                    <a class="mdl-navigation__link" href="">Link</a>
+                    <a class="mdl-navigation__link" href="">Link</a>
+                  </nav>
+                </div>
+                <main class="mdl-layout__content">
+                  <div class="page-content"><!-- Your content goes here --></div>
+                </main>
 
             <div id="container">
                 <h1>Manter Usuário</h1>
                 <div id="body">
                     <div class="">
-                        <div>
-                            <div class="modal-body">
-                                
-                                <div class="margin-top-table">
-                                    
-                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
-                                            <label class="mdl-button mdl-js-button mdl-button--icon" for="sample6">
-                                                <i class="material-icons">search</i>
-                                            </label>
-                                            <div class="mdl-textfield__expandable-holder">
-                                                <input class="mdl-textfield__input" type="text" id="sample6" ng-model="search">
-                                                <label class="mdl-textfield__label" for="sample-expandable">Pesquise pelo nome do usuário</label>
-                                            </div>
-                                        </div>
-
-                                        <table class="mdl-data-table mdl-js-data-table  mdl-shadow--2dp" cellspacing="0" width="100%" id="tabela1">
-                                            <thead>
-                                                <tr>
-                                                    <th style="text-align: center;" ng-click="ordenationBy('id')">ID
-                                                        <span class="glyphicon sort-icon" ng-show="ordenationCritery === 'id'" ng-class="{'glyphicon-triangle-bottom':ordenation,'glyphicon-triangle-top':!ordenation}"></span>
-                                                    </th>
-                                                    <th style="text-align: center;" ng-click="ordenationBy('nome')">Nome do Usuário
-                                                        <span class="glyphicon sort-icon" ng-show="ordenationCritery === 'nome'" ng-class="{'glyphicon-triangle-bottom':ordenation,'glyphicon-triangle-top':!ordenation}"></span>
-                                                    </th>
-                                                    <th class="none-table-768 none-table-480" style="text-align: center;" ng-click="ordenationBy('email')">E-Mail
-                                                        <span class="glyphicon sort-icon" ng-show="ordenationCritery === 'email'" ng-class="{'glyphicon-triangle-bottom':ordenation,'glyphicon-triangle-top':!ordenation}"></span>
-                                                    </th>
-                                                    <th class="none-table-768 none-table-480" style="text-align: center;" ng-click="ordenationBy('perfil')">Perfil
-                                                        <span class="glyphicon sort-icon" ng-show="ordenationCritery === 'perfil'" ng-class="{'glyphicon-triangle-bottom':ordenation,'glyphicon-triangle-top':!ordenation}"></span>
-                                                    </th>
-                                                    <th class="none-table-480" style="text-align: center;" ng-click="ordenationBy('status')">Status
-                                                        <span class="glyphicon sort-icon" ng-show="ordenationCritery === 'status'" ng-class="{'glyphicon-triangle-bottom':ordenation,'glyphicon-triangle-top':!ordenation}"></span>
-                                                    </th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr ng-click="edit(userData); itemClicked(userData.id)" ng-class="{ 'cinza negrito': selectedIndex === userData.id }" dir-paginate="userData in userData | orderBy:ordenationCritery:ordenation | filter:{nome:search} | itemsPerPage :5">
-                                                    <td style="text-align: center;">{{userData.id}}</td>
-                                                    <td style="text-align: center;">{{userData.nome}}</td>
-                                                    <td class="none-table-768 none-table-480" style="text-align: center;">{{userData.email}}</td>
-                                                    <td class="none-table-768 none-table-480" style="text-align: center;">{{userData.perfil}}</td>
-                                                    <td class="none-table-480"style="text-align: center;">{{userData.status}}</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    <div class="location-pagination">
-                                        <dir-pagination-controls max-size="5" direction-links="true" boundary-links="true"></dir-pagination-controls>
-                                    </div>
-                                    </div>
+                        <div class="margin-top-table">
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
+                                <label class="mdl-button mdl-js-button mdl-button--icon" for="sample6">
+                                    <i class="material-icons">search</i>
+                                </label>
+                                <div class="mdl-textfield__expandable-holder">
+                                    <input class="mdl-textfield__input" type="text" id="sample6" ng-model="search">
+                                    <label class="mdl-textfield__label" for="sample-expandable">Pesquise pelo nome do usuário</label>
                                 </div>
-                            
+                            </div>
+
+                            <table class="mdl-data-table mdl-js-data-table  mdl-shadow--2dp" cellspacing="0" width="100%" id="tabela1">
+                                <thead>
+                                    <tr>
+                                        <th style="text-align: center;" ng-click="ordenationBy('id')">ID
+                                            <span class="glyphicon sort-icon" ng-show="ordenationCritery === 'id'" ng-class="{'glyphicon-triangle-bottom':ordenation,'glyphicon-triangle-top':!ordenation}"></span>
+                                        </th>
+                                        <th style="text-align: center;" ng-click="ordenationBy('nome')">Nome do Usuário
+                                            <span class="glyphicon sort-icon" ng-show="ordenationCritery === 'nome'" ng-class="{'glyphicon-triangle-bottom':ordenation,'glyphicon-triangle-top':!ordenation}"></span>
+                                        </th>
+                                        <th class="none-table-768 none-table-480" style="text-align: center;" ng-click="ordenationBy('email')">E-Mail
+                                            <span class="glyphicon sort-icon" ng-show="ordenationCritery === 'email'" ng-class="{'glyphicon-triangle-bottom':ordenation,'glyphicon-triangle-top':!ordenation}"></span>
+                                        </th>
+                                        <th class="none-table-768 none-table-480" style="text-align: center;" ng-click="ordenationBy('perfil')">Perfil
+                                            <span class="glyphicon sort-icon" ng-show="ordenationCritery === 'perfil'" ng-class="{'glyphicon-triangle-bottom':ordenation,'glyphicon-triangle-top':!ordenation}"></span>
+                                        </th>
+                                        <th class="none-table-480" style="text-align: center;" ng-click="ordenationBy('status')">Status
+                                            <span class="glyphicon sort-icon" ng-show="ordenationCritery === 'status'" ng-class="{'glyphicon-triangle-bottom':ordenation,'glyphicon-triangle-top':!ordenation}"></span>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-click="edit(userData); itemClicked(userData.id)" ng-class="{ 'cinza negrito': selectedIndex === userData.id }" dir-paginate="userData in userData | orderBy:ordenationCritery:ordenation | filter:{nome:search} | itemsPerPage :5">
+                                        <td style="text-align: center;">{{userData.id}}</td>
+                                        <td style="text-align: center;">{{userData.nome}}</td>
+                                        <td class="none-table-768 none-table-480" style="text-align: center;">{{userData.email}}</td>
+                                        <td class="none-table-768 none-table-480" style="text-align: center;">{{userData.perfil}}</td>
+                                        <td class="none-table-480"style="text-align: center;">{{userData.status}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="location-pagination">
+                                <dir-pagination-controls max-size="5" direction-links="true" boundary-links="true"></dir-pagination-controls>
+                            </div>
+                        </div>
+                              
                             <div class="formResponsive">
                                 <form role="form" name="useu_form" enctype="multipart/form-data">
                                     <div class="content-grid mdl-grid">
@@ -180,5 +197,6 @@
                      <p class="footer"></p>
                 </div>
             </div>
+        </div>
     </body>
 </html>
