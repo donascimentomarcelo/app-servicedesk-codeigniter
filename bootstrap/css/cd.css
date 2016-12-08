@@ -347,3 +347,6 @@
                     margin-right: auto; 
                 }
         }
+        form {
+  padding: 20px;
+}
