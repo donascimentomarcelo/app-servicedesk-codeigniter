@@ -24,6 +24,7 @@ class usuario_model extends CI_Model {
                 "perfil" => $row->perfil,
                 "nomesetor" => $row->nomesetor,
                 "status" => $row->status,
+                "senha" => $row->senha,
                 "setor_fk" => $row->setor_fk
             );
         endforeach;
@@ -34,20 +35,20 @@ class usuario_model extends CI_Model {
 
     public function m_insert_or_edit_user() {
 
-        $_POST = json_decode(file_get_contents('php://input'), true);
+        $array = json_decode(file_get_contents('php://input'), true);
 
         $arr = array(
-            'nome' => $this->input->post('nome'),
-            'email' => $this->input->post('email'),
-            'senha' => $this->input->post('senha'),
-            'perfil' => $this->input->post('perfil'),
-            'status' => $this->input->post('status'),
-            'ramal' => $this->input->post('ramal'),
-            'setor_fk' => $this->input->post('setor_fk'),
+            'nome' => $array['nome'],
+            'email' => $array['email'],
+            'senha' => $array['senha'],
+            'perfil' => $array['perfil'],
+            'status' => $array['status'],
+            'ramal' => $array['ramal'],
+            'setor_fk' => $array['setor_fk'],
             'imagem' => '../../../imagem/imagem_vazia.jpg'
         );
 
-        $id = $this->input->post('id');
+        $id = $array['id'];
 
         if ($id != 0) {
 

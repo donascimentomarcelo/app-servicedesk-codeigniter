@@ -84,7 +84,7 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr ng-click="edit(userData); itemClicked(userData.id)" ng-class="{ 'cinza negrito': selectedIndex === userData.id }" dir-paginate="userData in userData | orderBy:ordenationCritery:ordenation | filter:{nome:search} | itemsPerPage :10">
+                                                <tr ng-click="edit(userData); itemClicked(userData.id)" ng-class="{ 'cinza negrito': selectedIndex === userData.id }" dir-paginate="userData in userData | orderBy:ordenationCritery:ordenation | filter:{nome:search} | itemsPerPage :5">
                                                     <td style="text-align: center;">{{userData.id}}</td>
                                                     <td style="text-align: center;">{{userData.nome}}</td>
                                                     <td class="none-table-768 none-table-480" style="text-align: center;">{{userData.email}}</td>
@@ -93,63 +93,79 @@
                                                 </tr>
                                             </tbody>
                                         </table>
+                                    <div class="location-pagination">
                                         <dir-pagination-controls max-size="5" direction-links="true" boundary-links="true"></dir-pagination-controls>
+                                    </div>
                                     </div>
                                 </div>
                             
                             <div class="formResponsive">
                                 <form role="form" name="useu_form" enctype="multipart/form-data">
-                                    <div class="form-group">
-                                        <input type="hidden" value="" ng-model="action.id" />
-                                    </div>
-                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-width">
-                                        <input class="mdl-textfield__input" type="text" id="name"  ng-model="action.nome" ng-required="true">
-                                        <label class="mdl-textfield__label" for="name">Nome do Usuário</label>
-                                    </div>
-                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-width">
-                                        <input class="mdl-textfield__input" type="password" id="password"  ng-model="action.senha" ng-required="true">
-                                        <label class="mdl-textfield__label" for="password">Senha</label>
-                                    </div>
-                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-width">
-                                        <input class="mdl-textfield__input" type="text" id="email"  ng-model="action.email" ng-required="true">
-                                        <label class="mdl-textfield__label" for="email">E-mail</label>
-                                    </div>
-                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-width">
-                                        <input class="mdl-textfield__input" type="text" id="ramal"  ng-model="action.ramal" ng-required="true">
-                                        <label class="mdl-textfield__label" for="ramal">Ramal</label>
-                                    </div>
-                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-width">
-                                     <label class="mdl-radio mdl-js-radio" for="administrador">
-                                        <input type="radio" id="administrador" name="perfil" value="administrador" ng-model="action.perfil" class="mdl-radio__button" ng-required="true">
-                                        <span class="mdl-radio__label">Administrador</span>
-                                     </label>
-                                     <label class="mdl-radio mdl-js-radio" for="usuario">
-                                        <input type="radio" id="usuario" name="perfil" value="usuario" ng-model="action.perfil" class="mdl-radio__button" ng-required="true">
-                                        <span class="mdl-radio__label">Usuário</span>
-                                     </label>
-                                    </div>
-                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-width">
-                                     <label class="mdl-radio mdl-js-radio" for="ativo">
-                                        <input type="radio" id="ativo" name="status" value="ativo" ng-model="action.status" class="mdl-radio__button" ng-required="true">
-                                        <span class="mdl-radio__label">Ativo</span>
-                                     </label>
-                                     <label class="mdl-radio mdl-js-radio" for="inativo">
-                                        <input type="radio" id="inativo" name="status" value="inativo" ng-model="action.status" class="mdl-radio__button" ng-required="true">
-                                        <span class="mdl-radio__label">Inativo</span>
-                                     </label>
-                                    </div>
-                                    
-                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-width">
-                                        <select class="form-control" ng-model="action.setor_fk" ng-required="true">
+                                    <div class="content-grid mdl-grid">
+                                        <div class="mdl-cell mdl-cell--6-col">
+                                            <div class="form-group">
+                                                <input type="hidden" value="" ng-model="action.id" />
+                                            </div>
+                                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-width">
+                                                <input class="mdl-textfield__input" type="text" id="name"  ng-model="action.nome" ng-required="true">
+                                                <label class="mdl-textfield__label" for="name">Nome do Usuário</label>
+                                            </div>
+                                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-width">
+                                                <input class="mdl-textfield__input" type="password" id="password"  ng-model="action.senha" ng-required="true">
+                                                <label class="mdl-textfield__label" for="password">Senha</label>
+                                            </div>
+                                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-width">
+                                                <input class="mdl-textfield__input" type="text" id="email"  ng-model="action.email" ng-required="true">
+                                                <label class="mdl-textfield__label" for="email">E-mail</label>
+                                            </div>
+                                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-width">
+                                                <input class="mdl-textfield__input" type="text" id="ramal"  ng-model="action.ramal" ng-required="true">
+                                                <label class="mdl-textfield__label" for="ramal">Ramal</label>
+                                            </div>
+                                        </div>
+                                        <div class="mdl-cell mdl-cell--6-col">
+                                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-width">
+                                                <div class="radio-method">
+                                                <label class="mdl-radio mdl-js-radio" for="administrador">
+                                                    <input type="radio" id="administrador" name="perfil" value="administrador" ng-model="action.perfil" class="mdl-radio__button" ng-required="true">
+                                                    <span class="mdl-radio__label">Administrador</span>
+                                                </label>
+                                                </div>
+                                                <div class="radio-method">
+                                                <label class="mdl-radio mdl-js-radio" for="usuario">
+                                                    <input type="radio" id="usuario" name="perfil" value="usuario" ng-model="action.perfil" class="mdl-radio__button" ng-required="true">
+                                                    <span class="mdl-radio__label">Usuário</span>
+                                                </label>
+                                                </div>
+                                            </div>
+                                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-width">
+                                                <div class="radio-method">
+                                                <label class="mdl-radio mdl-js-radio" for="ativo">
+                                                    <input type="radio" id="ativo" name="status" value="ativo" ng-model="action.status" class="mdl-radio__button" ng-required="true">
+                                                    <span class="mdl-radio__label">Ativo</span>
+                                                </label>
+                                                </div>
+                                                <div class="radio-method">
+                                                <label class="mdl-radio mdl-js-radio" for="inativo">
+                                                    <input type="radio" id="inativo" name="status" value="inativo" ng-model="action.status" class="mdl-radio__button" ng-required="true">
+                                                    <span class="mdl-radio__label">Inativo</span>
+                                                </label>
+                                                </div>
+                                            </div>
+                                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-width">
+                                                <select class="form-control" ng-model="action.setor_fk" ng-required="true">
 
-                                            <option value="">Selecione um Setor</option>
-                                            <option ng-repeat="sectorData in sectorData" value="{{sectorData.idsetor}}">{{sectorData.nomesetor}}</option>
+                                                    <option value="">Selecione um Setor</option>
+                                                    <option ng-repeat="sectorData in sectorData" value="{{sectorData.idsetor}}">{{sectorData.nomesetor}}</option>
 
-                                        </select>
+                                                </select>
+                                            </div>
+                                        </div>
                                     </div>
 
                                     <hr>
-                                    <div  data-spy="affix" data-offset-top="500">
+                                    <div  data-spy="affix">
+                                  <!--  <div  data-spy="affix" data-offset-top="500">-->
                                         
                                         <button type="button" ng-click="insert_or_edit(action)" ng-if="!useu_form.$invalid" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect"><i class="material-icons">archive</i></button><br><br>
                                         <button type="button" ng-click="new ()" class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored"> <i class="material-icons">add</i></button>

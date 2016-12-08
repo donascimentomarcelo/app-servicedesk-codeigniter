@@ -77,10 +77,10 @@
             display: block;
 	}
         #divjustificativa{
-        width:100%;
-        height:100%;
-        background-color:rgba(0, 0, 0, 0.1);
-        border-radius: 10px;
+            width:100%;
+            height:100%;
+            background-color:rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
         }
         #form_padrao{
             width: 1000px;
@@ -96,22 +96,25 @@
         }
         
         /*PAGINATION*/
-         .cinza{
-                background-color: rgba(212, 212, 212, 0.32);
-            }
+        .location-pagination{
+            text-align: center;
+        };
+        .cinza{
+            background-color: rgba(212, 212, 212, 0.32);
+        }
             
-            .negrito{
-                font-weight: bold;
-            }
+        .negrito{
+            font-weight: bold;
+        }
             
-            .pagination > .active > a, .pagination > .active > a:focus, .pagination > .active > a:hover, .pagination > .active > span, .pagination > .active > span:focus, .pagination > .active > span:hover {
+        .pagination > .active > a, .pagination > .active > a:focus, .pagination > .active > a:hover, .pagination > .active > span, .pagination > .active > span:focus, .pagination > .active > span:hover {
             background-color: black;
             border-color: black;
             color: white;
             cursor: default;
             z-index: 3;
         }
-            .pagination > li > a, .pagination > li > span {
+        .pagination > li > a, .pagination > li > span {
             background-color: #fff;
             border: 1px solid #ddd;
             color: black;
@@ -122,9 +125,9 @@
             position: relative;
             text-decoration: none;
         }
-         /*PAGINATION*/
+         /*LOADER*/
          
-         .loader {
+        .loader {
             border: 16px solid #f3f3f3; /* Light grey */
             border-top: 16px solid #fff; /* Grey */
             border-radius: 50%;
@@ -164,10 +167,33 @@
             height: 291px;
         }
         .margin-top-table{
-                margin-top: 2%;
-            }
-        
-        
+            margin-top: 2%;
+        }
+        /*RADIO BUTTON*/
+        .radio-methods {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+          }
+
+          .radio-methods:after {
+            content: "";
+            clear: both;
+          }
+
+          .radio-method {
+           
+            float: left;
+            height: 70px;
+            position: relative;
+            width: 120px;
+          }
+
+          .radio-method + .radio-method {
+            margin-left: 25px;
+          }
+
+        /*RESPONSIVE*/
             
         @media (max-width: 2440px){
             .height-form{
@@ -177,14 +203,14 @@
                 width: 70%; 
             }
             .formResponsive{
-                width: 70%;
+                width: 100%;
                 margin-right: 60%;
                 margin-left: 2%;
             }
             .affix {
-            bottom: 10%;
+            bottom: 15%;
             width: 100%;
-            margin-left: 80%;
+            margin-left: 87%;
             
             }
 
@@ -200,14 +226,14 @@
                 width: 70%; 
             }
             .formResponsive{
-                width: 70%;
+                width: 100%;
                 margin-right: 60%;
                 margin-left: 2%;
             }
             .affix {
             bottom: 10%;
             width: 100%;
-            margin-left: 80%;
+            margin-left: 85%;
             
             }
 
@@ -304,6 +330,9 @@
 
             .affix + .container-fluid {
                 padding-top: 70px;
+            }
+            .radio-method + .radio-method {
+                margin-left: 0px;
             }
         }
         @media (max-width: 408px){

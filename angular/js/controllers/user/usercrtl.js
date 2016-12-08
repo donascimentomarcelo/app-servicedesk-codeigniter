@@ -31,6 +31,24 @@
                     //http://stackoverflow.com/questions/24443246/angularjs-how-to-upload-multipart-form-data-and-a-file
                     delete $scope.action;
                     delete $scope.selectedIndex;
+                    
+                    angular.element(document.getElementById('name')).parent().removeClass('is-focused is-dirty');
+                    angular.element(document.getElementById('name')).parent().addClass('is-invalid');
+
+                    angular.element(document.getElementById('email')).parent().removeClass('is-focused is-dirty');
+                    angular.element(document.getElementById('email')).parent().addClass('is-invalid');
+
+                    angular.element(document.getElementById('ramal')).parent().removeClass('is-focused is-dirty');
+                    angular.element(document.getElementById('ramal')).parent().addClass('is-invalid');
+
+                    angular.element(document.getElementById('password')).parent().removeClass('is-focused is-dirty');
+                    angular.element(document.getElementById('password')).parent().addClass('is-invalid');
+
+                    document.getElementById('administrador').parentNode.MaterialRadio.uncheck();
+                    document.getElementById('usuario').parentNode.MaterialRadio.uncheck();
+                    document.getElementById('ativo').parentNode.MaterialRadio.uncheck();
+                    document.getElementById('inativo').parentNode.MaterialRadio.uncheck();
+                    
                     loadUser();
 
                 }).error(function (data) {
@@ -40,9 +58,19 @@
             };
 
             $scope.edit = function (userData) {
-                angular.element(document.getElementById('name')).parent().addClass('is-focused');
-                angular.element(document.getElementById('email')).parent().addClass('is-focused');
-                angular.element(document.getElementById('ramal')).parent().addClass('is-focused');
+                
+                angular.element(document.getElementById('name')).parent().addClass('is-dirty is-focused');
+                angular.element(document.getElementById('name')).parent().removeClass('is-invalid');
+                
+                angular.element(document.getElementById('email')).parent().addClass('is-dirty is-focused');
+                angular.element(document.getElementById('email')).parent().removeClass('is-invalid');
+                
+                angular.element(document.getElementById('ramal')).parent().addClass('is-dirty is-focused');
+                angular.element(document.getElementById('ramal')).parent().removeClass('is-invalid');
+                
+                angular.element(document.getElementById('password')).parent().addClass('is-dirty is-focused');
+                angular.element(document.getElementById('password')).parent().removeClass('is-invalid');
+                
                 document.getElementById(''+userData.perfil+'').parentNode.MaterialRadio.check();
                 document.getElementById(''+userData.status+'').parentNode.MaterialRadio.check();
                 
@@ -52,11 +80,20 @@
             $scope.new = function () {
                 delete $scope.action;
                 delete $scope.selectedIndex;
+                $scope.senha = '';
                 
-                angular.element(document.getElementById('name')).parent().removeClass('is-focused');
-                angular.element(document.getElementById('email')).parent().removeClass('is-focused');
-                angular.element(document.getElementById('ramal')).parent().removeClass('is-focused');
-                angular.element(document.getElementById('password')).parent().removeClass('is-focused');
+                angular.element(document.getElementById('name')).parent().removeClass('is-focused is-dirty');
+                angular.element(document.getElementById('name')).parent().addClass('is-invalid');
+                
+                angular.element(document.getElementById('email')).parent().removeClass('is-focused is-dirty');
+                angular.element(document.getElementById('email')).parent().addClass('is-invalid');
+                
+                angular.element(document.getElementById('ramal')).parent().removeClass('is-focused is-dirty');
+                angular.element(document.getElementById('ramal')).parent().addClass('is-invalid');
+                
+                angular.element(document.getElementById('password')).parent().removeClass('is-focused is-dirty');
+                angular.element(document.getElementById('password')).parent().addClass('is-invalid');
+                
                 document.getElementById('administrador').parentNode.MaterialRadio.uncheck();
                 document.getElementById('usuario').parentNode.MaterialRadio.uncheck();
                 document.getElementById('ativo').parentNode.MaterialRadio.uncheck();
