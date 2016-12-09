@@ -45,21 +45,29 @@
                     <div class="mdl-layout-spacer"></div>
                     <!-- Navigation. We hide it in small screens. -->
                     <nav class="mdl-navigation mdl-layout--large-screen-only">
-                      <a class="mdl-navigation__link" href="">Link</a>
-                      <a class="mdl-navigation__link" href="">Link</a>
-                      <a class="mdl-navigation__link" href="">Link</a>
-                      <a class="mdl-navigation__link" href="">Link</a>
-                      <a href="/cd/index.php/login/login_controller/sair"><i class="material-icons">power_settings_new</i></a>
+                      <a href="/cd/index.php/login/login_controller/sair"><i class="material-icons">power_settings_new</i> </a>
                     </nav>
                   </div>
                 </header>
                 <div class="mdl-layout__drawer">
-                  <span class="mdl-layout-title">Title</span>
+                  <span class="mdl-layout-title">Opções</span>
                   <nav class="mdl-navigation">
-                    <a class="mdl-navigation__link" href="">Link</a>
-                    <a class="mdl-navigation__link" href="">Link</a>
-                    <a class="mdl-navigation__link" href="">Link</a>
-                    <a class="mdl-navigation__link" href="">Link</a>
+                      <!-- Left aligned menu below button -->
+                    <nav class="mdl-navigation">
+                      <a id="opcUser" class="mdl-navigation__link" href="#">Opções de Usuário</a>
+                        <!-- sub menu only visible when clicked on the link above -->
+                        <ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect"
+                            for="opcUser">
+                          <li class="mdl-menu__item"><a href="/cd/index.php/perfil_pessoal/perfil_pessoal_controller/alterar_perfil"> Config. de Perfil</a></li>
+                          <li class="mdl-menu__item"><a href="/cd/index.php/perfil_pessoal/perfil_pessoal_controller/alter_photo"> Alterar Foto</a></li>
+                          <li class="mdl-menu__item"><a href="/cd/index.php/usuario/usuario_controller/listar_usuario"> Config. de Usuário</a></li>
+                        </ul>
+                      <a class="mdl-navigation__link" href="">Teste</a>
+                      <a class="mdl-navigation__link" href="">Link</a>
+                      <a class="mdl-navigation__link" href="">Link</a>
+                    </nav>
+                      
+                    <a href="/cd/index.php/login/login_controller/sair" style="margin-left: auto; margin-right: auto"><i class="material-icons">power_settings_new</i></a>
                   </nav>
                 </div>
                 <main class="mdl-layout__content">
@@ -67,7 +75,8 @@
                 </main>
 
             <div id="container">
-                <h1>Manter Usuário</h1>
+               <h1><?php foreach ($preenche_dados->result() as $dados): ?> <img src="../../.<?php echo $dados->imagem; ?>" class="img-circle" width="50px" height="50px"> <?php endforeach; ?> <?php echo $this->session->userdata('nome'); ?></h1>
+
                 <div id="body">
                     <div class="">
                         <div class="margin-top-table">
