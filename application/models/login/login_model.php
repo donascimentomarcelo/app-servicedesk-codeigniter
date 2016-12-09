@@ -9,53 +9,55 @@ class login_model extends CI_Model{
         
     }  
     
-        function buscaPorEmailSenha()
+    function buscaPorEmailSenha()
+    {
+
+       $this->db->select('*');
+       $this->db->from('usuarios');
+       $this->db->where('email', $this->input->post('email'));
+       $this->db->where('senha', $this->input->post('senha'));
+      // $this->db->where('status', 'ativo');
+       $this->db->limit(1);
+
+       $usuario = $this->db->get();
+
+       if($usuario->num_rows() == 1)
        {
+           foreach ($usuario->result() as $row):
 
-           $this->db->select('*');
-           $this->db->from('usuarios');
-           $this->db->where('email', $this->input->post('email'));
-           $this->db->where('senha', $this->input->post('senha'));
-          // $this->db->where('status', 'ativo');
-           $this->db->limit(1);
+               $session = array(
+                   'perfil' => $row->perfil,
+                   'email' => $row->email,
+                   'ip' => getenv("REMOTE_ADDR"),
+                   'status' => $row->status,
+                   'nome' => $row->nome,
+                   'id' => $row->id,
+                   'logado' => true
+               );
 
-           $usuario = $this->db->get();
+           endforeach;
 
-           if($usuario->num_rows() == 1)
+           $this->session->set_userdata($session);
+
+           if  ($session['status'] == 'inativo')
            {
-               foreach ($usuario->result() as $row):
 
-                   $session = array(
-                       'perfil' => $row->perfil,
-                       'email' => $row->email,
-                       'ip' => getenv("REMOTE_ADDR"),
-                       'status' => $row->status,
-                       'nome' => $row->nome,
-                       'id' => $row->id,
-                       'logado' => true
-                   );
+                return 'StatusInativo';
 
-               endforeach;
+           } 
+           elseif($session['perfil'] == 'usuario') 
+           {
 
-               $this->session->set_userdata($session);
+               redirect('perfil/p_usuario');
 
-               if  ($session['status'] == 'inativo')
-               {
+           }
+           elseif($session['perfil'] == 'administrador')
+           {
 
-                    return 'StatusInativo';
+               redirect('perfil/p_administrador');
 
-               } 
-               elseif($session['perfil'] == 'usuario') 
-               {
-
-                   redirect('perfil/p_usuario');
-
-               }
-               elseif($session['perfil'] == 'administrador')
-               {
-                  redirect('perfil/p_administrador');
-               }
-               }
+           }
+           }
     
         }
         
