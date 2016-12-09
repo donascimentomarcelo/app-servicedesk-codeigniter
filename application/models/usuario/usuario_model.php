@@ -2,12 +2,14 @@
 
 class usuario_model extends CI_Model {
 
-    function __construct() {
+    function __construct() 
+    {
 
         parent::__construct();
     }
 
-    public function m_list_user() {
+    public function m_list_user() 
+    {
 
         $this->db->select('*');
         $this->db->from('usuarios');
@@ -33,7 +35,8 @@ class usuario_model extends CI_Model {
         return json_encode($arr);
     }
 
-    public function m_insert_or_edit_user() {
+    public function m_insert_or_edit_user() 
+    {
 
         $array = json_decode(file_get_contents('php://input'), true);
 
@@ -50,20 +53,22 @@ class usuario_model extends CI_Model {
 
         $id = $array['id'];
 
-        if ($id != 0) {
-
+        if ($id != 0) 
+        {
             $this->db->where('id', $id);
             $success = $this->db->update('usuarios', $arr);
-        } else {
-
+        } 
+        else 
+        {
             $success = $this->db->insert('usuarios', $arr);
         }
 
-        if ($success) {
-
+        if ($success) 
+        {
             return TRUE;
-        } else {
-
+        } 
+        else 
+        {
             return FALSE;
         }
     }

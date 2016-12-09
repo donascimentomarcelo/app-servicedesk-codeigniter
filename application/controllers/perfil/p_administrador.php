@@ -4,8 +4,12 @@ class P_administrador extends CI_Controller {
     
     function __construct() {
         parent::__construct();
-        $this->load->model("login/login_model");
-        $this->login_model->logado();
+      /*$logado = $this->session->userdata('logado');
+        
+        if(!isset($logado)||$logado != true){
+            redirect(base_url());
+            die();
+        }*/
     }
     
     public function index() {
