@@ -31,18 +31,23 @@ class Perfil_pessoal_controller extends CI_Controller {
     
     function  alter_photo_profile(){
         
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('imagem', 'Imagem','required');
+        $this->form_validation->set_error_delimiters('<p class="erro">','</p>');
+        
+        if($this->form_validation->run()== FALSE){
+            
+             echo 'teste';
+            
+        }else{
+        
         $this->load->model('perfil_pessoal/perfil_pessoal_model');
  
         echo $this->perfil_pessoal_model->m_alter_photo_profile();
 
-           
+        }
     }
-    
-    public function do_upload(){
 
-        
-
-    }
     
     public function load_profile() {
         

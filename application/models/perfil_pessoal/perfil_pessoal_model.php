@@ -73,9 +73,9 @@ class perfil_pessoal_model extends CI_Model{
 
             if ( ! $this->upload->do_upload('imagem'))
             {
-                    $error = array('error' => $this->upload->display_errors());
+                    //$error = array('error' => $this->upload->display_errors());
 
-                    return $error;
+                    return $this->upload->display_errors();
             }
             else
             {

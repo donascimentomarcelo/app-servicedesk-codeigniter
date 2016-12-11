@@ -5,9 +5,9 @@ if (!function_exists('getSetorAtivo')) {
     function getSetorAtivo()
     {
     	$CI = get_instance();
-    	$CI->load->model('usuario_model');
+    	$CI->load->model('setor/setor_model');
 
-       	return $CI->usuario_model->setor_ativo();
+       	return $CI->setor_model->m_active_sector();
         //regra de nogócios onde permite que somente setores ativos sejam selecionados na view.
     }   
 }

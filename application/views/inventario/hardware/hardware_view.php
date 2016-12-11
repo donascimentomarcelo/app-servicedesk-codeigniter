@@ -2,6 +2,7 @@
 <html ng-app="hardware">
 <head>
 	<meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Inventário - Hardware</title>
 
         <script src="../../../angular/lib/angular.min.js" type="text/javascript"></script>

@@ -1,0 +1,193 @@
+        ::selection{ background-color: #E13300; color: white; }
+	::moz-selection{ background-color: #E13300; color: white; }
+	::webkit-selection{ background-color: #E13300; color: white; }
+
+	body {
+		background-color: #4F5155;
+		margin: 0px;
+		font: 13px/20px normal Helvetica, Arial, sans-serif;
+		color: #4F5155;
+	}
+        
+        
+
+	a {
+		color: #003399;
+		background-color: transparent;
+		font-weight: normal;
+                color: #111;
+	}
+
+        /*RESPONSIVE*/
+            
+        @media (max-width: 2440px){
+            
+            .full-width { 
+                width: 70%; 
+            }
+            .login-form{
+            margin-top: 3%;
+            width: 90%;
+            height: 300px;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+            background-color: white;
+            border: 1px solid #b95555
+        }
+        .alertlgn{
+            width: 40%;
+            margin-bottom: 0%;
+            margin-top: -7px;
+        }
+        .buttomlgn{
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 2%
+        }
+        }
+        @media (max-width: 1024px){
+            
+            .full-width { 
+                width: 70%; 
+            }
+            .formResponsive{
+                width: 100%;
+                margin-right: 60%;
+                margin-left: 2%;
+            }
+            .login-form{
+            margin-top: 3%;
+            width: 90%;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+            background-color: white;
+            border: 1px solid #b95555
+        }
+        .alertlgn{
+            width: 40%;
+            margin-bottom: 0%;
+            margin-top: -1%;
+        }
+        }
+       
+        @media (max-width:992px) {
+            
+            
+            
+            .full-width { 
+                width: 100%; 
+            }
+            .login-form{
+            margin-top: 3%;
+            width: 90%;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+            background-color: white;
+            border: 1px solid #b95555
+            }
+            
+            .mdl-button {
+                min-width: 500px;
+            }
+            }
+        @media (max-width:768px) {
+            
+            .full-width { 
+                width: 75%; 
+            }
+            .login-form{
+            margin-top: 3%;
+            width: 90%;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+            background-color: white;
+            border: 1px solid #b95555
+            }
+            .alertlgn{
+                width: 79%;
+                margin-bottom: 0%;
+                margin-top: -1%;
+            }
+            .mdl-button {
+                min-width: 500px;
+            }
+
+            }
+
+        @media (max-width:480px) {
+            
+            .full-width { 
+             width: 100%; 
+            }
+            .login-form{
+            margin-top: 0%;
+            width: 100%;
+            background-color: white;
+            border: 1px solid #b95555
+            }
+            .alertlgn{
+                width: 100%;
+                min-width: 100%;
+                margin-bottom: 0%;
+                margin-top: -3%;
+            }
+            .buttomlgn{
+                margin-left: auto;
+                margin-right: auto;
+                margin-bottom: 5%
+            }
+            .mdl-button {
+                
+                min-width: 100%;
+                margin-bottom: 0%;
+                margin-top: 0%;
+            }
+            .col-md-12{
+                    padding-right: 0px;
+                    padding-left: 0px;
+            }
+            #body {    
+            margin: 0 0px 0 0px;
+            }
+            }
+            
+        @media (max-width: 408px){
+            
+            .full-width { 
+             width: 100%; 
+            }
+            .login-form{
+            margin-top: 0%;
+            width: 100%;
+            background-color: white;
+            border: 1px solid #b95555
+            }
+            .alertlgn{
+                width: 100%;
+                min-width: 100%;
+                margin-bottom: 0%;
+                margin-top: -3%;
+            }
+            .buttomlgn{
+                margin-left: auto;
+                margin-right: auto;
+                margin-bottom: 5%
+            }
+            .mdl-button {
+                min-width: 100%;
+            }
+            .col-md-12{
+                    padding-right: 0px;
+                    padding-left: 0px;
+            }
+            #body {    
+            margin: 0 0px 0 0px;
+            }
+            .mdl-layout__header{
+            background-color: rgb(77, 78, 82);
+            }
+        }

@@ -43,5 +43,8 @@ class categoria_model extends CI_Model{
 
         return $return;
     }
+    public function m_exibir_categoria(){
+        
+    }
     
 }

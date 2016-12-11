@@ -1,60 +1,71 @@
-<?php $id = $this->session->userdata('id');
-      $ip = $this->session->userdata('ip');?>
-
-    <nav class="navbar navbar-inverse">
-          <div class="container-fluid">
-            <div class="navbar-header">
-              <a class="navbar-brand" href="http://localhost/cd/index.php/perfil/p_administrador">Início</a>
-            </div>
-            <ul class="nav navbar-nav">
-              <li><a onclick="novo(<?= $id?>)"><span class="glyphicon glyphicon-plus"  ></span> Novo</a></li>
-                <li class="dropdown">
-                <a class="dropdown-toggle " data-toggle="dropdown" href="#"> Opções de Usuário
-                <span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                    <li><a href="/cd/index.php/perfil_pessoal/perfil_pessoal_controller/alterar_perfil" class="glyphicon glyphicon-user"> Config. de Perfil</a></li>
-                    <li><a href="/cd/index.php/perfil_pessoal/perfil_pessoal_controller/alter_photo" class="glyphicon glyphicon-user"> Alterar Foto</a></li>
-                    <li><a href="/cd/index.php/usuario/usuario_controller/listar_usuario" class="glyphicon glyphicon-user"> Config. de Usuário</a></li>
-                </ul>
-              </li>
-              
-              <li class="dropdown">
-                <a class="dropdown-toggle " data-toggle="dropdown" href="#"> Opções de Configuração
-                <span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                    <li><a href="/cd/index.php/setor/setor_controller/listar_setor" class="glyphicon glyphicon-cog"> Config. de Setor</a></li>
-                    <li><a href="/cd/index.php/categoria/categoria_controller/exibir_categoria" class="glyphicon glyphicon-cog"> Config. de Categoria</a></li>
-                    <li><a href="/cd/index.php/subcategoria/subcategoria_controller/exibir_subcategoria" class="glyphicon glyphicon-cog"> Config. de Subcategoria</a></li>
-                </ul>
-              </li>
-              
-              <li class="dropdown">
-                <a class="dropdown-toggle " data-toggle="dropdown" href="#"> Opções de chamado
-                <span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                    <li><a href="/cd/index.php/chamado/chamado_controller/meus_chamados" class="glyphicon glyphicon-floppy-saved"> Meus Chamados</a></li>
-                    <li><a href="/cd/index.php/chamado/chamado_controller/listar_chamado" class="glyphicon glyphicon-eye-open"> Atender Chamado</a></li>
-                </ul>
-              </li>
-              <li class="dropdown">
-                <a class="dropdown-toggle " data-toggle="dropdown" href="#"> Indicadores
-                <span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                    <li><a href="/cd/index.php/indicadores/indicadores_controller/localizador" class="glyphicon glyphicon-sort"> Localizador de Chamados</a></li>
-                    <li><a href="/cd/index.php/indicadores/indicadores_controller/indicadores" class="glyphicon glyphicon-sort"> Chamado x Data</a></li>
-                    <li><a href="/cd/index.php/indicadores/indicadores_controller/chamado_tecnico" class="glyphicon glyphicon-sort"> Chamado x Técnico</a></li>
-                </ul>
-              </li>
-              <li class="dropdown">
-                <a class="dropdown-toggle " data-toggle="dropdown" href="#"> Inventário
-                <span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                    <li><a href="/cd/index.php/inventario/inventario_controller/hardware_list" class="glyphicon glyphicon-hdd"> Hardware</a></li>
-                    <li><a href="/cd/index.php/indicadores/inventario_controller/software_list" class="glyphicon glyphicon-folder-open"> Software</a></li>
-                    <li><a href="/cd/index.php/indicadores/inventario_controller/configuracao_inventario_list" class="glyphicon glyphicon-cog"> Configuração</a></li>
-                </ul>
-              </li>
-              <li><a href="/cd/index.php/login/login_controller/sair"><span class="glyphicon glyphicon-off"></span> Sair</a></li>
-             </ul>
-          </div>
+<header class="mdl-layout__header">
+    <div class="mdl-layout__header-row">
+        <!-- Title -->
+        <span class="mdl-layout-title">Menu</span>
+        <!-- Add spacer, to align navigation to the right -->
+        <div class="mdl-layout-spacer"></div>
+        <!-- Navigation. We hide it in small screens. -->
+        <nav class="mdl-navigation mdl-layout--large-screen-only">
+            <a href="/cd/index.php/login/login_controller/sair" class="btn-off"><i class="material-icons">power_settings_new</i> </a>
         </nav>
+    </div>
+</header>
+<div class="mdl-layout__drawer">
+    <span class="mdl-layout-title">Opções</span>
+    <nav class="mdl-navigation">
+        <!-- Left aligned menu below button -->
+        <nav class="mdl-navigation">
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fullwidth layout-dropdown">
+                <div class="mdl-textfield__input" type="text" id="opcService"  readonly tabIndex="-1">
+                    <div style="text-align: center;">Opções de Chamado</div>
+                    <ul for="opcService" class="mdl-menu mdl-menu--bottom-left mdl-js-menu">
+                        <li class="mdl-menu__item"><a href="/cd/index.php/chamado/chamado_controller/meus_chamados"> Meus Chamados</a></li>
+                        <li class="mdl-menu__item"><a href="/cd/index.php/chamado/chamado_controller/listar_chamado"> Atender Chamado</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fullwidth layout-dropdown">
+                <div class="mdl-textfield__input" type="text" id="opcUser"  readonly tabIndex="-1">
+                    <div style="text-align: center;">Usuário</div>
+                    <ul for="opcUser" class="mdl-menu mdl-menu--bottom-left mdl-js-menu">
+                        <li class="mdl-menu__item"><a href="/cd/index.php/perfil_pessoal/perfil_pessoal_controller/alterar_perfil"> Config. de Perfil</a></li>
+                        <li class="mdl-menu__item"><a href="/cd/index.php/perfil_pessoal/perfil_pessoal_controller/alter_photo"> Alterar Foto</a></li>
+                        <li class="mdl-menu__item"><a href="/cd/index.php/usuario/usuario_controller/listar_usuario"> Config. de Usuário</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fullwidth layout-dropdown">
+                <div class="mdl-textfield__input" type="text" id="menuConfig"  readonly tabIndex="-1">
+                    <div style="text-align: center;">Configuração</div>
+                    <ul for="menuConfig" class="mdl-menu mdl-menu--bottom-left mdl-js-menu">
+                        <li class="mdl-menu__item"><a href="/cd/index.php/setor/setor_controller/listar_setor"> Setor</a></li>
+                        <li class="mdl-menu__item"><a href="/cd/index.php/categoria/categoria_controller/exibir_categoria"> Categoria</a></li>
+                        <li class="mdl-menu__item"><a href="/cd/index.php/subcategoria/subcategoria_controller/exibir_subcategoria"> Subcategoria</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fullwidth layout-dropdown">
+                <div class="mdl-textfield__input" type="text" id="menuInvetary"  readonly tabIndex="-1">
+                    <div style="text-align: center;">Inventário</div>
+                    <ul for="menuInvetary" class="mdl-menu mdl-menu--bottom-left mdl-js-menu">
+                        <li class="mdl-menu__item"><a href="/cd/index.php/inventario/inventario_controller/hardware_list"> Hardware</a></li>
+                        <li class="mdl-menu__item"><a href="/cd/index.php/inventario/inventario_controller/software_list"> Software</a></li>
+                        <li class="mdl-menu__item"><a href="/cd/index.php/inventario/inventario_controller/configuracao_inventario_list"> Configuração</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fullwidth layout-dropdown">
+                <div class="mdl-textfield__input" type="text" id="indicators"  readonly tabIndex="-1">
+                    <div style="text-align: center;">Indicadores</div>
+                    <ul for="indicators" class="mdl-menu mdl-menu--bottom-left mdl-js-menu">
+                        <li class="mdl-menu__item"><a href="/cd/index.php/indicadores/indicadores_controller/localizador"> Localizador de Chamados</a></li>
+                        <li class="mdl-menu__item"><a href="/cd/index.php/indicadores/indicadores_controller/indicadores"> Chamado x Data</a></li>
+                        <li class="mdl-menu__item"><a href="/cd/index.php/indicadores/indicadores_controller/chamado_tecnico"> Chamado x Técnico</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <a href="/cd/index.php/login/login_controller/sair" style="margin-left: auto; margin-right: auto"><i class="material-icons">power_settings_new</i></a>
+    </nav>
+</div>
