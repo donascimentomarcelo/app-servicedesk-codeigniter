@@ -43,12 +43,12 @@
 
                     success: minhaCallCack();
 
-                } else if(data === '<p>The filetype you are attempting to upload is not allowed.</p>') {
+                } else if (data === '<p>The filetype you are attempting to upload is not allowed.</p>') {
 
-                   $('.add-info').html('<div class="alert alert-danger">\n\
-                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>\n\
-                    Escolha apenas arquivos .jpg, .png ou .gif!</div>');
-                   //$('.add-info').html('<div class="alert alert-danger">'+data+'</div>');
+                    $('.add-info').html('<div class="alert alert-danger">\n\
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>\n\
+                        Escolha apenas arquivos .jpg, .png ou .gif!</div>');
+                    //$('.add-info').html('<div class="alert alert-danger">'+data+'</div>');
 
                 }
             }
@@ -67,4 +67,15 @@
 
         $('#alterPhoto').modal('show');
 
+    }
+
+    function loadPhoto() {
+        $.get('/cd/index.php/perfil_pessoal/perfil_pessoal_controller/load_image',
+                function (data) {
+                  //  $('#imagem').val(data.imagem);
+                    $('.imagem').html('<img src="'+data.imagem+'" >');
+                  //  var img = $('#imagem').val(data.imagem);
+                  //  $('#id_sua_img').attr('src', img);
+
+                }, 'json');
     }

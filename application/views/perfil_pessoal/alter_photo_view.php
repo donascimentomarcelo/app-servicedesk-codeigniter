@@ -56,18 +56,18 @@
                                         </div>
                                         <div class="modal-body">
 
-                                            <form role="form" name="form_image" method="post" action="<?= base_url('index.php/perfil_pessoal/perfil_pessoal_controller/alter_photo_profile') ?>" id="formulario_usuario" enctype="multipart/form-data">
+                                            <form role="form" name="form_image" method="post" action="<?= base_url('index.php/perfil_pessoal/perfil_pessoal_controller/load_image') ?>" id="formulario_usuario" enctype="multipart/form-data">
 
                                                 <div class="form-group">
                                                     <input type="file" name="imagem" class="filestyle" data-icon="false" required="required">
                                                 </div>
 
                                             </form>
-                                            
+                                            <div id="imagem"></div>
 
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-default" data-dismiss="modal" onclick="refresh()" >Fechar</button>
+                                            <button type="button" class="btn btn-default" data-dismiss="modal" onclick="loadPhoto()" >Fechar</button>
 
                                             <button type="button" class="btn btn-secondary" onclick="$('#formulario_usuario').submit()">Atualizar</button>
                                         <?php endforeach; ?>	
