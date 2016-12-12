@@ -34,23 +34,42 @@
             showConfirmButton: false
         });
     }
-
+   
     $(function () {
         $('#formulario_usuario').ajaxForm({
             success: function (data) {
                 console.log(data);
-                if (data === 1) {
+                if (data === '1') {
 
-                    success: minhaCallCack();
+                    success: 
+                    $("#imagem").val("");
+                    $('.add-info').html('<div class="alert alert-success alert-upload">\n\
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>\n\
+                        Foto de perfil atualizada com sucesso!</div>');
 
                 } else if (data === '<p>The filetype you are attempting to upload is not allowed.</p>') {
 
-                    $('.add-info').html('<div class="alert alert-danger">\n\
+                    $('.add-info').html('<div class="alert alert-danger alert-upload">\n\
                         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>\n\
                         Escolha apenas arquivos .jpg, .png ou .gif!</div>');
-                    //$('.add-info').html('<div class="alert alert-danger">'+data+'</div>');
+                    
+                } else if (data === '<p>The image you are attempting to upload exceedes the maximum height or width.</p>') {
 
-                }
+                    $('.add-info').html('<div class="alert alert-danger alert-upload">\n\
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>\n\
+                        Escolha apenas com 1024px de largura e 768px de altura!</div>');
+                  
+                } else if (data === '<p>The file you are attempting to upload is larger than the permitted size.</p>') {
+
+                    $('.add-info').html('<div class="alert alert-danger alert-upload">\n\
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>\n\
+                        Escolhe uma imagem menor, de até 2 MB.</div>');
+                 
+                }else{
+                    
+                    $('.add-info').html('<div class="alert alert-danger alert-upload"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>'+data+'</div>');
+                    
+                };
             }
         });
     });

@@ -245,6 +245,12 @@
             font-weight: bold; 
             color: #000;
         }
+        
+        .alert-upload{
+            font-weight: bold;
+            text-align: center;
+            margin-top: 3%;
+        }
     }
     @media (max-width: 1024px){
         .height-form{

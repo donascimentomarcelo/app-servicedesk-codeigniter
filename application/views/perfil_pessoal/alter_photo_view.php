@@ -16,10 +16,7 @@
         <script src="../../../bootstrap/js/bootstrap-filestyle.min.js" type="text/javascript"></script>
 
         <script src="../../../bootstrap/js/jquery.forms.js" type="text/javascript"></script>
-        <script src="../../../sweet/sweetalert-dev.js" type="text/javascript"></script>
-        <link href="../../../sweet/sweetalert.css" rel="stylesheet" type="text/css"/>
-        <script src="../../../sweet/sweetalert.min.js" type="text/javascript"></script>
-        <script src="../../../angular/lib/angular.min.js" type="text/javascript"></script>
+      
         <link href="../../../bootstrap/css/cd.css" rel="stylesheet" type="text/css"/>
         <script src="../../../bootstrap/js/cdJquery.js" type="text/javascript"></script>
 
@@ -56,25 +53,25 @@
                                         </div>
                                         <div class="modal-body">
 
-                                            <form role="form" name="form_image" method="post" action="<?= base_url('index.php/perfil_pessoal/perfil_pessoal_controller/load_image') ?>" id="formulario_usuario" enctype="multipart/form-data">
+                                            <form role="form" name="form_image" method="post" action="<?= base_url('index.php/perfil_pessoal/perfil_pessoal_controller/alter_photo_profile') ?>" id="formulario_usuario" enctype="multipart/form-data">
 
                                                 <div class="form-group">
-                                                    <input type="file" name="imagem" class="filestyle" data-icon="false" required="required">
+                                                    <input type="file" id="imagem" name="imagem" class="filestyle" data-icon="false">
                                                 </div>
 
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal" onclick="document.location.href = document.location.href" ><i class="material-icons">autorenew</i></button>
+
+                                                <button type="button" class="btn btn-secondary" onclick="$('#formulario_usuario').submit()"><i class="material-icons">file_upload</i></button>
+                                                <div class="add-info"></div>
+
+                                            </div> 
                                             </form>
-                                            <div id="imagem"></div>
+                                            
 
                                         </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-default" data-dismiss="modal" onclick="loadPhoto()" >Fechar</button>
-
-                                            <button type="button" class="btn btn-secondary" onclick="$('#formulario_usuario').submit()">Atualizar</button>
                                         <?php endforeach; ?>	
                                            
-                                                <div class="add-info"></div>
-                                          
-                                    </div> 
                                 </div>
                             </div>
                         </div> 

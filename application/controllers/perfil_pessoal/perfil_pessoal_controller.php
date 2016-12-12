@@ -32,13 +32,10 @@ class Perfil_pessoal_controller extends CI_Controller {
     function  alter_photo_profile(){
         
         $this->load->library('form_validation');
-        $this->form_validation->set_rules('imagem', 'Imagem','required');
-        $this->form_validation->set_error_delimiters('<p class="erro">','</p>');
         
-        if($this->form_validation->run()== FALSE){
-            
-             echo 'teste';
-            
+         if (empty($_FILES['imagem']['name'])) {
+            $this->form_validation->set_rules('imagem', 'Document', 'required');
+            echo 'Selecione ao menos uma imagem.';
         }else{
         
         $this->load->model('perfil_pessoal/perfil_pessoal_model');

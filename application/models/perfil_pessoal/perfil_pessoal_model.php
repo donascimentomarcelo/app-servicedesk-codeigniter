@@ -62,10 +62,10 @@ class perfil_pessoal_model extends CI_Model{
 
             $config['file_name']            = $new_file_name;
             $config['upload_path']          = './imagem/';
-            $config['allowed_types']        = 'gif|jpg|png';
-            $config['max_size']             = 3000;
-            $config['max_width']            = 3024;
-            $config['max_height']           = 3768;
+            $config['allowed_types']        = 'gif|jpg|png|bmp';
+            $config['max_size']             = 2024;
+            $config['max_width']            = 1024;
+            $config['max_height']           = 768;
 
             $this->load->library('upload');
 
@@ -80,7 +80,7 @@ class perfil_pessoal_model extends CI_Model{
             else
             {
 
-                    $imagem = './imagem/'.$new_file_name.'.'.$file_name_pieces;
+                    $imagem = '../../../imagem/'.$new_file_name.'.'.$file_name_pieces;
                     
                     $id = $this->session->userdata('id');
                     $this->db->where('id', $id);
