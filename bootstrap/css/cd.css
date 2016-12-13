@@ -206,6 +206,9 @@
         .full-width { 
             width: 70%; 
         }
+        .full-width-little-form { 
+            width: 100%; 
+        }
         .formResponsive{
             width: 100%;
             margin-right: 60%;
@@ -251,6 +254,7 @@
             text-align: center;
             margin-top: 3%;
         }
+        
     }
     @media (max-width: 1024px){
         .height-form{
@@ -303,6 +307,13 @@
 
         .affix + .container-fluid {
             padding-top: 70px;
+        }
+        
+        .alert-profile{
+            font-weight: bold;
+            text-align: center;
+            margin-top: 3%;
+            width: 100%
         }
     }
     @media (max-width:768px) {

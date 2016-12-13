@@ -57,9 +57,27 @@ class Perfil_pessoal_controller extends CI_Controller {
     
     public function update_profile() {
         
+        $_POST = json_decode(file_get_contents('php://input'), true);
+        
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('nome', 'Nome','required');
+        $this->form_validation->set_rules('email', 'Email','required');
+        $this->form_validation->set_rules('senha', 'Senha','required');
+        $this->form_validation->set_rules('ramal', 'Ramal','required');
+        
+        if($this->form_validation->run()== FALSE){
+            
+            echo json_encode(array('class' => 'danger','message' => 'Preencha todos os campos!'));
+            
+        }else{
+        
         $this->load->model('perfil_pessoal/perfil_pessoal_model');
         
-        echo  $this->perfil_pessoal_model->m_update_profile();
+            $this->perfil_pessoal_model->m_update_profile();
+            
+            echo  json_encode(array('class' => 'success','message' => 'Perfil atualizado com sucesso!'));
+        
+        }
     }
     
     

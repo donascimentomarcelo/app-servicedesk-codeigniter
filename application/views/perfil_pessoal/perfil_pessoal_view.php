@@ -10,17 +10,13 @@
         <script defer src="https://code.getmdl.io/1.2.1/material.min.js"></script>
 
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-        <link href="../../../bootstrap/css/cd.css" rel="stylesheet" type="text/css"/>
-
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+        <script src="../../../bootstrap/js/jquery.js" type="text/javascript"></script>
         <link href="../../../bootstrap/css/cd.css" rel="stylesheet" type="text/css"/>
 
         <script src="../../../angular/lib/angular.min.js" type="text/javascript"></script>
         <script src="../../../angular/js/app.js" type="text/javascript"></script>
         <script src="../../../angular/js/controllers/profile/profilectrl.js" type="text/javascript"></script>
         <script src="../../../angular/js/services/profile/profileAPIService.js" type="text/javascript"></script>
-        <script src="../../../angular/js/value/configValue.js" type="text/javascript"></script>
 
 
 
@@ -43,42 +39,35 @@
                     <!-- Your content goes here -->
 
                     <div id="container">
-
-                        <h1>Alterar Dados Pessoais</h1>
                         <div id="body">
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="modal-body">
-                                        <div ng-repeat="dataProfile in dataProfile">
-                                            <form role="form" name='formProfile' method="post" action="<?= base_url('index.php/perfil_pessoal/perfil_pessoal_controller/atualiza_perfil') ?>" id="formulario_usuario" enctype="multipart/form-data">
+                                            <form role="form" name='formProfile'  id="formulario_usuario">
 
-                                                <div class="form-group" >
+                                                <div class="form-group">
                                                     <img data-ng-src="{{dataProfile.imagem}}" class="img-circle" width="100px" height="100px">
-
                                                 </div>
-
-                                                <div class="form-group">
-                                                    <input type="text"  class="form-control"  ng-model="dataProfile.nome" placeholder="Informe o Nome."  ng-required="true"> 
+                                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-width-little-form">
+                                                    <input class="mdl-textfield__input" name='nome' type="text" id="name"  ng-model="dataProfile.nome" ng-required="true">
+                                                    <label class="mdl-textfield__label" for="name">Nome do Usuário</label>
                                                 </div>
-
-
-                                                <div class="form-group">
-                                                    <input type="password"  class="form-control"  ng-model="dataProfile.senha" placeholder="Informe a Senha."  ng-required="true">
+                                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-width-little-form">
+                                                    <input class="mdl-textfield__input" name='senha' type="password" id="password"  ng-model="dataProfile.senha" ng-required="true">
+                                                    <label class="mdl-textfield__label" for="password">Senha</label>
                                                 </div>
-
-
-                                                <div class="form-group">
-                                                    <input type="text"  class="form-control"  ng-model="dataProfile.email" placeholder="Informe o E-mail."  ng-required="true">
+                                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-width-little-form">
+                                                    <input class="mdl-textfield__input" name='email'  type="text" id="email"  ng-model="dataProfile.email" ng-required="true">
+                                                    <label class="mdl-textfield__label" for="email">E-mail</label>
                                                 </div>
-
-
-                                                <div class="form-group">
-                                                    <input type="text"  class="form-control"  ng-model="dataProfile.ramal" placeholder="Informe o Ramal."  ng-required="true">
+                                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-width-little-form">
+                                                    <input class="mdl-textfield__input" name='ramal' type="text" id="ramal"  ng-model="dataProfile.ramal" ng-required="true">
+                                                    <label class="mdl-textfield__label" for="ramal">Ramal</label>
                                                 </div>
 
 
-                                                <div class="form-group">
-                                                    <select class="form-control" ng-model="dataProfile.setor_fk"  ng-required="true" >
+                                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-width-little-form">
+                                                    <select class="form-control" name='idsetor' ng-model="dataProfile.setor_fk"  ng-required="true" >
 
                                                         <option ng-repeat="dataSector in dataSector" value="{{dataSector.idsetor}}" >{{dataSector.nomesetor}}</option>
 
@@ -87,14 +76,17 @@
                                                     </select>
                                                 </div>
 
-                                                <input type="hidden" ng-model="dataProfile.id"/>
+                                                <input type="hidden" name='id' ng-model="dataProfile.id"/>
 
                                                 <div>
-                                                    <button type="button" class="btn btn-secondary" ng-if="!formProfile.$invalid" ng-click="alterProfile(dataProfile)" >Atualizar</button>
+                                                    <button type="button" class="btn btn-secondary" ng-if="!formProfile.$invalid" ng-click="alterProfile(dataProfile)" ><i class="material-icons">done</i></button>
+                                                </div>
+                                                 <div ng-show="message.length" ng-hide="hideMessage" class="alert alert-{{message.class}} alert-dismissible alert-upload fade in" role="alert">{{message.message}}</div>
+                                                 
                                                 </div>
 
                                             </form>	    
-                                        </div> 
+                                        
                                     </div>
                                 </div>
                             </div> 

@@ -212,11 +212,11 @@
                     <h1>Login</h1>
                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-width">
                         <input class="mdl-textfield__input" type="text" id="userlgn" name="email" required="required"  autofocus>
-                        <label class="mdl-textfield__label" for="userlgn">Nome do Usuário</label>
+                        <label class="mdl-textfield__label" for="userlgn">Login</label>
                     </div>
                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-width">
                         <input class="mdl-textfield__input" type="password" id="passwordlgn"  required="required" name="senha">
-                        <label class="mdl-textfield__label" for="passwordlgn">Nome do Usuário</label>
+                        <label class="mdl-textfield__label" for="passwordlgn">Senha</label>
                     </div>
                     <div class="buttomlgn">    
                     

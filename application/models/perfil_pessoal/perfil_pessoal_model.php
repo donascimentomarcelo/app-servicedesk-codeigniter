@@ -183,7 +183,7 @@ class perfil_pessoal_model extends CI_Model{
 
             $this->db->where('id', $id);
 
-            $return = $this->db->update('usuarios', $arr);
+            $return = $this->db->update('usuarios1', $arr);
         } else {
 
             $return = $this->db->insert('usuarios', $arr);
@@ -195,7 +195,7 @@ class perfil_pessoal_model extends CI_Model{
             
         } else {
 
-            return FALSE;
+            return $this->db->_error_number();
         }
     }
 
