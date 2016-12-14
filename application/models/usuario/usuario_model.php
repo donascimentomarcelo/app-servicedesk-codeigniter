@@ -69,7 +69,7 @@ class usuario_model extends CI_Model {
         } 
         else 
         {
-            return FALSE;
+            return $this->db->_error_number();
         }
     }
 

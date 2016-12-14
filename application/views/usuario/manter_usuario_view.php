@@ -16,6 +16,7 @@
         <script src="../../../angular/js/app.js" type="text/javascript"></script>
         <script src="../../../angular/js/controllers/user/usercrtl.js" type="text/javascript"></script>
         <script src="../../../angular/js/services/user/userAPIService.js" type="text/javascript"></script>
+        <script src="../../../angular/js/interceptors/userInterceptors.js" type="text/javascript"></script>
         <script src="../../../angular/js/value/configValue.js" type="text/javascript"></script>
 
 
@@ -80,6 +81,7 @@
                                         </tr>
                                     </tbody>
                                 </table>
+                                <div class="{{infoUser.class}}">{{infoUser.message}}</div>
                                 <div class="location-pagination">
                                     <dir-pagination-controls max-size="5" direction-links="true" boundary-links="true"></dir-pagination-controls>
                                 </div>
@@ -145,9 +147,11 @@
                                                     <option ng-repeat="sectorData in sectorData" value="{{sectorData.idsetor}}">{{sectorData.nomesetor}}</option>
 
                                                 </select>
+                                                <div class="{{infoSector.class}}">{{infoSector.message}}</div>
                                             </div>
                                         </div>
                                     </div>
+                                    <div  ng-show="message.length" ng-hide="hideMessage" class="{{message.class}}">{{message.message}}</div>
 
                                     <hr>
                                     <div  data-spy="affix">
@@ -156,6 +160,7 @@
                                         <button type="button" ng-click="insert_or_edit(action)" ng-if="!useu_form.$invalid" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect"><i class="material-icons">archive</i></button><br><br>
                                         <button type="button" ng-click="new ()" class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored"> <i class="material-icons">add</i></button>
                                     </div>  
+                                     
                                 </form>	    
 
                             </div>
