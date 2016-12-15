@@ -121,8 +121,9 @@ class perfil_pessoal_model extends CI_Model{
             $return = $this->db->get();
             
             foreach($return ->result() as $row):
-                $arr[] = array(
-                    'imagem' => $row->imagem
+                $arr = array(
+                    'imagem' => $row->imagem,
+                    'nome' => $row->nome
                 );
             endforeach;
             

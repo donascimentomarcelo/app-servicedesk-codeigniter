@@ -16,40 +16,42 @@
         <script src="../../../bootstrap/js/bootstrap-filestyle.min.js" type="text/javascript"></script>
 
         <script src="../../../bootstrap/js/jquery.forms.js" type="text/javascript"></script>
-      
+
         <link href="../../../bootstrap/css/cd.css" rel="stylesheet" type="text/css"/>
         <script src="../../../bootstrap/js/cdJquery.js" type="text/javascript"></script>
 
-</head>
-<body>
+    </head>
+    <body>
 
-    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-        <?php
-        if ($this->session->userdata('perfil') == 'administrador') {
+        <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+            <?php
+            if ($this->session->userdata('perfil') == 'administrador')
+            {
 
-            include 'C:\xampp\htdocs\cd\application\views\menu_head\administrador\menu.php';
-        } else {
+                include 'C:\xampp\htdocs\cd\application\views\menu_head\administrador\menu.php';
+            } else
+            {
 
-            include 'C:\xampp\htdocs\cd\application\views\menu_head\usuario\menu.php';
-        }
-        ?>
-        <main class="mdl-layout__content">
-            <div class="page-content">
-                <!-- Your content goes here -->
-                <div id="container">
-                    <h1><?php foreach ($preenche_dados->result() as $dados): ?> <img src="../../.<?php echo $dados->imagem; ?>" class="img-circle" width="50px" height="50px"> <?php endforeach; ?> <?php echo $this->session->userdata('nome'); ?></h1>
-                    <div id="body">
-                        <div class="content-grid mdl-grid">
-                            <div class="mdl-cell mdl-cell--6-col">
-                                <div class="modal-body">
+                include 'C:\xampp\htdocs\cd\application\views\menu_head\usuario\menu.php';
+            }
+            ?>
+            <main class="mdl-layout__content">
+                <div class="page-content">
+                    <!-- Your content goes here -->
+                    <div id="container">
+                        <h1><div class="container-menu"></div></h1>
+                        <div id="body">
+                            <div class="content-grid mdl-grid">
+                                <div class="mdl-cell mdl-cell--6-col">
+                                    <div class="modal-body">
 
-                                    <?php foreach ($consulta->result() as $dados): ?>
+
                                         <div class="form-group" >
-                                            <img src="../../.<?php echo $dados->imagem; ?>" class="img-circle" width="100px" height="100px">
+                                            <div class="image-profile"></div>
                                         </div>
 
                                         <div class="modal-dialog">
-                                            <h4 class="modal-title">Selecione a nova foto para seu perfil!</h4>
+                                            <h4 class="modal-title">Selecione a nova imagem para seu perfil!</h4>
                                         </div>
                                         <div class="modal-body">
 
@@ -59,37 +61,26 @@
                                                     <input type="file" id="imagem" name="imagem" class="filestyle" data-icon="false">
                                                 </div>
 
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-default" data-dismiss="modal" onclick="document.location.href = document.location.href" ><i class="material-icons">autorenew</i></button>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal" onclick="loadContainer()"><i class="material-icons">autorenew</i></button>
 
-                                                <button type="button" class="btn btn-secondary" onclick="$('#formulario_usuario').submit()"><i class="material-icons">file_upload</i></button>
-                                                <div class="add-info"></div>
+                                                    <button type="button" class="btn btn-secondary" onclick="$('#formulario_usuario').submit()"><i class="material-icons">file_upload</i></button>
+                                                    <div class="add-info"></div>
 
-                                            </div> 
+                                                </div> 
+                                               
                                             </form>
-                                            
-
                                         </div>
-                                        <?php endforeach; ?>	
-                                           
+                                    </div>
                                 </div>
-                            </div>
-                        </div> 
+                            </div> 
+                        </div>
+                       </div>
                     </div>
-
-
-                    <div class="modal fade bs-example-modal-lg" id="alterPhoto" data-backdrop="static" >
-
-                    </div>
-
-
                 </div>
-                <p class="footer"></p>
-
-            </div>
-        </main>
-    </div>
-</body>
+            </main>
+        </div>
+    </body>
 </html>
 
 
