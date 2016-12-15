@@ -26,11 +26,8 @@
         <script src="../../../bootstrap/js/jquery.js" type="text/javascript"></script>
         <script src="../../../bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
 
-        <link href="../../../craftpip-jquery/css/jquery-confirm.css" rel="stylesheet" type="text/css"/>
-        <script src="../../../craftpip-jquery/js/jquery-confirm.js" type="text/javascript"></script>
-    
     </head>
-    <body ng-controller="usercrtl" style="margin-left: 0px;">
+    <body ng-controller="usercrtl">
         <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
             <?php include 'C:\xampp\htdocs\cd\application\views\menu_head\administrador\menu.php'; ?>
             <main class="mdl-layout__content">

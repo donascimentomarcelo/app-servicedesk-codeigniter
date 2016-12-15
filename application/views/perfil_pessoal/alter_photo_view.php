@@ -62,7 +62,7 @@
                                                 </div>
 
                                                 <div class="modal-footer">
-                                                    <button type="button" class="btn btn-default" data-dismiss="modal" onclick="loadContainer()"><i class="material-icons">autorenew</i></button>
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal" onclick="loadPhoto()"><i class="material-icons">autorenew</i></button>
 
                                                     <button type="button" class="btn btn-secondary" onclick="$('#formulario_usuario').submit()"><i class="material-icons">file_upload</i></button>
                                                     <div class="add-info"></div>
