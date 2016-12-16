@@ -8,6 +8,7 @@
             };
 
             function _getLoadProfile() {
+                
                 angular.element(document.getElementById('name')).parent().addClass('is-dirty is-focused');
                 angular.element(document.getElementById('name')).parent().removeClass('is-invalid');
                 

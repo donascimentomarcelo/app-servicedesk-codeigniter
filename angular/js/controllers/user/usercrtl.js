@@ -3,11 +3,11 @@
 
 
 
-        angular.module("user").controller("usercrtl", function ($scope, $timeout, userAPI, userInterceptors) {
+        angular.module("user").controller("usercrtl", function ($scope, $timeout, snackbar, toastr, userAPI, userInterceptors, userValidate) {
 
-            $scope.userData =   [];
+            $scope.userData   = [];
             $scope.sectorData = [];
-            $scope.infoUser =   [];
+            $scope.infoUser   = [];
             $scope.infoSector = [];
 
             var loadUser = function () {
@@ -40,21 +40,20 @@
                     //http://stackoverflow.com/questions/24443246/angularjs-how-to-upload-multipart-form-data-and-a-file
                     delete $scope.action;
                     delete $scope.selectedIndex;
-                    userInterceptors.getInsert_or_edit();
+                    userValidate.getValitadeMessage(data);
+                    
                     loadUser();
-                    $scope.message = data;
-                    $scope.hideMessage = false;
 
-                    $timeout(function () {
-                        $scope.hideMessage = true;
-                    }, 3000);
 
                 }).error(function () {
-                    $scope.infoUser = {
+                    $scope.error = {
                         'class': 'alert alert-danger alert-dismissible alert-content-grid-mdl-grid fade in',
                         'message': 'Não foi possível realizar a operação!'};
-                    $scope.message = $scope.infoUser;
+                    //$scope.message = $scope.error;
                     $scope.hideMessage = false;
+                    
+                    toastr.error($scope.error.message);
+                    //$scope.scroll_down(alertDiv);
                     $timeout(function () {
                         $scope.hideMessage = true;
                     }, 3000);

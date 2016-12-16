@@ -58,14 +58,16 @@ class Usuario_controller extends CI_Controller {
         
             $this->load->model('usuario/usuario_model');
    
-            $this->usuario_model->m_insert_or_edit_user();
+            echo $this->usuario_model->m_insert_or_edit_user();
+            
+            /*
 
             echo  json_encode(
                         array(
                             'class' => 'alert alert-success alert-dismissible alert-content-grid-mdl-grid fade in',
                             'message' => 'Operação realizada com sucesso!'
                             )
-                        );
+                        );*/
         
         }
     }

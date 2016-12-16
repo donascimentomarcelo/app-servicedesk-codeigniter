@@ -17,15 +17,18 @@
         <script src="../../../angular/js/controllers/user/usercrtl.js" type="text/javascript"></script>
         <script src="../../../angular/js/services/user/userAPIService.js" type="text/javascript"></script>
         <script src="../../../angular/js/interceptors/userInterceptors.js" type="text/javascript"></script>
+        <script src="../../../angular/js/interceptors/user/userValidate.js" type="text/javascript"></script>
         <script src="../../../angular/js/value/configValue.js" type="text/javascript"></script>
-
+        <script src="../../../angular/lib/angular.snackbar.js" type="text/javascript"></script>
 
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
         <link href="../../../bootstrap/css/cd.css" rel="stylesheet" type="text/css"/>
-
+        <link href="../../../bootstrap/css/snackBar.css" rel="stylesheet" type="text/css"/>
         <script src="../../../bootstrap/js/jquery.js" type="text/javascript"></script>
         <script src="../../../bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-
+        
+        <script src="https://unpkg.com/angular-toastr/dist/angular-toastr.tpls.js"></script>
+        <link rel="stylesheet" href="https://unpkg.com/angular-toastr/dist/angular-toastr.css" />
     </head>
     <body ng-controller="usercrtl">
         <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
@@ -34,7 +37,6 @@
                 <div class="page-content">
                     <div id="container">
                         <h1><?php foreach ($preenche_dados->result() as $dados): ?> <img src="../../.<?php echo $dados->imagem; ?>" class="img-circle" width="50px" height="50px"> <?php endforeach; ?> <?php echo $this->session->userdata('nome'); ?></h1>
-
                         <div id="body">
                             <div class="margin-top-table">
                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
@@ -46,7 +48,6 @@
                                         <label class="mdl-textfield__label" for="sample-expandable">Pesquise pelo nome do usuário</label>
                                     </div>
                                 </div>
-
                                 <table class="mdl-data-table mdl-js-data-table  mdl-shadow--2dp" cellspacing="0" width="100%" id="tabela1">
                                     <thead>
                                         <tr>
@@ -83,7 +84,6 @@
                                     <dir-pagination-controls max-size="5" direction-links="true" boundary-links="true"></dir-pagination-controls>
                                 </div>
                             </div>
-
                             <div class="formResponsive">
                                 <form role="form" name="useu_form" enctype="multipart/form-data">
                                     <div class="content-grid mdl-grid">
@@ -139,38 +139,27 @@
                                             </div>
                                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-width">
                                                 <select class="form-control" ng-model="action.setor_fk" ng-required="true">
-
                                                     <option value="">Selecione um Setor</option>
                                                     <option ng-repeat="sectorData in sectorData" value="{{sectorData.idsetor}}">{{sectorData.nomesetor}}</option>
-
                                                 </select>
                                                 <div class="{{infoSector.class}}">{{infoSector.message}}</div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div  ng-show="message.length" ng-hide="hideMessage" class="{{message.class}}">{{message.message}}</div>
-
-                                    <hr>
+                                <div class="snackbar-container" data-snackbar="true" data-snackbar-duration="1000" data-snackbar-remove-delay="200"></div>
+                            </div>
+                                    <div ng-show="message.length" ng-hide="hideMessage" class="{{message.class}}">{{message.message}}</div>
                                     <div  data-spy="affix">
                                         <!--  <div  data-spy="affix" data-offset-top="500">-->
-
-                                        <button type="button" ng-click="insert_or_edit(action)" ng-if="!useu_form.$invalid" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect"><i class="material-icons">archive</i></button><br><br>
+                                        <button type="button" ng-click="insert_or_edit(action, 'alert-div')" ng-if="!useu_form.$invalid" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect"><i class="material-icons">archive</i></button><br><br>
                                         <button type="button" ng-click="new ()" class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored"> <i class="material-icons">add</i></button>
                                     </div>  
-                                     
                                 </form>	    
-
                             </div>
-
                         </div>
-
                     </div>
-
                 </div>
+            </main>
         </div>
-
-    </div>
-</main>
-</div>
-</body>
+    </body>
 </html>

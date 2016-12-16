@@ -6,7 +6,7 @@
 
     angular.module("inventarioConfig", ['angularUtils.directives.dirPagination']);
     
-    angular.module("user", ['angularUtils.directives.dirPagination','ngRoute']);
+    angular.module("user", ['angularUtils.directives.dirPagination','ngRoute','angular.snackbar','toastr']);
     
     angular.module("profile", []);
     
