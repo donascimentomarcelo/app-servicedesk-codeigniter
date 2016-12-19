@@ -7,28 +7,25 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <link rel="stylesheet" href="https://code.getmdl.io/1.2.1/material.indigo-pink.min.css">
         <script defer src="https://code.getmdl.io/1.2.1/material.min.js"></script>
-
         <script src="../../../angular/lib/angular.min.js" type="text/javascript"></script>
         <script src="../../../angular/lib/angular-route.js" type="text/javascript"></script>
         <script src="../../../angular/lib/dirPagination.js" type="text/javascript"></script>
         <script src="../../../angular/lib/angular-file.js" type="text/javascript"></script>
         <script src="../../../angular/lib/angular-resource.min.js" type="text/javascript"></script>
+        <script src="../../../angular/lib/angular.snackbar.js" type="text/javascript"></script>
+        <script src="../../../angular/lib/angular-toastr.tpls.js" type="text/javascript"></script>
+        <link href="../../../angular/css/angular-toastr.css" rel="stylesheet" type="text/css"/>
         <script src="../../../angular/js/app.js" type="text/javascript"></script>
         <script src="../../../angular/js/controllers/user/usercrtl.js" type="text/javascript"></script>
         <script src="../../../angular/js/services/user/userAPIService.js" type="text/javascript"></script>
-        <script src="../../../angular/js/interceptors/userInterceptors.js" type="text/javascript"></script>
+        <script src="../../../angular/js/interceptors/user/userInterceptors.js" type="text/javascript"></script>
         <script src="../../../angular/js/interceptors/user/userValidate.js" type="text/javascript"></script>
         <script src="../../../angular/js/value/configValue.js" type="text/javascript"></script>
-        <script src="../../../angular/lib/angular.snackbar.js" type="text/javascript"></script>
-
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
         <link href="../../../bootstrap/css/cd.css" rel="stylesheet" type="text/css"/>
         <link href="../../../bootstrap/css/snackBar.css" rel="stylesheet" type="text/css"/>
         <script src="../../../bootstrap/js/jquery.js" type="text/javascript"></script>
         <script src="../../../bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-        
-        <script src="https://unpkg.com/angular-toastr/dist/angular-toastr.tpls.js"></script>
-        <link rel="stylesheet" href="https://unpkg.com/angular-toastr/dist/angular-toastr.css" />
     </head>
     <body ng-controller="usercrtl">
         <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
@@ -85,7 +82,7 @@
                                 </div>
                             </div>
                             <div class="formResponsive">
-                                <form role="form" name="useu_form" enctype="multipart/form-data">
+                                <form role="form" name="user_form" enctype="multipart/form-data">
                                     <div class="content-grid mdl-grid">
                                         <div class="mdl-cell mdl-cell--6-col">
                                             <div class="form-group">
@@ -147,14 +144,14 @@
                                         </div>
                                     </div>
                                 <div class="snackbar-container" data-snackbar="true" data-snackbar-duration="1000" data-snackbar-remove-delay="200"></div>
-                            </div>
-                                    <div ng-show="message.length" ng-hide="hideMessage" class="{{message.class}}">{{message.message}}</div>
-                                    <div  data-spy="affix">
-                                        <!--  <div  data-spy="affix" data-offset-top="500">-->
-                                        <button type="button" ng-click="insert_or_edit(action, 'alert-div')" ng-if="!useu_form.$invalid" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect"><i class="material-icons">archive</i></button><br><br>
-                                        <button type="button" ng-click="new ()" class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored"> <i class="material-icons">add</i></button>
-                                    </div>  
-                                </form>	    
+                                <div ng-show="message.length" ng-hide="hideMessage" class="{{message.class}}">{{message.message}}</div>
+                                <div  data-spy="affix">
+                                    <!--  <div  data-spy="affix" data-offset-top="500">-->
+                                    <button type="button" ng-click="insert_or_edit(action)" ng-if="!user_form.$invalid" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect"><i class="material-icons">archive</i></button><br><br>
+                                    <button type="button" ng-click="new ()" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect"> <i class="material-icons">add</i></button>
+                                </div>  
+                            </form>	    
+                        </div>
                             </div>
                         </div>
                     </div>

@@ -1,6 +1,6 @@
 
 
-        angular.module("hardware").controller("hardwarecrtl", function($scope, hardwareAPI){
+        angular.module("hardware").controller("hardwarecrtl", function($scope,hardwareValidate, hardwareAPI){
             
             $scope.dados = [];
             var carregaHardware = function(){
@@ -15,6 +15,7 @@
             
             $scope.registraInventario = function(registro){
                 hardwareAPI.getRegistraInventario(registro).success(function(data){
+                hardwareValidate.messageHardware(data);
                 delete $scope.registro;
                 delete $scope.selectedIndex;
                 carregaHardware();

@@ -166,7 +166,8 @@ class perfil_pessoal_model extends CI_Model{
     
     
     
-    public function m_update_profile() {
+    public function m_update_profile() 
+    {
         
         $_POST = json_decode(file_get_contents('php://input'), true);
       
@@ -179,23 +180,23 @@ class perfil_pessoal_model extends CI_Model{
             'ramal' => $this->input->post('ramal'),
             'setor_fk' => $this->input->post('setor_fk')
         );
-
-        if ($id != 0) {
-
+        if($this->input->post('id')!= NULL)
+        {
             $this->db->where('id', $id);
 
             $return = $this->db->update('usuarios', $arr);
-        } else {
-
-            $return = $this->db->insert('usuarios', $arr);
         }
-
-        if ($return) {
-
+        else
+        {
+            return 'ID inálido.';
+        }
+        
+        if ($return) 
+        {
             return TRUE;
-            
-        } else {
-
+        } 
+        else 
+        {
             return $this->db->_error_number();
         }
     }

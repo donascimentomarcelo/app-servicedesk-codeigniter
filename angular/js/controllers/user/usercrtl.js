@@ -1,9 +1,12 @@
 
+        /*
+        http://stackoverflow.com/questions/24443246/angularjs-how-to-upload-multipart-form-data-and-a-file 
+        fix to design lite's MDL 
+        */
 
 
 
-
-        angular.module("user").controller("usercrtl", function ($scope, $timeout, snackbar, toastr, userAPI, userInterceptors, userValidate) {
+        angular.module("user").controller("usercrtl", function ($scope, userAPI, userInterceptors, userValidate) {
 
             $scope.userData   = [];
             $scope.sectorData = [];
@@ -37,9 +40,13 @@
             $scope.insert_or_edit = function (action) {
 
                 userAPI.getActionUser(action).success(function (data) {
-                    //http://stackoverflow.com/questions/24443246/angularjs-how-to-upload-multipart-form-data-and-a-file
+                    
+                    if(data === '1')
+                    {
                     delete $scope.action;
                     delete $scope.selectedIndex;
+                    }
+                    
                     userValidate.getValitadeMessage(data);
                     
                     loadUser();
@@ -49,14 +56,7 @@
                     $scope.error = {
                         'class': 'alert alert-danger alert-dismissible alert-content-grid-mdl-grid fade in',
                         'message': 'Não foi possível realizar a operação!'};
-                    //$scope.message = $scope.error;
-                    $scope.hideMessage = false;
-                    
-                    toastr.error($scope.error.message);
-                    //$scope.scroll_down(alertDiv);
-                    $timeout(function () {
-                        $scope.hideMessage = true;
-                    }, 3000);
+                    $scope.message = $scope.error;  
                 });
 
             };

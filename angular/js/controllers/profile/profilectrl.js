@@ -1,7 +1,7 @@
 
 
 
-        angular.module("profile").controller("profilectrl", function ($scope, $timeout, profileAPI, profileInterceptors) {
+        angular.module("profile").controller("profilectrl", function ($scope, $timeout, profileAPI, profileValidate, profileInterceptors) {
 
             $scope.dataProfile = [];
             $scope.dataSector =  [];
@@ -42,12 +42,7 @@
             $scope.alterProfile = function (dataProfile) {
                 profileAPI.getAlterProfile(dataProfile).success(function (data) {
                     loadProfile();
-                    $scope.message = data;
-                    $scope.hideMessage = false;
-
-                    $timeout(function () {
-                        $scope.hideMessage = true;
-                    },3000);
+                    profileValidate.getMessageProfile(data);
 
                 }).error(function () {
                     $scope.info = {

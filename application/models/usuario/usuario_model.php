@@ -50,8 +50,15 @@ class usuario_model extends CI_Model {
             'setor_fk' => $array['setor_fk'],
             'imagem' => '../../../imagem/imagem_vazia.jpg'
         );
-
-        $id = $array['id'];
+        
+        if($this->input->post('id') != NULL)
+        {
+        $id = $this->input->post('id');
+        }
+        else
+        {
+        $id = 0;  
+        }
 
         if ($id != 0) 
         {

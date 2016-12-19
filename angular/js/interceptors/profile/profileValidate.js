@@ -1,17 +1,17 @@
 
 
-angular.module('user').factory('userValidate', function (toastr, userInterceptors) {
+        
+        angular.module('profile').factory('profileValidate', function (toastr) {
 
             return{
-               getValitadeMessage : _getValitadeMessage
+               getMessageProfile : _getMessageProfile
             };
 
-            function _getValitadeMessage(data) {
+            function _getMessageProfile(data) {
                 
                 if(data === '1')
                 {
                     toastr.success('Operação realizada com sucesso!');
-                    userInterceptors.getInsert_or_edit();
                 }
                 else if(data === '1146')
                 {

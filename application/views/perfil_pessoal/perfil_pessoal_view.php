@@ -9,17 +9,18 @@
         <link rel="stylesheet" href="https://code.getmdl.io/1.2.1/material.indigo-pink.min.css">
         <script defer src="https://code.getmdl.io/1.2.1/material.min.js"></script>
 
-        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-        <script src="../../../bootstrap/js/jquery.js" type="text/javascript"></script>
-        <link href="../../../bootstrap/css/cd.css" rel="stylesheet" type="text/css"/>
-
         <script src="../../../angular/lib/angular.min.js" type="text/javascript"></script>
+        <script src="../../../angular/lib/angular-toastr.tpls.js" type="text/javascript"></script>
         <script src="../../../angular/js/app.js" type="text/javascript"></script>
         <script src="../../../angular/js/controllers/profile/profilectrl.js" type="text/javascript"></script>
         <script src="../../../angular/js/services/profile/profileAPIService.js" type="text/javascript"></script>
-        <script src="../../../angular/js/interceptors/profileInterceptors.js" type="text/javascript"></script>
+        <script src="../../../angular/js/interceptors/profile/profileInterceptors.js" type="text/javascript"></script>
+        <script src="../../../angular/js/interceptors/profile/profileValidate.js" type="text/javascript"></script>
+        <link href="../../../angular/css/angular-toastr.css" rel="stylesheet" type="text/css"/>
+        <link href="../../../bootstrap/css/cd.css" rel="stylesheet" type="text/css"/>
 
-
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <script src="../../../bootstrap/js/jquery.js" type="text/javascript"></script>
     </head>
     <body ng-controller="profilectrl">
         <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
@@ -64,7 +65,7 @@
                                                 </select>
                                             </div>
                                             <input type="hidden" name='id' ng-model="dataProfile.id"/>
-                                            <button type="button" class="btn btn-secondary" ng-if="!formProfile.$invalid" ng-click="alterProfile(dataProfile)" ><i class="material-icons">done</i></button>
+                                            <button type="button" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect" ng-if="!formProfile.$invalid" ng-click="alterProfile(dataProfile)" ><i class="material-icons">archive</i></button>
                                             <div ng-show="message.length" ng-hide="hideMessage" class="{{message.class}}" role="alert">{{message.message}}</div>
                                         </form>	    
                                     </div>

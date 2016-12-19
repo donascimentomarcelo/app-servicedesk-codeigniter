@@ -64,30 +64,18 @@ class Perfil_pessoal_controller extends CI_Controller {
         $this->form_validation->set_rules('email', 'Email','required');
         $this->form_validation->set_rules('senha', 'Senha','required');
         $this->form_validation->set_rules('ramal', 'Ramal','required');
-        $this->form_validation->set_rules('nomesetor', 'Setor','required');
+        $this->form_validation->set_rules('setor_fk', 'Setor','required');
         
         if($this->form_validation->run()== FALSE){
             
-            echo json_encode(
-                    array(
-                        'class' => 'alert alert-danger alert-dismissible alert-upload fade in',
-                        'message' => 'Preencha todos os campos!'
-                        )
-                    );
+            echo 'Preencha todos os campos!';
             
         }else{
         
         $this->load->model('perfil_pessoal/perfil_pessoal_model');
         
-            $this->perfil_pessoal_model->m_update_profile();
-            
-            echo  json_encode(
-                    array(
-                        'class' => 'alert alert-success alert-dismissible alert-upload fade in',
-                        'message' => 'Perfil atualizado com sucesso!'
-                        )
-                    );
-        
+        echo $this->perfil_pessoal_model->m_update_profile();
+                    
         }
     }
     

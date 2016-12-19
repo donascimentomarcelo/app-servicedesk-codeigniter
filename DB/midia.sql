@@ -101,7 +101,7 @@ INSERT INTO `setor` (`idsetor`, `nomesetor`, `statussetor`) VALUES
 CREATE TABLE IF NOT EXISTS `usuarios` (
 `id` int primary key auto_increment,
   `nome` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL UNIQUE,
   `senha` varchar(255) NOT NULL,
   `perfil` enum('administrador','usuario') NOT NULL,
   `status` enum('ativo','inativo') NOT NULL,

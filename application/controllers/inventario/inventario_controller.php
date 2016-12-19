@@ -4,212 +4,138 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Inventario_controller extends CI_Controller {
 
-    function hardware_list(){
+    function hardware_list()
+    {
         
         $this->load->helper('valida_login/valida_helper');
-        
+
         $variaveis['validacao'] = getValida();
 
 
         $this->load->helper('preenche_dados/preenche_dados_helper');
 
         $variaveis['preenche_dados'] = getPreencheDados();
-        
-        
-        $this->load->view('inventario/hardware/hardware_view',$variaveis);
+
+
+        $this->load->view('inventario/hardware/hardware_view', $variaveis);
     }
     
-    function listagem(){
-        
+    function listagem()
+    {
         $this->load->model('inventario/inventario_model');
-        
-        $inventario = $this->inventario_model->m_hardware_list();
-        
-        echo $inventario;
+
+        echo $this->inventario_model->m_hardware_list();
     }
     
-    function registro_hardware(){
-        
+    function registro_hardware()
+    {
         $this->load->model('inventario/inventario_model');
-        
-        $insert = $this->inventario_model->m_registro_hardware();
-        
-        if($insert){
-            
-            echo 1;
-            
-        }else{
-            
-            echo 0;
-        }
-        
+
+        echo $this->inventario_model->m_registro_hardware();
     }
     
-    function listagem_where($idinventario = NULL){
-        
+    function listagem_where($idinventario = NULL)
+    {
         $this->load->model('inventario/inventario_model');
         
-        $inventario = $this->inventario_model->m_hardware_list_where($idinventario);
-        
-        echo $inventario;
-        
+        echo $this->inventario_model->m_hardware_list_where($idinventario);
     }
     
-    function exclui_hardware(){
-        
+    function exclui_hardware()
+    {
         $this->load->model('inventario/inventario_model');
         
-        $deletar = $this->inventario_model->m_exclui_hardware();
-        
-        if($deletar){
-            
-            echo 1;
-            
-        }else{
-            
-            echo 0;
-            
-        }
-        
+        echo $this->inventario_model->m_exclui_hardware();
     }
     
-    function list_edit_hw(){
-        
+    function list_edit_hw()
+    {
         $this->load->model('inventario/inventario_model');
         
-        $list = $this->inventario_model->m_edit_hw();
-        
-        echo $list;
-        
+        echo $this->inventario_model->m_edit_hw();
     }
     
     //SOFTWARE
     
-    function software_list(){
-        
+    function software_list()
+    {
         $this->load->helper('valida_login/valida_helper');
-        
+
         $variaveis['validacao'] = getValida();
 
 
         $this->load->helper('preenche_dados/preenche_dados_helper');
 
         $variaveis['preenche_dados'] = getPreencheDados();
-        
-        
-        $this->load->view('inventario/software/software_view',$variaveis);
-        
+
+
+        $this->load->view('inventario/software/software_view', $variaveis);
     }
     
-    function list_software(){
-        
+    function list_software()
+    {
         $this->load->model('inventario/inventario_model');
-        
-        $software = $this->inventario_model->m_software_list();
-        
-        echo $software;
-        
+
+        echo $this->inventario_model->m_software_list();
     }
     
-    function insert_or_update_software(){
-        
+    function insert_or_update_software()
+    {
         $this->load->model('inventario/inventario_model');
-        
-        $registro = $this->inventario_model->m_insert_or_update_software();
-        
-        if($registro){
-            
-            echo 1;
-            
-        }else{
-            
-            echo 0;
-            
-        }
-        
+
+        echo $this->inventario_model->m_insert_or_update_software();
     }
     
-    function delete_software(){
-        
+    function delete_software()
+    {
         $this->load->model('inventario/inventario_model');
-        
-        $exclusao = $this->inventario_model->m_delete_software();
-        
-        if($exclusao){
-            
-            echo 1;
-            
-        }else{
-            
-            echo 0;
-            
-        }
+
+        echo $this->inventario_model->m_delete_software();
     }
-    
+
     //  CONFIGURAÇÃO 
     
-    function configuracao_inventario_list(){
-        
+    function configuracao_inventario_list()
+    {
         $this->load->helper('valida_login/valida_helper');
-        
+
         $variaveis['validacao'] = getValida();
 
 
         $this->load->helper('preenche_dados/preenche_dados_helper');
 
         $variaveis['preenche_dados'] = getPreencheDados();
-        
-        
-        $this->load->view('inventario/config/config_view',$variaveis);
-        
+
+
+        $this->load->view('inventario/config/config_view', $variaveis);
     }
     
-    function list_config_hw(){
-        
+    function list_config_hw()
+    {
         $this->load->model('inventario/inventario_model');
         
-        $list = $this->inventario_model->m_list_config_hw();
-        
-        echo $list;
-        
+        echo $this->inventario_model->m_list_config_hw();
     }
-    function list_config_sw(){
-        
+    function list_config_sw()
+    {
         $this->load->model('inventario/inventario_model');
         
-        $list = $this->inventario_model->m_list_config_sw();
-        
-        echo $list;
-        
+        echo $this->inventario_model->m_list_config_sw();
     }
     
     
-    function list_config(){
-        
+    function list_config()
+    {
         $this->load->model('inventario/inventario_model');
         
-        $list = $this->inventario_model->m_list_config();
-        
-        echo $list;
-        
+        echo $this->inventario_model->m_list_config();
     }
     
-    function save_or_edit_config(){
-        
+    function save_or_edit_config()
+    {
         $this->load->model('inventario/inventario_model');
         
-        $action = $this->inventario_model->m_save_or_edit_config();
-        
-        if($action){
-            
-            echo 1;
-            
-        }else{
-            
-            echo 0;
-            
-        }
-        
+        echo $this->inventario_model->m_save_or_edit_config();
     }
     
     

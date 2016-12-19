@@ -2,7 +2,8 @@
 
 class inventario_model extends CI_Model{
     
-    function __construct() {
+    function __construct() 
+    {
         
         parent::__construct();
         
@@ -11,7 +12,8 @@ class inventario_model extends CI_Model{
     
     //HARDWARE
     
-    function m_hardware_list(){
+    function m_hardware_list()
+    {
         
         $this->db->select('*');
         $this->db->from('inventario_hw');
@@ -40,7 +42,8 @@ class inventario_model extends CI_Model{
         }
     }
     
-    function m_registro_hardware(){
+    function m_registro_hardware()
+    {
         
         $_POST = json_decode(file_get_contents('php://input'), true);
         
@@ -56,12 +59,15 @@ class inventario_model extends CI_Model{
         
         $id = $this->input->post('idinventario');
         
-        if($id != 0){
+        if($id != 0)
+        {
             
             $this->db->where('idinventario', $id);
             $query = $this->db->update('inventario_hw', $dados);
             
-        }else{
+        }
+        else
+        {
             
             $query = $this->db->insert('inventario_hw', $dados);
             
@@ -73,13 +79,14 @@ class inventario_model extends CI_Model{
             
         }else{
             
-            return FALSE;
+            return $this->db->_error_number();
             
         }
         
     }
     
-    function m_exclui_hardware(){
+    function m_exclui_hardware()
+    {
         
         
        $data = json_decode(file_get_contents("php://input"));     
@@ -90,11 +97,14 @@ class inventario_model extends CI_Model{
        $query = $this->db->delete('inventario_hw');
        
        
-       if($query){
+       if($query)
+       {
            
            return  TRUE;
            
-       }else{
+       }
+       else
+       {
            
            return $this->db->_error_number();
            
@@ -102,7 +112,8 @@ class inventario_model extends CI_Model{
     
     }
     
-    function m_edit_hw(){
+    function m_edit_hw()
+    {
         
         $data = json_decode(file_get_contents("php://input"));     
  
@@ -135,7 +146,8 @@ class inventario_model extends CI_Model{
     
     //SOFTWARE
     
-    function m_software_list(){
+    function m_software_list()
+    {
         
         $this->db->select('*');
         $this->db->from('inventario_sw');
@@ -144,7 +156,8 @@ class inventario_model extends CI_Model{
         
         $variaveis = $this->db->get();
         
-        foreach($variaveis -> result() as $linha){
+        foreach($variaveis -> result() as $linha)
+        {
             
             $arr[] =  array(
                 
@@ -161,7 +174,8 @@ class inventario_model extends CI_Model{
         return json_encode($arr);
     }
     
-    function m_insert_or_update_software(){
+    function m_insert_or_update_software()
+    {
         
          $_POST = json_decode(file_get_contents('php://input'), true);
          
@@ -178,30 +192,37 @@ class inventario_model extends CI_Model{
              
          );
          
-         if($idsoftware != 0){
+         if($idsoftware != 0)
+         {
              
              $this->db->where('idsoftware', $idsoftware);
              $query = $this->db->update('inventario_sw', $arr);
              
-         }else{
+         }
+         else
+         {
              
              $query = $this->db->insert('inventario_sw', $arr);
              
          }
      
-         if($query){
+         if($query)
+         {
              
              return TRUE;
              
-         }else{
+         }
+         else
+         {
              
-             return FALSE;
+             return $this->db->_error_number();
              
          }
      
     }
     
-    function m_delete_software(){
+    function m_delete_software()
+    {
         
         $data = json_decode(file_get_contents("php://input"));
         
@@ -210,11 +231,14 @@ class inventario_model extends CI_Model{
         $this->db->where('idsoftware', $idsoftware);
         $exclusao = $this->db->delete('inventario_sw');
         
-        if($exclusao){
+        if($exclusao)
+        {
             
             return TRUE;
             
-        }else{
+        }
+        else
+        {
             
             return $this->db->_error_number();
             
@@ -224,7 +248,8 @@ class inventario_model extends CI_Model{
     //CONFIG
     
 
-    function m_list_config(){
+    function m_list_config()
+    {
         
         $this->db->select('*');
         $this->db->from('inventario_config');
@@ -246,7 +271,8 @@ class inventario_model extends CI_Model{
         return json_encode($arr);
     }
     
-    function m_list_config_hw(){
+    function m_list_config_hw()
+    {
         
         $this->db->select('*');
         $this->db->from('inventario_config');
@@ -269,7 +295,8 @@ class inventario_model extends CI_Model{
         
         return json_encode($arr);
     }
-    function m_list_config_sw(){
+    function m_list_config_sw()
+    {
         
         $this->db->select('*');
         $this->db->from('inventario_config');
@@ -293,7 +320,8 @@ class inventario_model extends CI_Model{
         return json_encode($arr);
     }
     
-    function m_save_or_edit_config(){
+    function m_save_or_edit_config()
+    {
         
         $_POST = json_decode(file_get_contents('php://input'), true);
         
@@ -307,24 +335,30 @@ class inventario_model extends CI_Model{
                 
             );
         
-        if($idconfig != 0){
+        if($idconfig != 0)
+        {
             
             $this->db->where('idconfig', $idconfig);
             $action = $this->db->update('inventario_config',$arr);
             
-        }else{
+        }
+        else
+        {
             
             $action = $this->db->insert('inventario_config',$arr);
             
         }
         
-        if($action){
+        if($action)
+        {
         
             return TRUE;
             
-        }else{
+        }
+        else
+        {
             
-            return FALSE;
+            return $this->db->_error_number();
             
         }
     

@@ -10,13 +10,17 @@
 
         <script src="../../../angular/lib/angular.min.js" type="text/javascript"></script>
         <script src="../../../angular/lib/dirPagination.js" type="text/javascript"></script>
+        <script src="../../../angular/lib/angular-toastr.tpls.js" type="text/javascript"></script>
         <script src="../../../angular/js/app.js" type="text/javascript"></script>
         <script src="../../../angular/js/controllers/inventario/hardwarecrtl.js" type="text/javascript"></script>
         <script src="../../../angular/js/services/inventario/hardwareAPIService.js" type="text/javascript"></script>
         <script src="../../../angular/js/value/configValue.js" type="text/javascript"></script>
         <!--<script src="../../../angular/js/config/interceptorconfig.js" type="text/javascript"></script>-->
         <!--<script src="../../../angular/js/interceptors/loadingInterceptors.js" type="text/javascript"></script>-->
-
+        <script src="../../../angular/js/interceptors/inventario/hardware/hardwareInterceptor.js" type="text/javascript"></script>
+        <script src="../../../angular/js/interceptors/inventario/hardware/hardwareValidate.js" type="text/javascript"></script>
+        
+        <link href="../../../angular/css/angular-toastr.css" rel="stylesheet" type="text/css"/>
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
         <link href="../../../bootstrap/css/cd.css" rel="stylesheet" type="text/css"/>
 
@@ -88,11 +92,11 @@
                                         </div>
                                         <div class="form-group">
 
-                                            <input type="text" class="form-control" ng-model="registro.nome" name="nome"  placeholder="Nome do produto" ng-required="true">
+                                            <input type="text" class="form-control" ng-model="registro.nome" name="nameHardware"  placeholder="Nome do produto" ng-required="true">
                                         </div>
                                         <div class="form-group">
 
-                                            <input type="text" class="form-control" ng-model="registro.modelo" name="modelo" placeholder="Modelo do produto" ng-required="true">
+                                            <input type="text" class="form-control" ng-model="registro.modelo" name="modelHardware" placeholder="Modelo do produto" ng-required="true">
                                         </div>
                                         <div class="form-group">
                                             <select type="text" class="form-control" ng-model="registro.inventario_config_fk" name="inventario_config_fk" ng-required="true">
@@ -107,7 +111,7 @@
                                             
                                             <div  data-spy="affix">
                                                 <button type="button" ng-click="registraInventario(registro)" ng-if="!inventarioForm.$invalid" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect"><i class="material-icons">archive</i></button><br><br>
-                                                <button type="button" ng-click="new ()" class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored"> <i class="material-icons">add</i></button>
+                                                <button type="button" ng-click="new ()" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect"> <i class="material-icons">add</i></button>
                                             </div> 
                                             
                                         </div>  

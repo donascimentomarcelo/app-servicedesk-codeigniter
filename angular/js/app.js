@@ -1,6 +1,6 @@
 
 
-    angular.module("hardware", ['angularUtils.directives.dirPagination']);
+    angular.module("hardware", ['angularUtils.directives.dirPagination','toastr']);
 
     angular.module("software", ['angularUtils.directives.dirPagination']);
 
@@ -8,7 +8,7 @@
     
     angular.module("user", ['angularUtils.directives.dirPagination','ngRoute','angular.snackbar','toastr']);
     
-    angular.module("profile", []);
+    angular.module("profile", ['toastr']);
     
     angular.module("photo_profile", ['naif.base64']);
     
