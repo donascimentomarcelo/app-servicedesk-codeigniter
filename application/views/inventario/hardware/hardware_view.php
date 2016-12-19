@@ -80,7 +80,7 @@
                                         <td class="none-table-768 none-table-480" style="text-align: center;">{{dados.modelo}}</td>
                                         <td class="none-table-768 none-table-480" style="text-align: center;">{{dados.nome_config}}</td>
                                         <td style="text-align: center;">
-                                            <a href="javascript:;"  ng-click="apagarRegistro(dados.idinventario)"><button type="button" class="glyphicon glyphicon-trash"></button></a>
+                                            <a href="javascript:;"  ng-click="apagarRegistro(dados.idinventario)"><i class="material-icons">delete_forever</i></a>
                                         </td>
                                     </tr>
                                     </tbody>

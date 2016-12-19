@@ -3,7 +3,10 @@
 
                  angular.module('hardware').factory('hardwareValidate', function(toastr){
                      
-                    return {messageHardware : _messageHardware};
+                    return {
+                        messageHardware : _messageHardware,
+                        deleteHardware : _deleteHardware
+                    };
 
                     function _messageHardware(data){
 
@@ -32,5 +35,13 @@
                             toastr.error(data);
                          }
                     }
+                    
+                    function _deleteHardware(data){
+                        
+                        if(data === '    1')
+                         {
+                         toastr.success('Registro excluido com sucesso!');
+                         }
+                    };
 
                 });

@@ -46,6 +46,13 @@
             
             $scope.apagarRegistro = function(idinventario){
               hardwareAPI.getApagarRegistro(idinventario).success(function(data){
+              hardwareValidate.deleteHardware(data);
+                 if(data === '    1')
+                 {
+                 delete $scope.registro;
+                 delete $scope.selectedIndex;
+                 hardwareInterceptor.cleanInputHardware();
+                 }
                   carregaHardware();
               }).error(function(data){
                   $scope.error = "Aconteceu um erro: "+data;
