@@ -20,6 +20,7 @@
                  {
                  delete $scope.registro;
                  delete $scope.selectedIndex;
+                 hardwareInterceptor.cleanInputHardware();
                  }
                 carregaHardware();
                 //$scope.dados.unshift(angular.copy(registro));

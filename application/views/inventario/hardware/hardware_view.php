@@ -42,7 +42,15 @@
                         <div id="body">
                             <div class="margin-top-table">
                                 <div class="margin-top-table">
-                                    <input class="form-control" id="search" type="text" ng-model="search" placeholder="Pesquise o pelo nome do Hardware."/>
+                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
+                                        <label class="mdl-button mdl-js-button mdl-button--icon" for="sample6">
+                                            <i class="material-icons">search</i>
+                                        </label>
+                                        <div class="mdl-textfield__expandable-holder">
+                                            <input class="mdl-textfield__input" type="text" id="sample6" ng-model="search">
+                                            <label class="mdl-textfield__label" for="sample-expandable">Pesquise pelo nome do Hardware</label>
+                                        </div>
+                                    </div>
                                 </div>
                                 <!--<div ng-show="loading">
                                     <h5><div class="loader"></div></h5>

@@ -1,7 +1,7 @@
 
 
 
-                 angular.module('hardware').factory('hardwareValidate', function(toastr, hardwareInterceptor){
+                 angular.module('hardware').factory('hardwareValidate', function(toastr){
                      
                     return {messageHardware : _messageHardware};
 
@@ -10,7 +10,6 @@
                          if(data === '    1')
                          {
                          toastr.success('Operação realizada com sucesso!');
-                         hardwareInterceptor.cleanInputHardware();
                          }
                          else if(data === '    1146')
                          {
