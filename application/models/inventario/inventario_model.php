@@ -73,11 +73,14 @@ class inventario_model extends CI_Model{
             
         }
         
-        if($query){
+        if($query)
+        {
             
             return TRUE;
             
-        }else{
+        }
+        else
+        {
             
             return $this->db->_error_number();
             

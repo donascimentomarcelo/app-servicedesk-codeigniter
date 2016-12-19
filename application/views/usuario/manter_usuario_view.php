@@ -143,15 +143,14 @@
                                             </div>
                                         </div>
                                     </div>
-                                <div class="snackbar-container" data-snackbar="true" data-snackbar-duration="1000" data-snackbar-remove-delay="200"></div>
-                                <div ng-show="message.length" ng-hide="hideMessage" class="{{message.class}}">{{message.message}}</div>
-                                <div  data-spy="affix">
-                                    <!--  <div  data-spy="affix" data-offset-top="500">-->
-                                    <button type="button" ng-click="insert_or_edit(action)" ng-if="!user_form.$invalid" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect"><i class="material-icons">archive</i></button><br><br>
-                                    <button type="button" ng-click="new ()" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect"> <i class="material-icons">add</i></button>
-                                </div>  
-                            </form>	    
-                        </div>
+                                    <div class="snackbar-container" data-snackbar="true" data-snackbar-duration="1000" data-snackbar-remove-delay="200"></div>
+                                    <div ng-show="message.length" ng-hide="hideMessage" class="{{message.class}}">{{message.message}}</div>
+                                    <div  data-spy="affix">
+                                        <!--  <div  data-spy="affix" data-offset-top="500">-->
+                                        <button type="button" ng-click="insert_or_edit(action)" ng-if="!user_form.$invalid" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect"><i class="material-icons">archive</i></button><br><br>
+                                        <button type="button" ng-click="new ()" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect"> <i class="material-icons">add</i></button>
+                                    </div>  
+                                </form>	    
                             </div>
                         </div>
                     </div>

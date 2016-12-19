@@ -1,6 +1,6 @@
 
 
-        angular.module("hardware").controller("hardwarecrtl", function($scope,hardwareValidate, hardwareAPI){
+        angular.module("hardware").controller("hardwarecrtl", function($scope, hardwareValidate, hardwareInterceptor, hardwareAPI){
             
             $scope.dados = [];
             var carregaHardware = function(){
@@ -16,14 +16,20 @@
             $scope.registraInventario = function(registro){
                 hardwareAPI.getRegistraInventario(registro).success(function(data){
                 hardwareValidate.messageHardware(data);
-                delete $scope.registro;
-                delete $scope.selectedIndex;
+                 if(data === '    1')
+                 {
+                 delete $scope.registro;
+                 delete $scope.selectedIndex;
+                 }
                 carregaHardware();
                 //$scope.dados.unshift(angular.copy(registro));
+                }).error(function(data){
+                    $scope.error = "Aconteceu um erro ao carregar as marcar:"+data;
                 });
             };
             
             $scope.edit = function(dados){
+               hardwareInterceptor.fillInputHardware();
                $scope.registro = dados;
             };
             
