@@ -37,6 +37,7 @@
             $scope.new = function(){
                 delete $scope.registro;
                 delete $scope.selectedIndex;
+                hardwareInterceptor.cleanInputHardware();
             };
             
             //$scope.selectedIndex = 0;
@@ -45,8 +46,8 @@
             };
             
             $scope.apagarRegistro = function(idinventario){
-              hardwareAPI.getApagarRegistro(idinventario).success(function(data){
-              hardwareValidate.deleteHardware(data);
+                hardwareAPI.getApagarRegistro(idinventario).success(function(data){
+                hardwareValidate.deleteHardware(data);
                  if(data === '    1')
                  {
                  delete $scope.registro;
@@ -72,10 +73,10 @@
             };
 
             var LoadConfig =  function(){
-              hardwareAPI.getLoadConfig().success(function(data){
-                  $scope.dataconfig = data;
+                hardwareAPI.getLoadConfig().success(function(data){
+                $scope.dataconfig = data;
               }).error(function(data){
-                  $scope.error = "Aconteceu um erro ao carregar as marcar:"+data;
+                $scope.error = "Aconteceu um erro ao carregar as marcar:"+data;
               });
             };
             

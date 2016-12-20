@@ -221,7 +221,8 @@
             /*margin-left: 2%;*/
         }
         .affix {
-            bottom: 15%;
+            /*bottom: 15%;*/
+            top: 60%;
             width: 100%;
             margin-left: 87%;
 
@@ -281,7 +282,7 @@
             /*margin-left: 2%;*/
         }
         .affix {
-            bottom: 10%;
+            /*bottom: 10%;*/
             width: 100%;
             margin-left: 85%;
 
@@ -311,7 +312,7 @@
             margin-left: 2%;
         }
         .affix {
-            bottom: 10%;
+            /*bottom: 10%;*/
             width: 100%;
             margin-left: 80%;
 

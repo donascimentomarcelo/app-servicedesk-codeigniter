@@ -89,48 +89,42 @@
                                     <dir-pagination-controls max-size="5" direction-links="true" boundary-links="true"></dir-pagination-controls>
                                 </div>
                             </div>
-                        </div>
-                        <div class="formResponsive">
-                            <form role="form" name="inventarioForm" method="post" id="formulario_usuario" enctype="multipart/form-data">
-                                <div class="content-grid mdl-grid">
-                                    <div class="mdl-cell mdl-cell--6-col">
-                                        <div class="form-group">
-
-                                            <input type="hidden" class="form-control" ng-model="registro.idinventario" name="idinventario">
+                            <div class="formResponsive ">
+                                <form role="form" name="inventarioForm" method="post" id="formulario_usuario" enctype="multipart/form-data">
+                                    <div class="content-grid mdl-grid">
+                                        <div class="mdl-cell mdl-cell--6-col">
+                                            <div class="form-group">
+                                                <input type="hidden" class="form-control" ng-model="registro.idinventario" name="idinventario">
+                                            </div>
+                                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-width">
+                                                <input class="mdl-textfield__input" type="text" id="nameHardware"  ng-model="registro.nome" ng-required="true">
+                                                <label class="mdl-textfield__label" for="nameHardware">Nome do Hardware</label>
+                                            </div>
+                                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-width">
+                                                <input class="mdl-textfield__input" type="text" id="modelHardware"  ng-model="registro.modelo" ng-required="true">
+                                                <label class="mdl-textfield__label" for="modelHardware">Modelo do Hardware</label>
+                                            </div>
+                                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-width">
+                                                <select type="text" class="form-control" ng-model="registro.inventario_config_fk" name="inventario_config_fk" ng-required="true">
+                                                    <option value="">Selecione uma marca.</option>
+                                                    <option ng-repeat="dataconfig in dataconfig" value="{{dataconfig.idconfig}}" >{{dataconfig.nome_config}}</option>
+                                                </select>
+                                            </div>
+                                            <div>
+                                                <div  data-spy="affix">
+                                                    <button type="button" ng-click="registraInventario(registro)" ng-if="!inventarioForm.$invalid" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect"><i class="material-icons">archive</i></button><br><br>
+                                                    <button type="button" ng-click="new ()" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect"> <i class="material-icons">add</i></button>
+                                                </div> 
+                                            </div>  
                                         </div>
-
-                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-width">
-                                            <input class="mdl-textfield__input" type="text" id="nameHardware"  ng-model="registro.nome" ng-required="true">
-                                            <label class="mdl-textfield__label" for="nameHardware">Nome do Hardware</label>
-                                        </div>
-                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-width">
-                                            <input class="mdl-textfield__input" type="text" id="modelHardware"  ng-model="registro.modelo" ng-required="true">
-                                            <label class="mdl-textfield__label" for="modelHardware">Modelo do Hardware</label>
-                                        </div>
-                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-width">
-
-                                            <select type="text" class="form-control" ng-model="registro.inventario_config_fk" name="inventario_config_fk" ng-required="true">
-                                                <option value="">Selecione uma marca.</option>
-                                                <option ng-repeat="dataconfig in dataconfig" value="{{dataconfig.idconfig}}" >{{dataconfig.nome_config}}</option>
-                                            </select>
-                                        </div>
-
-                                        <div>
-
-                                            <div  data-spy="affix">
-                                                <button type="button" ng-click="registraInventario(registro)" ng-if="!inventarioForm.$invalid" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect"><i class="material-icons">archive</i></button><br><br>
-                                                <button type="button" ng-click="new ()" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect"> <i class="material-icons">add</i></button>
-                                            </div> 
-
-                                        </div>  
-                                        </form>	   
                                     </div>
-                                </div>
+                                </form>	   
                             </div>
                         </div>
                     </div>
-                </main>
-            </div>
+                </div>
+            </main>
+        </div>
         <!--</div>-->
     </body>
 </html>
