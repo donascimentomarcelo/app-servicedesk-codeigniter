@@ -24,6 +24,7 @@
                         softwareAPI.getActionSoftware(action).success(function(){
                             delete $scope.action;
                             delete $scope.selectedIndex;
+                            softwareInterceptor.cleanInputSoftware();
                             loadSoftware();
                         }).error(function(data){
                             $scope.error = "Aconteceu um erro :"+data;
@@ -45,10 +46,12 @@
                     };
                     
                     $scope.update = function(dataSoftware){
+                        softwareInterceptor.fillInputSoftware();
                         $scope.action = dataSoftware;
                     };
                     
                     $scope.new = function(){
+                        softwareInterceptor.cleanInputSoftware();
                         delete $scope.action;
                         delete $scope.selectedIndex;
                     };
