@@ -1,6 +1,6 @@
 
 
-                angular.module('software').controller('softwarecrtl', function($scope, softwareAPI){
+                angular.module('software').controller('softwarecrtl', function($scope, softwareInterceptor, softwareValidate, softwareAPI){
                     
                     $scope.dataSoftware = [];
                     

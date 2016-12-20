@@ -2,7 +2,7 @@
 
     angular.module("hardware", ['angularUtils.directives.dirPagination','toastr']);
 
-    angular.module("software", ['angularUtils.directives.dirPagination']);
+    angular.module("software", ['angularUtils.directives.dirPagination','toastr']);
 
     angular.module("inventarioConfig", ['angularUtils.directives.dirPagination']);
     

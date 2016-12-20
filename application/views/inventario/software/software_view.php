@@ -10,7 +10,11 @@
 
         <script src="../../../angular/lib/angular.min.js" type="text/javascript"></script>
         <script src="../../../angular/lib/dirPagination.js" type="text/javascript"></script>
+        <script src="../../../angular/lib/angular-toastr.tpls.js" type="text/javascript"></script>
+        <link href="../../../angular/css/angular-toastr.css" rel="stylesheet" type="text/css"/>
         <script src="../../../angular/js/app.js" type="text/javascript"></script>
+        <script src="../../../angular/js/interceptors/inventario/software/softwareInterceptor.js" type="text/javascript"></script>
+        <script src="../../../angular/js/interceptors/inventario/software/softwareValidate.js" type="text/javascript"></script>
         <script src="../../../angular/js/value/configValue.js" type="text/javascript"></script>
         <script src="../../../angular/js/controllers/inventario/softwarecrtl.js" type="text/javascript"></script>
         <script src="../../../angular/js/services/inventario/softwareAPIService.js" type="text/javascript"></script>

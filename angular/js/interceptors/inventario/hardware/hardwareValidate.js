@@ -41,6 +41,8 @@
                         if(data === '    1')
                          {
                          toastr.success('Registro excluido com sucesso!');
+                         }else{
+                         toastr.error('Erro ao deletar:'+data);    
                          }
                     };
 
