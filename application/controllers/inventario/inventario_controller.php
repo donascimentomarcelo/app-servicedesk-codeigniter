@@ -99,9 +99,28 @@ class Inventario_controller extends CI_Controller {
     
     function insert_or_update_software()
     {
+        $_POST = json_decode(file_get_contents('php://input'), true);
+        
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('nomesoftware', 'nomesoftware','required');
+        $this->form_validation->set_rules('serialsoftware', 'serialsoftware','required');
+        $this->form_validation->set_rules('inventario_config_fk', 'inventario_config_fk','required');
+        
+        if($this->form_validation->run()== FALSE)
+        {
+            
+            echo 'validate';
+            
+        }
+        else
+        {
+        
         $this->load->model('inventario/inventario_model');
 
         echo $this->inventario_model->m_insert_or_update_software();
+        
+        }
+        
     }
     
     function delete_software()

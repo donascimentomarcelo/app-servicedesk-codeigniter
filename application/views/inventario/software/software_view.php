@@ -48,7 +48,6 @@
                                             </div>
                                         </div>
                                     </div>
-
                                     <table ng-show="dataSoftware.length > 0" class="mdl-data-table mdl-js-data-table  mdl-shadow--2dp"cellspacing="0" width="100%">
                                         <thead>
                                             <tr>
