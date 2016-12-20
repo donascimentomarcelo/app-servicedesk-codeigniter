@@ -27,7 +27,6 @@
         <script src="../../../bootstrap/js/jquery.js" type="text/javascript"></script>
         <script src="../../../bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
     </head>
-
     <body ng-controller="hardwarecrtl">
         <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
             <?php include 'C:\xampp\htdocs\cd\application\views\menu_head\administrador\menu.php'; ?>
@@ -38,7 +37,6 @@
                              <h1> <img src="{{datauser.imagemmenu}}" class="img-circle" width="50px" height="50px"> {{datauser.nomemenu}}</h1>
                          </div>-->
                         <h1><?php foreach ($preenche_dados->result() as $dados): ?> <img src="../../.<?php echo $dados->imagem; ?>" class="img-circle" width="50px" height="50px"> <?php endforeach; ?> <?php echo $this->session->userdata('nome'); ?></h1>
-
                         <div id="body">
                             <div class="margin-top-table">
                                 <div class="margin-top-table">
@@ -56,7 +54,6 @@
                                     <h5><div class="loader"></div></h5>
                                 </div>
                                 <div ng-hide="loading">-->
-
                                 <table ng-show="dados.length > 0" class="mdl-data-table mdl-js-data-table  mdl-shadow--2dp"cellspacing="0" width="100%">
                                     <tr>
                                         <th style="text-align: center;" ng-click="ordenarPor('idinventario')"> ID
