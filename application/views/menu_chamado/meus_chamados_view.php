@@ -13,7 +13,7 @@
 
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
         <link href="../../../bootstrap/css/cd.css" rel="stylesheet" type="text/css"/>
-        
+
         <script src="../../../angular/lib/angular.min.js" type="text/javascript"></script>
         <script src="../../../angular/lib/dirPagination.js" type="text/javascript"></script>
         <script src="../../../angular/js/app.js" type="text/javascript"></script>
@@ -231,276 +231,275 @@
                         <h1><?php foreach ($preenche_dados->result() as $dados): ?> <img src="../../.<?php echo $dados->imagem; ?>" class="img-circle" width="50px" height="50px"> <?php endforeach; ?> <?php echo $this->session->userdata('nome'); ?></h1>
                         <div id="body">
                             <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th  style="text-align: center;">Código</th>
-                                            <th style="text-align: center;">Título</th>
-                                            <th style="text-align: center;">Data Inicial</th>
-                                            <th style="text-align: center;">Data Final</th>
-                                            <th style="text-align: center;">SLA</th>
-                                            <th style="text-align: center;">Descrição</th>
-                                            <th style="text-align: center;"></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr dir-paginate="dataServiceCall in dataServiceCall | itemsPerPage : 10">
-                                            <td style="text-align: center;">{{dataServiceCall.idchamado}}</td>
-                                            <td style="text-align: center;">{{dataServiceCall.nomechamado}}</td>
-                                            <td style="text-align: center;">{{dataServiceCall.datainicial}}</td>
-                                            <td style="text-align: center;">{{dataServiceCall.datafinal}}</td>
-                                            <td style="text-align: center;">
+                                <thead>
+                                    <tr>
+                                        <th  style="text-align: center;">Código</th>
+                                        <th style="text-align: center;">Título</th>
+                                        <th style="text-align: center;">Data Inicial</th>
+                                        <th style="text-align: center;">Data Final</th>
+                                        <th style="text-align: center;">SLA</th>
+                                        <th style="text-align: center;">Descrição</th>
+                                        <th style="text-align: center;"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr dir-paginate="dataServiceCall in dataServiceCall | itemsPerPage : 10">
+                                        <td style="text-align: center;">{{dataServiceCall.idchamado}}</td>
+                                        <td style="text-align: center;">{{dataServiceCall.nomechamado}}</td>
+                                        <td style="text-align: center;">{{dataServiceCall.datainicial}}</td>
+                                        <td style="text-align: center;">{{dataServiceCall.datafinal}}</td>
+                                        <td style="text-align: center;">
                                             <div class="progress">
                                                 <div class="progress-bar-{{dataServiceCall.class}}" role="progressbar" aria-valuenow="70"
                                                      aria-valuemin="0" aria-valuemax="100" style="width:{{dataServiceCall.porcentagem}}%">
                                                     {{dataServiceCall.porcentagem}}%
                                                 </div>
                                             </div>
-                                            </td>
-                                            <td style="text-align: center;">{{dataServiceCall.descricao}}</td>
-                                            <td style="text-align: center;">
-                                                <a style="text-align: center;" href="javascript:;"  onclick="janelaNovoCd(1)"><button type="button" class="glyphicon glyphicon-eye-open"></button></a>
-                                                <a style="text-align: center;" href="http://localhost/cd/index.php/chamado/chamado_controller/historico_detalhado/passaOID"><button type="button" class="glyphicon glyphicon-floppy-open"></button></a>
-                                            </td>
-                                          
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                        </td>
+                                        <td style="text-align: center;" class="description">{{dataServiceCall.descricao}}</td>
+                                        <td style="text-align: center;">
+                                            <a style="text-align: center;" href="javascript:;"  onclick="janelaNovoCd(1)"><button type="button" class="glyphicon glyphicon-eye-open"></button></a>
+                                            <a style="text-align: center;" href="http://localhost/cd/index.php/chamado/chamado_controller/historico_detalhado/passaOID"><button type="button" class="glyphicon glyphicon-floppy-open"></button></a>
+                                        </td>
+
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="location-pagination">
+                                <dir-pagination-controls max-size="5" direction-links="true" boundary-links="true"></dir-pagination-controls>
                             </div>
                         </div>
+                    </div>
 
-                        <!--START MODAL-->
-                        <div class="modal fade bs-example-modal-lg" id="modalEditarCliente" data-backdrop="static" >
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h4 class="modal-title">Visualizar Rápida do Chamado</h4>
-                                    </div>
-                                    <ul class="nav nav-tabs">
-                                        <li class="active"><a href="#first-tab" data-toggle="tab">Dados do chamado</a></li>
-                                        <li><a href="#second-tab" data-toggle="tab">Dados do Usuário</a></li>
-                                        <li><a href="#third-tab" data-toggle="tab">Dados do Técnico</a></li>
-
-                                    </ul>
-                                    <div class="modal-body">
-
-                                        <form role="form" method="post" action="">
-                                            <div class="tab-content">
-                                                <div class="tab-pane active in" id="first-tab">
-                                                    <div class="form-group">
-                                                        <label for="nome">Título do Chamado</label>
-                                                        <input type="text" class="form-control" id="nomechamado"  name='nomechamado' readonly="true">
-                                                    </div>
-
-
-                                                    <div class="form-group">
-                                                        <label for="categoria">Categoria</label>
-                                                        <select class="form-control" name="categoria_fk" id="categoria_fk" required="required" onchange='buscar_subcategoria($(this).val())' disabled>
-
-                                                            <option value="">Selecione uma categoria</option>
-                                                            <!--AQUI!-->
-<?php foreach ($categoria->result() as $linha): ?> 
-
-                                                                <option value="<?php echo $linha->idcategoria ?>"><?php echo $linha->nomecategoria ?></option>
-
-<?php endforeach; ?>
-
-                                                        </select>
-                                                    </div>
-
-
-                                                    <div class="form-group">
-                                                        <label for="exampleSelect1">Subcategoria</label>
-
-                                                        <select class="form-control" name="subcategoria_fk" id="subcategoria" required="required" onchange='buscar_sla($(this).val())' disabled>
-                                                            <option value="">Selecione uma categoria</option>
-                                                            <!--AQUI!-->
-<?php foreach ($subcategoria->result() as $linha): ?> 
-
-                                                                <option value="<?php echo $linha->idsubcategoria ?>"><?php echo $linha->nomesubcategoria ?></option>
-
-<?php endforeach; ?>
-                                                        </select>
-                                                    </div>
-                                                    <div id="sla" class="form-group">
-
-                                                    </div>     
-
-                                                    <div class="form-group">
-                                                        <label for="exampleTextarea">Descrição</label>
-                                                        <textarea class="form-control" id="descricao" name="descricao" rows="3" readonly="true"  maxlength="499"></textarea>
-                                                    </div>
-
-                                                    <input type="hidden" name="idchamado" id="idchamado" value="" />
-
-                                                </div>
-                                                <div class="tab-pane" id="second-tab">
-
-                                                    <div class="form-group">
-                                                        <label for="nome">Nome do Solicitante</label>
-                                                        <input type="text" class="form-control" id="nome"  name='nome'readonly="true">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="nome">Ramal</label>
-                                                        <input type="text" class="form-control" id="ramal"  name='ramal' readonly="true">
-                                                    </div>
-
-                                                    <div class="form-group">
-                                                        <label for="setor">Setor</label>
-                                                        <select class="form-control" name="setor_fk" id="setor_fk" required="required" disabled>
-
-                                                            <option value="">Selecione um Setor</option>
-
-                                                            <?php foreach ($setor_ativo->result() as $linha): ?> 
-
-                                                                <option value="<?php echo $linha->idsetor ?>"><?php echo $linha->nomesetor ?></option>
-
-                                                            <?php endforeach; ?>
-
-                                                        </select>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="nome">E-mail</label>
-                                                        <input type="text" class="form-control" id="email"  name='email' readonly="true">
-                                                    </div>
-                                                </div>  
-
-                                                <div class="tab-pane" id="third-tab">
-                                                    <div class="form-group">
-                                                        <label for="nome">Código do Técnico</label>
-                                                        <input type="text" class="form-control" id="codusuario"  name='idtec'readonly="true">
-                                                    </div>
-
-                                                    <div class="form-group">
-                                                        <label for="nome">Nome do Técnico</label>
-                                                        <input type="text" class="form-control" id="nometec"  name='nometec'readonly="true">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="nome">Ramal do Técnico</label>
-                                                        <input type="text" class="form-control" id="ramaltec"  name='ramaltec' readonly="true">
-                                                    </div>
-
-                                                    <div class="form-group">
-                                                        <label for="nome">E-mail do Técnico</label>
-                                                        <input type="text" class="form-control" id="emailtec"  name='emailtec' readonly="true">
-                                                    </div>
-                                                </div>
-
-                                            </div>  
-                                        </form>	    
-
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-default" data-dismiss="modal" onclick="refresh()" >Fechar</button>
-                                    </div>
+                    <!--START MODAL-->
+                    <div class="modal fade bs-example-modal-lg" id="modalEditarCliente" data-backdrop="static" >
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Visualizar Rápida do Chamado</h4>
                                 </div>
-                            </div>
-                        </div>
+                                <ul class="nav nav-tabs">
+                                    <li class="active"><a href="#first-tab" data-toggle="tab">Dados do chamado</a></li>
+                                    <li><a href="#second-tab" data-toggle="tab">Dados do Usuário</a></li>
+                                    <li><a href="#third-tab" data-toggle="tab">Dados do Técnico</a></li>
 
+                                </ul>
+                                <div class="modal-body">
 
-                        <div class="modal fade bs-example-modal-lg" id="novo" data-backdrop="static" >
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h4 class="modal-title">Abrir Chamado</h4>
-                                    </div>
-                                    <ul class="nav nav-tabs">
-                                        <li class="active"><a href="#first1-tab" data-toggle="tab">Dados do chamado</a></li>
-                                        <li><a href="#second2-tab" data-toggle="tab">Dados do Usuário</a></li>
-
-
-                                    </ul>
-                                    <div class="modal-body">
-
-                                        <form role="form" method="post" action="<?= base_url('index.php/chamado/chamado_controller/salvar_chamado') ?>" id="formulario_chamado">
-                                            <div class="tab-content">
-                                                <div class="tab-pane active in" id="first1-tab">
-                                                    <div class="form-group">
-                                                        <label for="nome">Título do Chamado</label>
-                                                        <input type="text" class="form-control" id="nomechamado"  name='nomechamado'>
-                                                    </div>
-
-
-                                                    <div class="form-group">
-                                                        <label for="categoria">Categoria</label>
-                                                        <select class="form-control" name="categoria_fk" id="categoria_fk" required="required" onchange='buscar_subcategoria_n($(this).val())'>
-
-                                                            <option value="">Selecione uma categoria</option>
-                                                            <!--AQUI!-->
-                                                            <?php foreach ($categoria->result() as $linha): ?> 
-
-                                                                <option value="<?php echo $linha->idcategoria ?>"><?php echo $linha->nomecategoria ?></option>
-
-                                                            <?php endforeach; ?>
-
-                                                        </select>
-                                                    </div>
-
-
-                                                    <div class="form-group">
-                                                        <label for="exampleSelect1">Subcategoria</label>
-
-                                                        <select class="form-control" name="subcategoria_fk" id="subcategoria1" required="required" onchange='buscar_sla_n($(this).val())'>
-
-                                                        </select>
-                                                    </div>
-                                                    <div id="sla1" class="form-group">
-
-                                                    </div>     
-
-                                                    <div class="form-group">
-                                                        <label for="exampleTextarea">Descrição</label>
-                                                        <textarea class="form-control" id="descricao" name="descricao" rows="3" maxlength="499"></textarea>
-                                                    </div>
-
-                                                    <input type="hidden" name="idchamado" id="idchamado" value="" />
-
+                                    <form role="form" method="post" action="">
+                                        <div class="tab-content">
+                                            <div class="tab-pane active in" id="first-tab">
+                                                <div class="form-group">
+                                                    <label for="nome">Título do Chamado</label>
+                                                    <input type="text" class="form-control" id="nomechamado"  name='nomechamado' readonly="true">
                                                 </div>
-                                                <div class="tab-pane" id="second2-tab">
-
-                                                    <div class="form-group">
-                                                        <label for="nome">Nome do Solicitante</label>
-                                                        <input type="text" class="form-control" id="nome1"  name='nome'readonly="true">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="nome">Ramal</label>
-                                                        <input type="text" class="form-control" id="ramal1"  name='ramal' readonly="true">
-                                                    </div>
-
-                                                    <div class="form-group">
-                                                        <label for="setor">Setor</label>
-                                                        <select class="form-control" name="setor_fk" id="setor_fk1" required="required">
-
-                                                            <option value="">Selecione um Setor</option>
-
-                                                            <?php foreach ($setor_ativo->result() as $linha): ?> 
-
-                                                                <option value="<?php echo $linha->idsetor ?>"><?php echo $linha->nomesetor ?></option>
-
-                                                            <?php endforeach; ?>
-
-                                                        </select>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="nome">E-mail</label>
-                                                        <input type="text" class="form-control" id="email1"  name='email' readonly="true">
-                                                    </div>
-                                                </div>  
 
 
+                                                <div class="form-group">
+                                                    <label for="categoria">Categoria</label>
+                                                    <select class="form-control" name="categoria_fk" id="categoria_fk" required="required" onchange='buscar_subcategoria($(this).val())' disabled>
 
+                                                        <option value="">Selecione uma categoria</option>
+                                                        <!--AQUI!-->
+                                                        <?php foreach ($categoria->result() as $linha): ?> 
+
+                                                            <option value="<?php echo $linha->idcategoria ?>"><?php echo $linha->nomecategoria ?></option>
+
+                                                        <?php endforeach; ?>
+
+                                                    </select>
+                                                </div>
+
+
+                                                <div class="form-group">
+                                                    <label for="exampleSelect1">Subcategoria</label>
+
+                                                    <select class="form-control" name="subcategoria_fk" id="subcategoria" required="required" onchange='buscar_sla($(this).val())' disabled>
+                                                        <option value="">Selecione uma categoria</option>
+                                                        <!--AQUI!-->
+                                                        <?php foreach ($subcategoria->result() as $linha): ?> 
+
+                                                            <option value="<?php echo $linha->idsubcategoria ?>"><?php echo $linha->nomesubcategoria ?></option>
+
+                                                        <?php endforeach; ?>
+                                                    </select>
+                                                </div>
+                                                <div id="sla" class="form-group">
+
+                                                </div>     
+
+                                                <div class="form-group">
+                                                    <label for="exampleTextarea">Descrição</label>
+                                                    <textarea class="form-control" id="descricao" name="descricao" rows="3" readonly="true"  maxlength="499"></textarea>
+                                                </div>
+
+                                                <input type="hidden" name="idchamado" id="idchamado" value="" />
+
+                                            </div>
+                                            <div class="tab-pane" id="second-tab">
+
+                                                <div class="form-group">
+                                                    <label for="nome">Nome do Solicitante</label>
+                                                    <input type="text" class="form-control" id="nome"  name='nome'readonly="true">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="nome">Ramal</label>
+                                                    <input type="text" class="form-control" id="ramal"  name='ramal' readonly="true">
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="setor">Setor</label>
+                                                    <select class="form-control" name="setor_fk" id="setor_fk" required="required" disabled>
+
+                                                        <option value="">Selecione um Setor</option>
+
+                                                        <?php foreach ($setor_ativo->result() as $linha): ?> 
+
+                                                            <option value="<?php echo $linha->idsetor ?>"><?php echo $linha->nomesetor ?></option>
+
+                                                        <?php endforeach; ?>
+
+                                                    </select>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="nome">E-mail</label>
+                                                    <input type="text" class="form-control" id="email"  name='email' readonly="true">
+                                                </div>
                                             </div>  
-                                        </form>	    
 
-                                    </div>
+                                            <div class="tab-pane" id="third-tab">
+                                                <div class="form-group">
+                                                    <label for="nome">Código do Técnico</label>
+                                                    <input type="text" class="form-control" id="codusuario"  name='idtec'readonly="true">
+                                                </div>
 
+                                                <div class="form-group">
+                                                    <label for="nome">Nome do Técnico</label>
+                                                    <input type="text" class="form-control" id="nometec"  name='nometec'readonly="true">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="nome">Ramal do Técnico</label>
+                                                    <input type="text" class="form-control" id="ramaltec"  name='ramaltec' readonly="true">
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="nome">E-mail do Técnico</label>
+                                                    <input type="text" class="form-control" id="emailtec"  name='emailtec' readonly="true">
+                                                </div>
+                                            </div>
+
+                                        </div>  
+                                    </form>	    
+
+                                </div>
+                                <div class="modal-footer">
                                     <button type="button" class="btn btn-default" data-dismiss="modal" onclick="refresh()" >Fechar</button>
-
-                                    <button type="button" id="salvar" class="btn btn-primary"   onclick="$('#formulario_chamado').submit()">Salvar</button>
                                 </div>
                             </div>
                         </div>
-                    </div>        
-                </div>
+                    </div>
+
+
+                    <div class="modal fade bs-example-modal-lg" id="novo" data-backdrop="static" >
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Abrir Chamado</h4>
+                                </div>
+                                <ul class="nav nav-tabs">
+                                    <li class="active"><a href="#first1-tab" data-toggle="tab">Dados do chamado</a></li>
+                                    <li><a href="#second2-tab" data-toggle="tab">Dados do Usuário</a></li>
+
+
+                                </ul>
+                                <div class="modal-body">
+
+                                    <form role="form" method="post" action="<?= base_url('index.php/chamado/chamado_controller/salvar_chamado') ?>" id="formulario_chamado">
+                                        <div class="tab-content">
+                                            <div class="tab-pane active in" id="first1-tab">
+                                                <div class="form-group">
+                                                    <label for="nome">Título do Chamado</label>
+                                                    <input type="text" class="form-control" id="nomechamado"  name='nomechamado'>
+                                                </div>
+
+
+                                                <div class="form-group">
+                                                    <label for="categoria">Categoria</label>
+                                                    <select class="form-control" name="categoria_fk" id="categoria_fk" required="required" onchange='buscar_subcategoria_n($(this).val())'>
+
+                                                        <option value="">Selecione uma categoria</option>
+                                                        <!--AQUI!-->
+                                                        <?php foreach ($categoria->result() as $linha): ?> 
+
+                                                            <option value="<?php echo $linha->idcategoria ?>"><?php echo $linha->nomecategoria ?></option>
+
+                                                        <?php endforeach; ?>
+
+                                                    </select>
+                                                </div>
+
+
+                                                <div class="form-group">
+                                                    <label for="exampleSelect1">Subcategoria</label>
+
+                                                    <select class="form-control" name="subcategoria_fk" id="subcategoria1" required="required" onchange='buscar_sla_n($(this).val())'>
+
+                                                    </select>
+                                                </div>
+                                                <div id="sla1" class="form-group">
+
+                                                </div>     
+
+                                                <div class="form-group">
+                                                    <label for="exampleTextarea">Descrição</label>
+                                                    <textarea class="form-control" id="descricao" name="descricao" rows="3" maxlength="499"></textarea>
+                                                </div>
+
+                                                <input type="hidden" name="idchamado" id="idchamado" value="" />
+
+                                            </div>
+                                            <div class="tab-pane" id="second2-tab">
+
+                                                <div class="form-group">
+                                                    <label for="nome">Nome do Solicitante</label>
+                                                    <input type="text" class="form-control" id="nome1"  name='nome'readonly="true">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="nome">Ramal</label>
+                                                    <input type="text" class="form-control" id="ramal1"  name='ramal' readonly="true">
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="setor">Setor</label>
+                                                    <select class="form-control" name="setor_fk" id="setor_fk1" required="required">
+
+                                                        <option value="">Selecione um Setor</option>
+
+                                                        <?php foreach ($setor_ativo->result() as $linha): ?> 
+
+                                                            <option value="<?php echo $linha->idsetor ?>"><?php echo $linha->nomesetor ?></option>
+
+                                                        <?php endforeach; ?>
+
+                                                    </select>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="nome">E-mail</label>
+                                                    <input type="text" class="form-control" id="email1"  name='email' readonly="true">
+                                                </div>
+                                            </div>  
+                                        </div>  
+                                    </form>	    
+                                </div>
+
+                                <button type="button" class="btn btn-default" data-dismiss="modal" onclick="refresh()" >Fechar</button>
+
+                                <button type="button" id="salvar" class="btn btn-primary"   onclick="$('#formulario_chamado').submit()">Salvar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>        
             </main>
+        </div>
     </body>
 </html>

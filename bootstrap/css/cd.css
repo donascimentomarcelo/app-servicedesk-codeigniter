@@ -225,9 +225,7 @@
             top: 60%;
             width: 100%;
             margin-left: 87%;
-
         }
-
         .affix + .container-fluid {
             padding-top: 70px;
         }
@@ -266,6 +264,12 @@
             text-align: center;
             margin-top: 3%;
             width: 35%;
+        }
+        .description {
+            max-width: 190px; /* Tamanho */
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap
         }
         
     }
