@@ -15,3 +15,5 @@
     angular.module("sector", ['angularUtils.directives.dirPagination']);
     
     angular.module("category", ['angularUtils.directives.dirPagination']);
+    
+    var serviceCallApp = angular.module("serviceCall", ['angularUtils.directives.dirPagination']);

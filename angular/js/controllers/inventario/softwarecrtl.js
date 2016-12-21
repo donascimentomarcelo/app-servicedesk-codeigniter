@@ -21,9 +21,13 @@
                     };
                     
                     $scope.actionSoftware = function(action){
-                        softwareAPI.getActionSoftware(action).success(function(){
+                        softwareAPI.getActionSoftware(action).success(function(data){
+                            if(data === '    1')
+                            {
                             delete $scope.action;
                             delete $scope.selectedIndex;
+                            }
+                            softwareValidate.messageSoftware(data);
                             softwareInterceptor.cleanInputSoftware();
                             loadSoftware();
                         }).error(function(data){
@@ -32,9 +36,14 @@
                     };
                     
                     $scope.delete = function(idsoftware){
-                        softwareAPI.getDeleteSoftware(idsoftware).success(function(){
+                        softwareAPI.getDeleteSoftware(idsoftware).success(function(data){
+                            if(data === '    1')
+                            {
                             delete $scope.action;
                             delete $scope.selectedIndex;
+                            }
+                            softwareValidate.deleteSoftware(data);
+                            softwareInterceptor.cleanInputSoftware();
                             loadSoftware();
                         }).error(function(data){
                             $scope.error = "Aconteceu um erro :"+data;

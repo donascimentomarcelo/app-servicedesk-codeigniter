@@ -2,23 +2,6 @@
 
 class Chamado_controller extends CI_Controller {
 
-        public function salvar_chamado(){
-            
-            $this->load->model('chamado/chamado_model');
-            
-           // $result = $this->chamado_model->m_salvar_chamado();
-            
-            if($this->chamado_model->m_salvar_chamado()){
-                
-                echo 1;
-                
-            }else{
-                
-                 echo 0;
-                
-            }
-            
-        }
         
         public function listar_chamado(){
             
@@ -60,13 +43,43 @@ class Chamado_controller extends CI_Controller {
             
         }
         
-        public function excluir_chamado($idchamado) {
+        public function serviceCallList()
+        {
+            $this->load->model('chamado/chamado_model');
+
+            echo $this->chamado_model->exibe_chamado();
+        }
+
+        public function service_list_attendance()
+        {
+            $this->load->model('chamado/chamado_model');
+
+            echo $this->chamado_model->exibe_chamado_atendimento();
+        }
+
+        public function category_list()
+        {
+            $this->load->model('categoria/categoria_model');
+
+            echo $this->categoria_model->m_exibir_categoria();
+        }
+
+        public function subcategory_list()
+        {
+            $this->load->model('subcategoria/subcategoria_model');
+
+            echo $this->subcategoria_model->m_exibir_subcategoria();
+        }
+
+    public function salvar_chamado(){
             
             $this->load->model('chamado/chamado_model');
             
-            if($this->chamado_model->excluir($idchamado)){
+           // $result = $this->chamado_model->m_salvar_chamado();
+            
+            if($this->chamado_model->m_salvar_chamado()){
                 
-               echo 1;
+                echo 1;
                 
             }else{
                 
@@ -75,7 +88,7 @@ class Chamado_controller extends CI_Controller {
             }
             
         }
-        
+
         public function dados_chamado() {
             
             $idchamado = $this->input->post("idchamado");

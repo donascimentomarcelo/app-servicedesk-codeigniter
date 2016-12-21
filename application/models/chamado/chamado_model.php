@@ -162,7 +162,7 @@ class chamado_model extends CI_Model{
                 $variaveis[$i] += ['porcentagem' => $porcentagem, 'class' => $class];
             }
 
-            return $variaveis;
+            return json_encode($variaveis);
         
         
     }
