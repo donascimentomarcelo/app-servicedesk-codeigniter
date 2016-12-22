@@ -193,8 +193,8 @@
                         <h1><?php foreach ($preenche_dados->result() as $dados): ?> <img src="../../.<?php echo $dados->imagem; ?>" class="img-circle" width="50px" height="50px"> <?php endforeach; ?> <?php echo $this->session->userdata('nome'); ?></h1>
                         <div id="body">
                             
-                            <div class="mdl-grid">
-                                <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet graybox">
+                            <div class="row">
+                                <div class="col-md-8">
 
                                     <table class="table">
                                         <thead>
@@ -232,7 +232,7 @@
                                     </div>
 
                                 </div>
-                                <div class="mdl-cell mdl-cell--2-col mdl-cell--4-col-phone graybox">
+                                <div class="col-md-4">
 
                                     <table>
                                         <tr>
@@ -240,6 +240,7 @@
                                         </tr>
                                         <tr ng-repeat="dataHistoric in dataHistoric">
                                             <td>{{dataHistoric.justificativa}},</td>
+                                            <td>{{dataHistoric.nometecnico}},</td>
                                         </tr>
                                     </table>
 
