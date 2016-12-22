@@ -43,6 +43,12 @@ class Chamado_controller extends CI_Controller {
             
         }
         
+        public function myServiceCallList()
+        {
+            $this->load->model('chamado/chamado_model');
+
+            echo $this->chamado_model->m_meus_chamados();
+        }
         public function serviceCallList()
         {
             $this->load->model('chamado/chamado_model');
@@ -50,21 +56,21 @@ class Chamado_controller extends CI_Controller {
             echo $this->chamado_model->exibe_chamado();
         }
 
-        public function service_list_attendance()
+        public function serviceListAttendance()
         {
             $this->load->model('chamado/chamado_model');
 
             echo $this->chamado_model->exibe_chamado_atendimento();
         }
 
-        public function category_list()
+        public function categoryList()
         {
             $this->load->model('categoria/categoria_model');
 
             echo $this->categoria_model->m_exibir_categoria();
         }
 
-        public function subcategory_list()
+        public function subcategoryList()
         {
             $this->load->model('subcategoria/subcategoria_model');
 

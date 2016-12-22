@@ -243,7 +243,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr onclick="janelaNovoCd(1)" dir-paginate="dataServiceCall in dataServiceCall | itemsPerPage : 10">
+                                    <tr onclick="janelaNovoCd(1)" ng-click="edit(dataServiceCall)" dir-paginate="dataServiceCall in dataServiceCall | itemsPerPage : 10">
                                         <td style="text-align: center;">{{dataServiceCall.idchamado}}</td>
                                         <td style="text-align: center;">{{dataServiceCall.nomechamado}}</td>
                                         <td style="text-align: center;">{{dataServiceCall.datainicial}}</td>
@@ -291,7 +291,7 @@
                                             <div class="tab-pane active in" id="first-tab">
                                                 <div class="form-group">
                                                     <label for="nome">Título do Chamado</label>
-                                                    <input type="text" class="form-control" id="nomechamado"  name='nomechamado' readonly="true">
+                                                    <input type="text" class="form-control" id="nomechamado"  ng-model='action.nomechamado' readonly="true">
                                                 </div>
 
 
@@ -392,6 +392,8 @@
                                     </form>	    
 
                                 </div>
+                                
+                                
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-default" data-dismiss="modal" onclick="refresh()" >Fechar</button>
                                 </div>

@@ -5,13 +5,20 @@
             
             var _getServiceCall = function(){
                 
-                return $http.get('/cd/index.php/chamado/chamado_controller/serviceCallList');
+                return $http.get('/cd/index.php/chamado/chamado_controller/myServiceCallList');
+                
+            };
+            var _getCategory = function(){
+                
+                return $http.get('/cd/index.php/chamado/chamado_controller/categoryList');
                 
             };
             
             return{
                 
-                getServiceCall : _getServiceCall
+                getServiceCall : _getServiceCall,
+                
+                getCategory : _getCategory
                 
             };
         });
