@@ -19,6 +19,13 @@
                    console.log(data); 
                 });
             };
+            var loadSubCategory = function(){
+                serviceCallAPIService.getSubCategory().success(function(data){
+                    $scope.dataSubCategory = data;
+                }).error(function(data){
+                   console.log(data); 
+                });
+            };
             
             $scope.edit = function(dataServiceCall){
                 $scope.action = dataServiceCall;
@@ -26,4 +33,5 @@
             
             loadServiceCall();
             loadCategory();
+            loadSubCategory();
         });

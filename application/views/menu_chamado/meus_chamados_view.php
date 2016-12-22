@@ -297,16 +297,10 @@
 
                                                 <div class="form-group">
                                                     <label for="categoria">Categoria</label>
-                                                    <select class="form-control" name="categoria_fk" id="categoria_fk" required="required" onchange='buscar_subcategoria($(this).val())' disabled>
+                                                    <select class="form-control" name="categoria_fk" ng-model='action.categoria_fk' required="required" onchange='buscar_subcategoria($(this).val())' disabled>
 
-                                                        <option value="">Selecione uma categoria</option>
-                                                        <!--AQUI!-->
-                                                        <?php //foreach ($categoria->result() as $linha): ?> 
-
-                                                            <option value="<?php //echo $linha->idcategoria ?>"><?php// echo $linha->nomecategoria ?></option>
-
-                                                        <?php// endforeach; ?>
-
+                                                        <option ng-repeat="dataCategory in dataCategory" value="{{dataCategory.idcategoria}}">{{dataCategory.nomecategoria}}</option>
+                                                       
                                                     </select>
                                                 </div>
 

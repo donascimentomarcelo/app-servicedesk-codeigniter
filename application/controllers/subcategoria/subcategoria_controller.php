@@ -29,6 +29,13 @@ class Subcategoria_controller extends CI_Controller {
         $this->load->view('configuracao/subcategoria/subcategoria_view', $variaveis);
   }
   
+  public function loadSubcategory()
+  {
+    $this->load->model('subcategoria/subcategoria_model');
+        
+    echo $this->subcategoria_model->MLoadSubcategory();
+  }
+  
     
     function salvar_subcategoria(){
         

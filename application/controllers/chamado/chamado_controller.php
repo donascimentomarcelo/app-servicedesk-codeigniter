@@ -22,9 +22,9 @@ class Chamado_controller extends CI_Controller {
             $variaveis['preenche_dados'] = getPreencheDados();
             
             
-            $this->load->model('categoria/categoria_model');
+            //$this->load->model('categoria/categoria_model');
         
-            $variaveis['categoria'] = $this->categoria_model->m_exibir_categoria();
+           // $variaveis['categoria'] = $this->categoria_model->m_exibir_categoria();
             
             
             $this->load->model('subcategoria/subcategoria_model');
@@ -73,8 +73,8 @@ class Chamado_controller extends CI_Controller {
         public function subcategoryList()
         {
             $this->load->model('subcategoria/subcategoria_model');
-
-            echo $this->subcategoria_model->m_exibir_subcategoria();
+        
+            echo $this->subcategoria_model->MLoadSubcategory();
         }
 
     public function salvar_chamado(){
@@ -197,14 +197,14 @@ class Chamado_controller extends CI_Controller {
             $variaveis['preenche_dados'] = getPreencheDados();
             
             
-            $this->load->model('categoria/categoria_model');
+            //$this->load->model('categoria/categoria_model');
         
-            $variaveis['categoria'] = $this->categoria_model->m_exibir_categoria();
+            //$variaveis['categoria'] = $this->categoria_model->m_exibir_categoria();
             
             
-            $this->load->model('subcategoria/subcategoria_model');
+            //$this->load->model('subcategoria/subcategoria_model');
         
-            $variaveis['subcategoria'] = $this->subcategoria_model->m_exibir_subcategoria();
+            //$variaveis['subcategoria'] = $this->subcategoria_model->m_exibir_subcategoria();
             
             
             $this->load->model('usuario/usuario_model');

@@ -7,13 +7,24 @@ class subcategoria_model extends CI_Model{
         
     }
     
-    function m_exibir_subcategoria(){
+    function MLoadSubcategory(){
         
             $this->db->select('*');    
             $this->db->from('subcategoria');
             $this->db->join('categoria', 'subcategoria.categoria_fk = categoria.idcategoria');
             
-        return $this->db->get();
+            $return = $this->db->get();
+            
+            foreach($return -> result() as $row):
+                $arr[] = array(
+                    'idsubcategoria'=>$row->idsubcategoria,
+                    'nomesubcategoria'=>$row->nomesubcategoria,
+                    'sla'=>$row->sla,
+                    'categoria_fk'=>$row->categoria_fk
+                );
+            endforeach;
+            
+            return json_encode($arr);
     }
     
     function m_salvar_subcategoria(){
