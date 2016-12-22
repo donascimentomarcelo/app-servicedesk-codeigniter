@@ -278,6 +278,8 @@ class chamado_model extends CI_Model
         
 
             $return = $this->db->get();
+            
+            if ($return->num_rows() > 0) {
              
             foreach ($return -> result() as $row):
                 $arr[] = array(
@@ -294,6 +296,8 @@ class chamado_model extends CI_Model
             endforeach; 
             
             return json_encode($arr);
+            }
+            return FALSE;
     }
 
     public function m_historico_datalhado($idhistorico = NULL)

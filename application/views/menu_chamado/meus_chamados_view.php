@@ -192,43 +192,66 @@
                     <div id="container">
                         <h1><?php foreach ($preenche_dados->result() as $dados): ?> <img src="../../.<?php echo $dados->imagem; ?>" class="img-circle" width="50px" height="50px"> <?php endforeach; ?> <?php echo $this->session->userdata('nome'); ?></h1>
                         <div id="body">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th style="text-align: center;">Código</th>
-                                        <th style="text-align: center;">Título</th>
-                                        <th style="text-align: center;">Data Inicial</th>
-                                        <th style="text-align: center;">Data Final</th>
-                                        <th style="text-align: center;">SLA</th>
-                                        <th style="text-align: center;">Descrição</th>
-                                        <th style="text-align: center;"></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr ng-click="edit(dataServiceCall)" dir-paginate="dataServiceCall in dataServiceCall | itemsPerPage : 10">
-                                        <td style="text-align: center;"  onclick="janelaNovoCd()">{{dataServiceCall.idchamado}}</td>
-                                        <td style="text-align: center;"  onclick="janelaNovoCd()">{{dataServiceCall.nomechamado}}</td>
-                                        <td style="text-align: center;"  onclick="janelaNovoCd()">{{dataServiceCall.datainicial}}</td>
-                                        <td style="text-align: center;"  onclick="janelaNovoCd()">{{dataServiceCall.datafinal}}</td>
-                                        <td style="text-align: center;"  onclick="janelaNovoCd()">
-                                            <div class="progress">
-                                                <div class="progress-bar-{{dataServiceCall.class}}" role="progressbar" aria-valuenow="70"
-                                                     aria-valuemin="0" aria-valuemax="100" style="width:{{dataServiceCall.porcentagem}}%">
-                                                    {{dataServiceCall.porcentagem}}%
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td style="text-align: center;" class="description"  onclick="janelaNovoCd()">{{dataServiceCall.descricao}}</td>
-                                        <td style="text-align: center;" ng-click="historic(dataServiceCall.idchamado)"><i class="material-icons">assignment</i></td>
+                            
+                            <div class="mdl-grid">
+                                <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet graybox">
 
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <div class="location-pagination">
-                                <dir-pagination-controls max-size="5" direction-links="true" boundary-links="true"></dir-pagination-controls>
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th style="text-align: center;">Código</th>
+                                                <th style="text-align: center;">Título</th>
+                                                <th style="text-align: center;">Data Inicial</th>
+                                                <th style="text-align: center;">Data Final</th>
+                                                <th style="text-align: center;">SLA</th>
+                                                <th style="text-align: center;">Descrição</th>
+                                                <th style="text-align: center;"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-click="edit(dataServiceCall)" dir-paginate="dataServiceCall in dataServiceCall | itemsPerPage : 10">
+                                                <td style="text-align: center;"  onclick="janelaNovoCd()">{{dataServiceCall.idchamado}}</td>
+                                                <td style="text-align: center;"  onclick="janelaNovoCd()">{{dataServiceCall.nomechamado}}</td>
+                                                <td style="text-align: center;"  onclick="janelaNovoCd()">{{dataServiceCall.datainicial}}</td>
+                                                <td style="text-align: center;"  onclick="janelaNovoCd()">{{dataServiceCall.datafinal}}</td>
+                                                <td style="text-align: center;"  onclick="janelaNovoCd()">
+                                                    <div class="progress">
+                                                        <div class="progress-bar-{{dataServiceCall.class}}" role="progressbar" aria-valuenow="70"
+                                                             aria-valuemin="0" aria-valuemax="100" style="width:{{dataServiceCall.porcentagem}}%">
+                                                            {{dataServiceCall.porcentagem}}%
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td style="text-align: center;" class="description"  onclick="janelaNovoCd()">{{dataServiceCall.descricao}}</td>
+                                                <td style="text-align: center;" ng-click="historic(dataServiceCall.idchamado)"><i class="material-icons">assignment</i></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <div class="location-pagination">
+                                        <dir-pagination-controls max-size="5" direction-links="true" boundary-links="true"></dir-pagination-controls>
+                                    </div>
+
+                                </div>
+                                <div class="mdl-cell mdl-cell--2-col mdl-cell--4-col-phone graybox">
+
+                                    <table>
+                                        <tr>
+                                        <ht>justificativa</ht>
+                                        </tr>
+                                        <tr ng-repeat="dataHistoric in dataHistoric">
+                                            <td>{{dataHistoric.justificativa}},</td>
+                                        </tr>
+                                    </table>
+
+                                </div>
                             </div>
+                            
+                            
                         </div>
-                    </div>
+                    </div> <h1>
+                                  
+                                </h1>
+                    
 
                     <!--START MODAL-->
                     <div class="modal fade bs-example-modal-lg" id="modalEditarCliente" data-backdrop="static" >
