@@ -2,8 +2,9 @@
 
         serviceCallApp.controller('serviceCallCtrl', function(serviceCallAPIService, $scope){
             
-            $scope.dataServiceCall =[];
-            $scope.dataCategory =[];
+            $scope.dataServiceCall = [];
+            $scope.dataCategory    = [];
+            $scope.dataSubCategory = [];
             var loadServiceCall = function(){
                 serviceCallAPIService.getServiceCall().success(function(data){
                     $scope.dataServiceCall = data;

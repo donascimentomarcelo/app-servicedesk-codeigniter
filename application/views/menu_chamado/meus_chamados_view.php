@@ -308,14 +308,10 @@
                                                 <div class="form-group">
                                                     <label for="exampleSelect1">Subcategoria</label>
 
-                                                    <select class="form-control" name="subcategoria_fk" id="subcategoria" required="required" onchange='buscar_sla($(this).val())' disabled>
-                                                        <option value="">Selecione uma categoria</option>
-                                                        <!--AQUI!-->
-                                                        <?php// foreach ($subcategoria->result() as $linha): ?> 
-
-                                                            <option value="<?php //echo $linha->idsubcategoria ?>"><?php// echo $linha->nomesubcategoria ?></option>
-
-                                                        <?php// endforeach; ?>
+                                                    <select class="form-control" name="subcategoria_fk" ng-model='action.subcategoria_fk' required="required" onchange='buscar_sla($(this).val())' disabled>
+                                                        
+                                                        <option ng-repeat="dataSubCategory in dataSubCategory" value="{{dataSubCategory.idsubcategoria}}">{{dataSubCategory.nomesubcategoria}}</option>
+                                                        
                                                     </select>
                                                 </div>
                                                 <div id="sla" class="form-group">
