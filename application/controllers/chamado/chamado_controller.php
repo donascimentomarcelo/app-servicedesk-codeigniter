@@ -86,13 +86,9 @@ class Chamado_controller extends CI_Controller {
         }  
         public function historicList()
         {
-            $_POST = json_decode(file_get_contents('php://input'),true);
-        
-            $idchamado = $this->input->post('idchamado');
-            
             $this->load->model('chamado/chamado_model');
 
-            echo $this->chamado_model->m_historico_ajax($idchamado);
+            echo $this->chamado_model->m_historico_ajax();
         }  
 
     public function salvar_chamado(){

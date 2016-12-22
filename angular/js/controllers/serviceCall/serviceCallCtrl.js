@@ -6,6 +6,7 @@
             $scope.dataCategory    = [];
             $scope.dataSubCategory = [];
             $scope.dataSector      = [];
+            $scope.dataHistoric    = [];
             
             var loadServiceCall = function(){
                 serviceCallAPIService.getServiceCall().success(function(data){
@@ -40,6 +41,7 @@
             $scope.historic = function(idchamado){
                 serviceCallAPIService.getHistoric(idchamado).success(function(data){
                     console.log(data);
+                    $scope.dataHistoric = data;
                 }).error(function(data){
                    console.log(data); 
                 });

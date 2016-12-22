@@ -265,8 +265,11 @@ class chamado_model extends CI_Model
         return $this->db->get();
     }
 
-    public function m_historico_ajax($idchamado)
+    public function m_historico_ajax()
     {
+            $_POST = json_decode(file_get_contents('php://input'),true);
+        
+            $idchamado = $this->input->post('idchamado');
 
             $this->db->select('*');
             $this->db->from('chamado');
@@ -274,7 +277,23 @@ class chamado_model extends CI_Model
             $this->db->where("idchamado", $idchamado);
         
 
-        return $this->db->get();
+            $return = $this->db->get();
+             
+            foreach ($return -> result() as $row):
+                $arr[] = array(
+                    'idhistorico'=>$row->idhistorico, 
+                    'nometecnico'=>$row->nometecnico, 
+                    'ramaltecnico'=>$row->ramaltecnico,
+                    'emailtecnico'=>$row->emailtecnico, 
+                    'data'=>$row->data, 
+                    'statuschamado'=>$row->statuschamado,
+                    'justificativa'=>$row->justificativa, 
+                    'chamado_fk'=>$row->chamado_fk,  
+                    'usuarios_fk'=>$row->usuarios_fk
+                );
+            endforeach; 
+            
+            return json_encode($arr);
     }
 
     public function m_historico_datalhado($idhistorico = NULL)
