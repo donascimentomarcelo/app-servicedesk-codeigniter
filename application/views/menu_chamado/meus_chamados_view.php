@@ -23,44 +23,6 @@
         <script type="text/javascript">
 
 
-
-            $(document).ready(function () {
-                $('table.display').dataTable();
-
-                $(document).ready(function () {
-                    $('.dropdown-toggle').dropdown();
-                });
-
-                $("#formulario_chamado").validate({
-                    rules: {
-                        nomechamado: {
-                            required: true,
-                            minlength: 3
-                        },
-                        gravadora: {
-                            required: true,
-                            minlength: 3
-                        }
-                    },
-                    messages: {
-                        nomechamado: {
-                            required: "Informe o nome do CD!",
-                            minlength: "O nome deve ter pelo menos 3 caracteres"
-                        },
-                        gravadora: {
-                            required: "Informe a gravadora!",
-                            minlength: "O nome deve ter pelo menos 3 caracteres"
-                        }
-                    }
-                });
-            });
-            function minhaCallCack() {
-                swal({title: "Registro salvo com sucesso!",
-                    text: "Exito ao realizar operação.",
-                    timer: 1000,
-                    showConfirmButton: false
-                });
-            }
             //http://t4t5.github.io/sweetalert/
             /*
              * Função que carrega após o DOM estiver carregado.
@@ -243,7 +205,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr onclick="janelaNovoCd(1)" ng-click="edit(dataServiceCall)" dir-paginate="dataServiceCall in dataServiceCall | itemsPerPage : 10">
+                                    <tr onclick="janelaNovoCd()" ng-click="edit(dataServiceCall)" dir-paginate="dataServiceCall in dataServiceCall | itemsPerPage : 10">
                                         <td style="text-align: center;">{{dataServiceCall.idchamado}}</td>
                                         <td style="text-align: center;">{{dataServiceCall.nomechamado}}</td>
                                         <td style="text-align: center;">{{dataServiceCall.datainicial}}</td>
@@ -258,7 +220,6 @@
                                         </td>
                                         <td style="text-align: center;" class="description">{{dataServiceCall.descricao}}</td>
                                         <td style="text-align: center;">
-                                            <a style="text-align: center;" href="javascript:;"  onclick="janelaNovoCd(1)"><button type="button" class="glyphicon glyphicon-eye-open"></button></a>
                                             <a style="text-align: center;" href="http://localhost/cd/index.php/chamado/chamado_controller/historico_detalhado/passaOID"><button type="button" class="glyphicon glyphicon-floppy-open"></button></a>
                                         </td>
 
@@ -276,6 +237,9 @@
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
                                     <h4 class="modal-title">Visualizar Rápida do Chamado</h4>
                                 </div>
                                 <ul class="nav nav-tabs">
@@ -320,21 +284,21 @@
 
                                                 <div class="form-group">
                                                     <label for="exampleTextarea">Descrição</label>
-                                                    <textarea class="form-control" id="descricao" name="descricao" rows="3" readonly="true"  maxlength="499"></textarea>
+                                                    <textarea class="form-control" ng-model='action.descricao' name="descricao" rows="3" readonly="true"  maxlength="499"></textarea>
                                                 </div>
 
-                                                <input type="hidden" name="idchamado" id="idchamado" value="" />
+                                                <input type="hidden" name="idchamado" ng-model='action.idchamado'  value="" />
 
                                             </div>
                                             <div class="tab-pane" id="second-tab">
 
                                                 <div class="form-group">
                                                     <label for="nome">Nome do Solicitante</label>
-                                                    <input type="text" class="form-control" id="nome"  name='nome'readonly="true">
+                                                    <input type="text" class="form-control" ng-model='action.nome'  name='nome'readonly="true">
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="nome">Ramal</label>
-                                                    <input type="text" class="form-control" id="ramal"  name='ramal' readonly="true">
+                                                    <input type="text" class="form-control" ng-model='action.ramal'  name='ramal' readonly="true">
                                                 </div>
 
                                                 <div class="form-group">
@@ -342,12 +306,7 @@
                                                     <select class="form-control" name="setor_fk" id="setor_fk" required="required" disabled>
 
                                                         <option value="">Selecione um Setor</option>
-
-                                                        <?php// foreach ($setor_ativo->result() as $linha): ?> 
-
-                                                            <option value="<?php //echo $linha->idsetor ?>"><?php //echo $linha->nomesetor ?></option>
-
-                                                        <?php// endforeach; ?>
+                                                        <option ng-repeat="dataSector in dataSector" value="{{dataSector.idsetor}}">{{dataSector.nomesetor}}</option>
 
                                                     </select>
                                                 </div>
@@ -356,34 +315,28 @@
                                                     <input type="text" class="form-control" id="email"  name='email' readonly="true">
                                                 </div>
                                             </div>  
-
                                             <div class="tab-pane" id="third-tab">
                                                 <div class="form-group">
                                                     <label for="nome">Código do Técnico</label>
-                                                    <input type="text" class="form-control" id="codusuario"  name='idtec'readonly="true">
+                                                    <input type="text" class="form-control" ng-model='action.codusuario'  name='idtec'readonly="true">
                                                 </div>
 
                                                 <div class="form-group">
                                                     <label for="nome">Nome do Técnico</label>
-                                                    <input type="text" class="form-control" id="nometec"  name='nometec'readonly="true">
+                                                    <input type="text" class="form-control" ng-model='action.nometec'  name='nometec'readonly="true">
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="nome">Ramal do Técnico</label>
-                                                    <input type="text" class="form-control" id="ramaltec"  name='ramaltec' readonly="true">
+                                                    <input type="text" class="form-control" ng-model='action.ramaltec'  name='ramaltec' readonly="true">
                                                 </div>
-
                                                 <div class="form-group">
                                                     <label for="nome">E-mail do Técnico</label>
-                                                    <input type="text" class="form-control" id="emailtec"  name='emailtec' readonly="true">
+                                                    <input type="text" class="form-control" ng-model='action.emailtec'  name='emailtec' readonly="true">
                                                 </div>
                                             </div>
-
                                         </div>  
                                     </form>	    
-
                                 </div>
-                                
-                                
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-default" data-dismiss="modal" onclick="refresh()" >Fechar</button>
                                 </div>

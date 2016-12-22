@@ -5,6 +5,8 @@
             $scope.dataServiceCall = [];
             $scope.dataCategory    = [];
             $scope.dataSubCategory = [];
+            $scope.dataSector      = [];
+            
             var loadServiceCall = function(){
                 serviceCallAPIService.getServiceCall().success(function(data){
                     $scope.dataServiceCall = data;
@@ -27,6 +29,13 @@
                    console.log(data); 
                 });
             };
+            var loadSector = function(){
+                serviceCallAPIService.getSector().success(function(data){
+                    $scope.dataSector = data;
+                }).error(function(data){
+                   console.log(data); 
+                });
+            };
             
             $scope.edit = function(dataServiceCall){
                 $scope.action = dataServiceCall;
@@ -35,4 +44,5 @@
             loadServiceCall();
             loadCategory();
             loadSubCategory();
+            loadSector();
         });

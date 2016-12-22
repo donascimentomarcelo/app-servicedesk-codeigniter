@@ -18,6 +18,11 @@
                 return $http.get('/cd/index.php/chamado/chamado_controller/subcategoryList');
                 
             };
+            var _getSector = function(){
+                
+                return $http.get('/cd/index.php/chamado/chamado_controller/sectorList');
+                
+            };
             
             return{
                 
@@ -25,7 +30,9 @@
                 
                 getCategory : _getCategory,
                 
-                getSubCategory :_getSubCategory
+                getSubCategory :_getSubCategory,
+                
+                getSector : _getSector
                 
             };
         });

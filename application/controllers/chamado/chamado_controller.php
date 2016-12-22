@@ -49,6 +49,7 @@ class Chamado_controller extends CI_Controller {
 
             echo $this->chamado_model->m_meus_chamados();
         }
+        
         public function serviceCallList()
         {
             $this->load->model('chamado/chamado_model');
@@ -76,6 +77,13 @@ class Chamado_controller extends CI_Controller {
         
             echo $this->subcategoria_model->MLoadSubcategory();
         }
+        
+        public function sectorList()
+        {
+            $this->load->model('setor/setor_model');
+
+            echo $this->setor_model->m_active_sector();
+        }  
 
     public function salvar_chamado(){
             
