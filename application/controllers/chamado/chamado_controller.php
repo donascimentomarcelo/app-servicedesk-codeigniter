@@ -67,7 +67,7 @@ class Chamado_controller extends CI_Controller {
         {
             $this->load->model('categoria/categoria_model');
 
-            echo $this->categoria_model->m_exibir_categoria();
+            echo $this->categoria_model->MLoadCategory();
         }
 
         public function subcategoryList()
