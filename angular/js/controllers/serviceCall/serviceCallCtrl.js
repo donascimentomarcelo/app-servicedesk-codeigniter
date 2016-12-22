@@ -37,6 +37,14 @@
                 });
             };
             
+            $scope.historic = function(idchamado){
+                serviceCallAPIService.getHistoric(idchamado).success(function(data){
+                    console.log(data);
+                }).error(function(data){
+                   console.log(data); 
+                });
+            };
+            
             $scope.edit = function(dataServiceCall){
                 $scope.action = dataServiceCall;
             };

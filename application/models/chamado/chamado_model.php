@@ -1,24 +1,26 @@
 <?php
 
-class chamado_model extends CI_Model{
-    
-    function __construct() {
-        
+class chamado_model extends CI_Model
+{
+
+    function __construct()
+    {
+
         parent::__construct();
-        
-    }    
-    
-    public function m_salvar_chamado() {
-        
+    }
+
+    public function m_salvar_chamado()
+    {
+
         $idchamado = $this->input->post("idchamado");
         $id = $this->session->userdata('id');
-        
-        if($idchamado != 0){
-            
+
+        if ($idchamado != 0)
+        {
+
             $this->db->where("idchamado", $idchamado);
-            
-             $dados = array(
-                 
+
+            $dados = array(
                 "nometec" => $this->input->post('nometecnico'),
                 "emailtec" => $this->input->post('emailtecnico'),
                 "ramaltec" => $this->input->post('ramaltecnico'),
@@ -27,59 +29,62 @@ class chamado_model extends CI_Model{
                 "statuschamado" => $this->input->post('statuschamado'),
                 "descricao" => $this->input->post('descricao'),
                 "setor_fk" => $this->input->post('setor_fk'),
-                
             );
-            
+
             $query = $this->db->update("chamado", $dados);
-            
-            
-            if($query){
-                
+
+
+            if ($query)
+            {
+
                 $agora = date('Y-m-d H:i:s');
-                
+
                 $i = $this->input->post('statuschamado');
-                
-                if($i == 'aguardando'){
-                    
-                   $status =  'Aguardando Atendimento';
-                   
-                }elseif($i == 'ematendimento'){
-                    
+
+                if ($i == 'aguardando')
+                {
+
+                    $status = 'Aguardando Atendimento';
+                }
+                elseif ($i == 'ematendimento')
+                {
+
                     $status = 'Em Atendimento';
-                    
-                }elseif($i == 'encerrar'){
-                    
+                } 
+                elseif ($i == 'encerrar')
+                {
+
                     $status = 'Encerrado';
-                    
-                }elseif($i == 'reabrir'){
-                    
+                }
+                elseif ($i == 'reabrir')
+                {
+
                     $status = 'Reaberto';
                 }
-                
+
                 $historico = array(
-                    
-                "nometecnico" => $this->input->post('nometecnico'),
-                "emailtecnico" => $this->input->post('emailtecnico'),
-                "ramaltecnico" => $this->input->post('ramaltecnico'),
-                "justificativa" => $this->input->post('justificativa'),
-                "usuarios_fk" => $this->input->post('usuarios_fk'),
-                "chamado_fk" => $this->input->post('idchamado'),
-                "statuschamado" => $status,
-                "data" => $agora
-                
-            );
-                 $query = $this->db->insert("historico", $historico);
+                    "nometecnico" => $this->input->post('nometecnico'),
+                    "emailtecnico" => $this->input->post('emailtecnico'),
+                    "ramaltecnico" => $this->input->post('ramaltecnico'),
+                    "justificativa" => $this->input->post('justificativa'),
+                    "usuarios_fk" => $this->input->post('usuarios_fk'),
+                    "chamado_fk" => $this->input->post('idchamado'),
+                    "statuschamado" => $status,
+                    "data" => $agora
+                );
+                $query = $this->db->insert("historico", $historico);
             }
-            
-        }else{
-            
+        }
+        else
+        {
+
             $sla = $this->input->post('sla');
-            
-            $sla = (int)$sla;
-            
-            $inicio = date('Y-m-d H:i:s'); 
-            $fim = date('Y-m-d H:i:s', strtotime("+$sla hours",strtotime($inicio))); 
-          
+
+            $sla = (int) $sla;
+
+            $inicio = date('Y-m-d H:i:s');
+            $fim = date('Y-m-d H:i:s', strtotime("+$sla hours", strtotime($inicio)));
+
             $dados = array(
                 "usuarios_fk" => $id,
                 "nomechamado" => $this->input->post('nomechamado'),
@@ -94,159 +99,142 @@ class chamado_model extends CI_Model{
                 "statuschamado" => 'aguardando',
                 "datainicial" => $inicio,
                 "datafinal" => $fim
-                
-                
             );
-            
+
             $query = $this->db->insert("chamado", $dados);
-            
+
             echo $query;
-            
         }
-        
-        if($query){
-            
+
+        if ($query)
+        {
+
             return TRUE;
-            
-        }else{
-            
+        } 
+        else
+        {
+
             return FALSE;
-            
         }
-        
     }
-    
-    public function exibe_chamado(){
-        
-            $this->db->where("statuschamado", 'aguardando');
-         
-            $variaveis = $this->db->get("chamado")->result_array();
-            
-            
-            for($i = 0; $i < count($variaveis); $i++){
 
-                $inicio = $variaveis[$i]['datainicial'];
-                $fim = $variaveis[$i]['datafinal'];
-  
-                date_default_timezone_set('America/Sao_Paulo');
+    public function exibe_chamado()
+    {
 
-                $inicio = new DateTime($inicio);
-                $fim = new DateTime($fim);
-                $agora = new DateTime();
+        $this->db->where("statuschamado", 'aguardando');
 
-                $diffInicioFim = $fim->getTimestamp() - $inicio->getTimestamp();
-                $diffInicioAgora = $agora->getTimestamp() - $inicio->getTimestamp();
+        $variaveis = $this->db->get("chamado")->result_array();
 
-                $porcentagem = $diffInicioAgora / $diffInicioFim * 100;
 
-              
-                if($porcentagem < 25){
+        for ($i = 0; $i < count($variaveis); $i++)
+        {
+
+            $inicio = $variaveis[$i]['datainicial'];
+            $fim = $variaveis[$i]['datafinal'];
+
+            date_default_timezone_set('America/Sao_Paulo');
+
+            $inicio = new DateTime($inicio);
+            $fim = new DateTime($fim);
+            $agora = new DateTime();
+
+            $diffInicioFim = $fim->getTimestamp() - $inicio->getTimestamp();
+            $diffInicioAgora = $agora->getTimestamp() - $inicio->getTimestamp();
+
+            $porcentagem = $diffInicioAgora / $diffInicioFim * 100;
+
+
+            if ($porcentagem < 25)
+            {
 
                 $class = 'success';
-                
-                }else if($porcentagem >25 && $porcentagem <=81){
+            } 
+            else if ($porcentagem > 25 && $porcentagem <= 81)
+            {
 
                 $class = 'warning';
+            } 
+            else if ($porcentagem >= 81 && $porcentagem <= 100)
+            {
 
-                }else if($porcentagem >= 81 && $porcentagem <= 100) {
-                    
                 $class = 'danger';
+            } 
+            else if ($porcentagem >= 100)
+            {
 
-                }else if($porcentagem >= 100) {
-                    
                 $porcentagem = 100;
                 $class = 'danger';
-
-                }
-                
-                $variaveis[$i] += ['porcentagem' => $porcentagem, 'class' => $class];
             }
 
-            return json_encode($variaveis);
-        
-        
+            $variaveis[$i] += ['porcentagem' => $porcentagem, 'class' => $class];
+        }
+
+        return json_encode($variaveis);
     }
-    
-    
-    
-    public function exibe_chamado_atendimento(){
-        
-            $id = $this->session->userdata('id');
-        
-            $this->db->where("statuschamado", 'ematendimento');
-            $this->db->where("usuarios_fk", $id);
-          
-            $variaveis = $this->db->get("chamado")->result_array();
-            
-            
-            for($i = 0; $i < count($variaveis); $i++){
 
-                $inicio = $variaveis[$i]['datainicial'];
-                $fim = $variaveis[$i]['datafinal'];
-  
-                date_default_timezone_set('America/Sao_Paulo');
+    public function exibe_chamado_atendimento()
+    {
 
-                $inicio = new DateTime($inicio);
-                $fim = new DateTime($fim);
-                $agora = new DateTime();
+        $id = $this->session->userdata('id');
 
-                $diffInicioFim = $fim->getTimestamp() - $inicio->getTimestamp();
-                $diffInicioAgora = $agora->getTimestamp() - $inicio->getTimestamp();
+        $this->db->where("statuschamado", 'ematendimento');
+        $this->db->where("usuarios_fk", $id);
 
-                $porcentagem = $diffInicioAgora / $diffInicioFim * 100;
+        $variaveis = $this->db->get("chamado")->result_array();
 
-              
-                if($porcentagem < 25){
+
+        for ($i = 0; $i < count($variaveis); $i++)
+        {
+
+            $inicio = $variaveis[$i]['datainicial'];
+            $fim = $variaveis[$i]['datafinal'];
+
+            date_default_timezone_set('America/Sao_Paulo');
+
+            $inicio = new DateTime($inicio);
+            $fim = new DateTime($fim);
+            $agora = new DateTime();
+
+            $diffInicioFim = $fim->getTimestamp() - $inicio->getTimestamp();
+            $diffInicioAgora = $agora->getTimestamp() - $inicio->getTimestamp();
+
+            $porcentagem = $diffInicioAgora / $diffInicioFim * 100;
+
+
+            if ($porcentagem < 25)
+            {
 
                 $class = 'success';
-                
-                }else if($porcentagem >25 && $porcentagem <=81){
+            } 
+            else if ($porcentagem > 25 && $porcentagem <= 81)
+            {
 
                 $class = 'warning';
+            }
+            else if ($porcentagem >= 81 && $porcentagem <= 100)
+            {
 
-                }else if($porcentagem >= 81 && $porcentagem <= 100) {
-                    
                 $class = 'danger';
+            } 
+            else if ($porcentagem >= 100)
+            {
 
-                }else if($porcentagem >= 100) {
-                    
                 $porcentagem = 100;
                 $class = 'danger';
-
-                }
-                
-                $variaveis[$i] += ['porcentagem' => $porcentagem, 'class' => $class];
             }
 
-            return $variaveis;
-        
-        
-    }
-    
-    /*
-    
-    public function excluir($idchamado) {
-        
-        $this->db->where('idchamado',$idchamado);
-        
-        if($this->db->delete("chamado")){
-            
-            return TRUE;
-            
-        }else{
-            
-            return FALSE;
-            
+            $variaveis[$i] += ['porcentagem' => $porcentagem, 'class' => $class];
         }
-        
+
+        return $variaveis;
     }
-     
-    */
-    
-    public function m_list_chamado($idchamado = NULL) {
-        
-        if($idchamado != NULL){
-            $this->db->select('*');    
+
+    public function m_list_chamado($idchamado = NULL)
+    {
+
+        if ($idchamado != NULL)
+        {
+            $this->db->select('*');
             $this->db->from('chamado');
             $this->db->join('usuarios', 'chamado.usuarios_fk = usuarios.id');
             $this->db->join('setor', 'chamado.setor_fk = setor.idsetor');
@@ -255,16 +243,16 @@ class chamado_model extends CI_Model{
             $this->db->where("idchamado", $idchamado);
             //$this->db->where("idchamado", $idchamado);
         }
-        
+
         return $this->db->get();
-        
     }
-    
-    
-    public function m_historico($idchamado = NULL) {
-        
-        if($idchamado != NULL){
-            $this->db->select('*');    
+
+    public function m_historico($idchamado = NULL)
+    {
+
+        if ($idchamado != NULL)
+        {
+            $this->db->select('*');
             $this->db->from('chamado');
             //$this->db->join('historico', 'historico.chamado_fk = chamado.idchamado');
             $this->db->join('setor', 'chamado.setor_fk = setor.idsetor');
@@ -273,101 +261,104 @@ class chamado_model extends CI_Model{
             $this->db->join('usuarios', 'chamado.usuarios_fk = usuarios.id');
             $this->db->where("idchamado", $idchamado);
         }
-        
+
         return $this->db->get();
-        
     }
-    
-    
-    public function m_historico_ajax($idchamado = NULL) {
-        
-        if($idchamado != NULL){
-            $this->db->select('*');    
+
+    public function m_historico_ajax($idchamado = NULL)
+    {
+
+        if ($idchamado != NULL)
+        {
+            $this->db->select('*');
             $this->db->from('chamado');
             $this->db->join('historico', 'historico.chamado_fk = chamado.idchamado');
             $this->db->where("idchamado", $idchamado);
         }
-        
+
         return $this->db->get();
-        
     }
-    
-    
-    public function m_historico_datalhado($idhistorico = NULL) {
-        
-        if($idhistorico != NULL){
-            
+
+    public function m_historico_datalhado($idhistorico = NULL)
+    {
+
+        if ($idhistorico != NULL)
+        {
+
             $this->db->where("idhistorico", $idhistorico);
         }
-        
+
         return $this->db->get('historico');
-        
     }
-    
-    
-    public function m_historico_tabela($idchamado = NULL) {
-        
-        if($idchamado != NULL){
-            $this->db->select('*');    
+
+    public function m_historico_tabela($idchamado = NULL)
+    {
+
+        if ($idchamado != NULL)
+        {
+            $this->db->select('*');
             $this->db->from('chamado');
             $this->db->join('historico', 'historico.chamado_fk = chamado.idchamado');
             $this->db->where("idchamado", $idchamado);
         }
-        
+
         return $this->db->get();
-        
     }
-    
-    function m_meus_chamados(){
-        
+
+    function m_meus_chamados()
+    {
+
         $id = $this->session->userdata('id');
-        
-            $this->db->where("usuarios_fk", $id);
-          
-            $variaveis = $this->db->get("chamado")->result_array();
-            
-            
-            for($i = 0; $i < count($variaveis); $i++){
 
-                $inicio = $variaveis[$i]['datainicial'];
-                $fim = $variaveis[$i]['datafinal'];
-  
-                date_default_timezone_set('America/Sao_Paulo');
+        $this->db->where("usuarios_fk", $id);
 
-                $inicio = new DateTime($inicio);
-                $fim = new DateTime($fim);
-                $agora = new DateTime();
+        $variaveis = $this->db->get("chamado")->result_array();
 
-                $diffInicioFim = $fim->getTimestamp() - $inicio->getTimestamp();
-                $diffInicioAgora = $agora->getTimestamp() - $inicio->getTimestamp();
 
-                $porcentagem = $diffInicioAgora / $diffInicioFim * 100;
+        for ($i = 0; $i < count($variaveis); $i++)
+        {
 
-              
-                if($porcentagem < 25){
+            $inicio = $variaveis[$i]['datainicial'];
+            $fim = $variaveis[$i]['datafinal'];
+
+            date_default_timezone_set('America/Sao_Paulo');
+
+            $inicio = new DateTime($inicio);
+            $fim = new DateTime($fim);
+            $agora = new DateTime();
+
+            $diffInicioFim = $fim->getTimestamp() - $inicio->getTimestamp();
+            $diffInicioAgora = $agora->getTimestamp() - $inicio->getTimestamp();
+
+            $porcentagem = $diffInicioAgora / $diffInicioFim * 100;
+
+
+            if ($porcentagem < 25)
+            {
 
                 $class = 'success';
-                
-                }else if($porcentagem >25 && $porcentagem <=81){
+            } 
+            else if ($porcentagem > 25 && $porcentagem <= 81)
+            {
 
                 $class = 'warning';
+            } 
+            else if ($porcentagem >= 81 && $porcentagem <= 100)
+            {
 
-                }else if($porcentagem >= 81 && $porcentagem <= 100) {
-                    
                 $class = 'danger';
+            } 
+            else if ($porcentagem >= 100)
+            {
 
-                }else if($porcentagem >= 100) {
-                    
                 $porcentagem = 100;
                 $class = 'danger';
-
-                }
-                
-                $variaveis[$i] += ['porcentagem' => $porcentagem, 'class' => $class];
             }
 
-            return json_encode($variaveis);
-        
+            $variaveis[$i] += ['porcentagem' => $porcentagem, 'class' => $class];
+        }
+
+        return json_encode($variaveis);
     }
+
 }
-            

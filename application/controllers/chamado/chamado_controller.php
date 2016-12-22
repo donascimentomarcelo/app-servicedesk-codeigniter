@@ -84,6 +84,13 @@ class Chamado_controller extends CI_Controller {
 
             echo $this->setor_model->m_active_sector();
         }  
+        public function historicList()
+        {   
+            $array = json_decode(file_get_contents('php://input'),true);
+            
+            print_r($array);
+            
+        }  
 
     public function salvar_chamado(){
             

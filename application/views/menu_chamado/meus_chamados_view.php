@@ -205,12 +205,12 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr onclick="janelaNovoCd()" ng-click="edit(dataServiceCall)" dir-paginate="dataServiceCall in dataServiceCall | itemsPerPage : 10">
-                                        <td style="text-align: center;">{{dataServiceCall.idchamado}}</td>
-                                        <td style="text-align: center;">{{dataServiceCall.nomechamado}}</td>
-                                        <td style="text-align: center;">{{dataServiceCall.datainicial}}</td>
-                                        <td style="text-align: center;">{{dataServiceCall.datafinal}}</td>
-                                        <td style="text-align: center;">
+                                    <tr ng-click="edit(dataServiceCall)" dir-paginate="dataServiceCall in dataServiceCall | itemsPerPage : 10">
+                                        <td style="text-align: center;"  onclick="janelaNovoCd()">{{dataServiceCall.idchamado}}</td>
+                                        <td style="text-align: center;"  onclick="janelaNovoCd()">{{dataServiceCall.nomechamado}}</td>
+                                        <td style="text-align: center;"  onclick="janelaNovoCd()">{{dataServiceCall.datainicial}}</td>
+                                        <td style="text-align: center;"  onclick="janelaNovoCd()">{{dataServiceCall.datafinal}}</td>
+                                        <td style="text-align: center;"  onclick="janelaNovoCd()">
                                             <div class="progress">
                                                 <div class="progress-bar-{{dataServiceCall.class}}" role="progressbar" aria-valuenow="70"
                                                      aria-valuemin="0" aria-valuemax="100" style="width:{{dataServiceCall.porcentagem}}%">
@@ -218,10 +218,8 @@
                                                 </div>
                                             </div>
                                         </td>
-                                        <td style="text-align: center;" class="description">{{dataServiceCall.descricao}}</td>
-                                        <td style="text-align: center;">
-                                            <a style="text-align: center;" href="http://localhost/cd/index.php/chamado/chamado_controller/historico_detalhado/passaOID"><button type="button" class="glyphicon glyphicon-floppy-open"></button></a>
-                                        </td>
+                                        <td style="text-align: center;" class="description"  onclick="janelaNovoCd()">{{dataServiceCall.descricao}}</td>
+                                        <td style="text-align: center;" ng-click="historic(dataServiceCall.idchamado)"><i class="material-icons">assignment</i></td>
 
                                     </tr>
                                 </tbody>

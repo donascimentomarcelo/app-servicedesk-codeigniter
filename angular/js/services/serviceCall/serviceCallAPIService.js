@@ -23,6 +23,11 @@
                 return $http.get('/cd/index.php/chamado/chamado_controller/sectorList');
                 
             };
+            var _getHistoric = function(idchamado){
+                
+                return $http.post('/cd/index.php/chamado/chamado_controller/historicList',{idchamado:idchamado});
+                
+            };
             
             return{
                 
@@ -32,7 +37,9 @@
                 
                 getSubCategory :_getSubCategory,
                 
-                getSector : _getSector
+                getSector : _getSector,
+                
+                getHistoric : _getHistoric
                 
             };
         });
