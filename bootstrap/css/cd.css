@@ -201,7 +201,14 @@
     .btn-off{
         color: whitesmoke;
     }
-    
+    .modal-backdrop.in {
+        filter: alpha(opacity=50);
+        opacity: -0.5 !important;
+        position: relative;
+    }
+    .modal.in .modal-dialog{
+        margin-top: 7%;
+    }
 
     /*RESPONSIVE*/
 

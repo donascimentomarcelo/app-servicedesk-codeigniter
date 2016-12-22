@@ -233,7 +233,7 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th  style="text-align: center;">Código</th>
+                                        <th style="text-align: center;">Código</th>
                                         <th style="text-align: center;">Título</th>
                                         <th style="text-align: center;">Data Inicial</th>
                                         <th style="text-align: center;">Data Final</th>
@@ -243,7 +243,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr dir-paginate="dataServiceCall in dataServiceCall | itemsPerPage : 10">
+                                    <tr onclick="janelaNovoCd(1)" dir-paginate="dataServiceCall in dataServiceCall | itemsPerPage : 10">
                                         <td style="text-align: center;">{{dataServiceCall.idchamado}}</td>
                                         <td style="text-align: center;">{{dataServiceCall.nomechamado}}</td>
                                         <td style="text-align: center;">{{dataServiceCall.datainicial}}</td>
@@ -301,11 +301,11 @@
 
                                                         <option value="">Selecione uma categoria</option>
                                                         <!--AQUI!-->
-                                                        <?php foreach ($categoria->result() as $linha): ?> 
+                                                        <?php //foreach ($categoria->result() as $linha): ?> 
 
-                                                            <option value="<?php echo $linha->idcategoria ?>"><?php echo $linha->nomecategoria ?></option>
+                                                            <option value="<?php //echo $linha->idcategoria ?>"><?php// echo $linha->nomecategoria ?></option>
 
-                                                        <?php endforeach; ?>
+                                                        <?php// endforeach; ?>
 
                                                     </select>
                                                 </div>
@@ -317,11 +317,11 @@
                                                     <select class="form-control" name="subcategoria_fk" id="subcategoria" required="required" onchange='buscar_sla($(this).val())' disabled>
                                                         <option value="">Selecione uma categoria</option>
                                                         <!--AQUI!-->
-                                                        <?php foreach ($subcategoria->result() as $linha): ?> 
+                                                        <?php// foreach ($subcategoria->result() as $linha): ?> 
 
-                                                            <option value="<?php echo $linha->idsubcategoria ?>"><?php echo $linha->nomesubcategoria ?></option>
+                                                            <option value="<?php //echo $linha->idsubcategoria ?>"><?php// echo $linha->nomesubcategoria ?></option>
 
-                                                        <?php endforeach; ?>
+                                                        <?php// endforeach; ?>
                                                     </select>
                                                 </div>
                                                 <div id="sla" class="form-group">
@@ -353,11 +353,11 @@
 
                                                         <option value="">Selecione um Setor</option>
 
-                                                        <?php foreach ($setor_ativo->result() as $linha): ?> 
+                                                        <?php// foreach ($setor_ativo->result() as $linha): ?> 
 
-                                                            <option value="<?php echo $linha->idsetor ?>"><?php echo $linha->nomesetor ?></option>
+                                                            <option value="<?php //echo $linha->idsetor ?>"><?php //echo $linha->nomesetor ?></option>
 
-                                                        <?php endforeach; ?>
+                                                        <?php// endforeach; ?>
 
                                                     </select>
                                                 </div>
@@ -429,11 +429,11 @@
 
                                                         <option value="">Selecione uma categoria</option>
                                                         <!--AQUI!-->
-                                                        <?php foreach ($categoria->result() as $linha): ?> 
+                                                        <?php //foreach ($categoria->result() as $linha): ?> 
 
-                                                            <option value="<?php echo $linha->idcategoria ?>"><?php echo $linha->nomecategoria ?></option>
+                                                            <option value="<?php //echo $linha->idcategoria ?>"><?php// echo $linha->nomecategoria ?></option>
 
-                                                        <?php endforeach; ?>
+                                                        <?php// endforeach; ?>
 
                                                     </select>
                                                 </div>
@@ -475,11 +475,11 @@
 
                                                         <option value="">Selecione um Setor</option>
 
-                                                        <?php foreach ($setor_ativo->result() as $linha): ?> 
+                                                        <?php //foreach ($setor_ativo->result() as $linha): ?> 
 
-                                                            <option value="<?php echo $linha->idsetor ?>"><?php echo $linha->nomesetor ?></option>
+                                                            <option value="<?php //echo $linha->idsetor ?>"><?php //echo $linha->nomesetor ?></option>
 
-                                                        <?php endforeach; ?>
+                                                        <?php //endforeach; ?>
 
                                                     </select>
                                                 </div>
