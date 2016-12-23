@@ -278,6 +278,12 @@
             text-overflow: ellipsis;
             white-space: nowrap
         }
+        .scroll {
+            width:33%;
+            height:400px;
+            background-color:#F2F2F2;
+            overflow:auto;
+        }
         
     }
     @media (max-width: 1024px){
@@ -345,6 +351,12 @@
             margin-top: 3%;
             width: 50%;
         }
+        .scroll {
+            width:100%;
+            height:400px;
+            background-color:#F2F2F2;
+            overflow:auto;
+        }
     }
     @media (max-width:768px) {
 
@@ -384,6 +396,12 @@
             text-align: center;
             width: 75%;
         }
+        .scroll {
+            width:100%;
+            height:400px;
+            background-color:#F2F2F2;
+            overflow:auto;
+        }
     }
 
     @media (max-width:480px) {
@@ -418,6 +436,12 @@
             font-weight: bold;
             text-align: center;
             width: 100%;
+        }
+        .scroll {
+            width:100%;
+            height:400px;
+            background-color:#F2F2F2;
+            overflow:auto;
         }
     }
     @media (max-width: 408px){

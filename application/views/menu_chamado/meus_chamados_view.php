@@ -2,6 +2,7 @@
 <html ng-app="serviceCall">
     <head>
         <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Meus Chamados</title>
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <link rel="stylesheet" href="https://code.getmdl.io/1.2.1/material.indigo-pink.min.css">
@@ -192,19 +193,16 @@
                     <div id="container">
                         <h1><?php foreach ($preenche_dados->result() as $dados): ?> <img src="../../.<?php echo $dados->imagem; ?>" class="img-circle" width="50px" height="50px"> <?php endforeach; ?> <?php echo $this->session->userdata('nome'); ?></h1>
                         <div id="body">
-                            
                             <div class="row">
                                 <div class="col-md-8">
-
                                     <table class="table">
                                         <thead>
                                             <tr>
                                                 <th style="text-align: center;">Código</th>
                                                 <th style="text-align: center;">Título</th>
-                                                <th style="text-align: center;">Data Inicial</th>
-                                                <th style="text-align: center;">Data Final</th>
+                                                <th style="text-align: center;" class="none-table-768 none-table-480">Data Inicial</th>
+                                                <th style="text-align: center;" class="none-table-768 none-table-480">Data Final</th>
                                                 <th style="text-align: center;">SLA</th>
-                                                <th style="text-align: center;">Descrição</th>
                                                 <th style="text-align: center;"></th>
                                             </tr>
                                         </thead>
@@ -212,8 +210,8 @@
                                             <tr ng-click="edit(dataServiceCall)" dir-paginate="dataServiceCall in dataServiceCall | itemsPerPage : 10">
                                                 <td style="text-align: center;"  onclick="janelaNovoCd()">{{dataServiceCall.idchamado}}</td>
                                                 <td style="text-align: center;"  onclick="janelaNovoCd()">{{dataServiceCall.nomechamado}}</td>
-                                                <td style="text-align: center;"  onclick="janelaNovoCd()">{{dataServiceCall.datainicial}}</td>
-                                                <td style="text-align: center;"  onclick="janelaNovoCd()">{{dataServiceCall.datafinal}}</td>
+                                                <td style="text-align: center;"  onclick="janelaNovoCd()" class="none-table-768 none-table-480">{{dataServiceCall.datainicial}}</td>
+                                                <td style="text-align: center;"  onclick="janelaNovoCd()" class="none-table-768 none-table-480">{{dataServiceCall.datafinal}}</td>
                                                 <td style="text-align: center;"  onclick="janelaNovoCd()">
                                                     <div class="progress">
                                                         <div class="progress-bar-{{dataServiceCall.class}}" role="progressbar" aria-valuenow="70"
@@ -222,7 +220,6 @@
                                                         </div>
                                                     </div>
                                                 </td>
-                                                <td style="text-align: center;" class="description"  onclick="janelaNovoCd()">{{dataServiceCall.descricao}}</td>
                                                 <td style="text-align: center;" ng-click="historic(dataServiceCall.idchamado)"><i class="material-icons">assignment</i></td>
                                             </tr>
                                         </tbody>
@@ -230,28 +227,22 @@
                                     <div class="location-pagination">
                                         <dir-pagination-controls max-size="5" direction-links="true" boundary-links="true"></dir-pagination-controls>
                                     </div>
-
                                 </div>
-                                <div class="col-md-4">
-
-                                    <table>
-                                        <tr>
-                                        <ht>justificativa</ht>
-                                        </tr>
-                                        <tr ng-repeat="dataHistoric in dataHistoric">
-                                            <td>{{dataHistoric.justificativa}},</td>
-                                            <td>{{dataHistoric.nometecnico}},</td>
-                                        </tr>
-                                    </table>
-
+                                <div class="col-md-4 scroll">
+                                    <h1>Histórico</h1>
+                                    <div ng-repeat="dataHistoric in dataHistoric" >
+                                        <div><b>Código  : </b> {{dataHistoric.idhistorico}}</div><br>
+                                        <div><b>Técnico : </b> {{dataHistoric.nometecnico}}</div><br>
+                                        <div><b>E-mail  : </b> {{dataHistoric.emailtecnico}}</div><br>
+                                        <div><b>Data    : </b> {{dataHistoric.data}}</div><br>
+                                        <div><b>Status  : </b> {{dataHistoric.statuschamado}}</div><br>
+                                        <div><b>Justificativa :</b>{{dataHistoric.justificativa}}</div>
+                                        <h1><hr></h1>
+                                    </div>
                                 </div>
                             </div>
-                            
-                            
-                        </div>
-                    </div> <h1>
-                                  
-                                </h1>
+                         </div>
+                    </div> 
                     
 
                     <!--START MODAL-->

@@ -88,7 +88,7 @@ class Chamado_controller extends CI_Controller {
         {
             $this->load->model('chamado/chamado_model');
 
-            echo $this->chamado_model->m_historico_ajax();
+            echo $this->chamado_model->MHistoricList();
         }  
 
     public function salvar_chamado(){

@@ -265,7 +265,7 @@ class chamado_model extends CI_Model
         return $this->db->get();
     }
 
-    public function m_historico_ajax()
+    public function MHistoricList()
     {
             $_POST = json_decode(file_get_contents('php://input'),true);
         
@@ -287,7 +287,7 @@ class chamado_model extends CI_Model
                     'nometecnico'=>$row->nometecnico, 
                     'ramaltecnico'=>$row->ramaltecnico,
                     'emailtecnico'=>$row->emailtecnico, 
-                    'data'=>$row->data, 
+                    'data'=>date("d/m/Y H:i:s", strtotime($row->data)), 
                     'statuschamado'=>$row->statuschamado,
                     'justificativa'=>$row->justificativa, 
                     'chamado_fk'=>$row->chamado_fk,  
