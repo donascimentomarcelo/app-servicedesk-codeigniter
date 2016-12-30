@@ -19,6 +19,7 @@
                 <div class="mdl-textfield__input" type="text" id="opcService"  readonly tabIndex="-1">
                     <div style="text-align: center;">Opções de Chamado</div>
                     <ul for="opcService" class="mdl-menu mdl-menu--bottom-left mdl-js-menu">
+                        <li class="mdl-menu__item" onclick="location.href='/cd/index.php/chamado/chamado_controller/abrir_chamado';">Abrir Chamado</li>
                         <li class="mdl-menu__item" onclick="location.href='/cd/index.php/chamado/chamado_controller/meus_chamados';">Meus Chamados</li>
                         <li class="mdl-menu__item" onclick="location.href='/cd/index.php/chamado/chamado_controller/listar_chamado';">Atender Chamado</li>
                     </ul>

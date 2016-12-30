@@ -210,8 +210,8 @@
                                             <tr ng-click="edit(dataServiceCall)" dir-paginate="dataServiceCall in dataServiceCall | itemsPerPage : 10">
                                                 <td style="text-align: center;"  onclick="janelaNovoCd()">{{dataServiceCall.idchamado}}</td>
                                                 <td style="text-align: center;"  onclick="janelaNovoCd()">{{dataServiceCall.nomechamado}}</td>
-                                                <td style="text-align: center;"  onclick="janelaNovoCd()" class="none-table-768 none-table-480">{{dataServiceCall.datainicial}}</td>
-                                                <td style="text-align: center;"  onclick="janelaNovoCd()" class="none-table-768 none-table-480">{{dataServiceCall.datafinal}}</td>
+                                                <td style="text-align: center;"  onclick="janelaNovoCd()" class="none-table-768 none-table-480">{{dataServiceCall.dti}}</td>
+                                                <td style="text-align: center;"  onclick="janelaNovoCd()" class="none-table-768 none-table-480">{{dataServiceCall.dtf}}</td>
                                                 <td style="text-align: center;"  onclick="janelaNovoCd()">
                                                     <div class="progress">
                                                         <div class="progress-bar-{{dataServiceCall.class}}" role="progressbar" aria-valuenow="70"

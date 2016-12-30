@@ -1,0 +1,24 @@
+Instala o node
+cria o projeto no c:
+acessa a pasta
+->npm init
+->npm install -g nodemon
+->npm install --save express
+->digita nodemon para rodar o servidor
+->npm install -g bower
+->bower init
+->copy nul .bowerrc //Criará uma pasta .bowerrc
+->Dentro da pasta digita:
+{
+"directory": "public/lib"
+}
+->instala o git
+->bower install --save angular
+->bower install bootstrap --save
+->bower install --save socket.io-client
+
+
+Estrutura do projeto
+-index 
+-routes 
+-models

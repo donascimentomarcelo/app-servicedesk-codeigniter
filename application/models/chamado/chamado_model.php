@@ -326,7 +326,7 @@ class chamado_model extends CI_Model
         return $this->db->get();
     }
 
-    function m_meus_chamados()
+    function MmyServiceCallList()
     {
 
         $id = $this->session->userdata('id');
@@ -339,13 +339,13 @@ class chamado_model extends CI_Model
         for ($i = 0; $i < count($variaveis); $i++)
         {
 
-            $inicio = $variaveis[$i]['datainicial'];
-            $fim = $variaveis[$i]['datafinal'];
+            $dtinicio = $variaveis[$i]['datainicial'];
+            $dtfim = $variaveis[$i]['datafinal'];
 
             date_default_timezone_set('America/Sao_Paulo');
 
-            $inicio = new DateTime($inicio);
-            $fim = new DateTime($fim);
+            $inicio = new DateTime($dtinicio);
+            $fim = new DateTime($dtfim);
             $agora = new DateTime();
 
             $diffInicioFim = $fim->getTimestamp() - $inicio->getTimestamp();
@@ -375,8 +375,15 @@ class chamado_model extends CI_Model
                 $porcentagem = 100;
                 $class = 'danger';
             }
+                        
+            $dti = date("d/m/Y H:i:s", strtotime($dtinicio));
+            $dtf = date("d/m/Y H:i:s", strtotime($dtfim));
 
-            $variaveis[$i] += ['porcentagem' => $porcentagem, 'class' => $class];
+            $variaveis[$i] += [
+                'porcentagem' => $porcentagem, 
+                'class' => $class,
+                'dti' => $dti,
+                'dtf'=>$dtf ];
         }
 
         return json_encode($variaveis);

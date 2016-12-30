@@ -24,13 +24,8 @@ class Chamado_controller extends CI_Controller {
             
             //$this->load->model('categoria/categoria_model');
         
-           // $variaveis['categoria'] = $this->categoria_model->m_exibir_categoria();
-            
-            
-            $this->load->model('subcategoria/subcategoria_model');
-        
-            $variaveis['subcategoria'] = $this->subcategoria_model->m_exibir_subcategoria();
-            
+            //$variaveis['categoria'] = $this->categoria_model->m_exibir_categoria();
+                       
             
             $this->load->model('usuario/usuario_model');
             
@@ -42,12 +37,28 @@ class Chamado_controller extends CI_Controller {
             $this->load->view("menu_chamado/listar_chamado_view",$variaveis);
             
         }
+        public function abrir_chamado()
+        {
+            
+            $this->load->helper('valida_login/valida_helper');
+        
+            $variaveis['validacao'] = getValida();
+            
+            
+            $this->load->helper('preenche_dados/preenche_dados_helper');
+        
+            $variaveis['preenche_dados'] = getPreencheDados();
+            
+            
+           $this->load->view("menu_chamado/abrir_chamado_view",$variaveis);
+            
+        }
         
         public function myServiceCallList()
         {
             $this->load->model('chamado/chamado_model');
 
-            echo $this->chamado_model->m_meus_chamados();
+            echo $this->chamado_model->MmyServiceCallList();
         }
         
         public function serviceCallList()
@@ -91,22 +102,11 @@ class Chamado_controller extends CI_Controller {
             echo $this->chamado_model->MHistoricList();
         }  
 
-    public function salvar_chamado(){
-            
+        public function salvar_chamado()
+        {
             $this->load->model('chamado/chamado_model');
             
-           // $result = $this->chamado_model->m_salvar_chamado();
-            
-            if($this->chamado_model->m_salvar_chamado()){
-                
-                echo 1;
-                
-            }else{
-                
-                 echo 0;
-                
-            }
-            
+            echo $this->chamado_model->m_salvar_chamado();
         }
 
         public function dados_chamado() {
@@ -199,7 +199,7 @@ class Chamado_controller extends CI_Controller {
             
             $this->load->model("chamado/chamado_model");
             
-            $variaveis['meus_chamados'] = $this->chamado_model->m_meus_chamados();
+            $variaveis['meus_chamados'] = $this->chamado_model->MmyServiceCallList();
             
             $this->load->helper('valida_login/valida_helper');
         
@@ -209,17 +209,6 @@ class Chamado_controller extends CI_Controller {
             $this->load->helper('preenche_dados/preenche_dados_helper');
         
             $variaveis['preenche_dados'] = getPreencheDados();
-            
-            
-            //$this->load->model('categoria/categoria_model');
-        
-            //$variaveis['categoria'] = $this->categoria_model->m_exibir_categoria();
-            
-            
-            //$this->load->model('subcategoria/subcategoria_model');
-        
-            //$variaveis['subcategoria'] = $this->subcategoria_model->m_exibir_subcategoria();
-            
             
             $this->load->model('usuario/usuario_model');
             
