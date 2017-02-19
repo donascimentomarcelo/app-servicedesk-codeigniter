@@ -4,6 +4,10 @@
 	<meta charset="utf-8">
 	<title>Manter Setor</title>
 
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link rel="stylesheet" href="https://code.getmdl.io/1.2.1/material.indigo-pink.min.css">
+        <script defer src="https://code.getmdl.io/1.2.1/material.min.js"></script>
+
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
         <link href="../../../bootstrap/css/cd.css" rel="stylesheet" type="text/css"/>
         
@@ -31,20 +35,14 @@
       
 </head>
 <body ng-controller="sectorctrl">
-<?php if(empty(($this->session->userdata('email')))){
-    
-    redirect('login/login_controller/proteger');
-    
-}
-?>
 
 	<h1><?php foreach($preenche_dados -> result() as $dados):?> <img src="../../.<?php echo $dados->imagem;?>" class="img-circle" width="50px" height="50px"> <?php endforeach;?> <?php echo $this->session->userdata('nome');?></h1>
 
-        <?php 
-
-            include 'C:\xampp\htdocs\cd\application\views\menu_head\administrador\menu.php';
-        ?>
-
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+            <?php include 'C:\xampp\htdocs\cd\application\views\menu_head\administrador\menu.php'; ?>
+            <main class="mdl-layout__content">
+                <div class="page-content">
+                
 <div id="container">
 	<h1>Manter Setor</h1>
         <div id="body">
