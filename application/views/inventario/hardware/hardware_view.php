@@ -54,7 +54,7 @@
                                     <h5><div class="loader"></div></h5>
                                 </div>
                                 <div ng-hide="loading">-->
-                                <table ng-show="dados.length > 0" class="mdl-data-table mdl-js-data-table  mdl-shadow--2dp"cellspacing="0" width="100%">
+                                <table ng-show="dados.length > 0" class="table"cellspacing="0" width="100%">
                                     <tr>
                                         <th style="text-align: center;" ng-click="ordenarPor('idinventario')"> ID
                                             <span class="glyphicon sort-icon" ng-show="criterioDeOrdenacao === 'idinventario'" ng-class="{'glyphicon-triangle-bottom':ordenacao,'glyphicon-triangle-top':!ordenacao}"></span>
@@ -93,25 +93,23 @@
                                             <div class="form-group">
                                                 <input type="hidden" class="form-control" ng-model="registro.idinventario" name="idinventario">
                                             </div>
-                                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-width">
-                                                <input class="mdl-textfield__input" type="text" id="nameHardware"  ng-model="registro.nome" ng-required="true">
-                                                <label class="mdl-textfield__label" for="nameHardware">Nome do Hardware</label>
+                                            <div class="form-group full-width">
+                                                <input class="form-control" type="text" id="nameHardware"  ng-model="registro.nome" ng-required="true" placeholder="Nome do Hardware...">
                                             </div>
-                                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-width">
-                                                <input class="mdl-textfield__input" type="text" id="modelHardware"  ng-model="registro.modelo" ng-required="true">
-                                                <label class="mdl-textfield__label" for="modelHardware">Modelo do Hardware</label>
+                                            <div class="form-group full-width">
+                                                <input class="form-control" type="text" id="modelHardware"  ng-model="registro.modelo" ng-required="true" placeholder="Modelo do Hardware...">
                                             </div>
-                                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-width">
+                                            <div class="form-group full-width">
                                                 <select type="text" class="form-control" ng-model="registro.inventario_config_fk" name="inventario_config_fk" ng-required="true">
                                                     <option value="">Selecione uma marca.</option>
                                                     <option ng-repeat="dataconfig in dataconfig" value="{{dataconfig.idconfig}}" >{{dataconfig.nome_config}}</option>
                                                 </select>
                                             </div>
                                             <div>
-                                                <div  data-spy="affix">
+                                                <!-- <div  data-spy="affix"> -->
                                                     <button type="button" ng-click="registraInventario(registro)" ng-if="!inventarioForm.$invalid" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect"><i class="material-icons">archive</i></button><br><br>
                                                     <button type="button" ng-click="new ()" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect"> <i class="material-icons">add</i></button>
-                                                </div> 
+                                                <!-- </div>  -->
                                             </div>  
                                         </div>
                                     </div>

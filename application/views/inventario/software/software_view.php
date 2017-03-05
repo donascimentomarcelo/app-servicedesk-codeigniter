@@ -52,7 +52,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <table ng-show="dataSoftware.length > 0" class="mdl-data-table mdl-js-data-table  mdl-shadow--2dp"cellspacing="0" width="100%">
+                                    <table ng-show="dataSoftware.length > 0" class="table" cellspacing="0" width="100%">
                                         <thead>
                                             <tr>
                                                 <th class="none-table-480" style="text-align: center;" ng-click="ordenationBy('idsoftware')"> ID
@@ -95,17 +95,15 @@
                                                 <input class="form-control" type="hidden" ng-model="action.idsoftware">
                                             </div>
 
-                                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-width">
-                                                <input class="mdl-textfield__input" type="text" id="nomesoftware"  ng-model="action.nomesoftware" ng-required="true">
-                                                <label class="mdl-textfield__label" for="nomesoftware">Nome do Software</label>
+                                            <div class="form-group full-width">
+                                                <input class="form-control" type="text" id="nomesoftware"  ng-model="action.nomesoftware" ng-required="true" placeholder="Nome do Software...">
                                             </div>
 
-                                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-width">
-                                                <input class="mdl-textfield__input" type="text" id="serialsoftware"  ng-model="action.serialsoftware" ng-required="true">
-                                                <label class="mdl-textfield__label" for="serialsoftware">Nome do Software</label>
+                                            <div class="form-group full-width">
+                                                <input class="form-control" type="text" id="serialsoftware"  ng-model="action.serialsoftware" ng-required="true" placeholder="Nome do Software...">
                                             </div>
 
-                                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-width">
+                                            <div class="form-group full-width">
                                                 <select class="form-control" ng-model="action.inventario_config_fk" ng-required="true">
                                                     <option value="">Selecione um fabricante.</option>
                                                     <option ng-repeat="dataConfigSoftware in dataConfigSoftware" value="{{dataConfigSoftware.idconfig}}">{{dataConfigSoftware.nome_config}}</option>
@@ -113,10 +111,12 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div  data-spy="affix">
-                                        <button type="button" ng-click="actionSoftware(action)" ng-if="!formSoftware.$invalid" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect"><i class="material-icons">archive</i></button><br><br>
+                                    <br>
+                                    <!-- <div  data-spy="affix"> -->
                                         <button type="button" ng-click="new ()" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect"> <i class="material-icons">add</i></button>
-                                    </div> 
+                                        <button type="button" ng-click="actionSoftware(action)" ng-if="!formSoftware.$invalid" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect"><i class="material-icons">archive</i></button>
+                                    <!-- </div>  -->
+                                    <br><br>
                                 </form>
                             </div>
                         </div>
